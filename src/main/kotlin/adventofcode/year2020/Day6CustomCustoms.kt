@@ -11,7 +11,7 @@ object Day6CustomCustoms {
         .sum()
 
     fun part2(customsGroups: List<String>) = customsGroups
-        .map { it.split("\n").filter { it.isNotBlank() } }
+        .map { it.split("\n").filter(String::isNotBlank) }
         .map { group -> ('a'..'z').mapNotNull { question -> if (group.all { it.contains(question) }) question else null } }
         .map { it.size }
         .sum()

@@ -33,11 +33,8 @@ object Day10AdapterArray {
 }
 
 fun main() {
-    val input = readInputAsLines(2020, 10).map { it.toInt() }
+    val input = readInputAsLines(2020, 10).map(String::toInt)
 
-    val part1 = part1(input)
-    val part2 = part2(input)
-
-    println("Part 1: $part1")
-    println("Part 2: $part2")
+    println("Part 1: ${part1(input)}")
+    println("Part 2: ${part2(input)}")
 }

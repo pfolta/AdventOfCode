@@ -32,7 +32,7 @@ fun List<Bag>.get(color: String) = this.first { it.color == color }
 object Day7HandyHaversacks {
     fun part1(bagRules: List<Bag>, searchPattern: String) = bagRules
         .map { it.contains(bagRules, searchPattern) }
-        .count { it }
+        .count()
 
     fun part2(bagRules: List<Bag>, searchPattern: String) = bagRules
         .get(searchPattern)

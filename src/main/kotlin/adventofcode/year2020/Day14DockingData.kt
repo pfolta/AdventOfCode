@@ -3,19 +3,20 @@ package adventofcode.year2020
 import adventofcode.year2020.Day14DockingData.part1
 import adventofcode.year2020.Day14DockingData.part2
 import adventofcode.utils.readInputAsLines
-import adventofcode.year2020.InitializationProgram.MaskInstruction
-import adventofcode.year2020.InitializationProgram.MemoryInstruction
-
-sealed class InitializationProgram {
-    data class MaskInstruction(val mask: String) : InitializationProgram()
-    data class MemoryInstruction(val address: Long, val value: Long) : InitializationProgram()
-}
-
-fun String.prepend(prefix: Char, totalLength: Int) = prefix.toString().repeat(totalLength - length) + this
-
-fun String.replace(position: Int, replacement: Char) = substring(0 until position) + replacement + substring(position + 1 until length)
+import adventofcode.year2020.Day14DockingData.InitializationProgram.MaskInstruction
+import adventofcode.year2020.Day14DockingData.InitializationProgram.MemoryInstruction
 
 object Day14DockingData {
+    sealed class InitializationProgram {
+        data class MaskInstruction(val mask: String) : InitializationProgram()
+        data class MemoryInstruction(val address: Long, val value: Long) : InitializationProgram()
+    }
+
+    private fun String.prepend(prefix: Char, totalLength: Int) = prefix.toString().repeat(totalLength - length) + this
+
+    private fun String.replace(position: Int, replacement: Char) =
+        substring(0 until position) + replacement + substring(position + 1 until length)
+
     fun part1(program: List<InitializationProgram>) = program
         .fold(Pair("X".repeat(36), emptyMap<Long, Long>())) { (mask, memoryMap), instruction ->
             when (instruction) {
@@ -62,9 +63,6 @@ fun main() {
             else MemoryInstruction(parts.first().substring(4 until parts.first().length - 1).toLong(), parts.last().toLong())
         }
 
-    val part1 = part1(input)
-    val part2 = part2(input)
-
-    println("Part 1: $part1")
-    println("Part 2: $part2")
+    println("Part 1: ${part1(input)}")
+    println("Part 2: ${part2(input)}")
 }

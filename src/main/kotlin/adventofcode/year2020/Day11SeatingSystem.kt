@@ -58,11 +58,8 @@ object Day11SeatingSystem {
 }
 
 fun main() {
-    val input = readInputAsLines(2020, 11).map { it.toCharArray().map { it.toString() } }
+    val input = readInputAsLines(2020, 11).map { it.split("") }
 
-    val part1 = part1(input)
-    val part2 = part2(input)
-
-    println("Part 1: $part1")
-    println("Part 2: $part2")
+    println("Part 1: ${part1(input)}")
+    println("Part 2: ${part2(input)}")
 }

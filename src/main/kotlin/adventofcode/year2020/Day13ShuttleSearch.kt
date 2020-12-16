@@ -29,9 +29,6 @@ object Day13ShuttleSearch {
 fun main() {
     val input = readInputAsLines(2020, 13)
 
-    val part1 = part1(input[1].split(","), input.first().toInt())
-    val part2 = part2(input[1].split(","))
-
-    println("Part 1: $part1")
-    println("Part 2: $part2")
+    println("Part 1: ${part1(input.last().split(","), input.first().toInt())}")
+    println("Part 2: ${part2(input.last().split(","))}")
 }

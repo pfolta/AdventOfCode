@@ -19,7 +19,7 @@ object Day1ReportRepair {
 }
 
 fun main() {
-    val expenses = readInputAsLines(2020, 1).map { it.toInt() }
+    val expenses = readInputAsLines(2020, 1).map(String::toInt)
 
     println("Part 1: ${part1(expenses, 2020)}")
     println("Part 2: ${part2(expenses, 2020)}")

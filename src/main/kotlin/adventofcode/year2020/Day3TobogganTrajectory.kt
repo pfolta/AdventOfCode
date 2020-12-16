@@ -1,15 +1,16 @@
 package adventofcode.year2020
 
+import adventofcode.utils.readInputAsLines
+import adventofcode.year2020.Day3TobogganTrajectory.Slope
 import adventofcode.year2020.Day3TobogganTrajectory.part1
 import adventofcode.year2020.Day3TobogganTrajectory.part2
-import adventofcode.utils.readInputAsLines
-
-data class Slope(
-    val dx: Long,
-    val dy: Long
-)
 
 object Day3TobogganTrajectory {
+    data class Slope(
+        val dx: Long,
+        val dy: Long
+    )
+
     fun part1(treeMap: List<String>, slope: Slope): Long {
         var counter = 0L
         var x = 0L

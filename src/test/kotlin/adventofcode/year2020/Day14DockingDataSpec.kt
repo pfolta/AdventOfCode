@@ -2,8 +2,8 @@ package adventofcode.year2020
 
 import adventofcode.year2020.Day14DockingData.part1
 import adventofcode.year2020.Day14DockingData.part2
-import adventofcode.year2020.InitializationProgram.MaskInstruction
-import adventofcode.year2020.InitializationProgram.MemoryInstruction
+import adventofcode.year2020.Day14DockingData.InitializationProgram.MaskInstruction
+import adventofcode.year2020.Day14DockingData.InitializationProgram.MemoryInstruction
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 

@@ -24,11 +24,10 @@ object Day9EncodingError {
 }
 
 fun main() {
-    val input = readInputAsLines(2020, 9).map { it.toLong() }
+    val input = readInputAsLines(2020, 9).map(String::toLong)
 
     val part1 = part1(input, 25)
-    val part2 = part2(input, part1)
 
     println("Part 1: $part1")
-    println("Part 2: $part2")
+    println("Part 2: ${part2(input, part1)}")
 }
