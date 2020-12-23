@@ -28,7 +28,7 @@ object Day21AllergenAssessment {
 
         val ingredientsToAllergens = buildIngredientsToAllergensMap(foods)
 
-        return foods.map(Food::ingredients).flatten().filter { !ingredientsToAllergens.contains(it) }.size
+        return foods.flatMap(Food::ingredients).filter { !ingredientsToAllergens.contains(it) }.size
     }
 
     fun part2(input: String) =

@@ -19,7 +19,7 @@ object Day9EncodingError {
     fun part2(input: List<Long>, searchPattern: Long) = (2..input.size)
         .flatMap { size -> (0..input.size - size).map { input.subList(it, it + size) } }
         .filter { it.sum() == searchPattern }
-        .map { it.min()!! + it.max()!! }
+        .map { it.minOrNull()!! + it.maxOrNull()!! }
         .first()
 }
 

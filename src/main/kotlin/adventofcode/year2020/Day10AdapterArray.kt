@@ -6,7 +6,7 @@ import adventofcode.utils.readInputAsLines
 
 object Day10AdapterArray {
     fun part1(input: List<Int>): Int {
-        val sortedInput = input.sorted() + listOf(input.max()!! + 3)
+        val sortedInput = input.sorted() + listOf(input.maxOrNull()!! + 3)
 
         return sortedInput
             .foldIndexed(emptyMap<Int, Int>()) { index, acc, elem ->
@@ -18,7 +18,7 @@ object Day10AdapterArray {
     }
 
     fun part2(input: List<Int>): Long {
-        val sortedInput = input.sorted() + listOf(input.max()!! + 3)
+        val sortedInput = input.sorted() + listOf(input.maxOrNull()!! + 3)
 
         val k = longArrayOf(1, 0, 0, 0)
         sortedInput.fold(0) { a, b ->

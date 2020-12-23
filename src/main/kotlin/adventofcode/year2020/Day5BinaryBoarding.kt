@@ -17,7 +17,7 @@ object Day5BinaryBoarding {
         )
     }
 
-    fun part1(seats: List<String>) = seats.map(::Seat).maxBy { it.seatId }!!.seatId
+    fun part1(seats: List<String>) = seats.map(::Seat).maxByOrNull { it.seatId }!!.seatId
 
     fun part2(seats: List<String>) = (seats.indices).last { !seats.map(::Seat).map(Seat::seatId).contains(it) }
 }

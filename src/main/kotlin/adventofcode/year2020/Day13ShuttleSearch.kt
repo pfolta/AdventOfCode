@@ -9,7 +9,7 @@ object Day13ShuttleSearch {
     fun part1(buses: List<String>, earliestDeparture: Int) = buses
         .mapNotNull(String::toIntOrNull)
         .map { Pair(it, ceil(earliestDeparture.toDouble() / it.toDouble()).toInt() * it - earliestDeparture) }
-        .minBy { it.second }!!
+        .minByOrNull { it.second }!!
         .toList()
         .reduce { product, factor -> product * factor }
 
