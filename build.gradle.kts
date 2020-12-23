@@ -1,10 +1,7 @@
-import org.gradle.api.tasks.testing.logging.TestLogEvent.FAILED
-import org.gradle.api.tasks.testing.logging.TestLogEvent.PASSED
-import org.gradle.api.tasks.testing.logging.TestLogEvent.SKIPPED
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
-    kotlin("jvm") version "1.3.70"
+    kotlin("jvm") version "1.4.21"
 }
 
 repositories {
@@ -12,25 +9,19 @@ repositories {
 }
 
 dependencies {
-    implementation("org.jetbrains.kotlin:kotlin-reflect")
-    implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+    implementation(kotlin("reflect"))
+    implementation(kotlin("stdlib-jdk8"))
 
-    testImplementation("io.kotest:kotest-runner-junit5-jvm:4.3.1")
-    testImplementation("io.kotest:kotest-assertions-core-jvm:4.3.1")
+    testImplementation("io.kotest:kotest-runner-junit5:4.3.2")
+    testImplementation("io.kotest:kotest-assertions-core:4.3.2")
 }
 
 tasks {
     withType<KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = "1.8"
-        }
+        kotlinOptions.jvmTarget = "1.8"
     }
 
-    test {
+    withType<Test> {
         useJUnitPlatform()
-
-        testLogging {
-            events = setOf(PASSED, SKIPPED, FAILED)
-        }
     }
 }
