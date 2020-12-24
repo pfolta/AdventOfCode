@@ -1,0 +1,86 @@
+package adventofcode.year2020
+
+import adventofcode.Day
+
+object Day20JurassicJigsaw : Day() {
+    override fun partOne(): Long {
+        val tiles = input.split("\n\n").map(::Tile)
+
+        val tileMap = generateSequence(mapOf(Pair(0, 0) to tiles.first())) { previous ->
+            previous + previous.keys.flatMap { tile ->
+                val left = tiles
+                    .filter { previous.values.none { previousTile -> it.id == previousTile.id } }
+                    .mapNotNull { newTile ->
+                        val left = previous[tile]!!.left
+                        newTile.variations().firstOrNull { it.right == left }?.let { Pair(tile.first - 1, tile.second) to it }
+                    }
+                    .firstOrNull()
+
+                val right = tiles
+                    .filter { previous.values.none { previousTile -> it.id == previousTile.id } }
+                    .mapNotNull { newTile ->
+                        val right = previous[tile]!!.right
+                        newTile.variations().firstOrNull { it.left == right }?.let { Pair(tile.first + 1, tile.second) to it }
+                    }
+                    .firstOrNull()
+
+                val bottom = tiles
+                    .filter { previous.values.none { previousTile -> it.id == previousTile.id } }
+                    .mapNotNull { newTile ->
+                        val bottom = previous[tile]!!.bottom
+                        newTile.variations().firstOrNull { it.top == bottom }?.let { Pair(tile.first, tile.second - 1) to it }
+                    }
+                    .firstOrNull()
+
+                val top = tiles
+                    .filter { previous.values.none { previousTile -> it.id == previousTile.id } }
+                    .mapNotNull { newTile ->
+                        val top = previous[tile]!!.top
+                        newTile.variations().firstOrNull { it.bottom == top }?.let { Pair(tile.first, tile.second + 1) to it }
+                    }
+                    .firstOrNull()
+
+                listOfNotNull(left, right, bottom, top)
+            }.toMap()
+        }
+            .zipWithNext()
+            .takeWhile { it.first.size < tiles.size }
+            .last()
+            .second
+
+        return listOf(
+            tileMap.entries.sortedBy { it.key.first }.minByOrNull { it.key.second }!!,
+            tileMap.entries.sortedBy { it.key.first }.maxByOrNull { it.key.second }!!,
+            tileMap.entries.sortedByDescending { it.key.first }.minByOrNull { it.key.second }!!,
+            tileMap.entries.sortedByDescending { it.key.first }.maxByOrNull { it.key.second }!!
+        )
+            .map { it.value.id }
+            .reduce { product, factor -> product * factor }
+    }
+
+    override fun partTwo() {}
+}
+
+private data class Tile(
+    val id: Long,
+    val content: List<String>
+) {
+    constructor(tile: String) : this(tile.lines().first().split(" ").last().replace(":", "").toLong(), tile.lines().drop(1))
+
+    val left = col(0)
+    val top = row(0)
+    val right = col(content.first().length - 1)
+    val bottom = row(content.size - 1)
+
+    private fun col(n: Int) = content.fold("") { col, row -> col + row[n] }
+    private fun row(n: Int) = content[n]
+
+    // Rotate content 90 degrees clockwise
+    private fun rotate() = copy(content = content.mapIndexed { n, _ -> col(n).reversed() })
+
+    private fun flipX() = copy(content = content.map(String::reversed))
+    private fun flipY() = copy(content = content.reversed())
+
+    fun variations() =
+        listOf(this, flipX(), flipY()).flatMap { listOf(it, it.rotate(), it.rotate().rotate(), it.rotate().rotate().rotate()) }
+}

@@ -1,23 +1,13 @@
 package adventofcode.year2020
 
-import adventofcode.year2020.Day14DockingData.part1
-import adventofcode.year2020.Day14DockingData.part2
-import adventofcode.utils.readInputAsLines
-import adventofcode.year2020.Day14DockingData.InitializationProgram.MaskInstruction
-import adventofcode.year2020.Day14DockingData.InitializationProgram.MemoryInstruction
+import adventofcode.Day
+import adventofcode.year2020.InitializationInstruction.MaskInstruction
+import adventofcode.year2020.InitializationInstruction.MemoryInstruction
 
-object Day14DockingData {
-    sealed class InitializationProgram {
-        data class MaskInstruction(val mask: String) : InitializationProgram()
-        data class MemoryInstruction(val address: Long, val value: Long) : InitializationProgram()
-    }
+object Day14DockingData : Day() {
+    private val initializationInstructions = input.lines().map(InitializationInstruction::parseInstruction)
 
-    private fun String.prepend(prefix: Char, totalLength: Int) = prefix.toString().repeat(totalLength - length) + this
-
-    private fun String.replace(position: Int, replacement: Char) =
-        substring(0 until position) + replacement + substring(position + 1 until length)
-
-    fun part1(program: List<InitializationProgram>) = program
+    override fun partOne() = initializationInstructions
         .fold(Pair("X".repeat(36), emptyMap<Long, Long>())) { (mask, memoryMap), instruction ->
             when (instruction) {
                 is MaskInstruction -> Pair(instruction.mask, memoryMap)
@@ -33,7 +23,7 @@ object Day14DockingData {
             }
         }.second.values.sum()
 
-    fun part2(program: List<InitializationProgram>) = program
+    override fun partTwo() = initializationInstructions
         .fold(Pair("0".repeat(36), emptyMap<Long, Long>())) { (mask, memoryMap), instruction ->
             when (instruction) {
                 is MaskInstruction -> Pair(instruction.mask, memoryMap)
@@ -54,15 +44,23 @@ object Day14DockingData {
         }.second.values.sum()
 }
 
-fun main() {
-    val input = readInputAsLines(2020, 14)
-        .map {
-            val parts = it.split(" = ")
+private sealed class InitializationInstruction {
+    data class MaskInstruction(val mask: String) : InitializationInstruction()
+    data class MemoryInstruction(val address: Long, val value: Long) : InitializationInstruction()
 
-            if (parts.first() == "mask") MaskInstruction(parts.last())
-            else MemoryInstruction(parts.first().substring(4 until parts.first().length - 1).toLong(), parts.last().toLong())
+    companion object {
+        fun parseInstruction(input: String): InitializationInstruction {
+            val parts = input.split(" = ")
+
+            return when (parts.first()) {
+                "mask" -> MaskInstruction(parts.last())
+                else -> MemoryInstruction(parts.first().substring(4 until parts.first().length - 1).toLong(), parts.last().toLong())
+            }
         }
-
-    println("Part 1: ${part1(input)}")
-    println("Part 2: ${part2(input)}")
+    }
 }
+
+private fun String.prepend(prefix: Char, totalLength: Int) = prefix.toString().repeat(totalLength - length) + this
+
+private fun String.replace(position: Int, replacement: Char) =
+    substring(0 until position) + replacement + substring(position + 1 until length)

@@ -1,13 +1,11 @@
 package adventofcode.year2020
 
-import adventofcode.utils.readInputAsString
-import adventofcode.year2020.Day19MonsterMessages.part1
-import adventofcode.year2020.Day19MonsterMessages.part2
+import adventofcode.Day
 
-object Day19MonsterMessages {
-    private val NUMBER_REG_EX = """\d+""".toRegex()
+private val NUMBER_REGEX = """\d+""".toRegex()
 
-    fun part1(input: String): Int {
+object Day19MonsterMessages : Day() {
+    override fun partOne(): Int {
         val rules = input
             .split("\n\n")
             .first()
@@ -21,14 +19,14 @@ object Day19MonsterMessages {
             previous
                 .split(" ")
                 .joinToString(" ") {
-                    when (val ref = NUMBER_REG_EX.find(it)) {
+                    when (val ref = NUMBER_REGEX.find(it)) {
                         null -> it
                         else -> it.replace(ref.value, "(${rules[ref.value]})")
                     }
                 }
         }
             .zipWithNext()
-            .takeWhile { regex -> regex.first.split(" ").any { it.contains(NUMBER_REG_EX) } }
+            .takeWhile { regex -> regex.first.split(" ").any { it.contains(NUMBER_REGEX) } }
             .last()
             .second
             .replace(" ", "")
@@ -37,14 +35,5 @@ object Day19MonsterMessages {
         return input.split("\n\n").last().lines().filter { rule0.matches(it) }.count()
     }
 
-    fun part2(input: String) {
-
-    }
-}
-
-fun main() {
-    val input = readInputAsString(2020, 19)
-
-    println("Part 1: ${part1(input)}")
-    println("Part 2: ${part2(input)}")
+    override fun partTwo() {}
 }

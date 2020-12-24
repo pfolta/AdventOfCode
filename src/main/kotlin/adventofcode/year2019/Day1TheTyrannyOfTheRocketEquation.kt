@@ -1,28 +1,25 @@
 package adventofcode.year2019
 
-import adventofcode.utils.readInputAsLines
+import adventofcode.Day
 
-private fun getFuelForModule(module: Int) = module / 3 - 2
+object Day1TheTyrannyOfTheRocketEquation : Day() {
+    private fun getFuelForModule(module: Int) = module / 3 - 2
 
-fun part1(modules: List<Int>) = modules.map { getFuelForModule(it) }.sum()
+    override fun partOne() = input.lines().map(String::toInt).map { getFuelForModule(it) }.sum()
 
-fun part2(modules: List<Int>) =
-    modules.map { module ->
-        var toAdd = 0
-        var fuel = getFuelForModule(module)
+    override fun partTwo() = input
+        .lines()
+        .map(String::toInt)
+        .map { module ->
+            var toAdd = 0
+            var fuel = getFuelForModule(module)
 
-        while (fuel > 0) {
-            toAdd += fuel
-            fuel = getFuelForModule(fuel)
+            while (fuel > 0) {
+                toAdd += fuel
+                fuel = getFuelForModule(fuel)
+            }
+
+            toAdd
         }
-
-        toAdd
-    }
         .sum()
-
-fun main() {
-    val modules = readInputAsLines(2019, 1).map { it.toInt() }
-
-    println("Part 1: ${part1(modules)}")
-    println("Part 2: ${part2(modules)}")
 }

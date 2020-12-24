@@ -1,23 +1,29 @@
 package adventofcode.year2020
 
-import adventofcode.utils.readInputAsString
-import adventofcode.year2020.Day16TicketTranslation.TicketRule
-import adventofcode.year2020.Day16TicketTranslation.part1
-import adventofcode.year2020.Day16TicketTranslation.part2
+import adventofcode.Day
 
-typealias Ticket = List<Int>
+object Day16TicketTranslation : Day() {
+    private val ticketRules = input
+        .split("\n\n")
+        .first()
+        .lines()
+        .map { it.split(": ") }
+        .map { TicketRule(it.first(), it.last().split(" or ").map { it.split("-").first().toInt()..it.split("-").last().toInt() }) }
 
-object Day16TicketTranslation {
-    data class TicketRule(
-        val name: String,
-        val ranges: List<IntRange>
-    )
+    private val yourTicket = input.split("\n\n")[1].lines().last().split(",").map(String::toInt)
 
-    fun part1(ticketRules: List<TicketRule>, nearbyTickets: List<Ticket>) = nearbyTickets
+    private val nearbyTickets = input
+        .split("\n\n")
+        .last()
+        .lines()
+        .drop(1)
+        .map { it.split(",").map(String::toInt) }
+
+    override fun partOne() = nearbyTickets
         .flatMap { ticket -> ticket.filter { ticketRules.flatMap(TicketRule::ranges).none { rule -> rule.contains(it) } } }
         .sum()
 
-    fun part2(ticketRules: List<TicketRule>, yourTicket: Ticket, nearbyTickets: List<Ticket>): Long {
+    override fun partTwo(): Long {
         val validNearbyTickets = nearbyTickets
             .filter { ticket -> ticket.all { ticketRules.flatMap(TicketRule::ranges).any { rule -> rule.contains(it) } } }
 
@@ -26,7 +32,7 @@ object Day16TicketTranslation {
                 val possibleIndices = (yourTicket.indices)
                     .filter { index -> validNearbyTickets.map { it[index] }.all { rule.ranges.any { range -> range.contains(it) } } }
 
-                Pair(rule, possibleIndices.toMutableList())
+                rule to possibleIndices.toMutableList()
             }
 
         repeat((ticketRules.indices).count()) {
@@ -42,19 +48,7 @@ object Day16TicketTranslation {
     }
 }
 
-fun main() {
-    val input = readInputAsString(2020, 16).split("\n\n")
-
-    val ticketRules = input
-        .first()
-        .lines()
-        .map { it.split(": ") }
-        .map { TicketRule(it.first(), it.last().split(" or ").map { it.split("-").first().toInt()..it.split("-").last().toInt() }) }
-
-    val yourTicket = input[1].lines().last().split(",").map(String::toInt)
-
-    val nearbyTickets = input.last().lines().drop(1).map { it.split(",").map(String::toInt) }
-
-    println("Part 1: ${part1(ticketRules, nearbyTickets)}")
-    println("Part 2: ${part2(ticketRules, yourTicket, nearbyTickets)}")
-}
+private data class TicketRule(
+    val name: String,
+    val ranges: List<IntRange>
+)

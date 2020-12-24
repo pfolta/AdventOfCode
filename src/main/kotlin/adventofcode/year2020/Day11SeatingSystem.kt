@@ -1,12 +1,19 @@
 package adventofcode.year2020
 
-import adventofcode.year2020.Day11SeatingSystem.part1
-import adventofcode.year2020.Day11SeatingSystem.part2
-import adventofcode.utils.readInputAsLines
+import adventofcode.Day
 
-typealias SeatMap = List<List<String>>
+// Eight directions going up, down, left, right, or diagonal
+private val directions = (-1..1).flatMap { dx -> (-1..1).map { dy -> Pair(dx, dy) } }.filter { it != Pair(0, 0) }
 
-fun SeatMap.getNearestSeatNeighbor(self: Pair<Int, Int>, direction: Pair<Int, Int>): String? {
+object Day11SeatingSystem : Day() {
+    private val seatMap = input.lines().map { it.split("") }
+
+    override fun partOne() = seatMap.iterate(4, List<List<String>>::getImmediateNeighbors)
+
+    override fun partTwo() = seatMap.iterate(5, List<List<String>>::getNearestSeatNeighbors)
+}
+
+private fun List<List<String>>.getNearestSeatNeighbor(self: Pair<Int, Int>, direction: Pair<Int, Int>): String? {
     var x = self.first
     var y = self.second
 
@@ -23,43 +30,28 @@ fun SeatMap.getNearestSeatNeighbor(self: Pair<Int, Int>, direction: Pair<Int, In
     return null
 }
 
-// Eight directions going up, down, left, right, or diagonal
-private val directions = (-1..1).flatMap { dx -> (-1..1).map { dy -> Pair(dx, dy) } }.filter { it != Pair(0, 0) }
-
-private fun SeatMap.getImmediateNeighbors(self: Pair<Int, Int>) =
+private fun List<List<String>>.getImmediateNeighbors(self: Pair<Int, Int>) =
     directions.mapNotNull { dir -> getOrNull(self.second + dir.second)?.getOrNull(self.first + dir.first) }
 
-private fun SeatMap.getNearestSeatNeighbors(self: Pair<Int, Int>) = directions
-    .mapNotNull { dir -> getNearestSeatNeighbor(self, dir) }
+private fun List<List<String>>.next(tolerance: Int, neighborFunction: List<List<String>>.(Pair<Int, Int>) -> List<String>) =
+    mapIndexed { y, row ->
+        row.mapIndexed { x, _ ->
+            val occupiedNeighbors = neighborFunction(this, Pair(x, y)).count { it == "#" }
 
-private fun SeatMap.next(tolerance: Int, neighborFunction: SeatMap.(Pair<Int, Int>) -> List<String>) = mapIndexed { y, row ->
-    row.mapIndexed { x, _ ->
-        val occupiedNeighbors = neighborFunction(this, Pair(x, y)).count { it == "#" }
-
-        when {
-            (this[y][x] == "L" && occupiedNeighbors == 0) -> "#"
-            (this[y][x] == "#" && occupiedNeighbors >= tolerance) -> "L"
-            else -> this[y][x]
+            when {
+                (this[y][x] == "L" && occupiedNeighbors == 0) -> "#"
+                (this[y][x] == "#" && occupiedNeighbors >= tolerance) -> "L"
+                else -> this[y][x]
+            }
         }
     }
-}
 
-private fun SeatMap.iterate(tolerance: Int, neighborFunction: SeatMap.(Pair<Int, Int>) -> List<String>) =
+private fun List<List<String>>.iterate(tolerance: Int, neighborFunction: List<List<String>>.(Pair<Int, Int>) -> List<String>) =
     generateSequence(this) { it.next(tolerance, neighborFunction) }
         .zipWithNext()
         .first { it.first == it.second }
         .first
         .sumBy { it.count { it == "#" } }
 
-object Day11SeatingSystem {
-    fun part1(input: SeatMap) = input.iterate(4, SeatMap::getImmediateNeighbors)
-
-    fun part2(input: SeatMap) = input.iterate(5, SeatMap::getNearestSeatNeighbors)
-}
-
-fun main() {
-    val input = readInputAsLines(2020, 11).map { it.split("") }
-
-    println("Part 1: ${part1(input)}")
-    println("Part 2: ${part2(input)}")
-}
+private fun List<List<String>>.getNearestSeatNeighbors(self: Pair<Int, Int>) = directions
+    .mapNotNull { dir -> getNearestSeatNeighbor(self, dir) }

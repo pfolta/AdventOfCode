@@ -1,27 +1,16 @@
 package adventofcode.year2020
 
-import adventofcode.year2020.Day4PassportProcessing.part1
-import adventofcode.year2020.Day4PassportProcessing.part2
-import adventofcode.utils.readInputAsString
+import adventofcode.Day
 
-data class Passport(
-    val byr: String?,
-    val iyr: String?,
-    val eyr: String?,
-    val hgt: String?,
-    val hcl: String?,
-    val ecl: String?,
-    val pid: String?,
-    val cid: String?
-)
+object Day4PassportProcessing : Day() {
+    private val passports = input.split("\n\n").map { it.replace("\n", " ").split(" ") }.map(::Passport)
 
-object Day4PassportProcessing {
-    fun part1(passports: List<Passport>) = passports
+    override fun partOne() = passports
         .filter { it.byr != null && it.iyr != null && it.eyr != null && it.hgt != null && it.hcl != null && it.ecl != null && it.pid != null }
         .count()
 
 
-    fun part2(passports: List<Passport>) = passports
+    override fun partTwo() = passports
         .asSequence()
         .filter { it.byr != null && it.iyr != null && it.eyr != null && it.hgt != null && it.hcl != null && it.ecl != null && it.pid != null }
         .filter { it.byr!!.toInt() in 1920..2002 }
@@ -37,24 +26,24 @@ object Day4PassportProcessing {
         .count()
 }
 
-fun main() {
-    val passports = readInputAsString(2020, 4)
-        .split("\n\n")
-        .map { it.replace("\n", " ") }
-        .map { it.split(" ") }
-        .map { fields ->
-            val byr = fields.find { it.startsWith("byr") }?.split(":")?.get(1)
-            val iyr = fields.find { it.startsWith("iyr") }?.split(":")?.get(1)
-            val eyr = fields.find { it.startsWith("eyr") }?.split(":")?.get(1)
-            val hgt = fields.find { it.startsWith("hgt") }?.split(":")?.get(1)
-            val hcl = fields.find { it.startsWith("hcl") }?.split(":")?.get(1)
-            val ecl = fields.find { it.startsWith("ecl") }?.split(":")?.get(1)
-            val pid = fields.find { it.startsWith("pid") }?.split(":")?.get(1)
-            val cid = fields.find { it.startsWith("cid") }?.split(":")?.get(1)
-
-            Passport(byr, iyr, eyr, hgt, hcl, ecl, pid, cid)
-        }
-
-    println("Part 1: ${part1(passports)}")
-    println("Part 2: ${part2(passports)}")
+private data class Passport(
+    val byr: String?,
+    val iyr: String?,
+    val eyr: String?,
+    val hgt: String?,
+    val hcl: String?,
+    val ecl: String?,
+    val pid: String?,
+    val cid: String?
+) {
+    constructor(fields: List<String>) : this(
+        fields.find { it.startsWith("byr") }?.split(":")?.get(1),
+        fields.find { it.startsWith("iyr") }?.split(":")?.get(1),
+        fields.find { it.startsWith("eyr") }?.split(":")?.get(1),
+        fields.find { it.startsWith("hgt") }?.split(":")?.get(1),
+        fields.find { it.startsWith("hcl") }?.split(":")?.get(1),
+        fields.find { it.startsWith("ecl") }?.split(":")?.get(1),
+        fields.find { it.startsWith("pid") }?.split(":")?.get(1),
+        fields.find { it.startsWith("cid") }?.split(":")?.get(1)
+    )
 }
