@@ -1,6 +1,7 @@
 package adventofcode
 
 import adventofcode.year2015.Day1NotQuiteLisp
+import adventofcode.year2015.Day2IWasToldThereWouldBeNoMath
 import adventofcode.year2019.Day1TheTyrannyOfTheRocketEquation
 import adventofcode.year2020.Day10AdapterArray
 import adventofcode.year2020.Day11SeatingSystem
@@ -30,6 +31,7 @@ import kotlin.time.ExperimentalTime
 fun main(vararg args: String) {
     listOf(
         Day1NotQuiteLisp,
+        Day2IWasToldThereWouldBeNoMath,
 
         Day1TheTyrannyOfTheRocketEquation,
 
