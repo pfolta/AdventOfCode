@@ -25,6 +25,7 @@ import adventofcode.year2020.Day20JurassicJigsaw
 import adventofcode.year2020.Day21AllergenAssessment
 import adventofcode.year2020.Day22CrabCombat
 import adventofcode.year2020.Day23CrabCups
+import adventofcode.year2020.Day24LobbyLayout
 import kotlin.time.ExperimentalTime
 
 @ExperimentalTime
@@ -56,7 +57,8 @@ fun main(vararg args: String) {
         Day20JurassicJigsaw,
         Day21AllergenAssessment,
         Day22CrabCombat,
-        Day23CrabCups
+        Day23CrabCups,
+        Day24LobbyLayout
     )
         .forEach { day ->
             day.run()
