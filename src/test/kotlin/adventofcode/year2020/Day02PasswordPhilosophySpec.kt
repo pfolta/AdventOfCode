@@ -2,4 +2,4 @@ package adventofcode.year2020
 
 import adventofcode.DaySpec
 
-class Day1ReportRepairSpec : DaySpec(514579, 241861950)
+class Day02PasswordPhilosophySpec : DaySpec(2, 1)

@@ -2,7 +2,7 @@ package adventofcode.year2015
 
 import adventofcode.Day
 
-object Day1NotQuiteLisp : Day() {
+object Day01NotQuiteLisp : Day() {
     override fun partOne() = input.fold(0) { floor, step -> if (step == '(') floor + 1 else floor - 1 }
 
     override fun partTwo() = input

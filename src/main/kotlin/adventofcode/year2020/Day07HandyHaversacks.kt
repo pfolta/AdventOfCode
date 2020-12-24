@@ -5,7 +5,7 @@ import adventofcode.Day
 private val BAG_RULE_REGEX = """(\w+ \w+) bags contain (.*)""".toRegex()
 private val BAG_CONTENTS_REGEX = """(\d+) (\w+ \w+) bags?(, )?""".toRegex()
 
-object Day7HandyHaversacks : Day() {
+object Day07HandyHaversacks : Day() {
     private val bagRules = input.lines().map { rule ->
         val (color) = BAG_RULE_REGEX.find(rule)!!.destructured
 

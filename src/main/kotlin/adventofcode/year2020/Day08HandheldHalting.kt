@@ -5,7 +5,7 @@ import adventofcode.year2020.Operation.ACC
 import adventofcode.year2020.Operation.JMP
 import adventofcode.year2020.Operation.NOP
 
-object Day8HandheldHalting : Day() {
+object Day08HandheldHalting : Day() {
     private val instructions = input.lines().map(::Instruction)
 
     override fun partOne() = instructions.execute().acc

@@ -2,4 +2,4 @@ package adventofcode.year2020
 
 import adventofcode.DaySpec
 
-class Day6CustomCustomsSpec : DaySpec(11, 6)
+class Day07HandyHaversacksSpec : DaySpec(4, 32)

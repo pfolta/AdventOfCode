@@ -2,7 +2,7 @@ package adventofcode.year2015
 
 import adventofcode.Day
 
-object Day2IWasToldThereWouldBeNoMath : Day() {
+object Day02IWasToldThereWouldBeNoMath : Day() {
     private val dimensions = input.lines().map { it.split("x").map(String::toInt) }
 
     override fun partOne() = dimensions

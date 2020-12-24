@@ -7,8 +7,8 @@ import kotlin.time.measureTimedValue
 private val CLASS_NAME_REGEX = """^adventofcode.year(\d+).Day(\d+)(.+)$""".toRegex()
 
 abstract class Day {
-    private val year = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component1()
-    private val day = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component2()
+    private val year = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component1().toInt()
+    private val day = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component2().toInt()
     private val title = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component3().replace("([A-Z])".toRegex(), " $1").trim()
 
     protected val input: String by lazy {

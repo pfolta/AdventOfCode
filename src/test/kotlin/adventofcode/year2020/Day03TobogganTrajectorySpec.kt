@@ -2,4 +2,4 @@ package adventofcode.year2020
 
 import adventofcode.DaySpec
 
-class Day8HandheldHaltingSpec : DaySpec(5, 8)
+class Day03TobogganTrajectorySpec : DaySpec(7, 336)

@@ -2,7 +2,7 @@ package adventofcode.year2020
 
 import adventofcode.Day
 
-object Day6CustomCustoms : Day() {
+object Day06CustomCustoms : Day() {
     override fun partOne() = input
         .split("\n\n")
         .map { it.replace("\n", "") }

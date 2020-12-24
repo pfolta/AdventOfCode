@@ -2,7 +2,7 @@ package adventofcode.year2020
 
 import adventofcode.Day
 
-object Day4PassportProcessing : Day() {
+object Day04PassportProcessing : Day() {
     private val passports = input.split("\n\n").map { it.replace("\n", " ").split(" ") }.map(::Passport)
 
     override fun partOne() = passports

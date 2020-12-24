@@ -4,7 +4,7 @@ import adventofcode.Day
 
 private const val PREAMBLE_LENGTH = 25
 
-object Day9EncodingError : Day() {
+object Day09EncodingError : Day() {
     private val numbers = input.lines().map(String::toLong)
 
     override fun partOne() = (PREAMBLE_LENGTH until numbers.size)

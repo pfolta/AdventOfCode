@@ -4,7 +4,7 @@ import adventofcode.Day
 
 private val PASSWORD_REGEX = """([0-9]*)-([0-9]*) ([a-z]): (.*)""".toRegex()
 
-object Day2PasswordPhilosophy : Day() {
+object Day02PasswordPhilosophy : Day() {
     override fun partOne() = input
         .lines()
         .filter {

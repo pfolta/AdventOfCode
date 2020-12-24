@@ -1,8 +1,17 @@
 package adventofcode
 
-import adventofcode.year2015.Day1NotQuiteLisp
-import adventofcode.year2015.Day2IWasToldThereWouldBeNoMath
-import adventofcode.year2019.Day1TheTyrannyOfTheRocketEquation
+import adventofcode.year2015.Day01NotQuiteLisp
+import adventofcode.year2015.Day02IWasToldThereWouldBeNoMath
+import adventofcode.year2019.Day01TheTyrannyOfTheRocketEquation
+import adventofcode.year2020.Day01ReportRepair
+import adventofcode.year2020.Day02PasswordPhilosophy
+import adventofcode.year2020.Day03TobogganTrajectory
+import adventofcode.year2020.Day04PassportProcessing
+import adventofcode.year2020.Day05BinaryBoarding
+import adventofcode.year2020.Day06CustomCustoms
+import adventofcode.year2020.Day07HandyHaversacks
+import adventofcode.year2020.Day08HandheldHalting
+import adventofcode.year2020.Day09EncodingError
 import adventofcode.year2020.Day10AdapterArray
 import adventofcode.year2020.Day11SeatingSystem
 import adventofcode.year2020.Day12RainRisk
@@ -12,38 +21,29 @@ import adventofcode.year2020.Day15RambunctiousRecitation
 import adventofcode.year2020.Day16TicketTranslation
 import adventofcode.year2020.Day17ConwayCubes
 import adventofcode.year2020.Day19MonsterMessages
-import adventofcode.year2020.Day1ReportRepair
 import adventofcode.year2020.Day20JurassicJigsaw
 import adventofcode.year2020.Day21AllergenAssessment
 import adventofcode.year2020.Day22CrabCombat
 import adventofcode.year2020.Day23CrabCups
-import adventofcode.year2020.Day2PasswordPhilosophy
-import adventofcode.year2020.Day3TobogganTrajectory
-import adventofcode.year2020.Day4PassportProcessing
-import adventofcode.year2020.Day5BinaryBoarding
-import adventofcode.year2020.Day6CustomCustoms
-import adventofcode.year2020.Day7HandyHaversacks
-import adventofcode.year2020.Day8HandheldHalting
-import adventofcode.year2020.Day9EncodingError
 import kotlin.time.ExperimentalTime
 
 @ExperimentalTime
 fun main(vararg args: String) {
     listOf(
-        Day1NotQuiteLisp,
-        Day2IWasToldThereWouldBeNoMath,
+        Day01NotQuiteLisp,
+        Day02IWasToldThereWouldBeNoMath,
 
-        Day1TheTyrannyOfTheRocketEquation,
+        Day01TheTyrannyOfTheRocketEquation,
 
-        Day1ReportRepair,
-        Day2PasswordPhilosophy,
-        Day3TobogganTrajectory,
-        Day4PassportProcessing,
-        Day5BinaryBoarding,
-        Day6CustomCustoms,
-        Day7HandyHaversacks,
-        Day8HandheldHalting,
-        Day9EncodingError,
+        Day01ReportRepair,
+        Day02PasswordPhilosophy,
+        Day03TobogganTrajectory,
+        Day04PassportProcessing,
+        Day05BinaryBoarding,
+        Day06CustomCustoms,
+        Day07HandyHaversacks,
+        Day08HandheldHalting,
+        Day09EncodingError,
         Day10AdapterArray,
         Day11SeatingSystem,
         Day12RainRisk,
