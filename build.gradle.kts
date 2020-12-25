@@ -6,7 +6,7 @@ plugins {
 }
 
 application {
-    mainClassName = "adventofcode.MainKt"
+    mainClass.set("adventofcode.MainKt")
 }
 
 repositories {
