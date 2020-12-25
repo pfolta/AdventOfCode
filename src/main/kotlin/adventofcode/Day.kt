@@ -1,5 +1,6 @@
 package adventofcode
 
+import org.reflections.Reflections
 import java.io.FileNotFoundException
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
@@ -38,4 +39,21 @@ abstract class Day {
             println("${it.value} (${it.duration})")
         }
     }
+}
+
+object Days {
+    private val reflections = Reflections(javaClass.`package`.name)
+
+    private val days = reflections.getSubTypesOf(Day::class.java).sortedBy(Class<out Day>::getName).map { it.kotlin.objectInstance!! }
+
+    fun all() = days
+
+    fun forYear(year: Int) = days
+        .filter { it.javaClass.name.startsWith("adventofcode.year$year") }
+        .ifEmpty { throw ClassNotFoundException("No solutions exist for year $year") }
+
+    fun forDay(year: Int, day: Int) = days
+        .filter { it.javaClass.name.startsWith("adventofcode.year$year.Day${day.toString().padStart(2, '0')}") }
+        .ifEmpty { throw ClassNotFoundException("Solution for $year/$day does not exist") }
+        .first()
 }
