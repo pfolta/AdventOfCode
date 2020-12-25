@@ -1,8 +1,8 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
-object Day05BinaryBoarding : Day() {
+object Day05BinaryBoarding : Puzzle() {
     private val seats = input.lines().map(::Seat)
 
     override fun partOne() = seats.maxByOrNull { it.seatId }!!.seatId

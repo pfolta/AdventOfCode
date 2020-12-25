@@ -1,5 +1,5 @@
 package adventofcode.year2020
 
-import adventofcode.DaySpec
+import adventofcode.PuzzleBaseSpec
 
-class Day19MonsterMessagesSpec : DaySpec(3)
+class Day19MonsterMessagesSpec : PuzzleBaseSpec(3)

@@ -3,8 +3,8 @@ package adventofcode
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 
-abstract class DaySpec(partOneExpected: Any, partTwoExpected: Any? = null) : FreeSpec() {
-    private val day = Class.forName(javaClass.name.removeSuffix("Spec")).kotlin.objectInstance as Day
+abstract class PuzzleBaseSpec(partOneExpected: Any, partTwoExpected: Any? = null) : FreeSpec() {
+    private val day = Class.forName(javaClass.name.removeSuffix("Spec")).kotlin.objectInstance as Puzzle
 
     init {
         "$day, Part 1" {

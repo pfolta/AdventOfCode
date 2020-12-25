@@ -1,8 +1,8 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
-object Day23CrabCups : Day() {
+object Day23CrabCups : Puzzle() {
     override fun partOne(): Int {
         val result = input.toCharArray().map(Char::toString).map(String::toInt).toMutableList().playCrabCups(100)
         return (result.subList(result.indexOf(1) + 1, result.size) + result.subList(0, result.indexOf(1))).joinToString("").toInt()

@@ -1,8 +1,8 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
-object Day21AllergenAssessment : Day() {
+object Day21AllergenAssessment : Puzzle() {
     private val foods = input.lines().map(::Food)
 
     override fun partOne(): Int {

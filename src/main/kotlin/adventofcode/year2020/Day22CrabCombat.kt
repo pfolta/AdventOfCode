@@ -1,8 +1,8 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
-object Day22CrabCombat : Day() {
+object Day22CrabCombat : Puzzle() {
     private val player1 = input.split("\n\n").first().lines().drop(1).map(String::toInt)
     private val player2 = input.split("\n\n").last().lines().drop(1).map(String::toInt)
 

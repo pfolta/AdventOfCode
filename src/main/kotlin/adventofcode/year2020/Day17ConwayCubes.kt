@@ -1,13 +1,13 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 import adventofcode.year2020.Cube.Cube3d
 import adventofcode.year2020.Cube.Cube4d
 
 private const val ACTIVE = "#"
 private const val INACTIVE = "."
 
-object Day17ConwayCubes : Day() {
+object Day17ConwayCubes : Puzzle() {
     override fun partOne() = (input
         .lines()
         .map { it.toCharArray().map(Char::toString) }

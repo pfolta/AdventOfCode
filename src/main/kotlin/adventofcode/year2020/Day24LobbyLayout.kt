@@ -1,10 +1,10 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 import adventofcode.year2020.Day24LobbyLayout.TileColor.BLACK
 import adventofcode.year2020.Day24LobbyLayout.TileColor.WHITE
 
-object Day24LobbyLayout : Day() {
+object Day24LobbyLayout : Puzzle() {
     private val DIRECTION_REGEX = "(e|se|sw|w|nw|ne)".toRegex()
 
     private val DIRECTIONS = mapOf(

@@ -1,5 +1,5 @@
 package adventofcode.year2020
 
-import adventofcode.DaySpec
+import adventofcode.PuzzleBaseSpec
 
-class Day15RambunctiousRecitationSpec : DaySpec(438, /*18*/)
+class Day15RambunctiousRecitationSpec : PuzzleBaseSpec(438, /*18*/)

@@ -1,8 +1,8 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
-object Day20JurassicJigsaw : Day() {
+object Day20JurassicJigsaw : Puzzle() {
     override fun partOne(): Long {
         val tiles = input.split("\n\n").map(::Tile)
 

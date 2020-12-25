@@ -1,11 +1,11 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
 private val BAG_RULE_REGEX = """(\w+ \w+) bags contain (.*)""".toRegex()
 private val BAG_CONTENTS_REGEX = """(\d+) (\w+ \w+) bags?(, )?""".toRegex()
 
-object Day07HandyHaversacks : Day() {
+object Day07HandyHaversacks : Puzzle() {
     private val bagRules = input.lines().map { rule ->
         val (color) = BAG_RULE_REGEX.find(rule)!!.destructured
 

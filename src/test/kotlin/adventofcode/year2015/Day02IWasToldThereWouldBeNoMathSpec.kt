@@ -1,5 +1,5 @@
 package adventofcode.year2015
 
-import adventofcode.DaySpec
+import adventofcode.PuzzleBaseSpec
 
-class Day02IWasToldThereWouldBeNoMathSpec : DaySpec(58 + 43, 34 + 14)
+class Day02IWasToldThereWouldBeNoMathSpec : PuzzleBaseSpec(58 + 43, 34 + 14)

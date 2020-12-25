@@ -1,6 +1,6 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 import adventofcode.year2020.Action.EAST
 import adventofcode.year2020.Action.FORWARD
 import adventofcode.year2020.Action.LEFT
@@ -10,7 +10,7 @@ import adventofcode.year2020.Action.SOUTH
 import adventofcode.year2020.Action.WEST
 import kotlin.math.absoluteValue
 
-object Day12RainRisk : Day() {
+object Day12RainRisk : Puzzle() {
     private val navigationInstructions = input.lines().map(::NavigationInstruction)
 
     override fun partOne() = navigationInstructions

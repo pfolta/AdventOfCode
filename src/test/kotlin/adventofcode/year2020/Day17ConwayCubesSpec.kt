@@ -1,5 +1,5 @@
 package adventofcode.year2020
 
-import adventofcode.DaySpec
+import adventofcode.PuzzleBaseSpec
 
-class Day17ConwayCubesSpec : DaySpec(112, 848)
+class Day17ConwayCubesSpec : PuzzleBaseSpec(112, 848)

@@ -1,5 +1,5 @@
 package adventofcode.year2020
 
-import adventofcode.DaySpec
+import adventofcode.PuzzleBaseSpec
 
-class Day24LobbyLayoutSpec : DaySpec(10, 2208)
+class Day24LobbyLayoutSpec : PuzzleBaseSpec(10, 2208)

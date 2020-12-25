@@ -1,5 +1,5 @@
 package adventofcode.year2020
 
-import adventofcode.DaySpec
+import adventofcode.PuzzleBaseSpec
 
-class Day25ComboBreakerSpec : DaySpec(14897079)
+class Day25ComboBreakerSpec : PuzzleBaseSpec(14897079)

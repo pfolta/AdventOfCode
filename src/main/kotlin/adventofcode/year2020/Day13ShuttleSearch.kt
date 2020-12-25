@@ -1,9 +1,9 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 import kotlin.math.ceil
 
-object Day13ShuttleSearch : Day() {
+object Day13ShuttleSearch : Puzzle() {
     private val buses = input.lines().last().split(",")
     private val earliestDeparture = input.lines().first().toInt()
 

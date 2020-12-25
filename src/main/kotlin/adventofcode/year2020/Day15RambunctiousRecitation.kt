@@ -1,8 +1,8 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
-object Day15RambunctiousRecitation : Day() {
+object Day15RambunctiousRecitation : Puzzle() {
     private val startingNumbers = input.split(",").map(String::toInt)
 
     override fun partOne() = startingNumbers.playGame(2020)

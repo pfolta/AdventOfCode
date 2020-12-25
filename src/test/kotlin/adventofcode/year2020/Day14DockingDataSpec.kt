@@ -1,5 +1,5 @@
 package adventofcode.year2020
 
-import adventofcode.DaySpec
+import adventofcode.PuzzleBaseSpec
 
-class Day14DockingDataSpec : DaySpec(51, 208)
+class Day14DockingDataSpec : PuzzleBaseSpec(51, 208)

@@ -1,5 +1,5 @@
 package adventofcode.year2020
 
-import adventofcode.DaySpec
+import adventofcode.PuzzleBaseSpec
 
-class Day13ShuttleSearchSpec : DaySpec(295, 1068781)
+class Day13ShuttleSearchSpec : PuzzleBaseSpec(295, 1068781)

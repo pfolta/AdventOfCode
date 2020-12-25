@@ -1,8 +1,8 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
-object Day01ReportRepair : Day() {
+object Day01ReportRepair : Puzzle() {
     private val expenses = input.lines().map(String::toInt)
 
     override fun partOne() = expenses

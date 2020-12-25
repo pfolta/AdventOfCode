@@ -1,11 +1,11 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 import adventofcode.year2020.Operation.ACC
 import adventofcode.year2020.Operation.JMP
 import adventofcode.year2020.Operation.NOP
 
-object Day08HandheldHalting : Day() {
+object Day08HandheldHalting : Puzzle() {
     private val instructions = input.lines().map(::Instruction)
 
     override fun partOne() = instructions.execute().acc

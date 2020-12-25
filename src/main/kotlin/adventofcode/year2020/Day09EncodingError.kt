@@ -1,10 +1,10 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
 private const val PREAMBLE_LENGTH = 25
 
-object Day09EncodingError : Day() {
+object Day09EncodingError : Puzzle() {
     private val numbers = input.lines().map(String::toLong)
 
     override fun partOne() = (PREAMBLE_LENGTH until numbers.size)

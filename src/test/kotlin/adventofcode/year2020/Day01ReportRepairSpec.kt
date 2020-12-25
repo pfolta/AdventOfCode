@@ -1,5 +1,5 @@
 package adventofcode.year2020
 
-import adventofcode.DaySpec
+import adventofcode.PuzzleBaseSpec
 
-class Day01ReportRepairSpec : DaySpec(514579, 241861950)
+class Day01ReportRepairSpec : PuzzleBaseSpec(514579, 241861950)

@@ -5,16 +5,14 @@ import java.io.FileNotFoundException
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
 
-private val CLASS_NAME_REGEX = """^adventofcode.year(\d+).Day(\d+)(.+)$""".toRegex()
-
-abstract class Day {
+abstract class Puzzle {
     private val year = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component1().toInt()
     private val day = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component2().toInt()
     private val title = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component3().replace("([A-Z])".toRegex(), " $1").trim()
 
     protected val input: String by lazy {
         javaClass.classLoader.getResource("inputs/year$year/day$day.txt")?.readText()?.trim()
-            ?: throw FileNotFoundException("Input file for '$this' is missing")
+            ?: throw FileNotFoundException("Input file for puzzle '$this' not found")
     }
 
     abstract fun partOne(): Any
@@ -39,21 +37,26 @@ abstract class Day {
             println("${it.value} (${it.duration})")
         }
     }
+
+    companion object {
+        private val CLASS_NAME_REGEX = """^adventofcode.year(\d+).Day(\d+)(.+)$""".toRegex()
+    }
 }
 
-object Days {
-    private val reflections = Reflections(javaClass.`package`.name)
+object Puzzles {
+    private val reflections = Reflections("adventofcode")
 
-    private val days = reflections.getSubTypesOf(Day::class.java).sortedBy(Class<out Day>::getName).map { it.kotlin.objectInstance!! }
+    private val puzzles =
+        reflections.getSubTypesOf(Puzzle::class.java).sortedBy(Class<out Puzzle>::getName).map { it.kotlin.objectInstance!! }
 
-    fun all() = days
+    fun all() = puzzles
 
-    fun forYear(year: Int) = days
+    fun forYear(year: Int) = puzzles
         .filter { it.javaClass.name.startsWith("adventofcode.year$year") }
-        .ifEmpty { throw ClassNotFoundException("No solutions exist for year $year") }
+        .ifEmpty { throw ClassNotFoundException("Puzzles for year $year not found") }
 
-    fun forDay(year: Int, day: Int) = days
+    fun forDay(year: Int, day: Int) = puzzles
         .filter { it.javaClass.name.startsWith("adventofcode.year$year.Day${day.toString().padStart(2, '0')}") }
-        .ifEmpty { throw ClassNotFoundException("Solution for $year/$day does not exist") }
+        .ifEmpty { throw ClassNotFoundException("Solution for puzzle $year/$day not found") }
         .first()
 }

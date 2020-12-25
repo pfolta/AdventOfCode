@@ -1,5 +1,5 @@
 package adventofcode.year2015
 
-import adventofcode.DaySpec
+import adventofcode.PuzzleBaseSpec
 
-class Day01NotQuiteLispSpec : DaySpec(-3, 1)
+class Day01NotQuiteLispSpec : PuzzleBaseSpec(-3, 1)

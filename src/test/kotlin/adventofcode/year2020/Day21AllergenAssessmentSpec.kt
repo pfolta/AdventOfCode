@@ -1,5 +1,5 @@
 package adventofcode.year2020
 
-import adventofcode.DaySpec
+import adventofcode.PuzzleBaseSpec
 
-class Day21AllergenAssessmentSpec : DaySpec(5, "mxmxvkd,sqjhc,fvjkl")
+class Day21AllergenAssessmentSpec : PuzzleBaseSpec(5, "mxmxvkd,sqjhc,fvjkl")

@@ -1,5 +1,5 @@
 package adventofcode.year2020
 
-import adventofcode.DaySpec
+import adventofcode.PuzzleBaseSpec
 
-class Day04PassportProcessingSpec : DaySpec(2, 2)
+class Day04PassportProcessingSpec : PuzzleBaseSpec(2, 2)

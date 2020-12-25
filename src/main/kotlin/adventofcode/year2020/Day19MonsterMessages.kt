@@ -1,10 +1,10 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
 private val NUMBER_REGEX = """\d+""".toRegex()
 
-object Day19MonsterMessages : Day() {
+object Day19MonsterMessages : Puzzle() {
     override fun partOne(): Int {
         val rules = input
             .split("\n\n")

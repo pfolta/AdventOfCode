@@ -1,8 +1,8 @@
 package adventofcode.year2015
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
-object Day02IWasToldThereWouldBeNoMath : Day() {
+object Day02IWasToldThereWouldBeNoMath : Puzzle() {
     private val dimensions = input.lines().map { it.split("x").map(String::toInt) }
 
     override fun partOne() = dimensions

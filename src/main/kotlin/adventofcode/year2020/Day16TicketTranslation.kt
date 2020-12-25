@@ -1,8 +1,8 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
-object Day16TicketTranslation : Day() {
+object Day16TicketTranslation : Puzzle() {
     private val ticketRules = input
         .split("\n\n")
         .first()

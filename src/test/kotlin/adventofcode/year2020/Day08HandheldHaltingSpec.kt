@@ -1,5 +1,5 @@
 package adventofcode.year2020
 
-import adventofcode.DaySpec
+import adventofcode.PuzzleBaseSpec
 
-class Day08HandheldHaltingSpec : DaySpec(5, 8)
+class Day08HandheldHaltingSpec : PuzzleBaseSpec(5, 8)

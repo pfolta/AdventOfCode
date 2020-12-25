@@ -1,5 +1,5 @@
 package adventofcode.year2020
 
-import adventofcode.DaySpec
+import adventofcode.PuzzleBaseSpec
 
-class Day12RainRiskSpec : DaySpec(25, 286)
+class Day12RainRiskSpec : PuzzleBaseSpec(25, 286)

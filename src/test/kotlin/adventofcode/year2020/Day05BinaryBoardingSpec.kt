@@ -1,5 +1,5 @@
 package adventofcode.year2020
 
-import adventofcode.DaySpec
+import adventofcode.PuzzleBaseSpec
 
-class Day05BinaryBoardingSpec : DaySpec(820, 2)
+class Day05BinaryBoardingSpec : PuzzleBaseSpec(820, 2)

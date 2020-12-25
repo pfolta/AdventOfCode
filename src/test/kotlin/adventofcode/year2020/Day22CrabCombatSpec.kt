@@ -1,5 +1,5 @@
 package adventofcode.year2020
 
-import adventofcode.DaySpec
+import adventofcode.PuzzleBaseSpec
 
-class Day22CrabCombatSpec : DaySpec(306, 291)
+class Day22CrabCombatSpec : PuzzleBaseSpec(306, 291)

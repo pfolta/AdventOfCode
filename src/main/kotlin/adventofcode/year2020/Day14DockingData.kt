@@ -1,10 +1,10 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 import adventofcode.year2020.InitializationInstruction.MaskInstruction
 import adventofcode.year2020.InitializationInstruction.MemoryInstruction
 
-object Day14DockingData : Day() {
+object Day14DockingData : Puzzle() {
     private val initializationInstructions = input.lines().map(InitializationInstruction::parseInstruction)
 
     override fun partOne() = initializationInstructions

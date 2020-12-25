@@ -1,10 +1,10 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
 private val PASSWORD_REGEX = """([0-9]*)-([0-9]*) ([a-z]): (.*)""".toRegex()
 
-object Day02PasswordPhilosophy : Day() {
+object Day02PasswordPhilosophy : Puzzle() {
     override fun partOne() = input
         .lines()
         .filter {

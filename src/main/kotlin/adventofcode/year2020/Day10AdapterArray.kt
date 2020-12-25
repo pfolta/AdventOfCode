@@ -1,8 +1,8 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
-object Day10AdapterArray : Day() {
+object Day10AdapterArray : Puzzle() {
     private val sortedInput = input.lines().map(String::toInt).sorted()
 
     override fun partOne() = (sortedInput + listOf(sortedInput.last() + 3))

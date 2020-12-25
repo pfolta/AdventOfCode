@@ -1,8 +1,8 @@
 package adventofcode.year2019
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
-object Day01TheTyrannyOfTheRocketEquation : Day() {
+object Day01TheTyrannyOfTheRocketEquation : Puzzle() {
     private val modules = input.lines().map(String::toInt)
 
     private fun getFuelForModule(module: Int) = module / 3 - 2

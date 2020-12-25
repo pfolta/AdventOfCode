@@ -1,8 +1,8 @@
 package adventofcode.year2015
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
-object Day01NotQuiteLisp : Day() {
+object Day01NotQuiteLisp : Puzzle() {
     override fun partOne() = input.fold(0) { floor, step -> if (step == '(') floor + 1 else floor - 1 }
 
     override fun partTwo() = input

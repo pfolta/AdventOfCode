@@ -1,8 +1,8 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
-object Day06CustomCustoms : Day() {
+object Day06CustomCustoms : Puzzle() {
     override fun partOne() = input
         .split("\n\n")
         .map { it.replace("\n", "") }

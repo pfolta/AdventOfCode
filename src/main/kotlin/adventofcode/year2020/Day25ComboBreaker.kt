@@ -1,8 +1,8 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
-object Day25ComboBreaker : Day() {
+object Day25ComboBreaker : Puzzle() {
     private const val SUBJECT_NUMBER = 7L
     private const val MODULUS = 20201227
 

@@ -1,11 +1,11 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
 // Eight directions going up, down, left, right, or diagonal
 private val directions = (-1..1).flatMap { dx -> (-1..1).map { dy -> Pair(dx, dy) } }.filter { it != Pair(0, 0) }
 
-object Day11SeatingSystem : Day() {
+object Day11SeatingSystem : Puzzle() {
     private val seatMap = input.lines().map { it.split("") }
 
     override fun partOne() = seatMap.iterate(4, List<List<String>>::getImmediateNeighbors)

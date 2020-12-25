@@ -1,8 +1,8 @@
 package adventofcode.year2020
 
-import adventofcode.Day
+import adventofcode.Puzzle
 
-object Day03TobogganTrajectory : Day() {
+object Day03TobogganTrajectory : Puzzle() {
     private val treeMap = input.lines()
 
     override fun partOne() = treeMap.countTrees(Slope(3, 1))
