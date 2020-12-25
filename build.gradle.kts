@@ -1,3 +1,4 @@
+import org.gradle.api.file.DuplicatesStrategy.EXCLUDE
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
@@ -28,5 +29,13 @@ tasks {
 
     withType<Test> {
         useJUnitPlatform()
+    }
+
+    withType<Jar> {
+        manifest.attributes["Main-Class"] = application.mainClass
+
+        // Include runtime dependencies (create a fat jar)
+        from(configurations.runtimeClasspath.get().map { if (it.isDirectory) it else zipTree(it) })
+        duplicatesStrategy = EXCLUDE
     }
 }
