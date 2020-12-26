@@ -1,6 +1,7 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.common.product
 import kotlin.math.ceil
 
 object Day13ShuttleSearch : Puzzle() {
@@ -12,7 +13,7 @@ object Day13ShuttleSearch : Puzzle() {
         .map { Pair(it, ceil(earliestDeparture.toDouble() / it.toDouble()).toInt() * it - earliestDeparture) }
         .minByOrNull { it.second }!!
         .toList()
-        .reduce { product, factor -> product * factor }
+        .product()
 
     override fun partTwo(): Long {
         val busesWithOffsets = buses

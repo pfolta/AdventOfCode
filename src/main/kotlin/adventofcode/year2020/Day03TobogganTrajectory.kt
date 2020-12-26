@@ -1,6 +1,7 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.common.product
 
 object Day03TobogganTrajectory : Puzzle() {
     private val treeMap = input.lines()
@@ -9,7 +10,7 @@ object Day03TobogganTrajectory : Puzzle() {
 
     override fun partTwo() = listOf(Slope(1, 1), Slope(3, 1), Slope(5, 1), Slope(7, 1), Slope(1, 2))
         .map(treeMap::countTrees)
-        .reduce { product, element -> product * element }
+        .product()
 }
 
 private fun List<String>.countTrees(slope: Slope): Long {

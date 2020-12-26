@@ -1,6 +1,7 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.common.product
 
 object Day10AdapterArray : Puzzle() {
     private val sortedInput = input.lines().map(String::toInt).sorted()
@@ -11,7 +12,7 @@ object Day10AdapterArray : Puzzle() {
             acc + mapOf(elem - previous to (acc[elem - previous] ?: 0) + 1)
         }
         .values
-        .reduce { product, factor -> product * factor }
+        .product()
 
     override fun partTwo(): Long {
         val k = longArrayOf(1, 0, 0, 0)

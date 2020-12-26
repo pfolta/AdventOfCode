@@ -17,4 +17,14 @@ class CollectionExtensionsSpec : FreeSpec({
             listOf(1, 2, 3, 4, 5, 6, 7, 8, 9).everyNth(3, 2) shouldBe listOf(3, 6, 9)
         }
     }
+
+    "product" - {
+        "returns the product of a collection of Ints" {
+            listOf(1, 2, 3, 4, 5, 6).product() shouldBe 720
+        }
+
+        "returns the product of a collection of Longs" {
+            listOf(1L, 2L, 3L, 4L, 5L).product() shouldBe 120L
+        }
+    }
 })

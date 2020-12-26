@@ -1,6 +1,7 @@
 package adventofcode.year2015
 
 import adventofcode.Puzzle
+import adventofcode.common.product
 
 object Day02IWasToldThereWouldBeNoMath : Puzzle() {
     private val dimensions = input.lines().map { it.split("x").map(String::toInt) }
@@ -8,7 +9,7 @@ object Day02IWasToldThereWouldBeNoMath : Puzzle() {
     override fun partOne() = dimensions
         .map {
             val wrapping = 2 * (it[0] * it[1] + it[1] * it[2] + it[0] * it[2])
-            val slack = it.sorted().subList(0, 2).reduce { product, factor -> product * factor }
+            val slack = it.sorted().subList(0, 2).product()
 
             wrapping + slack
         }

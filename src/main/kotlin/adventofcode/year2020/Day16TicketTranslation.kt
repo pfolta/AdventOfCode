@@ -1,6 +1,7 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.common.product
 
 object Day16TicketTranslation : Puzzle() {
     private val ticketRules = input
@@ -44,7 +45,7 @@ object Day16TicketTranslation : Puzzle() {
             .map { Pair(it.first, it.second.first()) }
             .filter { it.first.name.startsWith("departure") }
             .map { yourTicket[it.second].toLong() }
-            .reduce { product, factor -> product * factor }
+            .product()
     }
 }
 

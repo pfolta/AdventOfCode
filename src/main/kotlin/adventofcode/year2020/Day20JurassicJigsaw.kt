@@ -1,6 +1,7 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.common.product
 
 object Day20JurassicJigsaw : Puzzle() {
     override fun partOne(): Long {
@@ -55,7 +56,7 @@ object Day20JurassicJigsaw : Puzzle() {
             tileMap.entries.sortedByDescending { it.key.first }.maxByOrNull { it.key.second }!!
         )
             .map { it.value.id }
-            .reduce { product, factor -> product * factor }
+            .product()
     }
 
     override fun partTwo() {}
