@@ -9,4 +9,10 @@ object Day05DoesntHeHaveInternElvesForThis : Puzzle() {
         .filter { str -> ('a'..'z').any { str.contains(it.toString().repeat(2)) } }
         .filter { str -> setOf("ab", "cd", "pq", "xy").none { str.contains(it) } }
         .size
+
+    override fun partTwo() = input
+        .lines()
+        .filter { str -> ('a'..'z').flatMap { a -> ('a'..'z').map { b -> "$a$b" } }.any { """$it\w*$it""".toRegex().containsMatchIn(str) } }
+        .filter { str -> ('a'..'z').any { """$it\w$it""".toRegex().containsMatchIn(str) } }
+        .size
 }
