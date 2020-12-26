@@ -3,7 +3,7 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 import adventofcode.common.product
 
-object Day10AdapterArray : Puzzle() {
+class Day10AdapterArray(puzzleInput: String? = null) : Puzzle(puzzleInput) {
     private val sortedInput = input.lines().map(String::toInt).sorted()
 
     override fun partOne() = (sortedInput + listOf(sortedInput.last() + 3))

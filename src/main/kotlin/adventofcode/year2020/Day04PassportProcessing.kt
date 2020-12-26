@@ -2,13 +2,12 @@ package adventofcode.year2020
 
 import adventofcode.Puzzle
 
-object Day04PassportProcessing : Puzzle() {
+class Day04PassportProcessing(puzzleInput: String? = null) : Puzzle(puzzleInput) {
     private val passports = input.split("\n\n").map { it.replace("\n", " ").split(" ") }.map(::Passport)
 
     override fun partOne() = passports
         .filter { it.byr != null && it.iyr != null && it.eyr != null && it.hgt != null && it.hcl != null && it.ecl != null && it.pid != null }
         .count()
-
 
     override fun partTwo() = passports
         .asSequence()
@@ -24,26 +23,28 @@ object Day04PassportProcessing : Puzzle() {
         .filter { listOf("amb", "blu", "brn", "gry", "grn", "hzl", "oth").any { color -> it.ecl!! == color } }
         .filter { it.pid!!.toIntOrNull() != null && it.pid.length == 9 }
         .count()
-}
 
-private data class Passport(
-    val byr: String?,
-    val iyr: String?,
-    val eyr: String?,
-    val hgt: String?,
-    val hcl: String?,
-    val ecl: String?,
-    val pid: String?,
-    val cid: String?
-) {
-    constructor(fields: List<String>) : this(
-        fields.find { it.startsWith("byr") }?.split(":")?.get(1),
-        fields.find { it.startsWith("iyr") }?.split(":")?.get(1),
-        fields.find { it.startsWith("eyr") }?.split(":")?.get(1),
-        fields.find { it.startsWith("hgt") }?.split(":")?.get(1),
-        fields.find { it.startsWith("hcl") }?.split(":")?.get(1),
-        fields.find { it.startsWith("ecl") }?.split(":")?.get(1),
-        fields.find { it.startsWith("pid") }?.split(":")?.get(1),
-        fields.find { it.startsWith("cid") }?.split(":")?.get(1)
-    )
+    companion object {
+        data class Passport(
+            val byr: String?,
+            val iyr: String?,
+            val eyr: String?,
+            val hgt: String?,
+            val hcl: String?,
+            val ecl: String?,
+            val pid: String?,
+            val cid: String?
+        ) {
+            constructor(fields: List<String>) : this(
+                fields.find { it.startsWith("byr") }?.split(":")?.get(1),
+                fields.find { it.startsWith("iyr") }?.split(":")?.get(1),
+                fields.find { it.startsWith("eyr") }?.split(":")?.get(1),
+                fields.find { it.startsWith("hgt") }?.split(":")?.get(1),
+                fields.find { it.startsWith("hcl") }?.split(":")?.get(1),
+                fields.find { it.startsWith("ecl") }?.split(":")?.get(1),
+                fields.find { it.startsWith("pid") }?.split(":")?.get(1),
+                fields.find { it.startsWith("cid") }?.split(":")?.get(1)
+            )
+        }
+    }
 }

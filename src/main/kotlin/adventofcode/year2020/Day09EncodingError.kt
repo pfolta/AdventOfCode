@@ -2,9 +2,7 @@ package adventofcode.year2020
 
 import adventofcode.Puzzle
 
-private const val PREAMBLE_LENGTH = 25
-
-object Day09EncodingError : Puzzle() {
+class Day09EncodingError(puzzleInput: String? = null) : Puzzle(puzzleInput) {
     private val numbers = input.lines().map(String::toLong)
 
     override fun partOne() = (PREAMBLE_LENGTH until numbers.size)
@@ -26,5 +24,9 @@ object Day09EncodingError : Puzzle() {
             .filter { it.sum() == invalidNumber }
             .map { it.minOrNull()!! + it.maxOrNull()!! }
             .first()
+    }
+
+    companion object {
+        const val PREAMBLE_LENGTH = 25
     }
 }

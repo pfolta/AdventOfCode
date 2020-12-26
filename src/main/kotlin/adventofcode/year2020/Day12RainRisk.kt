@@ -1,16 +1,16 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
-import adventofcode.year2020.Action.EAST
-import adventofcode.year2020.Action.FORWARD
-import adventofcode.year2020.Action.LEFT
-import adventofcode.year2020.Action.NORTH
-import adventofcode.year2020.Action.RIGHT
-import adventofcode.year2020.Action.SOUTH
-import adventofcode.year2020.Action.WEST
+import adventofcode.year2020.Day12RainRisk.Companion.Action.EAST
+import adventofcode.year2020.Day12RainRisk.Companion.Action.FORWARD
+import adventofcode.year2020.Day12RainRisk.Companion.Action.LEFT
+import adventofcode.year2020.Day12RainRisk.Companion.Action.NORTH
+import adventofcode.year2020.Day12RainRisk.Companion.Action.RIGHT
+import adventofcode.year2020.Day12RainRisk.Companion.Action.SOUTH
+import adventofcode.year2020.Day12RainRisk.Companion.Action.WEST
 import kotlin.math.absoluteValue
 
-object Day12RainRisk : Puzzle() {
+class Day12RainRisk(puzzleInput: String? = null) : Puzzle(puzzleInput) {
     private val navigationInstructions = input.lines().map(::NavigationInstruction)
 
     override fun partOne() = navigationInstructions
@@ -67,36 +67,38 @@ object Day12RainRisk : Puzzle() {
         .second
         .toList()
         .sumBy { it.absoluteValue }
-}
-
-private enum class NavigationDirection(val heading: Int) {
-    EAST(0),
-    SOUTH(90),
-    WEST(180),
-    NORTH(270);
 
     companion object {
-        fun fromHeading(heading: Int) = values().associateBy(NavigationDirection::heading)[Math.floorMod(heading, 360)]
+        enum class NavigationDirection(val heading: Int) {
+            EAST(0),
+            SOUTH(90),
+            WEST(180),
+            NORTH(270);
+
+            companion object {
+                fun fromHeading(heading: Int) = values().associateBy(NavigationDirection::heading)[Math.floorMod(heading, 360)]
+            }
+        }
+
+        enum class Action(val action: String) {
+            NORTH("N"),
+            SOUTH("S"),
+            EAST("E"),
+            WEST("W"),
+            LEFT("L"),
+            RIGHT("R"),
+            FORWARD("F");
+
+            companion object {
+                fun fromString(action: String) = values().associateBy(Action::action)[action]
+            }
+        }
+
+        data class NavigationInstruction(
+            val action: Action,
+            val value: Int
+        ) {
+            constructor(action: String) : this(Action.fromString(action.substring(0, 1))!!, action.substring(1).toInt())
+        }
     }
-}
-
-private enum class Action(val action: String) {
-    NORTH("N"),
-    SOUTH("S"),
-    EAST("E"),
-    WEST("W"),
-    LEFT("L"),
-    RIGHT("R"),
-    FORWARD("F");
-
-    companion object {
-        fun fromString(action: String) = values().associateBy(Action::action)[action]
-    }
-}
-
-private data class NavigationInstruction(
-    val action: Action,
-    val value: Int
-) {
-    constructor(action: String) : this(Action.fromString(action.substring(0, 1))!!, action.substring(1).toInt())
 }

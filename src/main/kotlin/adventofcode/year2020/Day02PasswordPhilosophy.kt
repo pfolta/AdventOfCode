@@ -2,9 +2,7 @@ package adventofcode.year2020
 
 import adventofcode.Puzzle
 
-private val PASSWORD_REGEX = """([0-9]*)-([0-9]*) ([a-z]): (.*)""".toRegex()
-
-object Day02PasswordPhilosophy : Puzzle() {
+class Day02PasswordPhilosophy(puzzleInput: String? = null) : Puzzle(puzzleInput) {
     override fun partOne() = input
         .lines()
         .filter {
@@ -30,4 +28,8 @@ object Day02PasswordPhilosophy : Puzzle() {
                 ((password[pos1].toString() != char) && (password[pos2].toString() == char))
         }
         .count()
+
+    companion object {
+        private val PASSWORD_REGEX = """([0-9]*)-([0-9]*) ([a-z]): (.*)""".toRegex()
+    }
 }

@@ -5,12 +5,12 @@ import org.reflections.Reflections
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
 
-abstract class Puzzle {
+abstract class Puzzle(input: String?) {
     private val year = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component1().toInt()
     private val day = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component2().toInt()
     protected open val title = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component3().replace("([A-Z])".toRegex(), " $1").trim()
 
-    protected val input: String by lazy { readInputAsText(year, day) }
+    protected val input = input ?: readInputAsText(year, day)
 
     abstract fun partOne(): Any
 
@@ -40,9 +40,7 @@ abstract class Puzzle {
 
 object Puzzles {
     private val reflections = Reflections("adventofcode")
-
-    private val puzzles =
-        reflections.getSubTypesOf(Puzzle::class.java).sortedBy(Class<out Puzzle>::getName).map { it.kotlin.objectInstance!! }
+    private val puzzles = reflections.getSubTypesOf(Puzzle::class.java).sortedBy(Class<out Puzzle>::getName).map { it.newInstance()!! }
 
     fun all() = puzzles
 

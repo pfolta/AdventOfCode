@@ -3,7 +3,7 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 import adventofcode.common.product
 
-object Day16TicketTranslation : Puzzle() {
+class Day16TicketTranslation(puzzleInput: String? = null) : Puzzle(puzzleInput) {
     private val ticketRules = input
         .split("\n\n")
         .first()
@@ -47,9 +47,11 @@ object Day16TicketTranslation : Puzzle() {
             .map { yourTicket[it.second].toLong() }
             .product()
     }
-}
 
-private data class TicketRule(
-    val name: String,
-    val ranges: List<IntRange>
-)
+    companion object {
+        data class TicketRule(
+            val name: String,
+            val ranges: List<IntRange>
+        )
+    }
+}

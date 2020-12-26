@@ -2,10 +2,7 @@ package adventofcode.year2020
 
 import adventofcode.Puzzle
 
-private val BAG_RULE_REGEX = """(\w+ \w+) bags contain (.*)""".toRegex()
-private val BAG_CONTENTS_REGEX = """(\d+) (\w+ \w+) bags?(, )?""".toRegex()
-
-object Day07HandyHaversacks : Puzzle() {
+class Day07HandyHaversacks(puzzleInput: String? = null) : Puzzle(puzzleInput) {
     private val bagRules = input.lines().map { rule ->
         val (color) = BAG_RULE_REGEX.find(rule)!!.destructured
 
@@ -26,29 +23,34 @@ object Day07HandyHaversacks : Puzzle() {
         .get("shiny gold")
         .size(bagRules)
         .minus(1)
-}
 
-private data class Bag(
-    val color: String,
-    val contents: Map<String, Int>
-) {
-    fun contains(bagRules: List<Bag>, searchPattern: String): Boolean {
-        if (contents.isEmpty()) return false
-        if (contents.containsKey(searchPattern)) return true
+    companion object {
+        val BAG_RULE_REGEX = """(\w+ \w+) bags contain (.*)""".toRegex()
+        val BAG_CONTENTS_REGEX = """(\d+) (\w+ \w+) bags?(, )?""".toRegex()
 
-        return contents
-            .map { bagRules.get(it.key).contains(bagRules, searchPattern) }
-            .contains(true)
+        data class Bag(
+            val color: String,
+            val contents: Map<String, Int>
+        ) {
+            fun contains(bagRules: List<Bag>, searchPattern: String): Boolean {
+                if (contents.isEmpty()) return false
+                if (contents.containsKey(searchPattern)) return true
+
+                return contents
+                    .map { bagRules.get(it.key).contains(bagRules, searchPattern) }
+                    .contains(true)
+            }
+
+            fun size(bagRules: List<Bag>): Int {
+                if (contents.isEmpty()) return 1
+
+                return contents
+                    .map { bagRules.get(it.key).size(bagRules) * it.value }
+                    .sum()
+                    .plus(1)
+            }
+        }
+
+        fun List<Bag>.get(color: String) = this.first { it.color == color }
     }
-
-    fun size(bagRules: List<Bag>): Int {
-        if (contents.isEmpty()) return 1
-
-        return contents
-            .map { bagRules.get(it.key).size(bagRules) * it.value }
-            .sum()
-            .plus(1)
-    }
 }
-
-private fun List<Bag>.get(color: String) = this.first { it.color == color }

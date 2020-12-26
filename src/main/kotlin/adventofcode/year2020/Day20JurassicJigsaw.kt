@@ -3,10 +3,10 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 import adventofcode.common.product
 
-object Day20JurassicJigsaw : Puzzle() {
-    override fun partOne(): Long {
-        val tiles = input.split("\n\n").map(::Tile)
+class Day20JurassicJigsaw(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+    private val tiles = input.split("\n\n").map(::Tile)
 
+    override fun partOne(): Long {
         val tileMap = generateSequence(mapOf(Pair(0, 0) to tiles.first())) { previous ->
             previous + previous.keys.flatMap { tile ->
                 val left = tiles
@@ -55,28 +55,30 @@ object Day20JurassicJigsaw : Puzzle() {
             .map { it.value.id }
             .product()
     }
-}
 
-private data class Tile(
-    val id: Long,
-    val content: List<String>
-) {
-    constructor(tile: String) : this(tile.lines().first().split(" ").last().replace(":", "").toLong(), tile.lines().drop(1))
+    companion object {
+        data class Tile(
+            val id: Long,
+            val content: List<String>
+        ) {
+            constructor(tile: String) : this(tile.lines().first().split(" ").last().replace(":", "").toLong(), tile.lines().drop(1))
 
-    val left = col(0)
-    val top = row(0)
-    val right = col(content.first().length - 1)
-    val bottom = row(content.size - 1)
+            val left = col(0)
+            val top = row(0)
+            val right = col(content.first().length - 1)
+            val bottom = row(content.size - 1)
 
-    private fun col(n: Int) = content.fold("") { col, row -> col + row[n] }
-    private fun row(n: Int) = content[n]
+            private fun col(n: Int) = content.fold("") { col, row -> col + row[n] }
+            private fun row(n: Int) = content[n]
 
-    // Rotate content 90 degrees clockwise
-    private fun rotate() = copy(content = content.mapIndexed { n, _ -> col(n).reversed() })
+            // Rotate content 90 degrees clockwise
+            private fun rotate() = copy(content = content.mapIndexed { n, _ -> col(n).reversed() })
 
-    private fun flipX() = copy(content = content.map(String::reversed))
-    private fun flipY() = copy(content = content.reversed())
+            private fun flipX() = copy(content = content.map(String::reversed))
+            private fun flipY() = copy(content = content.reversed())
 
-    fun variations() =
-        listOf(this, flipX(), flipY()).flatMap { listOf(it, it.rotate(), it.rotate().rotate(), it.rotate().rotate().rotate()) }
+            fun variations() =
+                listOf(this, flipX(), flipY()).flatMap { listOf(it, it.rotate(), it.rotate().rotate(), it.rotate().rotate().rotate()) }
+        }
+    }
 }

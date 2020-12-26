@@ -1,28 +1,10 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
-import adventofcode.year2020.Day24LobbyLayout.TileColor.BLACK
-import adventofcode.year2020.Day24LobbyLayout.TileColor.WHITE
+import adventofcode.year2020.Day24LobbyLayout.Companion.TileColor.BLACK
+import adventofcode.year2020.Day24LobbyLayout.Companion.TileColor.WHITE
 
-object Day24LobbyLayout : Puzzle() {
-    private val DIRECTION_REGEX = "(e|se|sw|w|nw|ne)".toRegex()
-
-    private val DIRECTIONS = mapOf(
-        "e" to Pair(2, 0),
-        "se" to Pair(1, -1),
-        "sw" to Pair(-1, -1),
-        "w" to Pair(-2, 0),
-        "nw" to Pair(-1, 1),
-        "ne" to Pair(1, 1)
-    )
-
-    private enum class TileColor {
-        BLACK,
-        WHITE
-    }
-
-    private fun Pair<Int, Int>.neighbors() = DIRECTIONS.values.map { first + it.first to second + it.second }
-
+class Day24LobbyLayout(puzzleInput: String? = null) : Puzzle(puzzleInput) {
     private val tileMap = input.lines()
         .asSequence()
         .map { tile -> DIRECTION_REGEX.findAll(tile).toList().map { it.value }.mapNotNull(DIRECTIONS::get) }
@@ -59,6 +41,26 @@ object Day24LobbyLayout : Puzzle() {
         .last()
         .values
         .count { it == BLACK }
+
+    companion object {
+        private val DIRECTION_REGEX = "(e|se|sw|w|nw|ne)".toRegex()
+
+        private val DIRECTIONS = mapOf(
+            "e" to Pair(2, 0),
+            "se" to Pair(1, -1),
+            "sw" to Pair(-1, -1),
+            "w" to Pair(-2, 0),
+            "nw" to Pair(-1, 1),
+            "ne" to Pair(1, 1)
+        )
+
+        private enum class TileColor {
+            BLACK,
+            WHITE
+        }
+
+        private fun Pair<Int, Int>.neighbors() = DIRECTIONS.values.map { first + it.first to second + it.second }
+    }
 }
 
 

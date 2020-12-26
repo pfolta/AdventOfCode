@@ -5,7 +5,7 @@ import adventofcode.Puzzle
 // Eight directions going up, down, left, right, or diagonal
 private val directions = (-1..1).flatMap { dx -> (-1..1).map { dy -> Pair(dx, dy) } }.filter { it != Pair(0, 0) }
 
-object Day11SeatingSystem : Puzzle() {
+class Day11SeatingSystem(puzzleInput: String? = null) : Puzzle(puzzleInput) {
     private val seatMap = input.lines().map { it.split("") }
 
     override fun partOne() = seatMap.iterate(4, List<List<String>>::getImmediateNeighbors)

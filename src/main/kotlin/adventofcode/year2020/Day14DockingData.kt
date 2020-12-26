@@ -1,10 +1,10 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
-import adventofcode.year2020.InitializationInstruction.MaskInstruction
-import adventofcode.year2020.InitializationInstruction.MemoryInstruction
+import adventofcode.year2020.Day14DockingData.Companion.InitializationInstruction.MaskInstruction
+import adventofcode.year2020.Day14DockingData.Companion.InitializationInstruction.MemoryInstruction
 
-object Day14DockingData : Puzzle() {
+class Day14DockingData(puzzleInput: String? = null) : Puzzle(puzzleInput) {
     private val initializationInstructions = input.lines().map(InitializationInstruction::parseInstruction)
 
     override fun partOne() = initializationInstructions
@@ -14,7 +14,7 @@ object Day14DockingData : Puzzle() {
                 is MemoryInstruction -> Pair(
                     mask, memoryMap + mapOf(
                         instruction.address to (mask.indices)
-                            .fold(instruction.value.toString(2).prepend('0', mask.length)) { result, index ->
+                            .fold(instruction.value.toString(2).padStart(mask.length, '0')) { result, index ->
                                 if (mask[index] == 'X') result else result.replace(index, mask[index])
                             }.toLong(2)
                     )
@@ -29,7 +29,7 @@ object Day14DockingData : Puzzle() {
                 is MaskInstruction -> Pair(instruction.mask, memoryMap)
                 is MemoryInstruction -> {
                     val addressMask = (mask.indices)
-                        .fold(instruction.address.toString(2).prepend('0', mask.length)) { result, index ->
+                        .fold(instruction.address.toString(2).padStart(mask.length, '0')) { result, index ->
                             if (mask[index] == '0') result else result.replace(index, mask[index])
                         }
 
@@ -42,25 +42,25 @@ object Day14DockingData : Puzzle() {
                 }
             }
         }.second.values.sum()
-}
-
-private sealed class InitializationInstruction {
-    data class MaskInstruction(val mask: String) : InitializationInstruction()
-    data class MemoryInstruction(val address: Long, val value: Long) : InitializationInstruction()
 
     companion object {
-        fun parseInstruction(input: String): InitializationInstruction {
-            val parts = input.split(" = ")
+        sealed class InitializationInstruction {
+            data class MaskInstruction(val mask: String) : InitializationInstruction()
+            data class MemoryInstruction(val address: Long, val value: Long) : InitializationInstruction()
 
-            return when (parts.first()) {
-                "mask" -> MaskInstruction(parts.last())
-                else -> MemoryInstruction(parts.first().substring(4 until parts.first().length - 1).toLong(), parts.last().toLong())
+            companion object {
+                fun parseInstruction(input: String): InitializationInstruction {
+                    val parts = input.split(" = ")
+
+                    return when (parts.first()) {
+                        "mask" -> MaskInstruction(parts.last())
+                        else -> MemoryInstruction(parts.first().substring(4 until parts.first().length - 1).toLong(), parts.last().toLong())
+                    }
+                }
             }
         }
+
+        fun String.replace(position: Int, replacement: Char) =
+            substring(0 until position) + replacement + substring(position + 1 until length)
     }
 }
-
-private fun String.prepend(prefix: Char, totalLength: Int) = prefix.toString().repeat(totalLength - length) + this
-
-private fun String.replace(position: Int, replacement: Char) =
-    substring(0 until position) + replacement + substring(position + 1 until length)

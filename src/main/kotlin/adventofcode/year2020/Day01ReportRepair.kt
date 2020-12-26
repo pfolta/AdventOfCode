@@ -3,7 +3,7 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 import adventofcode.common.product
 
-object Day01ReportRepair : Puzzle() {
+class Day01ReportRepair(puzzleInput: String? = null) : Puzzle(puzzleInput) {
     private val expenses = input.lines().map(String::toInt)
 
     override fun partOne() = expenses

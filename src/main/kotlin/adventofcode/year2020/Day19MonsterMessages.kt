@@ -2,19 +2,19 @@ package adventofcode.year2020
 
 import adventofcode.Puzzle
 
-private val NUMBER_REGEX = """\d+""".toRegex()
+class Day19MonsterMessages(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+    private val rules = input
+        .split("\n\n")
+        .first()
+        .lines()
+        .map { it.replace("\"", "") }
+        .map { it.split(": ") }
+        .map { it.first() to it.last() }
+        .toMap()
 
-object Day19MonsterMessages : Puzzle() {
+    private val messages = input.split("\n\n").last().lines()
+
     override fun partOne(): Int {
-        val rules = input
-            .split("\n\n")
-            .first()
-            .lines()
-            .map { it.replace("\"", "") }
-            .map { it.split(": ") }
-            .map { it.first() to it.last() }
-            .toMap()
-
         val rule0 = generateSequence(rules["0"]) { previous ->
             previous
                 .split(" ")
@@ -25,13 +25,14 @@ object Day19MonsterMessages : Puzzle() {
                     }
                 }
         }
-            .zipWithNext()
-            .takeWhile { regex -> regex.first.split(" ").any { it.contains(NUMBER_REGEX) } }
-            .last()
-            .second
+            .first { regex -> regex.split(" ").none { it.contains(NUMBER_REGEX) } }
             .replace(" ", "")
             .toRegex()
 
-        return input.split("\n\n").last().lines().filter { rule0.matches(it) }.count()
+        return messages.filter { rule0.matches(it) }.count()
+    }
+
+    companion object {
+        private val NUMBER_REGEX = """\d+""".toRegex()
     }
 }
