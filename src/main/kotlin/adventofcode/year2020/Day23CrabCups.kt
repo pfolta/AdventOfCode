@@ -7,8 +7,6 @@ object Day23CrabCups : Puzzle() {
         val result = input.toCharArray().map(Char::toString).map(String::toInt).toMutableList().playCrabCups(100)
         return (result.subList(result.indexOf(1) + 1, result.size) + result.subList(0, result.indexOf(1))).joinToString("").toInt()
     }
-
-    override fun partTwo() {}
 }
 
 private fun List<Int>.destination(current: Int) = if (current - 1 < minOrNull()!!) maxOrNull()!! else current - 1

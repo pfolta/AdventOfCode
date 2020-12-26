@@ -55,8 +55,6 @@ object Day20JurassicJigsaw : Puzzle() {
             .map { it.value.id }
             .product()
     }
-
-    override fun partTwo() {}
 }
 
 private data class Tile(

@@ -34,6 +34,4 @@ object Day19MonsterMessages : Puzzle() {
 
         return input.split("\n\n").last().lines().filter { rule0.matches(it) }.count()
     }
-
-    override fun partTwo() {}
 }

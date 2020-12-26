@@ -14,7 +14,7 @@ abstract class Puzzle {
 
     abstract fun partOne(): Any
 
-    abstract fun partTwo(): Any
+    open fun partTwo(): Any? = null
 
     override fun toString() = "Advent of Code $year, Day $day: $title"
 
@@ -24,14 +24,12 @@ abstract class Puzzle {
         println("Day $day: $title")
         println("----------------------------------------")
 
-        print("Part 1: ")
-        measureTimedValue { partOne() }.let {
-            println("${it.value} (${it.duration})")
+        measureTimedValue { partOne() }.let { (value, duration) ->
+            println("Part 1: $value ($duration)")
         }
 
-        print("Part 2: ")
-        measureTimedValue { partTwo() }.let {
-            println("${it.value} (${it.duration})")
+        measureTimedValue { partTwo() }.let { (value, duration) ->
+            value?.let { println("Part 2: $value ($duration)") }
         }
     }
 

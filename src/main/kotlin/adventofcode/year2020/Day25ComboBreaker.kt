@@ -17,6 +17,4 @@ object Day25ComboBreaker : Puzzle() {
             .first
 
     override fun partOne() = (1..cardPublicKey.computeLoopSize()).fold(1L) { encryptionKey, _ -> encryptionKey.transform(doorPublicKey) }
-
-    override fun partTwo() {}
 }
