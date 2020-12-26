@@ -3,6 +3,8 @@ package adventofcode.year2015
 import adventofcode.Puzzle
 
 object Day05DoesntHeHaveInternElvesForThis : Puzzle() {
+    override val title = "Doesn't He Have Intern-Elves For This?"
+
     override fun partOne() = input
         .lines()
         .filter { str -> str.groupingBy { it }.eachCount().filter { setOf('a', 'e', 'i', 'o', 'u').contains(it.key) }.values.sum() >= 3 }

@@ -4,6 +4,8 @@ import adventofcode.Puzzle
 import adventofcode.common.everyNth
 
 object Day03PerfectlySphericalHousesInAVacuum : Puzzle() {
+    override val title = "Perfectly Spherical Houses in a Vacuum"
+
     private val directions = mapOf(
         "^" to Pair(0, 1),
         "v" to Pair(0, -1),
