@@ -1,7 +1,7 @@
 package adventofcode
 
+import adventofcode.utils.readInputAsText
 import org.reflections.Reflections
-import java.io.FileNotFoundException
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
 
@@ -10,10 +10,7 @@ abstract class Puzzle {
     private val day = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component2().toInt()
     private val title = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component3().replace("([A-Z])".toRegex(), " $1").trim()
 
-    protected val input: String by lazy {
-        javaClass.classLoader.getResource("inputs/year$year/day$day.txt")?.readText()?.trim()
-            ?: throw FileNotFoundException("Input file for puzzle '$this' not found")
-    }
+    protected val input: String by lazy { readInputAsText(year, day) }
 
     abstract fun partOne(): Any
 

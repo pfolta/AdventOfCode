@@ -2,7 +2,7 @@ package adventofcode.year2019
 
 import adventofcode.year2019.Day21202ProgramAlarm.part1
 import adventofcode.year2019.Day21202ProgramAlarm.part2
-import adventofcode.utils.readInputAsString
+import adventofcode.utils.readInputAsText
 
 object Day21202ProgramAlarm {
     fun part1(intcode: MutableList<Int>) = (0..intcode.size step 4)
@@ -27,7 +27,7 @@ object Day21202ProgramAlarm {
 }
 
 fun main() {
-    val intcode = readInputAsString(2019, 2).split(",").map { it.toInt() }
+    val intcode = readInputAsText(2019, 2).split(",").map { it.toInt() }
 
     val part1 = part1((listOf(intcode.first()) + listOf(12, 2) + intcode.subList(3, intcode.size)).toMutableList())
     val part2 = part2(intcode, 0..99, 0..99, 19690720)

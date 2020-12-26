@@ -1,5 +1,6 @@
 package adventofcode.utils
 
-fun readInputAsLines(year: Int, day: Int) = readInputAsString(year, day).lines()
+import java.io.FileNotFoundException
 
-fun readInputAsString(year: Int, day: Int) = object {}.javaClass.getResource("/inputs/year$year/day$day.txt").readText().trim()
+fun readInputAsText(year: Int, day: Int) = object {}.javaClass.classLoader.getResource("inputs/year$year/day$day.txt")?.readText()?.trim()
+    ?: throw FileNotFoundException("Input file for puzzle $year/$day not found")
