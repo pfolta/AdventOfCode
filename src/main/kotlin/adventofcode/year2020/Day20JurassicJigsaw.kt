@@ -44,10 +44,7 @@ object Day20JurassicJigsaw : Puzzle() {
                 listOfNotNull(left, right, bottom, top)
             }.toMap()
         }
-            .zipWithNext()
-            .takeWhile { it.first.size < tiles.size }
-            .last()
-            .second
+            .first { it.size == tiles.size }
 
         return listOf(
             tileMap.entries.sortedBy { it.key.first }.minByOrNull { it.key.second }!!,
