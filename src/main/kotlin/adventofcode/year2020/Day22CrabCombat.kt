@@ -2,7 +2,7 @@ package adventofcode.year2020
 
 import adventofcode.Puzzle
 
-class Day22CrabCombat(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day22CrabCombat(customInput: String? = null) : Puzzle(customInput) {
     private val player1 = input.split("\n\n").first().lines().drop(1).map(String::toInt)
     private val player2 = input.split("\n\n").last().lines().drop(1).map(String::toInt)
 

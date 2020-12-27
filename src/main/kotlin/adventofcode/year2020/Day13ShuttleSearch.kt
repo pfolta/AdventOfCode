@@ -4,7 +4,7 @@ import adventofcode.Puzzle
 import adventofcode.common.product
 import kotlin.math.ceil
 
-class Day13ShuttleSearch(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day13ShuttleSearch(customInput: String? = null) : Puzzle(customInput) {
     private val buses = input.lines().last().split(",")
     private val earliestDeparture = input.lines().first().toInt()
 

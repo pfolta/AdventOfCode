@@ -5,7 +5,7 @@ import adventofcode.year2020.Day08HandheldHalting.Companion.Operation.ACC
 import adventofcode.year2020.Day08HandheldHalting.Companion.Operation.JMP
 import adventofcode.year2020.Day08HandheldHalting.Companion.Operation.NOP
 
-class Day08HandheldHalting(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day08HandheldHalting(customInput: String? = null) : Puzzle(customInput) {
     private val instructions = input.lines().map(::Instruction)
 
     override fun partOne() = instructions.execute().acc

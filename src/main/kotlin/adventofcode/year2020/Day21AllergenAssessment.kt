@@ -2,7 +2,7 @@ package adventofcode.year2020
 
 import adventofcode.Puzzle
 
-class Day21AllergenAssessment(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day21AllergenAssessment(customInput: String? = null) : Puzzle(customInput) {
     private val foods = input.lines().map(::Food)
 
     override fun partOne(): Int {

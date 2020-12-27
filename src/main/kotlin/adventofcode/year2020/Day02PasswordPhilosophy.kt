@@ -2,7 +2,7 @@ package adventofcode.year2020
 
 import adventofcode.Puzzle
 
-class Day02PasswordPhilosophy(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day02PasswordPhilosophy(customInput: String? = null) : Puzzle(customInput) {
     override fun partOne() = input
         .lines()
         .filter {

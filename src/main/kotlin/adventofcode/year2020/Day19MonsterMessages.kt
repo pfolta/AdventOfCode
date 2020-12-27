@@ -2,7 +2,7 @@ package adventofcode.year2020
 
 import adventofcode.Puzzle
 
-class Day19MonsterMessages(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day19MonsterMessages(customInput: String? = null) : Puzzle(customInput) {
     private val rules = input
         .split("\n\n")
         .first()

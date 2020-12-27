@@ -2,7 +2,7 @@ package adventofcode.year2020
 
 import adventofcode.Puzzle
 
-class Day09EncodingError(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day09EncodingError(customInput: String? = null) : Puzzle(customInput) {
     private val numbers = input.lines().map(String::toLong)
 
     override fun partOne() = (PREAMBLE_LENGTH until numbers.size)

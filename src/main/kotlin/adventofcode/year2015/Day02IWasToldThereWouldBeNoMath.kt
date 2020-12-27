@@ -3,7 +3,7 @@ package adventofcode.year2015
 import adventofcode.Puzzle
 import adventofcode.common.product
 
-class Day02IWasToldThereWouldBeNoMath(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day02IWasToldThereWouldBeNoMath(customInput: String? = null) : Puzzle(customInput) {
     private val dimensions = input.lines().map { it.split("x").map(String::toInt) }
 
     override fun partOne() = dimensions

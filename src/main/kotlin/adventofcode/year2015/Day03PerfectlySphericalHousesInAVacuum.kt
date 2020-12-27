@@ -3,7 +3,7 @@ package adventofcode.year2015
 import adventofcode.Puzzle
 import adventofcode.common.everyNth
 
-class Day03PerfectlySphericalHousesInAVacuum(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day03PerfectlySphericalHousesInAVacuum(customInput: String? = null) : Puzzle(customInput) {
     override val name = "Perfectly Spherical Houses in a Vacuum"
 
     private val instructions = input.map(Char::toString)

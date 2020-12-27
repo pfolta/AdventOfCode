@@ -2,7 +2,7 @@ package adventofcode.year2020
 
 import adventofcode.Puzzle
 
-class Day07HandyHaversacks(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day07HandyHaversacks(customInput: String? = null) : Puzzle(customInput) {
     private val bagRules = input.lines().map { rule ->
         val (color) = BAG_RULE_REGEX.find(rule)!!.destructured
 

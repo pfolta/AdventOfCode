@@ -3,7 +3,7 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 import adventofcode.common.product
 
-class Day20JurassicJigsaw(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day20JurassicJigsaw(customInput: String? = null) : Puzzle(customInput) {
     private val tiles = input.split("\n\n").map(::Tile)
 
     override fun partOne(): Long {

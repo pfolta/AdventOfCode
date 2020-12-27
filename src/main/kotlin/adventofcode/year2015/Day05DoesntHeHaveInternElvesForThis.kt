@@ -2,7 +2,7 @@ package adventofcode.year2015
 
 import adventofcode.Puzzle
 
-class Day05DoesntHeHaveInternElvesForThis(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day05DoesntHeHaveInternElvesForThis(customInput: String? = null) : Puzzle(customInput) {
     override val name = "Doesn't He Have Intern-Elves For This?"
 
     override fun partOne() = input

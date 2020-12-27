@@ -5,16 +5,21 @@ import org.reflections.Reflections
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
 
-abstract class Puzzle(input: String?) {
+abstract class Puzzle(customInput: String?) {
     private val year = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component1().toInt()
     private val day = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component2().toInt()
 
-    protected val input = input ?: readInputAsText(year, day)
     /**
      * Name of the puzzle.
      * Inferred from the puzzle's class name by default but can be overridden (e.g. if puzzle name contains special characters).
      */
     protected open val name = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component3().replace("([A-Z])".toRegex(), " $1").trim()
+
+    /**
+     * Puzzle input as String.
+     * Uses default input file if custom input is not provided.
+     */
+    protected val input = customInput ?: readInputAsText(year, day)
 
     /**
      * Solves part one of the puzzle.

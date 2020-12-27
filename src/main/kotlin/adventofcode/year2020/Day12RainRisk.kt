@@ -10,7 +10,7 @@ import adventofcode.year2020.Day12RainRisk.Companion.Action.SOUTH
 import adventofcode.year2020.Day12RainRisk.Companion.Action.WEST
 import kotlin.math.absoluteValue
 
-class Day12RainRisk(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day12RainRisk(customInput: String? = null) : Puzzle(customInput) {
     private val navigationInstructions = input.lines().map(::NavigationInstruction)
 
     override fun partOne() = navigationInstructions

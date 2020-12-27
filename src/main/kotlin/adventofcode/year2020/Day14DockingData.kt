@@ -4,7 +4,7 @@ import adventofcode.Puzzle
 import adventofcode.year2020.Day14DockingData.Companion.InitializationInstruction.MaskInstruction
 import adventofcode.year2020.Day14DockingData.Companion.InitializationInstruction.MemoryInstruction
 
-class Day14DockingData(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day14DockingData(customInput: String? = null) : Puzzle(customInput) {
     private val initializationInstructions = input.lines().map(InitializationInstruction::parseInstruction)
 
     override fun partOne() = initializationInstructions

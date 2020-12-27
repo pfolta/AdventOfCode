@@ -3,7 +3,7 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 import adventofcode.common.product
 
-class Day16TicketTranslation(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day16TicketTranslation(customInput: String? = null) : Puzzle(customInput) {
     private val ticketRules = input
         .split("\n\n")
         .first()

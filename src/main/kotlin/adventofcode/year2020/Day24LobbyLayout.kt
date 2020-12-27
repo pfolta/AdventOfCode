@@ -4,7 +4,7 @@ import adventofcode.Puzzle
 import adventofcode.year2020.Day24LobbyLayout.Companion.TileColor.BLACK
 import adventofcode.year2020.Day24LobbyLayout.Companion.TileColor.WHITE
 
-class Day24LobbyLayout(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day24LobbyLayout(customInput: String? = null) : Puzzle(customInput) {
     private val tileMap = input.lines()
         .asSequence()
         .map { tile -> DIRECTION_REGEX.findAll(tile).toList().map { it.value }.mapNotNull(DIRECTIONS::get) }

@@ -2,7 +2,7 @@ package adventofcode.year2020
 
 import adventofcode.Puzzle
 
-class Day25ComboBreaker(puzzleInput: String? = null) : Puzzle(puzzleInput) {
+class Day25ComboBreaker(customInput: String? = null) : Puzzle(customInput) {
     private val cardPublicKey = input.lines().first().toLong()
     private val doorPublicKey = input.lines().last().toLong()
 
