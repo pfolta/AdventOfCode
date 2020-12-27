@@ -3,7 +3,7 @@ package adventofcode.year2019
 import adventofcode.Puzzle
 
 class Day01TheTyrannyOfTheRocketEquation(puzzleInput: String? = null) : Puzzle(puzzleInput) {
-    override val title = "The Tyranny of the Rocket Equation"
+    override val name = "The Tyranny of the Rocket Equation"
 
     private val modules = input.lines().map(String::toInt)
 

@@ -8,9 +8,13 @@ import kotlin.time.measureTimedValue
 abstract class Puzzle(input: String?) {
     private val year = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component1().toInt()
     private val day = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component2().toInt()
-    protected open val title = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component3().replace("([A-Z])".toRegex(), " $1").trim()
 
     protected val input = input ?: readInputAsText(year, day)
+    /**
+     * Name of the puzzle.
+     * Inferred from the puzzle's class name by default but can be overridden (e.g. if puzzle name contains special characters).
+     */
+    protected open val name = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component3().replace("([A-Z])".toRegex(), " $1").trim()
 
     /**
      * Solves part one of the puzzle.
@@ -23,8 +27,6 @@ abstract class Puzzle(input: String?) {
      */
     open fun partTwo(): Any? = null
 
-    override fun toString() = "Advent of Code $year, Day $day: $title"
-
     /**
      * Prints solutions for part one and part two (if it exists) of the puzzle.
      * Provides timings for both parts.
@@ -32,7 +34,7 @@ abstract class Puzzle(input: String?) {
     @ExperimentalTime
     fun run() {
         println("Advent of Code $year")
-        println("Day $day: $title")
+        println("Day $day: $name")
         println("----------------------------------------")
 
         measureTimedValue { partOne() }.let { (value, duration) ->
@@ -43,6 +45,8 @@ abstract class Puzzle(input: String?) {
             value?.let { println("Part 2: $value ($duration)") }
         }
     }
+
+    override fun toString() = "Advent of Code $year, Day $day: $name"
 
     companion object {
         private val CLASS_NAME_REGEX = """^adventofcode.year(\d+).Day(\d+)(.+)$""".toRegex()
