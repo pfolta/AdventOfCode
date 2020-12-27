@@ -12,12 +12,23 @@ abstract class Puzzle(input: String?) {
 
     protected val input = input ?: readInputAsText(year, day)
 
+    /**
+     * Solves part one of the puzzle.
+     */
     abstract fun partOne(): Any
 
+    /**
+     * Solves part two of the puzzle.
+     * Don't override this function if there is no part two to solve.
+     */
     open fun partTwo(): Any? = null
 
     override fun toString() = "Advent of Code $year, Day $day: $title"
 
+    /**
+     * Prints solutions for part one and part two (if it exists) of the puzzle.
+     * Provides timings for both parts.
+     */
     @ExperimentalTime
     fun run() {
         println("Advent of Code $year")
