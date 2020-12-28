@@ -60,7 +60,11 @@ abstract class Puzzle(customInput: String?) {
 
 object Puzzles {
     private val reflections = Reflections("adventofcode")
-    private val puzzles = reflections.getSubTypesOf(Puzzle::class.java).sortedBy(Class<out Puzzle>::getName).map { it.newInstance()!! }
+
+    private val puzzles = reflections
+        .getSubTypesOf(Puzzle::class.java)
+        .sortedBy(Class<out Puzzle>::getName)
+        .map { it.getDeclaredConstructor().newInstance()!! }
 
     fun all() = puzzles
 
