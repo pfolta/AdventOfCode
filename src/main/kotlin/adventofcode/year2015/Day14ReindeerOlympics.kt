@@ -4,15 +4,15 @@ import adventofcode.Puzzle
 import kotlin.math.min
 
 class Day14ReindeerOlympics(customInput: String? = null) : Puzzle(customInput) {
-    override fun partOne() = input
-        .lines()
-        .map(::Reindeer)
-        .map {
-            val fullCycles = CHECKPOINT / (it.flyTime + it.restTime)
-            val remainingTime = CHECKPOINT % (it.flyTime + it.restTime)
+    private val reindeer = input.lines().map(::Reindeer)
 
-            (fullCycles * it.flyTime * it.flySpeed) + min(remainingTime, it.flyTime) * it.flySpeed
-        }
+    override fun partOne() = reindeer.map(Reindeer::distanceFlown).maxOrNull() ?: 0
+
+    override fun partTwo() = (1..CHECKPOINT)
+        .map { time -> reindeer.associateWith { it.distanceFlown(time) }.maxByOrNull { it.value }!!.key }
+        .groupingBy { it }
+        .eachCount()
+        .map { it.value }
         .maxOrNull() ?: 0
 
     companion object {
@@ -32,6 +32,13 @@ class Day14ReindeerOlympics(customInput: String? = null) : Puzzle(customInput) {
                 INPUT_REGEX.find(input)!!.destructured.component3().toInt(),
                 INPUT_REGEX.find(input)!!.destructured.component4().toInt(),
             )
+
+            fun distanceFlown(after: Int = CHECKPOINT): Int {
+                val fullCycles = after / (flyTime + restTime)
+                val remainingTime = after % (flyTime + restTime)
+
+                return (fullCycles * flyTime * flySpeed) + min(remainingTime, flyTime) * flySpeed
+            }
         }
     }
 }
