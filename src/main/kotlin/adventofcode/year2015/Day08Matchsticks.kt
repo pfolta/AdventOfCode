@@ -15,4 +15,9 @@ class Day08Matchsticks(customInput: String? = null) : Puzzle(customInput) {
             string.length - decodedString.length
         }
         .sum()
+
+    override fun partTwo() = input
+        .lines()
+        .map { ("\"" + it.replace("\\", "\\\\").replace("\"", "\\\"") + "\"").length - it.length }
+        .sum()
 }
