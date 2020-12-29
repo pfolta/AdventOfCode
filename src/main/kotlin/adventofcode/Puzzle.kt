@@ -2,12 +2,14 @@ package adventofcode
 
 import adventofcode.utils.readInputAsText
 import org.reflections.Reflections
+import java.net.URL
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
 
 abstract class Puzzle(customInput: String?) {
     private val year = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component1().toInt()
     private val day = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component2().toInt()
+    private val link = URL("https://adventofcode.com/$year/day/$day")
 
     /**
      * Name of the puzzle.
@@ -40,6 +42,7 @@ abstract class Puzzle(customInput: String?) {
     fun run() {
         println("Advent of Code $year")
         println("Day $day: $name")
+        println(link)
         println("----------------------------------------")
 
         measureTimedValue { partOne() }.let { (value, duration) ->
