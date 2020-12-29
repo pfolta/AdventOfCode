@@ -17,6 +17,7 @@ repositories {
 dependencies {
     implementation(kotlin("reflect"))
     implementation(kotlin("stdlib-jdk8"))
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.12.0")
     implementation("org.reflections:reflections:0.9.12")
 
     testImplementation("io.kotest:kotest-runner-junit5:4.3.2")
