@@ -14,7 +14,7 @@ class Day09AllInASingleNight(customInput: String? = null) : Puzzle(customInput) 
         }
         .toMap()
 
-    private val cities = distances.keys.flatten().distinct()
+    private val cities = distances.keys.flatten().toSet()
 
     private val routes = cities
         .permutations()

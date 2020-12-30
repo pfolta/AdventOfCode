@@ -7,9 +7,3 @@ inline fun <reified T : Any> Collection<T>.everyNth(n: Int, offset: Int = 0) = f
 // Returns the product of all elements in a Int/Long collection, similar to sum()
 fun Collection<Int>.product() = reduce { product, factor -> product * factor }
 fun Collection<Long>.product() = reduce { product, factor -> product * factor }
-
-fun <T : Any> List<T>.permutations(): List<List<T>> =
-    if (size <= 1) listOf(this)
-    else drop(1).permutations().flatMap { permutation ->
-        (0..permutation.size).map { index -> permutation.subList(0, index) + first() + permutation.subList(index, permutation.size) }
-    }

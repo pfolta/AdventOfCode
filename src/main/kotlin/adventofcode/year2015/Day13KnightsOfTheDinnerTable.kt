@@ -14,7 +14,7 @@ class Day13KnightsOfTheDinnerTable(customInput: String? = null) : Puzzle(customI
         }
         .toMap()
 
-    private val guests = input.lines().map { INPUT_REGEX.find(it)!!.destructured.component1() }.distinct()
+    private val guests = input.lines().map { INPUT_REGEX.find(it)!!.destructured.component1() }.toSet()
 
     override fun partOne() = guests.findOptimalSeatingArrangement(happiness)
 
@@ -29,7 +29,7 @@ class Day13KnightsOfTheDinnerTable(customInput: String? = null) : Puzzle(customI
             else -> listOf(this[position - 1], this[position + 1])
         }
 
-        private fun List<String>.findOptimalSeatingArrangement(happiness: Map<Pair<String, String>, Int>) = this
+        private fun Set<String>.findOptimalSeatingArrangement(happiness: Map<Pair<String, String>, Int>) = this
             .permutations()
             .map { arrangement -> arrangement.map { guest -> Pair(guest, arrangement.neighbors(guest)) } }
             .map { it.map { guest -> guest.second.sumBy { neighbor -> happiness[guest.first to neighbor] ?: 0 } } }
