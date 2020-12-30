@@ -14,14 +14,11 @@ class Day13KnightsOfTheDinnerTable(customInput: String? = null) : Puzzle(customI
         }
         .toMap()
 
-    private val guests = happiness.keys.map { it.first }.distinct()
+    private val guests = input.lines().map { INPUT_REGEX.find(it)!!.destructured.component1() }.distinct()
 
-    override fun partOne() = guests
-        .permutations()
-        .map { arrangement -> arrangement.map { Pair(it, arrangement.neighbors(it)) } }
-        .map { arrangement -> arrangement.map { guest -> guest.second.sumBy { neighbor -> happiness[guest.first to neighbor]!! } } }
-        .map { arrangement -> arrangement.sum() }
-        .maxOrNull() ?: 0
+    override fun partOne() = guests.findOptimalSeatingArrangement(happiness)
+
+    override fun partTwo() = (guests + "me").findOptimalSeatingArrangement(happiness)
 
     companion object {
         private val INPUT_REGEX = """(\w+) would (gain|lose) (\d+) happiness units by sitting next to (\w+).""".toRegex()
@@ -31,5 +28,12 @@ class Day13KnightsOfTheDinnerTable(customInput: String? = null) : Puzzle(customI
             size - 1 -> listOf(this[size - 2], first())
             else -> listOf(this[position - 1], this[position + 1])
         }
+
+        private fun List<String>.findOptimalSeatingArrangement(happiness: Map<Pair<String, String>, Int>) = this
+            .permutations()
+            .map { arrangement -> arrangement.map { guest -> Pair(guest, arrangement.neighbors(guest)) } }
+            .map { it.map { guest -> guest.second.sumBy { neighbor -> happiness[guest.first to neighbor] ?: 0 } } }
+            .map { it.sum() }
+            .maxOrNull() ?: 0
     }
 }
