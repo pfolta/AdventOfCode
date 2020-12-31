@@ -13,5 +13,16 @@ class Day02InventoryManagementSystemSpec : PuzzleBaseSpec(
             abcdee
             ababab
         """.trimIndent() to 12
+    ),
+    listOf(
+        """
+            abcde
+            fghij
+            klmno
+            pqrst
+            fguij
+            axcye
+            wvxyz
+        """.trimIndent() to "fgij"
     )
 )
