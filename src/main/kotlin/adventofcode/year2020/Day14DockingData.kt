@@ -1,6 +1,7 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.common.replaceAt
 import adventofcode.year2020.Day14DockingData.Companion.InitializationInstruction.MaskInstruction
 import adventofcode.year2020.Day14DockingData.Companion.InitializationInstruction.MemoryInstruction
 
@@ -15,7 +16,7 @@ class Day14DockingData(customInput: String? = null) : Puzzle(customInput) {
                     mask, memoryMap + mapOf(
                         instruction.address to (mask.indices)
                             .fold(instruction.value.toString(2).padStart(mask.length, '0')) { result, index ->
-                                if (mask[index] == 'X') result else result.replace(index, mask[index])
+                                if (mask[index] == 'X') result else result.replaceAt(index, mask[index])
                             }.toLong(2)
                     )
                 )
@@ -30,13 +31,13 @@ class Day14DockingData(customInput: String? = null) : Puzzle(customInput) {
                 is MemoryInstruction -> {
                     val addressMask = (mask.indices)
                         .fold(instruction.address.toString(2).padStart(mask.length, '0')) { result, index ->
-                            if (mask[index] == '0') result else result.replace(index, mask[index])
+                            if (mask[index] == '0') result else result.replaceAt(index, mask[index])
                         }
 
                     Pair(mask, memoryMap + (addressMask.indices)
                         .fold(listOf(addressMask)) { acc, index ->
                             if (addressMask[index] != 'X') acc
-                            else acc.flatMap { listOf(it.replace(index, '0'), it.replace(index, '1')) }
+                            else acc.flatMap { listOf(it.replaceAt(index, '0'), it.replaceAt(index, '1')) }
                         }
                         .map { it.toLong(2) to instruction.value })
                 }
@@ -59,8 +60,5 @@ class Day14DockingData(customInput: String? = null) : Puzzle(customInput) {
                 }
             }
         }
-
-        fun String.replace(position: Int, replacement: Char) =
-            substring(0 until position) + replacement + substring(position + 1 until length)
     }
 }

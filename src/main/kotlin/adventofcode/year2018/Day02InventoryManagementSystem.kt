@@ -2,6 +2,7 @@ package adventofcode.year2018
 
 import adventofcode.Puzzle
 import adventofcode.common.product
+import adventofcode.common.removeAt
 
 class Day02InventoryManagementSystem(customInput: String? = null) : Puzzle(customInput) {
     private val boxes = input.lines()
@@ -21,7 +22,5 @@ class Day02InventoryManagementSystem(customInput: String? = null) : Puzzle(custo
         private fun Boolean.toInt() = if (this) 1 else 0
 
         private fun String.difference(other: String) = (indices).filter { this[it] != other[it] }
-
-        private fun String.removeAt(index: Int) = removeRange(index..index)
     }
 }
