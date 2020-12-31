@@ -20,8 +20,10 @@ abstract class Puzzle(customInput: String?) {
     /**
      * Puzzle input as String.
      * Uses default input file if custom input is not provided.
+     *
+     * lazy delegate ensures the input file is only read when first accessed
      */
-    protected val input = customInput ?: readInputAsText(year, day)
+    protected val input by lazy { customInput ?: readInputAsText(year, day) }
 
     /**
      * Solves part one of the puzzle.
