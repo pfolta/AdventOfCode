@@ -1,17 +1,15 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.common.cartesianProduct
 
 class Day09EncodingError(customInput: String? = null) : Puzzle(customInput) {
-    private val numbers = input.lines().map(String::toLong)
+    private val numbers by lazy { input.lines().map(String::toLong) }
 
     override fun partOne() = (PREAMBLE_LENGTH until numbers.size)
         .filter { index ->
             val preamble = numbers.subList(index - PREAMBLE_LENGTH, index)
-
-            preamble
-                .flatMap { fst -> preamble.map { snd -> listOf(fst, snd) } }
-                .none { it.sum() == numbers[index] }
+            listOf(preamble, preamble).cartesianProduct().none { it.sum() == numbers[index] }
         }
         .map(numbers::get)
         .first()
@@ -27,6 +25,6 @@ class Day09EncodingError(customInput: String? = null) : Puzzle(customInput) {
     }
 
     companion object {
-        const val PREAMBLE_LENGTH = 25
+        private const val PREAMBLE_LENGTH = 25
     }
 }
