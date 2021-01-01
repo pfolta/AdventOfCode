@@ -1,7 +1,7 @@
 package adventofcode
 
-import adventofcode.utils.readInputAsText
 import org.reflections.Reflections
+import java.io.FileNotFoundException
 import java.net.URL
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
@@ -21,9 +21,12 @@ abstract class Puzzle(customInput: String?) {
      * Puzzle input as String.
      * Uses default input file if custom input is not provided.
      *
-     * lazy delegate ensures the input file is only read when first accessed
+     * lazy delegate ensures the input file is only read on first access
      */
-    protected val input by lazy { customInput ?: readInputAsText(year, day) }
+    protected val input by lazy {
+        customInput ?: javaClass.classLoader.getResource("inputs/year$year/day${day.toString().padStart(2, '0')}.txt")?.readText()?.trim()
+        ?: throw FileNotFoundException("Input file for puzzle $year/$day not found")
+    }
 
     /**
      * Solves part one of the puzzle.
