@@ -59,7 +59,7 @@ abstract class Puzzle(customInput: String?) {
     override fun toString() = "Advent of Code $year, Day $day: $name"
 
     companion object {
-        private val CLASS_NAME_REGEX = """^adventofcode.year(\d+).Day(\d+)(.+)$""".toRegex()
+        private val CLASS_NAME_REGEX = """^adventofcode.year(\d{4}).Day(\d{2})(.+)$""".toRegex()
     }
 }
 
