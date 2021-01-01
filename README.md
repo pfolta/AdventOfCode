@@ -16,9 +16,9 @@ These arguments can be combined to run multiple puzzles, e.g.
 
 ## Structure
 
-***Legend:** `XXXX`: Year (4 digits, e.g. `2020`) &bullet; `Y`: Day (single digit, e.g. `7`) &bullet; `YY`: Day (leading zero, e.g. `07`) &bullet; `ZZZZ`: Puzzle name (UpperCamelCase, e.g. `HandyHaversacks`)*
+***Legend:** `XXXX`: Year (4 digits, e.g. `2020`) &bullet; `YY`: Day (leading zero, e.g. `07`) &bullet; `ZZZZ`: Puzzle name (UpperCamelCase, e.g. `HandyHaversacks`)*
 
-* Inputs go into `src/main/resources/inputs` and follow the naming convention `yearXXXX/dayY.txt`
+* Inputs go into `src/main/resources/inputs` and follow the naming convention `yearXXXX/dayYY.txt`
 * Solutions go into `src/main/kotlin/adventofcode` and follow the naming convention `yearXXXX/DayYYZZZZ.kt`
 * Solutions extend the `Puzzle` class and call its constructor passing an optional alternative input
 * Solutions can have one or two parts sharing the same input. Not overriding `fun partTwo(): Any` will skip the second part when running the puzzle
