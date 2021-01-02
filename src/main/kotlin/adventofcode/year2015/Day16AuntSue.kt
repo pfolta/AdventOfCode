@@ -1,11 +1,8 @@
 package adventofcode.year2015
 
 import adventofcode.Puzzle
-import adventofcode.common.cartesianProduct
-import kotlin.math.max
 
 class Day16AuntSue(customInput: String? = null) : Puzzle(customInput) {
-
     private val aunts by lazy {
         input
             .lines()
@@ -38,6 +35,21 @@ class Day16AuntSue(customInput: String? = null) : Puzzle(customInput) {
         .filter { it.vizslas == null || it.vizslas == TICKER_TAPE_SUE.vizslas!! }
         .filter { it.goldfish == null || it.goldfish == TICKER_TAPE_SUE.goldfish!! }
         .filter { it.trees == null || it.trees == TICKER_TAPE_SUE.trees!! }
+        .filter { it.cars == null || it.cars == TICKER_TAPE_SUE.cars!! }
+        .filter { it.perfumes == null || it.perfumes == TICKER_TAPE_SUE.perfumes!! }
+        .first()
+        .id!!
+
+    override fun partTwo() = aunts
+        .asSequence()
+        .filter { it.children == null || it.children == TICKER_TAPE_SUE.children!! }
+        .filter { it.cats == null || it.cats > TICKER_TAPE_SUE.cats!! }
+        .filter { it.samoyeds == null || it.samoyeds == TICKER_TAPE_SUE.samoyeds!! }
+        .filter { it.pomeranians == null || it.pomeranians < TICKER_TAPE_SUE.pomeranians!! }
+        .filter { it.akitas == null || it.akitas == TICKER_TAPE_SUE.akitas!! }
+        .filter { it.vizslas == null || it.vizslas == TICKER_TAPE_SUE.vizslas!! }
+        .filter { it.goldfish == null || it.goldfish < TICKER_TAPE_SUE.goldfish!! }
+        .filter { it.trees == null || it.trees > TICKER_TAPE_SUE.trees!! }
         .filter { it.cars == null || it.cars == TICKER_TAPE_SUE.cars!! }
         .filter { it.perfumes == null || it.perfumes == TICKER_TAPE_SUE.perfumes!! }
         .first()
