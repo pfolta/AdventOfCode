@@ -1,5 +1,6 @@
 package adventofcode
 
+import adventofcode.util.formatBenchmark
 import org.reflections.Reflections
 import java.io.FileNotFoundException
 import java.net.URL
@@ -51,11 +52,11 @@ abstract class Puzzle(customInput: String?) {
         println("----------------------------------------")
 
         measureTimedValue { partOne() }.let { (value, duration) ->
-            println("Part 1: $value ($duration)")
+            println("Part 1: $value (${duration.formatBenchmark()})")
         }
 
         measureTimedValue { partTwo() }.let { (value, duration) ->
-            value?.let { println("Part 2: $value ($duration)") }
+            value?.let { println("Part 2: $value (${duration.formatBenchmark()})") }
         }
     }
 
