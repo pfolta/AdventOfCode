@@ -14,25 +14,25 @@ class Day12RainRisk(customInput: String? = null) : Puzzle(customInput) {
     private val navigationInstructions = input.lines().map(::NavigationInstruction)
 
     override fun partOne() = navigationInstructions
-        .fold(Triple(NavigationDirection.EAST, 0, 0)) { position, instruction ->
+        .fold(NavigationDirection.EAST to Pair(0, 0)) { (direction, position), instruction ->
             when (instruction.action) {
-                EAST -> position.copy(second = position.second + instruction.value)
-                WEST -> position.copy(second = position.second - instruction.value)
-                NORTH -> position.copy(third = position.third + instruction.value)
-                SOUTH -> position.copy(third = position.third - instruction.value)
-                FORWARD -> when (position.first) {
-                    NavigationDirection.EAST -> position.copy(second = position.second + instruction.value)
-                    NavigationDirection.WEST -> position.copy(second = position.second - instruction.value)
-                    NavigationDirection.NORTH -> position.copy(third = position.third + instruction.value)
-                    NavigationDirection.SOUTH -> position.copy(third = position.third - instruction.value)
+                EAST -> direction to position.copy(first = position.first + instruction.value)
+                WEST -> direction to position.copy(first = position.first - instruction.value)
+                NORTH -> direction to position.copy(second = position.second + instruction.value)
+                SOUTH -> direction to position.copy(second = position.second - instruction.value)
+                FORWARD -> when (direction) {
+                    NavigationDirection.EAST -> direction to position.copy(first = position.first + instruction.value)
+                    NavigationDirection.WEST -> direction to position.copy(first = position.first - instruction.value)
+                    NavigationDirection.NORTH -> direction to position.copy(second = position.second + instruction.value)
+                    NavigationDirection.SOUTH -> direction to position.copy(second = position.second - instruction.value)
                 }
-                RIGHT -> position.copy(first = NavigationDirection.fromHeading(position.first.heading + instruction.value)!!)
-                LEFT -> position.copy(first = NavigationDirection.fromHeading(position.first.heading - instruction.value)!!)
+                RIGHT -> NavigationDirection.fromHeading(direction.heading + instruction.value)!! to position
+                LEFT -> NavigationDirection.fromHeading(direction.heading - instruction.value)!! to position
             }
         }
+        .second
         .toList()
-        .subList(1, 3)
-        .sumBy { (it as Int).absoluteValue }
+        .sumBy { it.absoluteValue }
 
     override fun partTwo() = navigationInstructions
         .fold(Pair(Pair(10, 1), Pair(0, 0))) { acc, instruction ->
