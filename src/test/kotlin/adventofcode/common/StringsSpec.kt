@@ -1,7 +1,6 @@
 package adventofcode.common
 
 import io.kotest.core.spec.style.FreeSpec
-import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.shouldBe
 
 class StringsSpec : FreeSpec({
