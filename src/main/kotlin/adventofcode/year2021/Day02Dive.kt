@@ -12,16 +12,25 @@ class Day02Dive(customInput: String? = null) : Puzzle(customInput) {
 
     override fun partOne() = commands.fold(Position()) { acc, command ->
         when (command.direction) {
-            FORWARD -> Position(acc.horizontal + command.value, acc.depth)
-            DOWN -> Position(acc.horizontal, acc.depth + command.value)
-            UP -> Position(acc.horizontal, acc.depth - command.value)
+            FORWARD -> acc.copy(horizontal = acc.horizontal + command.value)
+            DOWN -> acc.copy(depth = acc.depth + command.value)
+            UP -> acc.copy(depth = acc.depth - command.value)
+        }
+    }.multiply()
+
+    override fun partTwo() = commands.fold(Position()) { acc, command ->
+        when (command.direction) {
+            FORWARD -> acc.copy(horizontal = acc.horizontal + command.value, depth = acc.depth + acc.aim * command.value)
+            DOWN -> acc.copy(aim = acc.aim + command.value)
+            UP -> acc.copy(aim = acc.aim - command.value)
         }
     }.multiply()
 
     companion object {
         data class Position(
             val horizontal: Int = 0,
-            val depth: Int = 0
+            val depth: Int = 0,
+            val aim: Int = 0
         ) {
             fun multiply() = horizontal * depth
         }
