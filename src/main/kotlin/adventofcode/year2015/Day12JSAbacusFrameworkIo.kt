@@ -22,6 +22,6 @@ class Day12JSAbacusFrameworkIo(customInput: String? = null) : Puzzle(customInput
             return this
         }
 
-        private fun JsonNode.sum(): Int = if (isInt) intValue() else map { it.sum() }.sum()
+        private fun JsonNode.sum(): Int = if (isInt) intValue() else sumOf { it.sum() }
     }
 }

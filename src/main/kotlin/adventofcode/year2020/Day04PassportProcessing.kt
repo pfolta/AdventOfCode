@@ -6,8 +6,7 @@ class Day04PassportProcessing(customInput: String? = null) : Puzzle(customInput)
     private val passports = input.split("\n\n").map { it.replace("\n", " ").split(" ") }.map(::Passport)
 
     override fun partOne() = passports
-        .filter { it.byr != null && it.iyr != null && it.eyr != null && it.hgt != null && it.hcl != null && it.ecl != null && it.pid != null }
-        .count()
+        .count { it.byr != null && it.iyr != null && it.eyr != null && it.hgt != null && it.hcl != null && it.ecl != null && it.pid != null }
 
     override fun partTwo() = passports
         .asSequence()

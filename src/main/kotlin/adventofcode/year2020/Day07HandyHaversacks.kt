@@ -9,15 +9,13 @@ class Day07HandyHaversacks(customInput: String? = null) : Puzzle(customInput) {
         val contents = BAG_CONTENTS_REGEX
             .findAll(rule)
             .toList()
-            .map { it.destructured.component2() to it.destructured.component1().toInt() }
-            .toMap()
+            .associate { it.destructured.component2() to it.destructured.component1().toInt() }
 
         Bag(color, contents)
     }
 
     override fun partOne() = bagRules
-        .filter { it.contains(bagRules, "shiny gold") }
-        .count()
+        .count { it.contains(bagRules, "shiny gold") }
 
     override fun partTwo() = bagRules
         .get("shiny gold")

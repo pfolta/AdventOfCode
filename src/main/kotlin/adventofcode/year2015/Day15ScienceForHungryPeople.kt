@@ -9,7 +9,7 @@ class Day15ScienceForHungryPeople(customInput: String? = null) : Puzzle(customIn
 
     private val ingredients by lazy { input.lines().map(::Ingredient) }
 
-    private val recipies by lazy {
+    private val recipes by lazy {
         (1..ingredients.size)
             .map { (0..TABLESPOON_COUNT).toList() }
             .cartesianProduct()
@@ -18,9 +18,9 @@ class Day15ScienceForHungryPeople(customInput: String? = null) : Puzzle(customIn
             .map { it.sum() }
     }
 
-    override fun partOne() = recipies.map { it.score }.maxOrNull()!!
+    override fun partOne() = recipes.map { it.score }.maxOrNull()!!
 
-    override fun partTwo() = recipies.filter { it.calories == CALORIE_COUNT }.map { it.score }.maxOrNull()!!
+    override fun partTwo() = recipes.filter { it.calories == CALORIE_COUNT }.map { it.score }.maxOrNull()!!
 
     companion object {
         private val INPUT_REGEX = """capacity (-?\d+), durability (-?\d+), flavor (-?\d+), texture (-?\d+), calories (\d+)""".toRegex()

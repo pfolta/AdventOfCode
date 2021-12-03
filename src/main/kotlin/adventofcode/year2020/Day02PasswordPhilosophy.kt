@@ -5,7 +5,7 @@ import adventofcode.Puzzle
 class Day02PasswordPhilosophy(customInput: String? = null) : Puzzle(customInput) {
     override fun partOne() = input
         .lines()
-        .filter {
+        .count {
             val matchResults = PASSWORD_REGEX.find(it)!!
             val (min, max, char, password) = matchResults.destructured
 
@@ -13,11 +13,10 @@ class Day02PasswordPhilosophy(customInput: String? = null) : Puzzle(customInput)
 
             charCount >= min.toInt() && charCount <= max.toInt()
         }
-        .count()
 
     override fun partTwo() = input
         .lines()
-        .filter {
+        .count {
             val matchResults = PASSWORD_REGEX.find(it)!!
             val (pos1s, pos2s, char, password) = matchResults.destructured
 
@@ -27,7 +26,6 @@ class Day02PasswordPhilosophy(customInput: String? = null) : Puzzle(customInput)
             ((password[pos1].toString() == char) && (password[pos2].toString() != char)) ||
                 ((password[pos1].toString() != char) && (password[pos2].toString() == char))
         }
-        .count()
 
     companion object {
         private val PASSWORD_REGEX = """([0-9]*)-([0-9]*) ([a-z]): (.*)""".toRegex()

@@ -32,7 +32,7 @@ class Day12RainRisk(customInput: String? = null) : Puzzle(customInput) {
         }
         .second
         .toList()
-        .sumBy { it.absoluteValue }
+        .sumOf { it.absoluteValue }
 
     override fun partTwo() = navigationInstructions
         .fold(Pair(Pair(10, 1), Pair(0, 0))) { acc, instruction ->
@@ -66,7 +66,7 @@ class Day12RainRisk(customInput: String? = null) : Puzzle(customInput) {
         }
         .second
         .toList()
-        .sumBy { it.absoluteValue }
+        .sumOf { it.absoluteValue }
 
     companion object {
         enum class NavigationDirection(val heading: Int) {

@@ -5,19 +5,17 @@ import adventofcode.Puzzle
 class Day08Matchsticks(customInput: String? = null) : Puzzle(customInput) {
     override fun partOne() = input
         .lines()
-        .map { string ->
+        .sumOf { string ->
             val decodedString = string
                 .substring(1 until string.length - 1)
-                .replace("""\\x([0-9a-f]{2})""".toRegex()) { it.destructured.component1().toLong(16).toChar().toString() }
+                .replace("""\\x([0-9a-f]{2})""".toRegex()) { it.destructured.component1().toInt(16).toChar().toString() }
                 .replace("""\\""", """\""")
                 .replace("\\\"", "\"")
 
             string.length - decodedString.length
         }
-        .sum()
 
     override fun partTwo() = input
         .lines()
-        .map { ("\"" + it.replace("\\", "\\\\").replace("\"", "\\\"") + "\"").length - it.length }
-        .sum()
+        .sumOf { ("\"" + it.replace("\\", "\\\\").replace("\"", "\\\"") + "\"").length - it.length }
 }

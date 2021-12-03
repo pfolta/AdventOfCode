@@ -8,11 +8,10 @@ class Day09AllInASingleNight(customInput: String? = null) : Puzzle(customInput) 
 
     private val distances = input
         .lines()
-        .map {
+        .associate {
             val (cityA, cityB, distance) = INPUT_REGEX.find(it)!!.destructured
             setOf(cityA, cityB) to distance.toInt()
         }
-        .toMap()
 
     private val cities = distances.keys.flatten().toSet()
 

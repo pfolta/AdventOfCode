@@ -5,8 +5,8 @@ import com.diogonunes.jcolor.Attribute.BOLD
 import com.diogonunes.jcolor.Attribute.RED_BACK
 import com.diogonunes.jcolor.Attribute.WHITE_TEXT
 import kotlin.time.Duration
+import kotlin.time.Duration.Companion.seconds
 import kotlin.time.ExperimentalTime
-import kotlin.time.seconds
 
 /**
  * Every Advent of Code problem has a solution that completes in at most 15 seconds on ten-year-old hardware,

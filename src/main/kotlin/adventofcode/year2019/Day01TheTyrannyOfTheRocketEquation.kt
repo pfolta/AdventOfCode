@@ -10,7 +10,7 @@ class Day01TheTyrannyOfTheRocketEquation(customInput: String? = null) : Puzzle(c
     override fun partOne() = modules.map { getFuelForModule(it) }.sum()
 
     override fun partTwo() = modules
-        .map { module ->
+        .sumOf { module ->
             var toAdd = 0
             var fuel = getFuelForModule(module)
 
@@ -21,7 +21,6 @@ class Day01TheTyrannyOfTheRocketEquation(customInput: String? = null) : Puzzle(c
 
             toAdd
         }
-        .sum()
 
     companion object {
         private fun getFuelForModule(module: Int) = module / 3 - 2

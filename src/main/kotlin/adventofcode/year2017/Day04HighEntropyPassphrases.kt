@@ -8,12 +8,10 @@ class Day04HighEntropyPassphrases(customInput: String? = null) : Puzzle(customIn
     override fun partOne() = input
         .lines()
         .map { passphrase -> passphrase.split(" ").groupingBy { it }.eachCount().values }
-        .filter { passphrase -> passphrase.none { it > 1 } }
-        .count()
+        .count { passphrase -> passphrase.none { it > 1 } }
 
     override fun partTwo() = input
         .lines()
         .map { passphrase -> passphrase.split(" ").map { password -> password.groupingBy { it }.eachCount() } }
-        .filter { passphrase -> passphrase == passphrase.distinct() }
-        .count()
+        .count { passphrase -> passphrase == passphrase.distinct() }
 }

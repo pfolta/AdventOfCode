@@ -39,5 +39,4 @@ class Day03BinaryDiagnostic(customInput: String? = null) : Puzzle(customInput) {
     private fun leastCommonOrZero(eachCount: Map<Char, Int>) = if ((eachCount['0'] ?: 0) <= (eachCount['1'] ?: 0)) 0 else 1
 
     private fun List<Int>.toInt(radix: Int) = joinToString("").toInt(radix)
-
 }

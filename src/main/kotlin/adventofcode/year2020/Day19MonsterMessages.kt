@@ -9,8 +9,7 @@ class Day19MonsterMessages(customInput: String? = null) : Puzzle(customInput) {
         .lines()
         .map { it.replace("\"", "") }
         .map { it.split(": ") }
-        .map { it.first() to it.last() }
-        .toMap()
+        .associate { it.first() to it.last() }
 
     private val messages = input.split("\n\n").last().lines()
 
@@ -29,7 +28,7 @@ class Day19MonsterMessages(customInput: String? = null) : Puzzle(customInput) {
             .replace(" ", "")
             .toRegex()
 
-        return messages.filter { rule0.matches(it) }.count()
+        return messages.count { rule0.matches(it) }
     }
 
     companion object {

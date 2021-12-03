@@ -51,7 +51,7 @@ private fun List<List<String>>.iterate(tolerance: Int, neighborFunction: List<Li
         .zipWithNext()
         .first { it.first == it.second }
         .first
-        .sumBy { it.count { it == "#" } }
+        .sumOf { it.count { it == "#" } }
 
 private fun List<List<String>>.getNearestSeatNeighbors(self: Pair<Int, Int>) = directions
     .mapNotNull { dir -> getNearestSeatNeighbor(self, dir) }
