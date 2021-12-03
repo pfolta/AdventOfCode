@@ -5,17 +5,39 @@ import adventofcode.Puzzle
 class Day03BinaryDiagnostic(customInput: String? = null) : Puzzle(customInput) {
     private val numbers by lazy { input.lines() }
 
-    private val ones by lazy { numbers.first().indices.map { index -> numbers.sumOf { it[index].toString().toInt() } } }
-    private val zeros by lazy { ones.map { numbers.size - it } }
-
     override fun partOne(): Int {
-        val gammaRate = ones.mapIndexed { index, _ -> if (ones[index] > zeros[index]) 1 else 0 }
-        val epsilonRate = gammaRate.map { it.xor(1) }
+        val gammaRate = numbers.first().indices.map { index -> mostCommonOrOne(numbers.countBy(index)) }.toInt(2)
+        val epsilonRate = numbers.first().indices.map { index -> leastCommonOrZero(numbers.countBy(index)) }.toInt(2)
 
-        return gammaRate.toInt(2) * epsilonRate.toInt(2)
+        return gammaRate * epsilonRate
     }
 
-    companion object {
-        fun List<Int>.toInt(radix: Int) = joinToString("").toInt(radix)
+    override fun partTwo(): Int {
+        val oxygenGeneratorRating = findRating(::mostCommonOrOne)
+        val co2ScrubberRating = findRating(::leastCommonOrZero)
+
+        return oxygenGeneratorRating * co2ScrubberRating
     }
+
+    private fun findRating(bitCriteria: (Map<Char, Int>) -> Int): Int {
+        val mutList = numbers.toMutableList()
+        var index = 0
+
+        while (mutList.size > 1) {
+            val common = bitCriteria(mutList.countBy(index))
+            mutList.removeAll { it[index].toString().toInt() != common }
+            index++
+        }
+
+        return mutList.first().toInt(2)
+    }
+
+    private fun List<String>.countBy(index: Int) = groupingBy { it[index] }.eachCount()
+
+    private fun mostCommonOrOne(eachCount: Map<Char, Int>) = if ((eachCount['1'] ?: 0) >= (eachCount['0'] ?: 0)) 1 else 0
+
+    private fun leastCommonOrZero(eachCount: Map<Char, Int>) = if ((eachCount['0'] ?: 0) <= (eachCount['1'] ?: 0)) 0 else 1
+
+    private fun List<Int>.toInt(radix: Int) = joinToString("").toInt(radix)
+
 }
