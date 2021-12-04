@@ -13,15 +13,26 @@ class Day04GiantSquid(customInput: String? = null) : Puzzle(customInput) {
             .map(::Board)
     }
 
-    override fun partOne(): Int {
-        val winningState =
-            generateSequence(0 to boards.map { board -> board.markNumber(numbers.first()) }) { (previousIndex, previousBoards) ->
-                previousIndex + 1 to previousBoards.map { board -> board.markNumber(numbers[previousIndex + 1]) }
-            }
-                .first { (_, boards) -> boards.any { board -> board.hasWon() } }
+    private fun playBingo() =
+        generateSequence(0 to boards.map { board -> board.markNumber(numbers.first()) }) { (previousIndex, previousBoards) ->
+            previousIndex + 1 to previousBoards.map { board -> board.markNumber(numbers[previousIndex + 1]) }
+        }
+            .take(numbers.size)
 
-        val lastDrawnNumber = numbers[winningState.first]
-        val winnerBoard = winningState.second.first { board -> board.hasWon() }
+    override fun partOne(): Int {
+        val firstWinner = playBingo().first { (_, boards) -> boards.any { board -> board.hasWon() } }
+
+        val lastDrawnNumber = numbers[firstWinner.first]
+        val winnerBoard = firstWinner.second.first { board -> board.hasWon() }
+
+        return lastDrawnNumber * winnerBoard.sumOfAllUnmarkedNumbers()
+    }
+
+    override fun partTwo(): Int {
+        val beforeLastWinner = playBingo().last { (_, boards) -> boards.any { board -> !board.hasWon() } }
+
+        val lastDrawnNumber = numbers[beforeLastWinner.first + 1]
+        val winnerBoard = beforeLastWinner.second.first { board -> !board.hasWon() }.markNumber(lastDrawnNumber)
 
         return lastDrawnNumber * winnerBoard.sumOfAllUnmarkedNumbers()
     }
