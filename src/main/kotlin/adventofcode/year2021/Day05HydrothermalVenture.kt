@@ -9,7 +9,13 @@ class Day05HydrothermalVenture(customInput: String? = null) : Puzzle(customInput
 
     override fun partOne() = lines
         .filter { it.isHorizontal() || it.isVertical() }
-        .flatMap { it.getCoveredPoints() }
+        .flatMap(Line::getCoveredPoints)
+        .groupingBy { it }
+        .eachCount()
+        .count { it.value > 1 }
+
+    override fun partTwo() = lines
+        .flatMap(Line::getCoveredPoints)
         .groupingBy { it }
         .eachCount()
         .count { it.value > 1 }
@@ -34,7 +40,14 @@ class Day05HydrothermalVenture(customInput: String? = null) : Puzzle(customInput
             fun getCoveredPoints() = when {
                 isHorizontal() -> IntRange(min(start.x, end.x), max(start.x, end.x)).map { Point(it, start.y) }
                 isVertical() -> IntRange(min(start.y, end.y), max(start.y, end.y)).map { Point(start.x, it) }
-                else -> throw NotImplementedError("Not yet needed")
+                else -> {
+                    val left = if (start.x < end.x) start else end
+                    val right = listOf(start, end).minus(left).first()
+
+                    val gradient = if (left.y < right.y) 1 else -1
+
+                    IntRange(left.x, right.x).map { Point(it, gradient * (it - left.x) + left.y) }
+                }
             }
         }
     }
