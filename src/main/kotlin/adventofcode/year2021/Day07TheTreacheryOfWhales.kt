@@ -10,5 +10,8 @@ class Day07TheTreacheryOfWhales(customInput: String? = null) : Puzzle(customInpu
 
     override fun partOne() = (crabs.minOrNull()!!..crabs.maxOrNull()!!).minOf { crabs.sumOf { crab -> abs(it - crab) } }
 
-    override fun partTwo() = (crabs.minOrNull()!!..crabs.maxOrNull()!!).minOf { crabs.sumOf { crab -> (1..abs(it - crab)).sum() } }
+    override fun partTwo() =
+        (crabs.minOrNull()!!..crabs.maxOrNull()!!).minOf { crabs.sumOf { crab -> abs(it - crab).sumOfNaturalNumbers() } }
+
+    private fun Int.sumOfNaturalNumbers() = (this * (this + 1)) / 2
 }
