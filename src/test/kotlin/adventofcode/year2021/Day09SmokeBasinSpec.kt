@@ -2,4 +2,4 @@ package adventofcode.year2021
 
 import adventofcode.PuzzleBaseSpec
 
-class Day09SmokeBasinSpec : PuzzleBaseSpec(15)
+class Day09SmokeBasinSpec : PuzzleBaseSpec(15, 1134)
