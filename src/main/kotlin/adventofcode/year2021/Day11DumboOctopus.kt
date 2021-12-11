@@ -15,7 +15,7 @@ class Day11DumboOctopus(customInput: String? = null) : Puzzle(customInput) {
 
     private fun List<List<Int>>.reset() = map { row -> row.map { col -> if (col > 9) 0 else col } }
 
-    private fun List<List<Int>>.simulate() = generateSequence(0 to this) { (previousFlashes, previousGrid) ->
+    private fun List<List<Int>>.simulate(steps: Int) = generateSequence(0 to this) { (previousFlashes, previousGrid) ->
         val incrementedGrid = previousGrid.incrementAll()
 
         val (newFlashes, newGrid, _) = generateSequence(
@@ -33,10 +33,16 @@ class Day11DumboOctopus(customInput: String? = null) : Puzzle(customInput) {
 
         previousFlashes + newFlashes to newGrid.reset()
     }
+        .take(steps + 1)
 
     override fun partOne() = grid
-        .simulate()
-        .take(1 + 100)
+        .simulate(100)
         .last()
+        .first
+
+    override fun partTwo() = generateSequence(0 to grid) { (previousStep, previousGrid) ->
+        previousStep + 1 to previousGrid.simulate(1).last().second
+    }
+        .first { (_, grid) -> grid.all { row -> row.all { col -> col == 0 } } }
         .first
 }
