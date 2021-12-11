@@ -34,14 +34,14 @@ class Day11DumboOctopus(customInput: String? = null) : Puzzle(customInput) {
         previousFlashes + newFlashes to newGrid.reset()
     }
         .take(steps + 1)
+        .last()
 
     override fun partOne() = grid
         .simulate(100)
-        .last()
         .first
 
     override fun partTwo() = generateSequence(0 to grid) { (previousStep, previousGrid) ->
-        previousStep + 1 to previousGrid.simulate(1).last().second
+        previousStep + 1 to previousGrid.simulate(1).second
     }
         .first { (_, grid) -> grid.all { row -> row.all { col -> col == 0 } } }
         .first

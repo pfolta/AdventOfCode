@@ -46,7 +46,7 @@ class Day05HydrothermalVenture(customInput: String? = null) : Puzzle(customInput
 
                     val gradient = if (left.y < right.y) 1 else -1
 
-                    IntRange(left.x, right.x).map { Point(it, gradient * (it - left.x) + left.y) }
+                    (left.x..right.x).map { Point(it, gradient * (it - left.x) + left.y) }
                 }
             }
         }
