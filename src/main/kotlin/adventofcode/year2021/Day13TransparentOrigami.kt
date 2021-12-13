@@ -35,4 +35,10 @@ class Day13TransparentOrigami(customInput: String? = null) : Puzzle(customInput)
         .fold(instructions.first())
         .flatten()
         .count { it }
+
+    override fun partTwo() = "\n" + generateSequence(0 to paper.fold(instructions.first())) { (previousFold, previousPaper) ->
+        if (previousFold + 1 < instructions.size) previousFold + 1 to previousPaper.fold(instructions[previousFold + 1]) else null
+    }
+        .last()
+        .second.joinToString("\n") { it.joinToString("") { if (it) "█" else " " } } + "\n"
 }
