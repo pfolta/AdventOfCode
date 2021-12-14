@@ -29,4 +29,43 @@ class Day14ExtendedPolymerization(customInput: String? = null) : Puzzle(customIn
 
         return elementCounts.last() - elementCounts.first()
     }
+
+    override fun partTwo(): Long {
+        val elementCounts = generateSequence(polymerTemplate.windowed(2).groupingBy { it }.eachCount() as Map<String, Long>) { previous ->
+            previous
+                .flatMap { (pair, count) ->
+                    listOf(
+                        "${pair.first()}${pairInsertionRules[pair]}" to count,
+                        "${pairInsertionRules[pair]}${pair.last()}" to count
+                    )
+                }
+                .fold(mapOf()) { acc, (pair, count) ->
+                    if (acc.contains(pair)) {
+                        val existingCount = acc[pair]!!
+                        acc.minus(pair) + mapOf(pair to existingCount + count)
+                    } else {
+                        acc + mapOf(pair to count)
+                    }
+                }
+        }
+            .drop(1)
+            .take(40)
+            .last()
+            .toList()
+            .fold(mapOf<Char, Long>()) { acc, (pair, count) ->
+                val last = pair.last()
+
+                if (acc.contains(last)) {
+                    val existingCount = acc[last]!!
+                    acc.minus(last) + mapOf(last to existingCount + count)
+                } else {
+                    acc + mapOf(last to count)
+                }
+            }
+            .map { (element, count) -> if (element == polymerTemplate.first()) element to count + 1 else element to count }
+            .map { (_, count) -> count }
+            .sorted()
+
+        return elementCounts.last() - elementCounts.first()
+    }
 }
