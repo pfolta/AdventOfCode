@@ -19,7 +19,8 @@ dependencies {
     implementation(kotlin("stdlib-jdk8"))
     implementation("com.diogonunes:JColor:5.5.1")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.0")
-    implementation("org.reflections:reflections:0.9.12")
+    implementation("org.reflections:reflections:0.10.2")
+    implementation("org.slf4j:slf4j-nop:2.0.5")
 
     testImplementation("io.kotest:kotest-runner-junit5:5.5.4")
     testImplementation("io.kotest:kotest-assertions-core:5.5.4")
