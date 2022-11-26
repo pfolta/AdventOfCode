@@ -2,7 +2,6 @@ package adventofcode
 
 import adventofcode.util.bold
 import adventofcode.util.formatBenchmark
-import org.reflections.Reflections
 import java.io.FileNotFoundException
 import java.net.URL
 import kotlin.time.ExperimentalTime
@@ -67,24 +66,4 @@ abstract class Puzzle(customInput: String?) {
     companion object {
         private val CLASS_NAME_REGEX = """^adventofcode.year(\d{4}).Day(\d{2})(.+)$""".toRegex()
     }
-}
-
-object Puzzles {
-    private val reflections = Reflections("adventofcode")
-
-    private val puzzles = reflections
-        .getSubTypesOf(Puzzle::class.java)
-        .sortedBy(Class<out Puzzle>::getName)
-        .map { it.getDeclaredConstructor().newInstance()!! }
-
-    fun all() = puzzles
-
-    fun forYear(year: Int) = puzzles
-        .filter { it.javaClass.name.startsWith("adventofcode.year$year") }
-        .ifEmpty { throw ClassNotFoundException("Puzzles for year $year not found") }
-
-    fun forDay(year: Int, day: Int) = puzzles
-        .filter { it.javaClass.name.startsWith("adventofcode.year$year.Day${day.toString().padStart(2, '0')}") }
-        .ifEmpty { throw ClassNotFoundException("Solution for puzzle $year/$day not found") }
-        .first()
 }
