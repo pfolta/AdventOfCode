@@ -18,7 +18,7 @@ dependencies {
     implementation(kotlin("reflect"))
     implementation(kotlin("stdlib-jdk8"))
     implementation("com.diogonunes:JColor:5.5.1")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.13.0")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.14.0")
     implementation("org.reflections:reflections:0.9.12")
 
     testImplementation("io.kotest:kotest-runner-junit5:5.5.4")
