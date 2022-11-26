@@ -19,3 +19,5 @@ fun Duration.formatBenchmark(): String = when {
     this > 15.seconds -> AnsiFormat(RED_BACK(), WHITE_TEXT(), BOLD()).format(this.toString())
     else -> this.toString()
 }
+
+fun String.bold(): String = AnsiFormat(BOLD()).format(this)

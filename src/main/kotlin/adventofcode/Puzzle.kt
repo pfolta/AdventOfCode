@@ -1,5 +1,6 @@
 package adventofcode
 
+import adventofcode.util.bold
 import adventofcode.util.formatBenchmark
 import org.reflections.Reflections
 import java.io.FileNotFoundException
@@ -46,21 +47,22 @@ abstract class Puzzle(customInput: String?) {
      */
     @ExperimentalTime
     fun run() {
-        println("Advent of Code $year")
-        println("Day $day: $name")
-        println(link)
-        println("----------------------------------------")
+        println(toString())
 
         measureTimedValue { partOne() }.let { (value, duration) ->
-            println("Part 1: $value (${duration.formatBenchmark()})")
+            println("⭐️ Part 1: ${value.toString().bold()} (${duration.formatBenchmark()})")
         }
 
         measureTimedValue { partTwo() }.let { (value, duration) ->
-            value?.let { println("Part 2: $value (${duration.formatBenchmark()})") }
+            value?.let { println("⭐️ Part 2: ${value.toString().bold()} (${duration.formatBenchmark()})") }
         }
     }
 
-    override fun toString() = "Advent of Code $year, Day $day: $name"
+    override fun toString() = """
+        🎄 Advent of Code $year, Day $day
+           ${name.bold()}
+           $link
+        """.trimIndent()
 
     companion object {
         private val CLASS_NAME_REGEX = """^adventofcode.year(\d{4}).Day(\d{2})(.+)$""".toRegex()
