@@ -47,7 +47,11 @@ abstract class Puzzle(customInput: String?) {
      */
     @ExperimentalTime
     fun run() {
-        println(toString())
+        """
+        🎄 Advent of Code $year, Day $day
+           ${name.bold()}
+           $link
+        """.trimIndent().also(::println)
 
         measureTimedValue { partOne() }.let { (value, duration) ->
             println("⭐️ Part 1: ${value.toString().bold()} (${duration.formatBenchmark()})")
@@ -58,11 +62,7 @@ abstract class Puzzle(customInput: String?) {
         }
     }
 
-    override fun toString() = """
-        🎄 Advent of Code $year, Day $day
-           ${name.bold()}
-           $link
-        """.trimIndent()
+    override fun toString() = "🎄 Advent of Code $year, Day $day: $name"
 
     companion object {
         private val CLASS_NAME_REGEX = """^adventofcode.year(\d{4}).Day(\d{2})(.+)$""".toRegex()
