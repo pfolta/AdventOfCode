@@ -9,8 +9,5 @@ fun <T : Any> Collection<T>.permutations(): List<List<T>> = when {
 
 fun <T : Any> Collection<T>.powersets(): List<List<T>> = when {
     isEmpty() -> listOf(emptyList())
-    else -> {
-        val powerSetOfRest = drop(1).powersets()
-        powerSetOfRest + powerSetOfRest.map { listOf(first()) + it }
-    }
+    else -> drop(1).powersets().let { powerSetOfRest -> powerSetOfRest + powerSetOfRest.map { listOf(first()) + it } }
 }
