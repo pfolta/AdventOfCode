@@ -9,11 +9,14 @@ abstract class PuzzleBaseSpec(partOne: List<Pair<String?, Any>>, partTwo: List<P
         partTwo?.let { listOf(null to partTwo) }
     )
 
-    private val puzzleConstructor = Class.forName(javaClass.name.removeSuffix("Spec")).getConstructor(String::class.java)
+    private val puzzleConstructor = Class
+        .forName(javaClass.name.removeSuffix("Spec"))
+        .asSubclass(Puzzle::class.java)
+        .getConstructor(String::class.java)
 
     init {
         partOne.forEachIndexed { index, (input, expectedOutput) ->
-            val puzzle = puzzleConstructor.newInstance(input) as Puzzle
+            val puzzle = puzzleConstructor.newInstance(input)
 
             "$puzzle, Part 1, Example ${index + 1}" {
                 puzzle.partOne() shouldBe expectedOutput
@@ -22,7 +25,7 @@ abstract class PuzzleBaseSpec(partOne: List<Pair<String?, Any>>, partTwo: List<P
 
         partTwo?.let {
             it.forEachIndexed { index, (input, expectedOutput) ->
-                val puzzle = puzzleConstructor.newInstance(input) as Puzzle
+                val puzzle = puzzleConstructor.newInstance(input)
 
                 "$puzzle, Part 2, Example ${index + 1}" {
                     puzzle.partTwo() shouldBe expectedOutput
