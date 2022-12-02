@@ -22,4 +22,20 @@ class Day02RockPaperScissors(customInput: String? = null) : Puzzle(customInput) 
     }
         .sum()
 
+    override fun partTwo() = strategies.map { (opponent, outcome) ->
+        when {
+            opponent == "A" && outcome == "X" -> 3 + 0
+            opponent == "A" && outcome == "Y" -> 1 + 3
+            opponent == "A" && outcome == "Z" -> 2 + 6
+            opponent == "B" && outcome == "X" -> 1 + 0
+            opponent == "B" && outcome == "Y" -> 2 + 3
+            opponent == "B" && outcome == "Z" -> 3 + 6
+            opponent == "C" && outcome == "X" -> 2 + 0
+            opponent == "C" && outcome == "Y" -> 3 + 3
+            opponent == "C" && outcome == "Z" -> 1 + 6
+            else -> throw IllegalArgumentException("Invalid strategy '$opponent $outcome'")
+        }
+    }
+    .sum()
+
 }
