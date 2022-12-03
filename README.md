@@ -8,7 +8,7 @@ Puzzles can be run using the Gradle `run` task or by executing the project's JAR
   `./gradlew run` or `java -jar build/libs/AdventOfCode.jar`
 * All puzzles from a given year:  
   `./gradlew run --args "2020"` or `java -jar build/libs/AdventOfCode.jar 2020`
-* A single puzzle for a given year/day:  
+* A single puzzle for a given year and day:  
   `./gradlew run --args "2020/25"` or `java -jar build/libs/AdventOfCode.jar 2020/25`
 
 These arguments can be combined to run multiple puzzles, e.g.
