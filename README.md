@@ -12,7 +12,7 @@ Puzzles can be run using the Gradle `run` task or by executing the project's JAR
   * `./gradlew run --args "2020/25"` or `java -jar build/libs/AdventOfCode.jar 2020/25`
 
 These arguments can be combined to run multiple puzzles, e.g.
-`./gradlew run --args "2015/1 2019 2020/6 2020/7"` will run the first puzzle from 2015, then all puzzles from 2019 and lastly the 6th and 7th puzzle from 2020. 
+`./gradlew run --args "2015/1 2019 2020/6 2020/7"` will run the first puzzle from 2015, then all puzzles from 2019 and lastly the 6th and 7th puzzle from 2020.
 
 ## Structure
 
@@ -22,3 +22,14 @@ These arguments can be combined to run multiple puzzles, e.g.
 * Solutions go into `src/main/kotlin/adventofcode` and follow the naming convention `yearXXXX/DayYYZZZZ.kt`
 * Solutions extend the `Puzzle` class and call its constructor passing an optional alternative input
 * Solutions can have one or two parts sharing the same input. Not overriding `fun partTwo(): Any` will skip the second part when running the puzzle
+
+## Index
+
+### 2022
+
+| Day | Puzzle                  | Links                                                                                                                                                                                                              | ⭐️ Part 1 | ⭐️ Part 2 |
+|-----|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|-----------|
+| 1   | Calorie Counting        | [[AoC](https://adventofcode.com/2022/day/1)] [[Solution](src/main/kotlin/adventofcode/year2022/Day01CalorieCounting.kt)] [[Test](src/test/kotlin/adventofcode/year2022/Day01CalorieCountingSpec.kt)]               | 72240     | 210957    |
+| 2   | Rock Paper Scissors     | [[AoC](https://adventofcode.com/2022/day/2)] [[Solution](src/main/kotlin/adventofcode/year2022/Day02RockPaperScissors.kt)] [[Test](src/test/kotlin/adventofcode/year2022/Day02RockPaperScissorsSpec.kt)]           | 12458     | 12683     |
+| 3   | Rucksack Reorganization | [[AoC](https://adventofcode.com/2022/day/3)] [[Solution](src/main/kotlin/adventofcode/year2022/Day03RucksackReorganization.kt)] [[Test](src/test/kotlin/adventofcode/year2022/Day03RucksackReorganizationSpec.kt)] | 7878      | 2760      |
+ 
