@@ -36,6 +36,5 @@ class Day02RockPaperScissors(customInput: String? = null) : Puzzle(customInput) 
             else -> throw IllegalArgumentException("Invalid strategy '$opponent $outcome'")
         }
     }
-    .sum()
-
+        .sum()
 }
