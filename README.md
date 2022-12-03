@@ -25,13 +25,7 @@ These arguments can be combined to run multiple puzzles, e.g.
 
 ## Index
 
-### 2022
 
-| Day | Puzzle                  | Links                                                                                                                                                                                                              | ⭐️ Part 1 | ⭐️ Part 2 |
-|-----|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|-----------|
-| 1   | Calorie Counting        | [[AoC](https://adventofcode.com/2022/day/1)] [[Solution](src/main/kotlin/adventofcode/year2022/Day01CalorieCounting.kt)] [[Test](src/test/kotlin/adventofcode/year2022/Day01CalorieCountingSpec.kt)]               | `72240`   | `210957`  |
-| 2   | Rock Paper Scissors     | [[AoC](https://adventofcode.com/2022/day/2)] [[Solution](src/main/kotlin/adventofcode/year2022/Day02RockPaperScissors.kt)] [[Test](src/test/kotlin/adventofcode/year2022/Day02RockPaperScissorsSpec.kt)]           | `12458`   | `12683`   |
-| 3   | Rucksack Reorganization | [[AoC](https://adventofcode.com/2022/day/3)] [[Solution](src/main/kotlin/adventofcode/year2022/Day03RucksackReorganization.kt)] [[Test](src/test/kotlin/adventofcode/year2022/Day03RucksackReorganizationSpec.kt)] | `7878`    | `2760`    |
 
 ### 2021
 
@@ -50,3 +44,11 @@ These arguments can be combined to run multiple puzzles, e.g.
 | 11  | Dumbo Octopus           | [[AoC](https://adventofcode.com/2021/day/11)] [[Solution](src/main/kotlin/adventofcode/year2021/Day11DumboOctopus.kt)] [[Test](src/test/kotlin/adventofcode/year2021/Day11DumboOctopusSpec.kt)]                     | `1640`    | `312`           |
 | 13  | Transparent Origami     | [[AoC](https://adventofcode.com/2021/day/13)] [[Solution](src/main/kotlin/adventofcode/year2021/Day13TransparentOrigami.kt)] [[Test](src/test/kotlin/adventofcode/year2021/Day13TransparentOrigamiSpec.kt)]         | `671`     | `PCPHARKL`      |
 | 14  | Extended Polymerization | [[AoC](https://adventofcode.com/2021/day/14)] [[Solution](src/main/kotlin/adventofcode/year2021/Day14ExtendedPolymerization.kt)] [[Test](src/test/kotlin/adventofcode/year2021/Day14ExtendedPolymerizationSpec.kt)] | `2584`    | `3816397135460` |
+
+### 2022
+
+| Day | Puzzle                  | Links                                                                                                                                                                                                              | ⭐️ Part 1 | ⭐️ Part 2 |
+|-----|-------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|-----------|
+| 1   | Calorie Counting        | [[AoC](https://adventofcode.com/2022/day/1)] [[Solution](src/main/kotlin/adventofcode/year2022/Day01CalorieCounting.kt)] [[Test](src/test/kotlin/adventofcode/year2022/Day01CalorieCountingSpec.kt)]               | `72240`   | `210957`  |
+| 2   | Rock Paper Scissors     | [[AoC](https://adventofcode.com/2022/day/2)] [[Solution](src/main/kotlin/adventofcode/year2022/Day02RockPaperScissors.kt)] [[Test](src/test/kotlin/adventofcode/year2022/Day02RockPaperScissorsSpec.kt)]           | `12458`   | `12683`   |
+| 3   | Rucksack Reorganization | [[AoC](https://adventofcode.com/2022/day/3)] [[Solution](src/main/kotlin/adventofcode/year2022/Day03RucksackReorganization.kt)] [[Test](src/test/kotlin/adventofcode/year2022/Day03RucksackReorganizationSpec.kt)] | `7878`    | `2760`    |
