@@ -25,12 +25,20 @@ These arguments can be combined to run multiple puzzles, e.g.
 
 ## Index
 
+### 2018
+
+| Day | Puzzle                      | Links                                                                                                                                                                                                                    | ⭐️ Part 1 | ⭐️ Part 2                   |
+|-----|-----------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|-----------------------------|
+| 1   | Chronal Calibration         | [[AoC](https://adventofcode.com/2018/day/1)] [[Solution](src/main/kotlin/adventofcode/year2018/Day01ChronalCalibration.kt)] [[Test](src/test/kotlin/adventofcode/year2018/Day01ChronalCalibrationSpec.kt)]               | `522`     | `73364`                     |
+| 2   | Inventory Management System | [[AoC](https://adventofcode.com/2018/day/2)] [[Solution](src/main/kotlin/adventofcode/year2018/Day02InventoryManagementSystem.kt)] [[Test](src/test/kotlin/adventofcode/year2018/Day02InventoryManagementSystemSpec.kt)] | `4693`    | `pebjqsalrdnckzfihvtxysomg` |
+| 3   | No Matter How You Slice It  | [[AoC](https://adventofcode.com/2018/day/3)] [[Solution](src/main/kotlin/adventofcode/year2018/Day03NoMatterHowYouSliceIt.kt)] [[Test](src/test/kotlin/adventofcode/year2018/Day03NoMatterHowYouSliceItSpec.kt)]         | `109143`  | `506`                       |
+
 ### 2019
 
 | Day | Puzzle                             | Links                                                                                                                                  | ⭐️ Part 1 | ⭐️ Part 2 |
 |-----|------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|-----------|-----------|
 | 1   | The Tyranny of the Rocket Equation | [[AoC](https://adventofcode.com/2019/day/1)] [[Solution](src/main/kotlin/adventofcode/year2019/Day01TheTyrannyOfTheRocketEquation.kt)] | `3392373` | `5085699` |
-| 2   | 1202 Program Alarm                 | [[AoC](https://adventofcode.com/2019/day/1)] [[Solution](src/main/kotlin/adventofcode/year2019/Day021202ProgramAlarm.kt)]              | `3716250` | `6472`    |
+| 2   | 1202 Program Alarm                 | [[AoC](https://adventofcode.com/2019/day/2)] [[Solution](src/main/kotlin/adventofcode/year2019/Day021202ProgramAlarm.kt)]              | `3716250` | `6472`    |
 
 ### 2020
 
