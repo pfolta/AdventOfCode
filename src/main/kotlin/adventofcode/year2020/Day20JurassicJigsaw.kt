@@ -11,35 +11,31 @@ class Day20JurassicJigsaw(customInput: String? = null) : Puzzle(customInput) {
             previous + previous.keys.flatMap { tile ->
                 val left = tiles
                     .filter { previous.values.none { previousTile -> it.id == previousTile.id } }
-                    .mapNotNull { newTile ->
+                    .firstNotNullOfOrNull { newTile ->
                         val left = previous[tile]!!.left
                         newTile.variations().firstOrNull { it.right == left }?.let { Pair(tile.first - 1, tile.second) to it }
                     }
-                    .firstOrNull()
 
                 val right = tiles
                     .filter { previous.values.none { previousTile -> it.id == previousTile.id } }
-                    .mapNotNull { newTile ->
+                    .firstNotNullOfOrNull { newTile ->
                         val right = previous[tile]!!.right
                         newTile.variations().firstOrNull { it.left == right }?.let { Pair(tile.first + 1, tile.second) to it }
                     }
-                    .firstOrNull()
 
                 val bottom = tiles
                     .filter { previous.values.none { previousTile -> it.id == previousTile.id } }
-                    .mapNotNull { newTile ->
+                    .firstNotNullOfOrNull { newTile ->
                         val bottom = previous[tile]!!.bottom
                         newTile.variations().firstOrNull { it.top == bottom }?.let { Pair(tile.first, tile.second - 1) to it }
                     }
-                    .firstOrNull()
 
                 val top = tiles
                     .filter { previous.values.none { previousTile -> it.id == previousTile.id } }
-                    .mapNotNull { newTile ->
+                    .firstNotNullOfOrNull { newTile ->
                         val top = previous[tile]!!.top
                         newTile.variations().firstOrNull { it.bottom == top }?.let { Pair(tile.first, tile.second + 1) to it }
                     }
-                    .firstOrNull()
 
                 listOfNotNull(left, right, bottom, top)
             }.toMap()
@@ -72,7 +68,7 @@ class Day20JurassicJigsaw(customInput: String? = null) : Puzzle(customInput) {
             private fun row(n: Int) = content[n]
 
             // Rotate content 90 degrees clockwise
-            private fun rotate() = copy(content = content.mapIndexed { n, _ -> col(n).reversed() })
+            private fun rotate() = copy(content = List(content.size) { n -> col(n).reversed() })
 
             private fun flipX() = copy(content = content.map(String::reversed))
             private fun flipY() = copy(content = content.reversed())

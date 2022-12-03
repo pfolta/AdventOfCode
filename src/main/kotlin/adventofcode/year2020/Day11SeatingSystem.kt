@@ -35,7 +35,7 @@ private fun List<List<String>>.getImmediateNeighbors(self: Pair<Int, Int>) =
 
 private fun List<List<String>>.next(tolerance: Int, neighborFunction: List<List<String>>.(Pair<Int, Int>) -> List<String>) =
     mapIndexed { y, row ->
-        row.mapIndexed { x, _ ->
+        List(row.size) { x ->
             val occupiedNeighbors = neighborFunction(this, Pair(x, y)).count { it == "#" }
 
             when {

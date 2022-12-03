@@ -9,7 +9,7 @@ class Day02PasswordPhilosophy(customInput: String? = null) : Puzzle(customInput)
             val matchResults = PASSWORD_REGEX.find(it)!!
             val (min, max, char, password) = matchResults.destructured
 
-            val charCount = password.toCharArray().filter { it.toString() == char }.count()
+            val charCount = password.toCharArray().count { it.toString() == char }
 
             charCount >= min.toInt() && charCount <= max.toInt()
         }
