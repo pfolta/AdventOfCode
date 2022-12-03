@@ -7,7 +7,7 @@ class Day01TheTyrannyOfTheRocketEquation(customInput: String? = null) : Puzzle(c
 
     private val modules = input.lines().map(String::toInt)
 
-    override fun partOne() = modules.map { getFuelForModule(it) }.sum()
+    override fun partOne() = modules.sumOf { getFuelForModule(it) }
 
     override fun partTwo() = modules
         .sumOf { module ->

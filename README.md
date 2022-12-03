@@ -25,6 +25,13 @@ These arguments can be combined to run multiple puzzles, e.g.
 
 ## Index
 
+### 2019
+
+| Day | Puzzle                             | Links                                                                                                                                  | ⭐️ Part 1 | ⭐️ Part 2 |
+|-----|------------------------------------|----------------------------------------------------------------------------------------------------------------------------------------|-----------|-----------|
+| 1   | The Tyranny of the Rocket Equation | [[AoC](https://adventofcode.com/2019/day/1)] [[Solution](src/main/kotlin/adventofcode/year2019/Day01TheTyrannyOfTheRocketEquation.kt)] | `3392373` | `5085699` |
+| 2   | 1202 Program Alarm                 | [[AoC](https://adventofcode.com/2019/day/1)] [[Solution](src/main/kotlin/adventofcode/year2019/Day021202ProgramAlarm.kt)]              | `3716250` | `6472`    |
+
 ### 2020
 
 | Day | Puzzle                  | Links                                                                                                                                                                                                               | ⭐️ Part 1        | ⭐️ Part 2                                        |
@@ -53,7 +60,6 @@ These arguments can be combined to run multiple puzzles, e.g.
 | 23  | Crab Cups               | [[AoC](https://adventofcode.com/2020/day/23)] [[Solution](src/main/kotlin/adventofcode/year2020/Day23CrabCups.kt)] [[Test](src/test/kotlin/adventofcode/year2020/Day23CrabCupsSpec.kt)]                             | `97632548`       |                                                  |
 | 24  | Lobby Layout            | [[AoC](https://adventofcode.com/2020/day/24)] [[Solution](src/main/kotlin/adventofcode/year2020/Day24LobbyLayout.kt)] [[Test](src/test/kotlin/adventofcode/year2020/Day24LobbyLayoutSpec.kt)]                       | `269`            | `3667`                                           |
 | 25  | Combo Breaker           | [[AoC](https://adventofcode.com/2020/day/25)] [[Solution](src/main/kotlin/adventofcode/year2020/Day25ComboBreaker.kt)] [[Test](src/test/kotlin/adventofcode/year2020/Day25ComboBreakerSpec.kt)]                     | `3286137`        |                                                  |
-
 
 ### 2021
 
