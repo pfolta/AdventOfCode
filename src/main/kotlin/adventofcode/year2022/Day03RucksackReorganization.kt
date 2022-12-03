@@ -6,14 +6,19 @@ class Day03RucksackReorganization(customInput: String? = null) : Puzzle(customIn
     private val rucksacks by lazy { input.lines() }
 
     override fun partOne() = rucksacks
-        .map { rucksack -> rucksack.substring(0 until rucksack.length / 2).toSet() to rucksack.substring(rucksack.length / 2).toSet() }
-        .map { rucksack -> rucksack.first.intersect(rucksack.second).first().toChar() }
+        .map { rucksack ->
+            listOf(
+                rucksack.substring(0 until rucksack.length / 2).toSet(),
+                rucksack.substring(rucksack.length / 2).toSet()
+            )
+        }
+        .flatMap { rucksack -> rucksack.reduce(Set<Char>::intersect) }
         .sumOf { item -> item.toPriority() }
 
     override fun partTwo() = rucksacks
         .chunked(3)
         .map { group -> group.map(String::toSet) }
-        .flatMap { group -> group[0].intersect(group[1]).intersect(group[2]) }
+        .flatMap { group -> group.reduce(Set<Char>::intersect) }
         .sumOf { item -> item.toPriority() }
 
     companion object {
