@@ -25,6 +25,14 @@ These arguments can be combined to run multiple puzzles, e.g.
 
 ## Index
 
+### 2017
+
+| Day | Puzzle                   | Links                                                                                                                                                                                                              | ⭐️ Part 1 | ⭐️ Part 2 |
+|-----|--------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-----------|-----------|
+| 1   | Inverse Captcha          | [[AoC](https://adventofcode.com/2017/day/1)] [[Solution](src/main/kotlin/adventofcode/year2017/Day01InverseCaptcha.kt)] [[Test](src/test/kotlin/adventofcode/year2017/Day01InverseCaptchaSpec.kt)]                 | `1047`    | `982`     |
+| 2   | Corruption Checksum      | [[AoC](https://adventofcode.com/2017/day/2)] [[Solution](src/main/kotlin/adventofcode/year2017/Day02CorruptionChecksum.kt)] [[Test](src/test/kotlin/adventofcode/year2017/Day02CorruptionChecksumSpec.kt)]         | `36766`   | `261`     |
+| 4   | High-Entropy Passphrases | [[AoC](https://adventofcode.com/2017/day/4)] [[Solution](src/main/kotlin/adventofcode/year2017/Day04HighEntropyPassphrases.kt)] [[Test](src/test/kotlin/adventofcode/year2017/Day04HighEntropyPassphrasesSpec.kt)] | `466`     | `251`     |
+
 ### 2018
 
 | Day | Puzzle                      | Links                                                                                                                                                                                                                    | ⭐️ Part 1 | ⭐️ Part 2                   |
