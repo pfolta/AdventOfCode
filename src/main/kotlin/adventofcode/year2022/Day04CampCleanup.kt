@@ -11,19 +11,14 @@ class Day04CampCleanup(customInput: String? = null) : Puzzle(customInput) {
     }
 
     override fun partOne() = assignmentPairs
-        .filter { (first, second) -> first.fullyContains(second) || second.fullyContains(first) }
+        .filter { (first, second) -> first.intersect(second).size in setOf(first.count(), second.count()) }
         .size
 
     override fun partTwo() = assignmentPairs
-        .filter { (first, second) -> first.overlapsWith(second) }
+        .filter { (first, second) -> first.intersect(second).isNotEmpty() }
         .size
 
     companion object {
         private val ASSIGNMENT_PAIR_REGEX = """(\d+)-(\d+),(\d+)-(\d+)""".toRegex()
-
-        private fun IntRange.fullyContains(other: IntRange) = contains(other.first) && contains(other.last)
-
-        private fun IntRange.overlapsWith(other: IntRange) =
-            contains(other.first) || contains(other.last) || other.contains(first) || other.contains(last)
     }
 }
