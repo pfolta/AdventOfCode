@@ -17,7 +17,7 @@ class Day02RockPaperScissors(customInput: String? = null) : Puzzle(customInput) 
                 opponent == "C" && me == "X" -> 1 + 6
                 opponent == "C" && me == "Y" -> 2 + 0
                 opponent == "C" && me == "Z" -> 3 + 3
-                else -> throw IllegalArgumentException("Invalid strategy '$opponent $me'")
+                else -> throw IllegalArgumentException("'$opponent $me' is not a valid strategy")
             }
         }
         .sum()
@@ -34,7 +34,7 @@ class Day02RockPaperScissors(customInput: String? = null) : Puzzle(customInput) 
                 opponent == "C" && outcome == "X" -> 2 + 0
                 opponent == "C" && outcome == "Y" -> 3 + 3
                 opponent == "C" && outcome == "Z" -> 1 + 6
-                else -> throw IllegalArgumentException("Invalid strategy '$opponent $outcome'")
+                else -> throw IllegalArgumentException("'$opponent $outcome' is not a valid strategy")
             }
         }
         .sum()

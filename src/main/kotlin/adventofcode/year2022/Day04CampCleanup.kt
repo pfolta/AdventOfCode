@@ -6,7 +6,7 @@ class Day04CampCleanup(customInput: String? = null) : Puzzle(customInput) {
     private val assignmentPairs by lazy {
         input
             .lines()
-            .map { ASSIGNMENT_PAIR_REGEX.find(it)?.destructured ?: throw IllegalArgumentException("Invalid assignment pair '$it'") }
+            .map { ASSIGNMENT_PAIR_REGEX.find(it)?.destructured ?: throw IllegalArgumentException("'$it' is not a valid assignment pair") }
             .map { (a, b, c, d) -> a.toInt()..b.toInt() to c.toInt()..d.toInt() }
     }
 
