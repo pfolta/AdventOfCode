@@ -22,10 +22,6 @@ class Day03RucksackReorganization(customInput: String? = null) : Puzzle(customIn
         .sumOf { item -> item.toPriority() }
 
     companion object {
-        private fun Char.toPriority() = when (this) {
-            in 'a'..'z' -> code - 96
-            in 'A'..'Z' -> code - 38
-            else -> throw IllegalArgumentException("'$this' is not a valid item type")
-        }
+        private fun Char.toPriority() = (('a'..'z') + ('A'..'Z')).indexOf(this) + 1
     }
 }
