@@ -1,3 +1,6 @@
 [*]
 max_line_length = 140
 insert_final_newline = true
+
+[*.txt]
+insert_final_newline = false

@@ -25,7 +25,7 @@ abstract class Puzzle(customInput: String?) {
      * lazy delegate ensures the input file is only read on first access
      */
     protected val input by lazy {
-        customInput ?: javaClass.classLoader.getResource("inputs/year$year/day${day.toString().padStart(2, '0')}.txt")?.readText()?.trimEnd()
+        customInput ?: javaClass.classLoader.getResource("inputs/year$year/day${day.toString().padStart(2, '0')}.txt")?.readText()
         ?: throw FileNotFoundException("Input file for puzzle $year/$day not found")
     }
 
