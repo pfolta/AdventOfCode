@@ -60,7 +60,6 @@ class Day05SupplyStacks(customInput: String? = null) : Puzzle(customInput) {
     override fun partTwo() = rearrangeStacks(moveMultipleCrates = true)
 
     companion object {
-        private val STACK_REGEX = """([A-Z])+""".toRegex()
         private val PROCEDURE_REGEX = """move (\d+) from (\d+) to (\d+)""".toRegex()
     }
 }
