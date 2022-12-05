@@ -17,10 +17,10 @@ inline fun <reified T : Any> Collection<Collection<T>>.cartesianProduct() =
 /**
  * Returns a set of valid neighbors in any 2D grid
  *
- * Excluding diagonals:           Including diagonals:
- * _ N _                          N N N
- * N P N                          N P N
- * _ N _                          N N N
+ * Excluding diagonals:             Including diagonals:
+ * _ N _                            N N N
+ * N P N                            N P N
+ * _ N _                            N N N
  * where N is a neighbor of P.
  */
 inline fun <reified T : Any> List<List<T>>.neighbors(x: Int, y: Int, includingDiagonals: Boolean): Set<Pair<Int, Int>> {
@@ -43,3 +43,16 @@ inline fun <reified T : Any> List<List<T>>.neighbors(x: Int, y: Int, includingDi
         .toSet()
 }
 
+/**
+ * Transposes a 2D collection by rotating it 90deg clockwise:
+ *
+ * Original collection:             After transposing:
+ * A B C                            G D A
+ * D E F                            H E B
+ * G H I                            I F C
+ */
+inline fun <reified T : Any?> Collection<Collection<T>>.transpose(): Collection<Collection<T>> {
+    val result = first().map { mutableListOf<T>() }
+    forEach { list -> result.zip(list).forEach { it.first.add(it.second) } }
+    return result.map { it.reversed() }
+}
