@@ -1,4 +1,4 @@
-name: "Build, Test and Run"
+name: "Build and Test"
 
 on: ["push", "pull_request"]
 
@@ -31,23 +31,3 @@ jobs:
         with:
           name: "AdventOfCode.jar"
           path: "build/libs/AdventOfCode.jar"
-
-  run:
-    name: "Run"
-    needs: ["build-and-test"]
-    runs-on: "macos-latest"
-
-    steps:
-      - name: "Download 'AdventOfCode.jar'"
-        uses: "actions/download-artifact@v3"
-        with:
-          name: "AdventOfCode.jar"
-
-      - name: "Setup JDK 8"
-        uses: "actions/setup-java@v3"
-        with:
-          java-version: "8"
-          distribution: "corretto"
-
-      - name: "Run 'AdventOfCode.jar'"
-        run: "java -jar AdventOfCode.jar"
