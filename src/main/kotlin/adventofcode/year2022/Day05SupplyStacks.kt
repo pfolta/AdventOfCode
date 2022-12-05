@@ -29,19 +29,19 @@ class Day05SupplyStacks(customInput: String? = null) : Puzzle(customInput) {
             .map {
                 PROCEDURE_REGEX.find(it)?.destructured ?: throw IllegalArgumentException("$it is not a valid rearrangement instruction")
             }
-            .map { (quantity, from, to) -> Triple(quantity.toInt(), from.toInt(), to.toInt()) }
+            .map { (quantity, from, to) -> Triple(quantity.toInt(), from.toInt() - 1, to.toInt() - 1) }
     }
 
     private fun rearrangeStacks(moveMultipleCrates: Boolean = false) = generateSequence(0 to stacks) { (step, stacks) ->
-        val (quantity, from, to) = procedure[step]
+        val (quantity, fromIndex, toIndex) = procedure[step]
 
-        val cratesToMove = stacks[from - 1].takeLast(quantity)
+        val cratesToMove = stacks[fromIndex].takeLast(quantity)
 
         val newStacks = stacks
             .mapIndexed { index, stack ->
                 when (index) {
-                    from - 1 -> stack.dropLast(quantity)
-                    to - 1 -> stack + if (moveMultipleCrates) cratesToMove else cratesToMove.reversed()
+                    fromIndex -> stack.dropLast(quantity)
+                    toIndex -> stack + if (moveMultipleCrates) cratesToMove else cratesToMove.reversed()
                     else -> stack
                 }
             }
@@ -60,6 +60,7 @@ class Day05SupplyStacks(customInput: String? = null) : Puzzle(customInput) {
     override fun partTwo() = rearrangeStacks(moveMultipleCrates = true)
 
     companion object {
+        private val STACK_REGEX = """([A-Z])+""".toRegex()
         private val PROCEDURE_REGEX = """move (\d+) from (\d+) to (\d+)""".toRegex()
     }
 }
