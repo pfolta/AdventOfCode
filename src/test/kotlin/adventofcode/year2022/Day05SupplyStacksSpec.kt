@@ -2,4 +2,4 @@ package adventofcode.year2022
 
 import adventofcode.PuzzleBaseSpec
 
-class Day05SupplyStacksSpec : PuzzleBaseSpec("CMZ")
+class Day05SupplyStacksSpec : PuzzleBaseSpec("CMZ", "MCD")

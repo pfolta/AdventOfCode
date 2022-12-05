@@ -32,27 +32,32 @@ class Day05SupplyStacks(customInput: String? = null) : Puzzle(customInput) {
             .map { (quantity, from, to) -> Triple(quantity.toInt(), from.toInt(), to.toInt()) }
     }
 
-    override fun partOne() = generateSequence(0 to stacks) { (step, stacks) ->
+    private fun rearrangeStacks(moveMultipleCrates: Boolean = false) = generateSequence(0 to stacks) { (step, stacks) ->
         val (quantity, from, to) = procedure[step]
 
-        val toMove = stacks[from - 1].takeLast(quantity).reversed()
+        val cratesToMove = stacks[from - 1].takeLast(quantity)
 
         val newStacks = stacks
             .mapIndexed { index, stack ->
                 when (index) {
                     from - 1 -> stack.dropLast(quantity)
-                    to - 1 -> stack + toMove
+                    to - 1 -> stack + if (moveMultipleCrates) cratesToMove else cratesToMove.reversed()
                     else -> stack
                 }
             }
 
         step + 1 to newStacks
     }
-        .take(procedure.size + 1)
+        .drop(1)
+        .take(procedure.size)
         .last()
         .second
         .map { stack -> stack.last() }
         .joinToString("")
+
+    override fun partOne() = rearrangeStacks()
+
+    override fun partTwo() = rearrangeStacks(moveMultipleCrates = true)
 
     companion object {
         private val PROCEDURE_REGEX = """move (\d+) from (\d+) to (\d+)""".toRegex()
