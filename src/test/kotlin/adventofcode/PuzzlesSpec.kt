@@ -44,7 +44,7 @@ class PuzzlesSpec : FreeSpec({
 
         "throws for a missing year and day" {
             val exception = shouldThrow<ClassNotFoundException> { Puzzles.forDay(2021, 26) }
-            exception.message shouldBe "Solution for puzzle 2021/26 not found"
+            exception.message shouldBe "Puzzle 2021/26 not found"
         }
     }
 })

@@ -18,6 +18,6 @@ object Puzzles {
 
     fun forDay(year: Int, day: Int) = puzzles
         .filter { it.javaClass.name.startsWith("adventofcode.year$year.Day${day.toString().padStart(2, '0')}") }
-        .ifEmpty { throw ClassNotFoundException("Solution for puzzle $year/$day not found") }
+        .ifEmpty { throw ClassNotFoundException("Puzzle $year/$day not found") }
         .first()
 }
