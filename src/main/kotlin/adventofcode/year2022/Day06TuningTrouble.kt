@@ -12,7 +12,7 @@ class Day06TuningTrouble(customInput: String? = null) : Puzzle(customInput) {
     override fun partTwo() = findCharacterProcessedCountForMarker(START_OF_MESSAGE_MARKER_LENGTH)
 
     companion object {
-        private val START_OF_PACKET_MARKER_LENGTH = 4
-        private val START_OF_MESSAGE_MARKER_LENGTH = 14
+        private const val START_OF_PACKET_MARKER_LENGTH = 4
+        private const val START_OF_MESSAGE_MARKER_LENGTH = 14
     }
 }
