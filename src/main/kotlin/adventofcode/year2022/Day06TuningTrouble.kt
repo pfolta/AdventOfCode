@@ -3,14 +3,19 @@ package adventofcode.year2022
 import adventofcode.Puzzle
 
 class Day06TuningTrouble(customInput: String? = null) : Puzzle(customInput) {
-    override fun partOne() = input
+    private fun findCharacterProcessedCountForMarker(markerLength: Int) = input
         .withIndex()
-        .windowed(START_OF_PACKET_MARKER_LENGTH)
-        .first { chunk -> chunk.map { (_, value) -> value }.toSet().size == START_OF_PACKET_MARKER_LENGTH }
+        .windowed(markerLength)
+        .first { chunk -> chunk.map { (_, value) -> value }.toSet().size == markerLength }
         .first()
-        .index + START_OF_PACKET_MARKER_LENGTH
+        .index + markerLength
+
+    override fun partOne() = findCharacterProcessedCountForMarker(START_OF_PACKET_MARKER_LENGTH)
+
+    override fun partTwo() = findCharacterProcessedCountForMarker(START_OF_MESSAGE_MARKER_LENGTH)
 
     companion object {
-        private const val START_OF_PACKET_MARKER_LENGTH = 4
+        private val START_OF_PACKET_MARKER_LENGTH = 4
+        private val START_OF_MESSAGE_MARKER_LENGTH = 14
     }
 }
