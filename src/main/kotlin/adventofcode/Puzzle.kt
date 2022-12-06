@@ -8,8 +8,8 @@ import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
 
 abstract class Puzzle(customInput: String?) {
-    private val year = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component1().toInt()
-    private val day = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component2().toInt()
+    val year = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component1().toInt()
+    val day = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component2().toInt()
     private val link = URL("https://adventofcode.com/$year/day/$day")
 
     /**
