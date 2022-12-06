@@ -6,13 +6,28 @@ Puzzles can be run using the Gradle `run` task or by executing the project's JAR
 
 * All available puzzles (all years and days):  
   `./gradlew run` or `java -jar build/libs/AdventOfCode.jar`
-* All puzzles from a given year:  
+
+* All puzzles for a given year:  
   `./gradlew run --args "2020"` or `java -jar build/libs/AdventOfCode.jar 2020`
+
 * A single puzzle for a given year and day:  
   `./gradlew run --args "2020/25"` or `java -jar build/libs/AdventOfCode.jar 2020/25`
 
 These arguments can be combined to run multiple puzzles, e.g.
 `./gradlew run --args "2015/1 2019 2020/6 2020/7"` will run the first puzzle from 2015, then all puzzles from 2019 and lastly the 6th and 7th puzzle from 2020.
+
+### Sample Run
+
+<pre>
+$ java -jar build/libs/AdventOfCode.jar 2015/1
+🎄 Advent of Code 2015, Day 1
+   <span style="font-weight:bold;">Not Quite Lisp</span>
+   https://adventofcode.com/2015/day/1
+⭐️ Part 1: <span style="font-weight:bold;">232</span> (1.159369ms)
+⭐️ Part 2: <span style="font-weight:bold;">1783</span> (216.358378ms)
+</pre>
+
+Runtimes that exceed 15s are <span style="font-weight:bold;color:gray;background-color:red;">highlighted in red</span>.
 
 ## 🎅🏻 Structure
 
