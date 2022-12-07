@@ -4,38 +4,35 @@ import adventofcode.Puzzle
 
 class Day07NoSpaceLeftOnDevice(customInput: String? = null) : Puzzle(customInput) {
     private val files by lazy {
-        generateSequence(Triple(0, emptyList<String>(), emptySet<File>())) { (inputIndex, path, files) ->
-            input.lines().getOrNull(inputIndex)?.let { line ->
-                val nextIndex = inputIndex + 1
-                val (size, name) = line.split(" ")
+        input.lines().fold(emptyList<String>() to emptySet<File>()) { (currentPath, files), line ->
+            val (size, name) = line.split(" ")
 
-                when {
-                    line == "$ cd .." -> Triple(nextIndex, path.dropLast(1), files)
-                    line.startsWith("$ cd ") -> Triple(nextIndex, path + listOf(line.split(" ").last()), files)
-                    line.startsWith("dir") -> Triple(nextIndex, path, files + File(name, path.joinToString("/"), 0))
-                    line.first().isDigit() -> Triple(nextIndex, path, files + File(name, path.joinToString("/"), size.toInt()))
-                    else -> Triple(nextIndex, path, files)
-                }
+            when {
+                line == "$ cd .." -> currentPath.dropLast(1) to files
+                line.startsWith("$ cd ") -> currentPath + listOf(line.split(" ").last()) to files
+                line.startsWith("dir") -> currentPath to files + File(name, currentPath.joinToString("/"), 0)
+                line.first().isDigit() -> currentPath to files + File(name, currentPath.joinToString("/"), size.toInt())
+                else -> currentPath to files
             }
         }
-            .map { (_, _, files) -> files }
-            .last()
+            .second
     }
 
-    private val directorySizes by lazy {
+    private val directories by lazy {
         files
-            .map(File::parent)
+            .map(File::path)
             .toSet()
-            .map { directory -> files.filter { file -> file.parent.startsWith(directory) }.sumOf { file -> file.size } }
+            .map { directory -> directory to files.filter { file -> file.path.startsWith(directory) }.sumOf { file -> file.size } }
     }
 
-    override fun partOne() = directorySizes
-        .filter { size -> size <= 100000 }
-        .sum()
+    override fun partOne() = directories
+        .filter { (_, size) -> size <= 100000 }
+        .sumOf { (_, size) -> size }
 
-    override fun partTwo() = directorySizes
-        .filter { size -> size >= REQUIRED_SPACE - (TOTAL_DISK_SPACE - directorySizes.max()) }
-        .min()
+    override fun partTwo() = directories
+        .filter { (_, size) -> size >= REQUIRED_SPACE - (TOTAL_DISK_SPACE - directories.maxOf { (_, size) -> size }) }
+        .minBy { (_, size) -> size }
+        .second
 
     companion object {
         private const val TOTAL_DISK_SPACE = 70000000
@@ -43,7 +40,7 @@ class Day07NoSpaceLeftOnDevice(customInput: String? = null) : Puzzle(customInput
 
         private data class File(
             val name: String,
-            val parent: String,
+            val path: String,
             val size: Int
         )
     }
