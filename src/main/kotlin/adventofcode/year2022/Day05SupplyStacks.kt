@@ -26,34 +26,25 @@ class Day05SupplyStacks(customInput: String? = null) : Puzzle(customInput) {
             .split("\n\n")
             .last()
             .lines()
-            .map {
-                PROCEDURE_REGEX.find(it)?.destructured ?: throw IllegalArgumentException("$it is not a valid rearrangement instruction")
-            }
+            .map { PROCEDURE_REGEX.find(it)!!.destructured }
             .map { (quantity, from, to) -> Triple(quantity.toInt(), from.toInt() - 1, to.toInt() - 1) }
     }
 
-    private fun rearrangeStacks(moveMultipleCrates: Boolean = false) = generateSequence(0 to stacks) { (step, stacks) ->
-        val (quantity, fromIndex, toIndex) = procedure[step]
+    private fun rearrangeStacks(moveMultipleCrates: Boolean = false) =
+        procedure.fold(stacks) { stacks, (quantity, fromIndex, toIndex) ->
+            val cratesToMove = stacks[fromIndex].takeLast(quantity)
 
-        val cratesToMove = stacks[fromIndex].takeLast(quantity)
-
-        val newStacks = stacks
-            .mapIndexed { index, stack ->
-                when (index) {
-                    fromIndex -> stack.dropLast(quantity)
-                    toIndex -> stack + if (moveMultipleCrates) cratesToMove else cratesToMove.reversed()
-                    else -> stack
+            stacks
+                .mapIndexed { index, stack ->
+                    when (index) {
+                        fromIndex -> stack.dropLast(quantity)
+                        toIndex -> stack + if (moveMultipleCrates) cratesToMove else cratesToMove.reversed()
+                        else -> stack
+                    }
                 }
-            }
-
-        step + 1 to newStacks
-    }
-        .drop(1)
-        .take(procedure.size)
-        .last()
-        .second
-        .map { stack -> stack.last() }
-        .joinToString("")
+        }
+            .map { stack -> stack.last() }
+            .joinToString("")
 
     override fun partOne() = rearrangeStacks()
 
