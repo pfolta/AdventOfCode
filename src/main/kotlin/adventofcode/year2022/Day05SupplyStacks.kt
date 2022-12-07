@@ -34,14 +34,13 @@ class Day05SupplyStacks(customInput: String? = null) : Puzzle(customInput) {
         procedure.fold(stacks) { stacks, (quantity, fromIndex, toIndex) ->
             val cratesToMove = stacks[fromIndex].takeLast(quantity)
 
-            stacks
-                .mapIndexed { index, stack ->
-                    when (index) {
-                        fromIndex -> stack.dropLast(quantity)
-                        toIndex -> stack + if (moveMultipleCrates) cratesToMove else cratesToMove.reversed()
-                        else -> stack
-                    }
+            stacks.mapIndexed { index, stack ->
+                when (index) {
+                    fromIndex -> stack.dropLast(quantity)
+                    toIndex -> stack + if (moveMultipleCrates) cratesToMove else cratesToMove.reversed()
+                    else -> stack
                 }
+            }
         }
             .map { stack -> stack.last() }
             .joinToString("")
