@@ -25,10 +25,10 @@ These arguments can be combined to run multiple puzzles, e.g.
 <pre>
 $ java -jar build/libs/AdventOfCode.jar 2015/1
 🎄 Advent of Code 2015, Day 1
-   <b>Not Quite Lisp</b>
+   <strong>Not Quite Lisp</strong>
    https://adventofcode.com/2015/day/1
-⭐️ Part 1: <b>232</b> (1.159369ms)
-⭐️ Part 2: <b>1783</b> (216.358378ms)
+⭐️ Part 1: <strong>232</strong> (1.159369ms)
+⭐️ Part 2: <strong>1783</strong> (216.358378ms)
 </pre>
 
 Runtimes that exceed 15s are <span style="font-weight:bold;color:gray;background-color:red;">highlighted in red</span>.
@@ -64,7 +64,8 @@ Runtimes that exceed 15s are <span style="font-weight:bold;color:gray;background
 |                                           |  17 | [No Such Thing as Too Much](https://adventofcode.com/2015/day/17)                                      | [[Code](src/main/kotlin/adventofcode/year2015/Day17NoSuchThingAsTooMuch.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2015/Day17NoSuchThingAsTooMuchSpec.kt)]                           | `1638`           | `17`                                             |
 |                                           |  18 | [Like a GIF For Your Yard](https://adventofcode.com/2015/day/18)                                       | [[Code](src/main/kotlin/adventofcode/year2015/Day18LikeAGifForYourYard.kt)]                                                                                                                  | `768`            | `781`                                            |
 |                                           |  20 | [Infinite Elves and Infinite Houses](https://adventofcode.com/2015/day/20)                             | [[Code](src/main/kotlin/adventofcode/year2015/Day20InfiniteElvesAndInfiniteHouses.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2015/Day20InfiniteElvesAndInfiniteHousesSpec.kt)]       | `665280`         | `705600`                                         |
-| [**2016**](https://adventofcode.com/2016) |   5 | [How About a Nice Game of Chess?](https://adventofcode.com/2016/day/5)                                 | [[Code](src/main/kotlin/adventofcode/year2016/Day05HowAboutANiceGameOfChess.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2016/Day05HowAboutANiceGameOfChessSpec.kt)]                   | `801b56a7`       |                                                  |
+| [**2016**](https://adventofcode.com/2016) |   3 | [Squares With Three Sides](https://adventofcode.com/2016/day/3)                                        | [[Code](src/main/kotlin/adventofcode/year2016/Day03SquaresWithThreeSides.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2016/Day03SquaresWithThreeSidesSpec.kt)]                         | `1050`           |                                                  |
+|                                           |   5 | [How About a Nice Game of Chess?](https://adventofcode.com/2016/day/5)                                 | [[Code](src/main/kotlin/adventofcode/year2016/Day05HowAboutANiceGameOfChess.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2016/Day05HowAboutANiceGameOfChessSpec.kt)]                   | `801b56a7`       |                                                  |
 |                                           |  20 | [Firewall Rules](https://adventofcode.com/2016/day/20)                                                 | [[Code](src/main/kotlin/adventofcode/year2016/Day20FirewallRules.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2016/Day20FirewallRulesSpec.kt)]                                         | `32259706`       |                                                  |
 | [**2017**](https://adventofcode.com/2017) |   1 | [Inverse Captcha](https://adventofcode.com/2017/day/1)                                                 | [[Code](src/main/kotlin/adventofcode/year2017/Day01InverseCaptcha.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2017/Day01InverseCaptchaSpec.kt)]                                       | `1047`           | `982`                                            |
 |                                           |   2 | [Corruption Checksum](https://adventofcode.com/2017/day/2)                                             | [[Code](src/main/kotlin/adventofcode/year2017/Day02CorruptionChecksum.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2017/Day02CorruptionChecksumSpec.kt)]                               | `36766`          | `261`                                            |
