@@ -7,7 +7,13 @@ class Day06SignalsAndNoise(customInput: String? = null) : Puzzle(customInput) {
 
     private val messages by lazy { input.lines() }
 
-    override fun partOne() = List(messages.first().length) { index -> messages.map { message -> message[index] } }
-        .map { column -> column.groupingBy { it }.eachCount().maxBy { (_, count) -> count }.key }
-        .joinToString("")
+    override fun partOne() = messages.charPerColumnByComparator { charCount -> charCount.maxBy { (_, count) -> count } }.joinToString("")
+
+    override fun partTwo() = messages.charPerColumnByComparator { charCount -> charCount.minBy { (_, count) -> count } }.joinToString("")
+
+    companion object {
+        private fun List<String>.charPerColumnByComparator(comparatorFun: (charCount: Map<Char, Int>) -> Map.Entry<Char, Int>) =
+            List(first().length) { index -> map { message -> message[index] } }
+                .map { column -> comparatorFun(column.groupingBy { it }.eachCount()).key }
+    }
 }
