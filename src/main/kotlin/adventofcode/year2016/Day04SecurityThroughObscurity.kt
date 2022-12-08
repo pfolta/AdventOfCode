@@ -24,7 +24,19 @@ class Day04SecurityThroughObscurity(customInput: String? = null) : Puzzle(custom
         }
         .sumOf { (_, sectorId, _) -> sectorId }
 
+    override fun partTwo() = rooms
+        .map { (name, sectorId, _) ->
+            name.map { char ->
+                when (char) {
+                    '-' -> ' '
+                    else -> ((char.code - 'a'.code + sectorId) % 26 + 'a'.code).toChar()
+                }
+            }.joinToString("") to sectorId
+        }
+        .first { (name, _) -> name == "northpole object storage" }
+        .second
+
     companion object {
-        private val ROOM_REGEX = """([a-z-]+)-(\d+)\[([a-z]+)]""".toRegex()
+        private val ROOM_REGEX = """([a-z-]+)-(\d+)\[([a-z]{5})]""".toRegex()
     }
 }
