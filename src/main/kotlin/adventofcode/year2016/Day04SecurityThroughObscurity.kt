@@ -33,10 +33,11 @@ class Day04SecurityThroughObscurity(customInput: String? = null) : Puzzle(custom
                 }
             }.joinToString("") to sectorId
         }
-        .first { (name, _) -> name == "northpole object storage" }
+        .first { (name, _) -> name == NORTHPOLE_OBJECT_STORAGE_ROOM }
         .second
 
     companion object {
         private val ROOM_REGEX = """([a-z-]+)-(\d+)\[([a-z]{5})]""".toRegex()
+        private const val NORTHPOLE_OBJECT_STORAGE_ROOM = "northpole object storage"
     }
 }
