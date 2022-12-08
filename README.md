@@ -25,10 +25,10 @@ These arguments can be combined to run multiple puzzles, e.g.
 ```bash
 $ java -jar build/libs/AdventOfCode.jar 2015/1
 🎄 Advent of Code 2015, Day 1
-   <strong>Not Quite Lisp</strong>
+   <b>Not Quite Lisp</b>
    https://adventofcode.com/2015/day/1
-⭐️ Part 1: <strong>232</strong> (1.159369ms)
-⭐️ Part 2: <strong>1783</strong> (216.358378ms)
+⭐️ Part 1: <b>232</b> (1.159369ms)
+⭐️ Part 2: <b>1783</b> (216.358378ms)
 ```
 
 Runtimes that exceed 15s are <span style="font-weight:bold;color:gray;background-color:red;">highlighted in red</span>.
