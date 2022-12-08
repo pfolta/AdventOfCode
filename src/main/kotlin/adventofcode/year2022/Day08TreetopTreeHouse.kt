@@ -11,7 +11,7 @@ class Day08TreetopTreeHouse(customInput: String? = null) : Puzzle(customInput) {
     private val treeMap by lazy { input.lines().map { line -> line.map(Char::digitToInt) } }
 
     override fun partOne() = treeMap
-        .mapIndexed { y, row ->
+        .flatMapIndexed { y, row ->
             row.mapIndexed { x, tree ->
                 Direction
                     .values()
@@ -19,11 +19,10 @@ class Day08TreetopTreeHouse(customInput: String? = null) : Puzzle(customInput) {
                     .any(List<Int>::isEmpty)
             }
         }
-        .flatten()
         .count { tree -> tree }
 
     override fun partTwo() = treeMap
-        .mapIndexed { y, row ->
+        .flatMapIndexed { y, row ->
             row.mapIndexed { x, tree ->
                 Direction
                     .values()
@@ -37,7 +36,6 @@ class Day08TreetopTreeHouse(customInput: String? = null) : Puzzle(customInput) {
                     }
             }
         }
-        .flatten()
         .maxOf(List<Int>::product)
 
     companion object {
