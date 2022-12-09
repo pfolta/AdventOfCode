@@ -25,11 +25,9 @@ class Day09RopeBridge(customInput: String? = null) : Puzzle(customInput) {
         private fun List<MotionMove>.simulate(knotCount: Int) =
             fold(List(knotCount) { (0 to 0) } to setOf(0 to 0)) { (knots, tailVisited), (direction, steps) ->
                 (1..steps).fold(knots to tailVisited) { (knots, tailVisited), _ ->
-                    val newHead = knots.first().move(direction)
-
                     val newKnots = knots
                         .drop(1)
-                        .fold(listOf(newHead)) { previousKnots, knot -> previousKnots + knot.track(previousKnots.last()) }
+                        .fold(listOf(knots.first().move(direction))) { knotList, knot -> knotList + knot.track(knotList.last()) }
 
                     newKnots to tailVisited + newKnots.last()
                 }
