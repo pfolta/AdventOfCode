@@ -2,6 +2,7 @@ package adventofcode.year2015
 
 import adventofcode.Puzzle
 import adventofcode.common.cartesianProduct
+import adventofcode.common.Tuple.plus
 
 class Day18LikeAGifForYourYard(customInput: String? = null) : Puzzle(customInput) {
     override val name = "Like a GIF For Your Yard"
@@ -52,8 +53,6 @@ class Day18LikeAGifForYourYard(customInput: String? = null) : Puzzle(customInput
             .map { this + (it.first() to it.last()) }
             .minus(this)
             .filter { it.first >= 0 && it.second >= 0 && it.first < GRID_WIDTH && it.second < GRID_HEIGHT }
-
-        operator fun Pair<Int, Int>.plus(other: Pair<Int, Int>) = first + other.first to second + other.second
     }
 }
 
