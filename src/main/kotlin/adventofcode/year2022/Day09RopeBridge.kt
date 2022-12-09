@@ -8,6 +8,7 @@ import adventofcode.year2022.Day09RopeBridge.Companion.Direction.L
 import adventofcode.year2022.Day09RopeBridge.Companion.Direction.R
 import adventofcode.year2022.Day09RopeBridge.Companion.Direction.U
 import kotlin.math.abs
+import kotlin.math.sign
 
 class Day09RopeBridge(customInput: String? = null) : Puzzle(customInput) {
     private val motionMoves by lazy {
@@ -44,23 +45,8 @@ class Day09RopeBridge(customInput: String? = null) : Puzzle(customInput) {
             val (dx, dy) = other - this
 
             return when {
-                // touching in the corners, no move
-                abs(dx) == 1 && abs(dy) == 1 -> this
-
-                // right, left, up, down moves
-                dx == 0 && dy == 2 -> this + (0 to 1) // move up
-                dx == 0 && dy == -2 -> this + (0 to -1) // move down
-                dx == 2 && dy == 0 -> this + (1 to 0) // move right
-                dx == -2 && dy == 0 -> this + (-1 to 0) // move left
-
-                // diagonal moves
-                dx > 0 && dy > 0 -> this + (1 to 1) // move up right
-                dx > 0 && dy < 0 -> this + (1 to -1) // move down right
-                dx < 0 && dy > 0 -> this + (-1 to 1) // move up left
-                dx < 0 && dy < 0 -> this + (-1 to -1) // move down left
-
-                // no move
-                else -> this
+                abs(dx) < 2 && abs(dy) < 2 -> this
+                else -> this + (dx.sign to dy.sign)
             }
         }
     }
