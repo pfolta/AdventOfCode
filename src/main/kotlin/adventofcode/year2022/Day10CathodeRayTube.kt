@@ -16,13 +16,10 @@ class Day10CathodeRayTube(customInput: String? = null) : Puzzle(customInput) {
             val pixel = (cycle - 1) % SCREEN_WIDTH
             val spritePosition = listOf(x - 1, x, x + 1)
 
-            when {
-                spritePosition.contains(pixel) -> '█'
-                else -> ' '
-            }
+            spritePosition.contains(pixel)
         }
         .chunked(SCREEN_WIDTH)
-        .joinToString(separator = "\n", prefix = "\n", postfix = "\n") { row -> row.joinToString("") }
+        .joinToString(separator = "\n", prefix = "\n", postfix = "\n") { row -> row.joinToString("") { cell -> if (cell) "█" else " " } }
 
     companion object {
         private const val SCREEN_WIDTH = 40
