@@ -8,6 +8,7 @@ class Day20FirewallRules(customInput: String? = null) : Puzzle(customInput) {
             .lines()
             .map { RULE_REGEX.find(it)?.destructured ?: throw IllegalArgumentException("'$it' is not a valid firewall rule") }
             .map { (from, to) -> from.toUInt()..to.toUInt() }
+            .sortedBy { it.first }
     }
 
     override fun partOne() = generateSequence(0.toUInt(), UInt::inc).first { ip -> rules.none { rule -> rule.contains(ip) } }
