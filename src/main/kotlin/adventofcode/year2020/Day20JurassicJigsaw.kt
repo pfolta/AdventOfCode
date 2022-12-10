@@ -4,7 +4,7 @@ import adventofcode.Puzzle
 import adventofcode.common.product
 
 class Day20JurassicJigsaw(customInput: String? = null) : Puzzle(customInput) {
-    private val tiles = input.split("\n\n").map(::Tile)
+    private val tiles by lazy { input.split("\n\n").map(::Tile) }
 
     override fun partOne(): Long {
         val tileMap = generateSequence(mapOf(Pair(0, 0) to tiles.first())) { previous ->

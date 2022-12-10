@@ -5,16 +5,18 @@ import adventofcode.year2020.Day24LobbyLayout.Companion.TileColor.BLACK
 import adventofcode.year2020.Day24LobbyLayout.Companion.TileColor.WHITE
 
 class Day24LobbyLayout(customInput: String? = null) : Puzzle(customInput) {
-    private val tileMap = input.lines()
-        .asSequence()
-        .map { tile -> DIRECTION_REGEX.findAll(tile).toList().map { it.value }.mapNotNull(DIRECTIONS::get) }
-        .map { it.reduce { tile, direction -> tile.first + direction.first to tile.second + direction.second } }
-        .fold(emptyMap<Pair<Int, Int>, TileColor>()) { tiles, tile ->
-            when (tiles[tile]) {
-                BLACK -> tiles + (tile to WHITE)
-                else -> tiles + (tile to BLACK)
+    private val tileMap by lazy {
+        input.lines()
+            .asSequence()
+            .map { tile -> DIRECTION_REGEX.findAll(tile).toList().map { it.value }.mapNotNull(DIRECTIONS::get) }
+            .map { it.reduce { tile, direction -> tile.first + direction.first to tile.second + direction.second } }
+            .fold(emptyMap<Pair<Int, Int>, TileColor>()) { tiles, tile ->
+                when (tiles[tile]) {
+                    BLACK -> tiles + (tile to WHITE)
+                    else -> tiles + (tile to BLACK)
+                }
             }
-        }
+    }
 
     override fun partOne() = tileMap.values.count { it == BLACK }
 

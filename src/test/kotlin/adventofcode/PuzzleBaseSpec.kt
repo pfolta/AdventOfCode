@@ -15,20 +15,26 @@ abstract class PuzzleBaseSpec(partOne: List<Pair<String?, Any>>, partTwo: List<P
         .getConstructor(String::class.java)
 
     init {
-        partOne.forEachIndexed { index, (input, expectedOutput) ->
-            val puzzle = puzzleConstructor.newInstance(input)
+        "${puzzleConstructor.newInstance("")}" - {
+            "⭐️ Part 1" - {
+                partOne.forEachIndexed { index, (input, expectedOutput) ->
+                    val puzzle = puzzleConstructor.newInstance(input)
 
-            "$puzzle, Part 1, Example ${index + 1}" {
-                puzzle.partOne() shouldBe expectedOutput
+                    "Example ${index + 1}" {
+                        puzzle.partOne() shouldBe expectedOutput
+                    }
+                }
             }
-        }
 
-        partTwo?.let {
-            it.forEachIndexed { index, (input, expectedOutput) ->
-                val puzzle = puzzleConstructor.newInstance(input)
+            partTwo?.let {
+                "⭐️ Part 2" - {
+                    partTwo.forEachIndexed { index, (input, expectedOutput) ->
+                        val puzzle = puzzleConstructor.newInstance(input)
 
-                "$puzzle, Part 2, Example ${index + 1}" {
-                    puzzle.partTwo() shouldBe expectedOutput
+                        "Example ${index + 1}" {
+                            puzzle.partTwo() shouldBe expectedOutput
+                        }
+                    }
                 }
             }
         }

@@ -5,8 +5,8 @@ import adventofcode.common.product
 import kotlin.math.ceil
 
 class Day13ShuttleSearch(customInput: String? = null) : Puzzle(customInput) {
-    private val buses = input.lines().last().split(",")
-    private val earliestDeparture = input.lines().first().toInt()
+    private val buses by lazy { input.lines().last().split(",") }
+    private val earliestDeparture by lazy { input.lines().first().toInt() }
 
     override fun partOne() = buses
         .mapNotNull(String::toIntOrNull)

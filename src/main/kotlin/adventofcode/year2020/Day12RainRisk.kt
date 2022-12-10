@@ -11,7 +11,7 @@ import adventofcode.year2020.Day12RainRisk.Companion.Action.WEST
 import kotlin.math.absoluteValue
 
 class Day12RainRisk(customInput: String? = null) : Puzzle(customInput) {
-    private val navigationInstructions = input.lines().map(::NavigationInstruction)
+    private val navigationInstructions by lazy { input.lines().map(::NavigationInstruction) }
 
     override fun partOne() = navigationInstructions
         .fold(NavigationDirection.EAST to Pair(0, 0)) { (direction, position), instruction ->

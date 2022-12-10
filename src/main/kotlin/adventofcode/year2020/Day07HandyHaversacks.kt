@@ -3,15 +3,17 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 
 class Day07HandyHaversacks(customInput: String? = null) : Puzzle(customInput) {
-    private val bagRules = input.lines().map { rule ->
-        val (color) = BAG_RULE_REGEX.find(rule)!!.destructured
+    private val bagRules by lazy {
+        input.lines().map { rule ->
+            val (color) = BAG_RULE_REGEX.find(rule)!!.destructured
 
-        val contents = BAG_CONTENTS_REGEX
-            .findAll(rule)
-            .toList()
-            .associate { it.destructured.component2() to it.destructured.component1().toInt() }
+            val contents = BAG_CONTENTS_REGEX
+                .findAll(rule)
+                .map { it.destructured }
+                .associate { (amount, color) -> color to amount.toInt() }
 
-        Bag(color, contents)
+            Bag(color, contents)
+        }
     }
 
     override fun partOne() = bagRules

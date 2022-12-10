@@ -6,14 +6,16 @@ import adventofcode.common.permutations
 class Day13KnightsOfTheDinnerTable(customInput: String? = null) : Puzzle(customInput) {
     override val name = "Knights of the Dinner Table"
 
-    private val happiness = input
-        .lines()
-        .associate {
-            val (a, gainOrLose, amount, b) = INPUT_REGEX.find(it)!!.destructured
-            Pair(a, b) to amount.toInt() * if (gainOrLose == "lose") -1 else 1
-        }
+    private val happiness by lazy {
+        input
+            .lines()
+            .associate {
+                val (a, gainOrLose, amount, b) = INPUT_REGEX.find(it)!!.destructured
+                Pair(a, b) to amount.toInt() * if (gainOrLose == "lose") -1 else 1
+            }
+    }
 
-    private val guests = input.lines().map { INPUT_REGEX.find(it)!!.destructured.component1() }.toSet()
+    private val guests by lazy { input.lines().map { INPUT_REGEX.find(it)!!.destructured.component1() }.toSet() }
 
     override fun partOne() = guests.findOptimalSeatingArrangement(happiness)
 

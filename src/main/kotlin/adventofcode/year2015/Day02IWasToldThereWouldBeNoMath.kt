@@ -4,7 +4,7 @@ import adventofcode.Puzzle
 import adventofcode.common.product
 
 class Day02IWasToldThereWouldBeNoMath(customInput: String? = null) : Puzzle(customInput) {
-    private val dimensions = input.lines().map { it.split("x").map(String::toInt) }
+    private val dimensions by lazy { input.lines().map { it.split("x").map(String::toInt) } }
 
     override fun partOne() = dimensions
         .sumOf {

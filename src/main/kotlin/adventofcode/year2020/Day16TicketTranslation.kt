@@ -4,21 +4,25 @@ import adventofcode.Puzzle
 import adventofcode.common.product
 
 class Day16TicketTranslation(customInput: String? = null) : Puzzle(customInput) {
-    private val ticketRules = input
-        .split("\n\n")
-        .first()
-        .lines()
-        .map { it.split(": ") }
-        .map { TicketRule(it.first(), it.last().split(" or ").map { it.split("-").first().toInt()..it.split("-").last().toInt() }) }
+    private val ticketRules by lazy {
+        input
+            .split("\n\n")
+            .first()
+            .lines()
+            .map { it.split(": ") }
+            .map { TicketRule(it.first(), it.last().split(" or ").map { it.split("-").first().toInt()..it.split("-").last().toInt() }) }
+    }
 
-    private val yourTicket = input.split("\n\n")[1].lines().last().split(",").map(String::toInt)
+    private val yourTicket by lazy { input.split("\n\n")[1].lines().last().split(",").map(String::toInt) }
 
-    private val nearbyTickets = input
-        .split("\n\n")
-        .last()
-        .lines()
-        .drop(1)
-        .map { it.split(",").map(String::toInt) }
+    private val nearbyTickets by lazy {
+        input
+            .split("\n\n")
+            .last()
+            .lines()
+            .drop(1)
+            .map { it.split(",").map(String::toInt) }
+    }
 
     override fun partOne() = nearbyTickets
         .flatMap { ticket -> ticket.filter { ticketRules.flatMap(TicketRule::ranges).none { rule -> rule.contains(it) } } }

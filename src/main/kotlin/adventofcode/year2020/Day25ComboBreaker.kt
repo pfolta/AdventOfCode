@@ -3,8 +3,8 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 
 class Day25ComboBreaker(customInput: String? = null) : Puzzle(customInput) {
-    private val cardPublicKey = input.lines().first().toLong()
-    private val doorPublicKey = input.lines().last().toLong()
+    private val cardPublicKey by lazy { input.lines().first().toLong() }
+    private val doorPublicKey by lazy { input.lines().last().toLong() }
 
     override fun partOne() = (1..cardPublicKey.computeLoopSize()).fold(1L) { encryptionKey, _ -> encryptionKey.transform(doorPublicKey) }
 
