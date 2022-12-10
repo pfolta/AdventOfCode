@@ -5,7 +5,7 @@ import adventofcode.common.product
 import adventofcode.common.removeAt
 
 class Day02InventoryManagementSystem(customInput: String? = null) : Puzzle(customInput) {
-    private val boxes = input.lines()
+    private val boxes by lazy { input.lines() }
 
     override fun partOne() = boxes
         .map { boxId -> boxId.groupingBy { it }.eachCount() }

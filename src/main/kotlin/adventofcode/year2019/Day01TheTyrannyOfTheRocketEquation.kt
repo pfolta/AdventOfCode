@@ -5,7 +5,7 @@ import adventofcode.Puzzle
 class Day01TheTyrannyOfTheRocketEquation(customInput: String? = null) : Puzzle(customInput) {
     override val name = "The Tyranny of the Rocket Equation"
 
-    private val modules = input.lines().map(String::toInt)
+    private val modules by lazy { input.lines().map(String::toInt) }
 
     override fun partOne() = modules.sumOf { getFuelForModule(it) }
 

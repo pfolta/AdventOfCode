@@ -4,7 +4,7 @@ import adventofcode.Puzzle
 import adventofcode.common.product
 
 class Day03TobogganTrajectory(customInput: String? = null) : Puzzle(customInput) {
-    private val treeMap = input.lines()
+    private val treeMap by lazy { input.lines() }
 
     override fun partOne() = treeMap.countTrees(Slope(3, 1))
 
@@ -13,12 +13,9 @@ class Day03TobogganTrajectory(customInput: String? = null) : Puzzle(customInput)
         .product()
 
     companion object {
-        data class Slope(
-            val dx: Long,
-            val dy: Long
-        )
+        private data class Slope(val dx: Long, val dy: Long)
 
-        fun List<String>.countTrees(slope: Slope): Long {
+        private fun List<String>.countTrees(slope: Slope): Long {
             var counter = 0L
             var x = 0L
             var y = 0L

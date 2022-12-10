@@ -3,7 +3,7 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 
 class Day04PassportProcessing(customInput: String? = null) : Puzzle(customInput) {
-    private val passports = input.split("\n\n").map { it.replace("\n", " ").split(" ") }.map(::Passport)
+    private val passports by lazy { input.split("\n\n").map { it.replace("\n", " ").split(" ") }.map(::Passport) }
 
     override fun partOne() = passports
         .count { it.byr != null && it.iyr != null && it.eyr != null && it.hgt != null && it.hcl != null && it.ecl != null && it.pid != null }
@@ -16,7 +16,7 @@ class Day04PassportProcessing(customInput: String? = null) : Puzzle(customInput)
         .filter { it.eyr!!.toInt() in 2020..2030 }
         .filter {
             (it.hgt!!.endsWith("cm") && it.hgt.replace("cm", "").toInt() in 150..193) ||
-                (it.hgt.endsWith("in") && it.hgt.replace("in", "").toInt() in 59..76)
+                    (it.hgt.endsWith("in") && it.hgt.replace("in", "").toInt() in 59..76)
         }
         .filter { """#([0-9a-f]{6})""".toRegex().matches(it.hcl!!) }
         .filter { listOf("amb", "blu", "brn", "gry", "grn", "hzl", "oth").any { color -> it.ecl!! == color } }

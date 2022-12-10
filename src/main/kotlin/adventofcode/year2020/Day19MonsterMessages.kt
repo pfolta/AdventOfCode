@@ -3,15 +3,17 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 
 class Day19MonsterMessages(customInput: String? = null) : Puzzle(customInput) {
-    private val rules = input
-        .split("\n\n")
-        .first()
-        .lines()
-        .map { it.replace("\"", "") }
-        .map { it.split(": ") }
-        .associate { it.first() to it.last() }
+    private val rules by lazy {
+        input
+            .split("\n\n")
+            .first()
+            .lines()
+            .map { it.replace("\"", "") }
+            .map { it.split(": ") }
+            .associate { it.first() to it.last() }
+    }
 
-    private val messages = input.split("\n\n").last().lines()
+    private val messages by lazy { input.split("\n\n").last().lines() }
 
     override fun partOne(): Int {
         val rule0 = generateSequence(rules["0"]) { previous ->

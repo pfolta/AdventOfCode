@@ -4,9 +4,9 @@ import adventofcode.Puzzle
 import kotlin.math.min
 
 class Day14ReindeerOlympics(customInput: String? = null) : Puzzle(customInput) {
-    private val reindeer = input.lines().map(::Reindeer)
+    private val reindeer by lazy { input.lines().map(::Reindeer) }
 
-    override fun partOne() = reindeer.map(Reindeer::distanceFlown).maxOrNull() ?: 0
+    override fun partOne() = reindeer.maxOfOrNull(Reindeer::distanceFlown) ?: 0
 
     override fun partTwo() = (1..CHECKPOINT)
         .map { time -> reindeer.associateWith { it.distanceFlown(time) }.maxByOrNull { it.value }!!.key }

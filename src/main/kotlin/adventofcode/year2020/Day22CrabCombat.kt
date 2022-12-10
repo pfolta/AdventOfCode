@@ -3,8 +3,8 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 
 class Day22CrabCombat(customInput: String? = null) : Puzzle(customInput) {
-    private val player1 = input.split("\n\n").first().lines().drop(1).map(String::toInt)
-    private val player2 = input.split("\n\n").last().lines().drop(1).map(String::toInt)
+    private val player1 by lazy { input.split("\n\n").first().lines().drop(1).map(String::toInt) }
+    private val player2 by lazy { input.split("\n\n").last().lines().drop(1).map(String::toInt) }
 
     override fun partOne() = CrabCombatGame(player1.toMutableList(), player2.toMutableList()).playRegularGame()
 
