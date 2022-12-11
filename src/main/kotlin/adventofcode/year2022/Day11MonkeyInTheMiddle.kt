@@ -6,26 +6,36 @@ import adventofcode.common.product
 class Day11MonkeyInTheMiddle(customInput: String? = null) : Puzzle(customInput) {
     override val name = "Monkey in the Middle"
 
-    private val monkeys by lazy { input.lines().chunked(7).map(::parseMonkey) }
+    override fun partOne() = input
+        .parseMonkeys()
+        .playRounds(20) { worryLevel -> worryLevel / 3 }
+        .business()
 
-    override fun partOne() = monkeys.playRounds(20).business()
+    override fun partTwo(): Long {
+        val monkeys = input.parseMonkeys()
+        val targetMonkeyTestProduct = monkeys.map(Monkey::targetMonkeyTest).product()
+
+        return monkeys
+            .playRounds(10000) { worryLevel -> worryLevel % targetMonkeyTestProduct }
+            .business()
+    }
 
     companion object {
         private data class Monkey(
-            val items: MutableList<Int>,
-            val worryLevelChange: (Int) -> Int,
-            val targetMonkeyTest: Int,
+            val items: MutableList<Long>,
+            val worryLevelChange: (Long) -> Long,
+            val targetMonkeyTest: Long,
             val trueTarget: Int,
             val falseTarget: Int
         ) {
-            var itemsInspected = 0
+            var itemsInspected = 0L
 
-            fun takeTurn(monkeys: List<Monkey>) {
+            fun takeTurn(monkeys: List<Monkey>, worryLevelRelief: (Long) -> Long) {
                 items.forEach { item ->
-                    val worryLevel = worryLevelChange(item) / 3
+                    val worryLevel = worryLevelRelief(worryLevelChange(item))
 
                     val targetMonkey = when (worryLevel % targetMonkeyTest) {
-                        0 -> trueTarget
+                        0L -> trueTarget
                         else -> falseTarget
                     }
 
@@ -37,25 +47,27 @@ class Day11MonkeyInTheMiddle(customInput: String? = null) : Puzzle(customInput) 
             }
         }
 
-        private fun parseMonkey(description: List<String>) = Monkey(
-            items = description[1].split(", ", " ").mapNotNull(String::toIntOrNull).toMutableList(),
+        private fun String.parseMonkeys() = lines().chunked(7).map { description -> description.parseMonkey() }
+
+        private fun List<String>.parseMonkey() = Monkey(
+            items = this[1].split(", ", " ").mapNotNull(String::toLongOrNull).toMutableList(),
             worryLevelChange = { worryLevel ->
-                val (operation, changeAmount) = description[2].split(" ").takeLast(2)
+                val (operation, changeAmount) = this[2].split(" ").takeLast(2)
 
                 when {
                     operation == "*" && changeAmount == "old" -> worryLevel * worryLevel
-                    operation == "*" -> worryLevel * changeAmount.toInt()
-                    else -> worryLevel + changeAmount.toInt()
+                    operation == "*" -> worryLevel * changeAmount.toLong()
+                    else -> worryLevel + changeAmount.toLong()
                 }
             },
-            targetMonkeyTest = description[3].split(" ").last().toInt(),
-            trueTarget = description[4].split(" ").last().toInt(),
-            falseTarget = description[5].split(" ").last().toInt()
+            targetMonkeyTest = this[3].split(" ").last().toLong(),
+            trueTarget = this[4].split(" ").last().toInt(),
+            falseTarget = this[5].split(" ").last().toInt()
         )
 
-        private fun List<Monkey>.playRounds(count: Int): List<Monkey> {
+        private fun List<Monkey>.playRounds(count: Int, worryLevelRelief: (Long) -> Long): List<Monkey> {
             repeat(count) {
-                forEach { monkey -> monkey.takeTurn(this) }
+                forEach { monkey -> monkey.takeTurn(this, worryLevelRelief) }
             }
 
             return this
