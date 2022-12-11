@@ -5,8 +5,8 @@ package adventofcode.common
 inline fun <reified T : Any?> Collection<T>.everyNth(n: Int, offset: Int = 0) = filterIndexed { index, _ -> index % n == offset }
 
 // Returns the product of all elements in a Int/Long collection, similar to sum()
-fun Collection<Int>.product() = reduce { product, factor -> product * factor }
-fun Collection<Long>.product() = reduce { product, factor -> product * factor }
+fun Collection<Int>.product() = reduce(Int::times)
+fun Collection<Long>.product() = reduce(Long::times)
 
 /**
  * Returns the cartesian product of a collection of collections
