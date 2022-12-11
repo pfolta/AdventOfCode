@@ -30,6 +30,22 @@ class Day11MonkeyInTheMiddle(customInput: String? = null) : Puzzle(customInput) 
         ) {
             var itemsInspected = 0L
 
+            constructor(description: List<String>) : this(
+                items = description[1].split(", ", " ").mapNotNull(String::toLongOrNull).toMutableList(),
+                worryLevelChange = { worryLevel ->
+                    val (operation, changeAmount) = description[2].split(" ").takeLast(2)
+
+                    when {
+                        operation == "*" && changeAmount == "old" -> worryLevel * worryLevel
+                        operation == "*" -> worryLevel * changeAmount.toLong()
+                        else -> worryLevel + changeAmount.toLong()
+                    }
+                },
+                targetMonkeyTest = description[3].split(" ").last().toLong(),
+                trueTarget = description[4].split(" ").last().toInt(),
+                falseTarget = description[5].split(" ").last().toInt()
+            )
+
             fun takeTurn(monkeys: List<Monkey>, worryLevelRelief: (Long) -> Long) {
                 items.forEach { item ->
                     val worryLevel = worryLevelRelief(worryLevelChange(item))
@@ -47,23 +63,7 @@ class Day11MonkeyInTheMiddle(customInput: String? = null) : Puzzle(customInput) 
             }
         }
 
-        private fun String.parseMonkeys() = lines().chunked(7).map { description -> description.parseMonkey() }
-
-        private fun List<String>.parseMonkey() = Monkey(
-            items = this[1].split(", ", " ").mapNotNull(String::toLongOrNull).toMutableList(),
-            worryLevelChange = { worryLevel ->
-                val (operation, changeAmount) = this[2].split(" ").takeLast(2)
-
-                when {
-                    operation == "*" && changeAmount == "old" -> worryLevel * worryLevel
-                    operation == "*" -> worryLevel * changeAmount.toLong()
-                    else -> worryLevel + changeAmount.toLong()
-                }
-            },
-            targetMonkeyTest = this[3].split(" ").last().toLong(),
-            trueTarget = this[4].split(" ").last().toInt(),
-            falseTarget = this[5].split(" ").last().toInt()
-        )
+        private fun String.parseMonkeys() = lines().chunked(7).map(::Monkey)
 
         private fun List<Monkey>.playRounds(count: Int, worryLevelRelief: (Long) -> Long): List<Monkey> {
             repeat(count) {
