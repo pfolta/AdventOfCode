@@ -6,8 +6,8 @@ class Day04CampCleanup(customInput: String? = null) : Puzzle(customInput) {
     private val assignmentPairs by lazy {
         input
             .lines()
-            .map { ASSIGNMENT_PAIR_REGEX.find(it)!!.destructured }
-            .map { (a, b, c, d) -> a.toInt()..b.toInt() to c.toInt()..d.toInt() }
+            .map { ASSIGNMENT_PAIR_REGEX.find(it)!!.destructured.toList().map(String::toInt) }
+            .map { (a, b, c, d) -> a..b to c..d }
     }
 
     override fun partOne() = assignmentPairs.count { (a, b) -> a in b || b in a }
