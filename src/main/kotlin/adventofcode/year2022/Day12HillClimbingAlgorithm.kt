@@ -6,7 +6,9 @@ import adventofcode.common.neighbors
 class Day12HillClimbingAlgorithm(customInput: String? = null) : Puzzle(customInput) {
     private val grid by lazy { input.lines().map(String::toList) }
 
-    override fun partOne() = grid.bfs(grid.find('S'), grid.find('E'))
+    override fun partOne() = grid.bfs('S', 'E') { from, to -> to.level - from.level <= 1 }
+
+    override fun partTwo() = grid.bfs('E', 'a') { from, to -> to.level - from.level >= -1 }
 
     companion object {
         private fun List<List<Char>>.find(char: Char): Pair<Int, Int> {
@@ -23,23 +25,25 @@ class Day12HillClimbingAlgorithm(customInput: String? = null) : Puzzle(customInp
                 else -> this - 'a'
             }
 
-        private fun List<List<Char>>.bfs(start: Pair<Int, Int>, end: Pair<Int, Int>): Int {
-            val queue: MutableList<Pair<Int, Int>> = mutableListOf(start)
-            val visited: MutableMap<Pair<Int, Int>, Int> = mutableMapOf(start to 0)
+        private fun List<List<Char>>.bfs(start: Char, end: Char, validNeighborTest: (from: Char, to: Char) -> Boolean): Int {
+            val startNode = find(start)
 
-            while (queue.isNotEmpty() && queue.first() != end) {
+            val queue: MutableList<Pair<Int, Int>> = mutableListOf(startNode)
+            val visited: MutableMap<Pair<Int, Int>, Int> = mutableMapOf(startNode to 0)
+
+            while (queue.isNotEmpty() && this[queue.first().second][queue.first().first] != end) {
                 val (x, y) = queue.removeFirst()
 
                 neighbors(x, y, false)
-                    .filter { (nx, ny) -> this[ny][nx].level - this[y][x].level <= 1 }
+                    .filter { (nx, ny) -> validNeighborTest(this[y][x], this[ny][nx]) }
                     .filterNot { neighbor -> visited.contains(neighbor) }
                     .forEach { neighbor ->
-                        queue.add(neighbor)
+                        queue += neighbor
                         visited[neighbor] = visited[x to y]!! + 1
                     }
             }
 
-            return visited[end]!!
+            return visited.keys.filter { (x, y) -> this[y][x] == end }.minOf { key -> visited[key]!! }
         }
     }
 }
