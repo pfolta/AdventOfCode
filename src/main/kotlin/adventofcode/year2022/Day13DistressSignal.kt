@@ -6,42 +6,37 @@ import adventofcode.common.product
 import com.fasterxml.jackson.databind.JsonNode
 
 class Day13DistressSignal(customInput: String? = null) : Puzzle(customInput) {
-    private val packetPairs by lazy { input.lines().chunked(3).map { (left, right) -> json.readTree(left) to json.readTree(right) } }
+    private val packets by lazy { input.lines().filterNot { line -> line.isBlank() }.map { packet -> json.readTree(packet) } }
 
-    override fun partOne() = packetPairs
-        .mapIndexed { index, (left, right) -> index + 1 to (left isInOrderWith right)!! }
+    override fun partOne() = packets
+        .chunked(2)
+        .mapIndexed { index, (left, right) -> index + 1 to (left < right) }
         .filter { (_, inOrder) -> inOrder }
         .sumOf { (index, _) -> index }
 
-    override fun partTwo() = (packetPairs.flatMap { (left, right) -> listOf(left, right) } + DIVIDER_PACKETS)
-        .sortedWith { a, b -> if ((a isInOrderWith b)!!) -1 else 1 }
+    override fun partTwo() = packets
+        .union(DIVIDER_PACKETS)
+        .sortedWith { a, b -> a.compareTo(b) }
         .mapIndexed { index, packet -> index + 1 to packet }
         .filter { (_, packet) -> packet in DIVIDER_PACKETS }
         .map { (index, _) -> index }
         .product()
 
     companion object {
-        private val DIVIDER_PACKETS = listOf(listOf(listOf(2)), listOf(listOf(6))).map { packet -> json.valueToTree<JsonNode>(packet) }
+        private val DIVIDER_PACKETS = setOf("[[2]]", "[[6]]").map { packet -> json.readTree(packet) }
 
-        private infix fun JsonNode.isInOrderWith(other: JsonNode): Boolean? = when {
-            canConvertToInt() && other.canConvertToInt() -> when {
-                asInt() < other.asInt() -> true
-                asInt() > other.asInt() -> false
-                else -> null
-            }
+        private operator fun JsonNode.compareTo(other: JsonNode): Int = when {
+            isInt && other.isInt -> asInt().compareTo(other.asInt())
 
-            canConvertToInt() && other.isArray -> json.valueToTree<JsonNode>(listOf(asInt())) isInOrderWith other
+            isInt && other.isArray -> json.readTree("[$this]").compareTo(other)
 
-            isArray && other.canConvertToInt() -> this isInOrderWith json.valueToTree(listOf(other.asInt()))
+            isArray && other.isInt -> compareTo(json.readTree("[$other]"))
 
-            else -> zip(other).firstNotNullOfOrNull { (left, right) -> left isInOrderWith right }.let { result ->
-                when {
-                    result != null -> result
-                    count() < other.count() -> true
-                    count() > other.count() -> false
-                    else -> null
-                }
-            }
+            else -> zip(other)
+                .map { (left, right) -> left.compareTo(right) }
+                .filter { result -> result != 0 }
+                .ifEmpty { listOf(count().compareTo(other.count())) }
+                .first()
         }
     }
 }
