@@ -25,18 +25,19 @@ class Day13DistressSignal(customInput: String? = null) : Puzzle(customInput) {
     companion object {
         private val DIVIDER_PACKETS = setOf("[[2]]", "[[6]]").map { packet -> json.readTree(packet) }
 
-        private operator fun JsonNode.compareTo(other: JsonNode): Int = when {
-            isInt && other.isInt -> asInt().compareTo(other.asInt())
+        private operator fun JsonNode.compareTo(other: JsonNode): Int =
+            when {
+                isInt && other.isInt -> asInt().compareTo(other.asInt())
 
-            isInt && other.isArray -> json.readTree("[$this]").compareTo(other)
+                isInt && other.isArray -> json.readTree("[$this]").compareTo(other)
 
-            isArray && other.isInt -> compareTo(json.readTree("[$other]"))
+                isArray && other.isInt -> compareTo(json.readTree("[$other]"))
 
-            else -> zip(other)
-                .map { (left, right) -> left.compareTo(right) }
-                .filter { result -> result != 0 }
-                .ifEmpty { listOf(count().compareTo(other.count())) }
-                .first()
-        }
+                else -> zip(other)
+                    .map { (left, right) -> left.compareTo(right) }
+                    .filter { result -> result != 0 }
+                    .ifEmpty { listOf(count().compareTo(other.count())) }
+                    .first()
+            }
     }
 }
