@@ -6,7 +6,7 @@ import adventofcode.common.product
 import com.fasterxml.jackson.databind.JsonNode
 
 class Day13DistressSignal(customInput: String? = null) : Puzzle(customInput) {
-    private val packets by lazy { input.lines().filterNot { line -> line.isBlank() }.map { packet -> json.readTree(packet) } }
+    private val packets by lazy { input.lines().filterNot { line -> line.isBlank() }.map(Packet::of) }
 
     override fun partOne() = packets
         .chunked(2)
@@ -14,30 +14,33 @@ class Day13DistressSignal(customInput: String? = null) : Puzzle(customInput) {
         .filter { (_, inOrder) -> inOrder }
         .sumOf { (index, _) -> index }
 
-    override fun partTwo() = packets
-        .union(DIVIDER_PACKETS)
-        .sortedWith { a, b -> a.compareTo(b) }
+    override fun partTwo() = (packets + DIVIDER_PACKETS)
+        .sorted()
         .mapIndexed { index, packet -> index + 1 to packet }
         .filter { (_, packet) -> packet in DIVIDER_PACKETS }
         .map { (index, _) -> index }
         .product()
 
     companion object {
-        private val DIVIDER_PACKETS = setOf("[[2]]", "[[6]]").map { packet -> json.readTree(packet) }
+        private val DIVIDER_PACKETS = setOf("[[2]]", "[[6]]").map(Packet::of)
 
-        private operator fun JsonNode.compareTo(other: JsonNode): Int =
-            when {
-                isInt && other.isInt -> asInt().compareTo(other.asInt())
+        private class Packet(private val contents: JsonNode) : Comparable<Packet> {
+            override fun compareTo(other: Packet): Int =
+                when {
+                    contents.isInt && other.contents.isInt -> contents.asInt().compareTo(other.contents.asInt())
 
-                isInt && other.isArray -> json.readTree("[$this]").compareTo(other)
+                    contents.isInt && other.contents.isArray -> of("[${this.contents}]").compareTo(other)
 
-                isArray && other.isInt -> compareTo(json.readTree("[$other]"))
+                    contents.isArray && other.contents.isInt -> compareTo(of("[${other.contents}]"))
 
-                else -> zip(other)
-                    .map { (left, right) -> left.compareTo(right) }
-                    .filter { result -> result != 0 }
-                    .ifEmpty { listOf(count().compareTo(other.count())) }
-                    .first()
+                    else -> contents.zip(other.contents)
+                        .map { (left, right) -> Packet(left).compareTo(Packet(right)) }
+                        .firstOrNull { result -> result != 0 } ?: contents.count().compareTo(other.contents.count())
+                }
+
+            companion object {
+                fun of(input: String) = Packet(json.readTree(input))
             }
+        }
     }
 }
