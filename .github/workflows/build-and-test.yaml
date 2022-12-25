@@ -30,6 +30,7 @@ jobs:
         with:
           name: "AdventOfCode.jar"
           path: "build/libs/AdventOfCode.jar"
+          if-no-files-found: "error"
 
       - name: "Publish coverage data to Codecov"
         uses: "codecov/codecov-action@v3"
