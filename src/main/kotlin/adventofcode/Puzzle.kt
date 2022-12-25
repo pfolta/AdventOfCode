@@ -1,8 +1,8 @@
 package adventofcode
 
 import adventofcode.util.bold
-import adventofcode.util.formatUrl
 import adventofcode.util.formatBenchmark
+import adventofcode.util.formatUrl
 import java.io.FileNotFoundException
 import java.net.URL
 import kotlin.time.ExperimentalTime
