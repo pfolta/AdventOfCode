@@ -32,5 +32,29 @@ jobs:
           path: "build/libs/AdventOfCode.jar"
           if-no-files-found: "error"
 
+      - name: "Upload Ktlint reports"
+        if: "${{ always() }}"
+        uses: "actions/upload-artifact@v3"
+        with:
+          name: "Ktlint reports"
+          path: "build/reports/ktlint"
+          if-no-files-found: "error"
+
+      - name: "Upload test summary"
+        if: "${{ always() }}"
+        uses: "actions/upload-artifact@v3"
+        with:
+          name: "Test summary"
+          path: "build/reports/tests/test"
+          if-no-files-found: "error"
+
+      - name: "Upload coverage report"
+        if: "${{ always() }}"
+        uses: "actions/upload-artifact@v3"
+        with:
+          name: "Coverage report"
+          path: "build/reports/jacoco/test/html"
+          if-no-files-found: "error"
+
       - name: "Publish coverage data to Codecov"
         uses: "codecov/codecov-action@v3"
