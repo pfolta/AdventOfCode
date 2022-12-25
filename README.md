@@ -1,6 +1,5 @@
 <h1 align="center">
-    <img src="screenshot.png" alt="Sample Run" />
-    <a href="https://adventofcode.com" target="_blank">🎄 Advent of Code 🎄</a>
+    🎄 <a href="https://adventofcode.com" target="_blank">Advent of Code</a> 🎄
 </h1>
 
 <p align="center">
@@ -12,6 +11,8 @@
     <a href="https://github.com/pfolta/AdventOfCode/actions/workflows/build-and-test.yaml"><img src="https://img.shields.io/github/actions/workflow/status/pfolta/AdventOfCode/build-and-test.yaml?branch=master&logo=github" alt="Build Status" /></a>
     <a href="https://codecov.io/gh/pfolta/AdventOfCode"><img src="https://img.shields.io/codecov/c/github/pfolta/AdventOfCode?logo=codecov" alt="Code Coverage" /></a>
 </p>
+
+![Sample run](screenshot.png)
 
 ## 🛷 How to run
 
