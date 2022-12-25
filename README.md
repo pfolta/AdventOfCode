@@ -1,7 +1,7 @@
 # 🎄 [Advent of Code](https://adventofcode.com)
 
 [![License: MIT](https://img.shields.io/github/license/pfolta/AdventOfCode)](LICENSE.md)
-[![Build Status](https://img.shields.io/github/workflow/status/pfolta/AdventOfCode/Build%20and%20Test?logo=github)](https://github.com/pfolta/AdventOfCode/actions/workflows/build-and-test.yaml)
+[![Build Status](https://img.shields.io/github/actions/workflow/status/pfolta/AdventOfCode/build-and-test.yaml?branch=master&logo=github)](https://github.com/pfolta/AdventOfCode/actions/workflows/build-and-test.yaml)
 [![Code Coverage](https://img.shields.io/codecov/c/github/pfolta/AdventOfCode?logo=codecov)](https://codecov.io/gh/pfolta/AdventOfCode)
 
 ## 🛷 How to run
