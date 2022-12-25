@@ -53,22 +53,24 @@ class Day17ConwayCubes(customInput: String? = null) : Puzzle(customInput) {
 
         fun Map<Cube, String>.simulateBootSequence() =
             generateSequence(this) { next ->
-                (next + next.map { (cube, _) ->
-                    (listOf(cube) + cube.neighbors())
-                        .mapNotNull {
-                            val active = next.getOrDefault(it, INACTIVE) == ACTIVE
-                            val activeNeighbors = it.neighbors().count { next.getOrDefault(it, INACTIVE) == ACTIVE }
+                (
+                    next + next.map { (cube, _) ->
+                        (listOf(cube) + cube.neighbors())
+                            .mapNotNull {
+                                val active = next.getOrDefault(it, INACTIVE) == ACTIVE
+                                val activeNeighbors = it.neighbors().count { next.getOrDefault(it, INACTIVE) == ACTIVE }
 
-                            if (active && (activeNeighbors < 2 || activeNeighbors > 3)) {
-                                it to INACTIVE
-                            } else if (!active && activeNeighbors == 3) {
-                                it to ACTIVE
-                            } else {
-                                null
+                                if (active && (activeNeighbors < 2 || activeNeighbors > 3)) {
+                                    it to INACTIVE
+                                } else if (!active && activeNeighbors == 3) {
+                                    it to ACTIVE
+                                } else {
+                                    null
+                                }
                             }
-                        }
-                        .toMap()
-                }.reduce { acc, elem -> acc + elem })
+                            .toMap()
+                    }.reduce { acc, elem -> acc + elem }
+                    )
             }
                 .drop(1)
                 .take(6)

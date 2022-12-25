@@ -12,5 +12,4 @@ class Day20InfiniteElvesAndInfiniteHouses(customInput: String? = null) : Puzzle(
 
     override fun partTwo() = generateSequence(1, Int::inc)
         .first { house -> house.divisors().filter { divisor -> house / divisor <= 50 }.sumOf { it * 11 } >= presents }
-
 }

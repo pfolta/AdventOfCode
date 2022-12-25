@@ -13,7 +13,14 @@ class Day20FirewallRules(customInput: String? = null) : Puzzle(customInput) {
             .fold(emptyList<UIntRange>()) { rules, rule ->
                 when {
                     rules.isEmpty() -> listOf(rule)
-                    rule.first - 1U <= rules.last().last -> rules.dropLast(1) + listOf(rules.last().first..max(rules.last().last, rule.last))
+
+                    rule.first - 1U <= rules.last().last -> rules.dropLast(1) + listOf(
+                        rules.last().first..max(
+                            rules.last().last,
+                            rule.last
+                        )
+                    )
+
                     else -> rules + listOf(rule)
                 }
             }

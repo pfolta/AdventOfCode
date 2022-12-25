@@ -40,4 +40,3 @@ abstract class PuzzleBaseSpec(partOne: List<Pair<String?, Any>>, partTwo: List<P
         }
     }
 }
-

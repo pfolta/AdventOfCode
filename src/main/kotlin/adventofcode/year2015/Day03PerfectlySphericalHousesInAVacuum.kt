@@ -25,7 +25,8 @@ class Day03PerfectlySphericalHousesInAVacuum(customInput: String? = null) : Puzz
             "<" to Pair(-1, 0)
         )
 
-        private fun List<String>.housesVisited() = fold(listOf(Pair(0, 0))) { houses, move -> houses + (houses.last() + directions[move]!!) }
+        private fun List<String>.housesVisited() =
+            fold(listOf(Pair(0, 0))) { houses, move -> houses + (houses.last() + directions[move]!!) }
 
         private operator fun Pair<Int, Int>.plus(other: Pair<Int, Int>) = this.first + other.first to this.second + other.second
     }

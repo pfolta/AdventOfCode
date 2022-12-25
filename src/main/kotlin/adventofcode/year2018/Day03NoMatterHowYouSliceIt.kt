@@ -2,8 +2,6 @@ package adventofcode.year2018
 
 import adventofcode.Puzzle
 import adventofcode.common.cartesianProduct
-import adventofcode.common.product
-import adventofcode.common.removeAt
 
 class Day03NoMatterHowYouSliceIt(customInput: String? = null) : Puzzle(customInput) {
     private val claims by lazy {

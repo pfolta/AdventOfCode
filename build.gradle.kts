@@ -1,5 +1,6 @@
 import org.gradle.api.file.DuplicatesStrategy.EXCLUDE
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.jlleitschuh.gradle.ktlint.reporter.ReporterType.HTML
 
 plugins {
     application
@@ -7,6 +8,7 @@ plugins {
 
     kotlin("jvm") version "1.7.21"
 
+    id("org.jlleitschuh.gradle.ktlint") version "11.0.0"
     id("com.adarshr.test-logger") version "3.2.0"
 }
 
@@ -28,6 +30,12 @@ dependencies {
 
     testImplementation("io.kotest:kotest-runner-junit5:5.5.4")
     testImplementation("io.kotest:kotest-assertions-core:5.5.4")
+}
+
+ktlint {
+    reporters {
+        reporter(HTML)
+    }
 }
 
 tasks {

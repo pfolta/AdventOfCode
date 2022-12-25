@@ -64,7 +64,3 @@ class Day24LobbyLayout(customInput: String? = null) : Puzzle(customInput) {
         private fun Pair<Int, Int>.neighbors() = DIRECTIONS.values.map { first + it.first to second + it.second }
     }
 }
-
-
-
-
