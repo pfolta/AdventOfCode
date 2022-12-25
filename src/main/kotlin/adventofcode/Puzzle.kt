@@ -1,6 +1,7 @@
 package adventofcode
 
 import adventofcode.util.bold
+import adventofcode.util.formatUrl
 import adventofcode.util.formatBenchmark
 import java.io.FileNotFoundException
 import java.net.URL
@@ -57,7 +58,7 @@ abstract class Puzzle(customInput: PuzzleInput?) {
         """
         🎄 Advent of Code $year, Day $day
            ${name.bold()}
-           $link
+           ${link.formatUrl()}
         """.trimIndent().also(::println)
 
         measureTimedValue { partOne() }.let { (value, duration) ->
