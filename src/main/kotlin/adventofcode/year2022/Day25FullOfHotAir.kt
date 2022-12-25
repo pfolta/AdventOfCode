@@ -15,28 +15,32 @@ class Day25FullOfHotAir(customInput: PuzzleInput? = null) : Puzzle(customInput) 
     companion object {
         private const val SNAFU_NUMBER_BASE = 5
 
-        private fun String.fromSnafuNumber() = reversed()
+        private fun String.fromSnafuNumber() = this
+            .reversed()
             .mapIndexed { index, digit ->
-                SNAFU_NUMBER_BASE.toDouble().pow(index).toLong() * when (digit) {
+                when (digit) {
                     '=' -> -2
                     '-' -> -1
                     else -> digit.digitToInt()
-                }
+                } * SNAFU_NUMBER_BASE.toDouble().pow(index).toLong()
             }
             .sum()
 
-        private tailrec fun Long.toSnafuNumber(snafuNumber: String = ""): String {
-            if (this == 0L) {
-                return snafuNumber
-            }
+        private tailrec fun Long.toSnafuNumber(snafuNumber: String = ""): String =
+            when {
+                this == 0L && snafuNumber == "" -> "0"
 
-            val quotient = this / SNAFU_NUMBER_BASE
+                this == 0L -> snafuNumber
 
-            return when (val remainder = this % SNAFU_NUMBER_BASE) {
-                4L -> (quotient + 1).toSnafuNumber("-$snafuNumber")
-                3L -> (quotient + 1).toSnafuNumber("=$snafuNumber")
-                else -> quotient.toSnafuNumber("$remainder$snafuNumber")
+                else -> {
+                    val quotient = this / SNAFU_NUMBER_BASE
+
+                    when (val remainder = this % SNAFU_NUMBER_BASE) {
+                        4L -> (quotient + 1).toSnafuNumber("-$snafuNumber")
+                        3L -> (quotient + 1).toSnafuNumber("=$snafuNumber")
+                        else -> quotient.toSnafuNumber("$remainder$snafuNumber")
+                    }
+                }
             }
-        }
     }
 }
