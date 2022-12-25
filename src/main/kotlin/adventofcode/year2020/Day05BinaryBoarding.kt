@@ -1,8 +1,9 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day05BinaryBoarding(customInput: String? = null) : Puzzle(customInput) {
+class Day05BinaryBoarding(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val seats by lazy { input.lines().map(::Seat) }
 
     override fun partOne() = seats.maxByOrNull { it.seatId }!!.seatId

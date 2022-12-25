@@ -1,13 +1,14 @@
 package adventofcode.year2015
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.cartesianProduct
 import adventofcode.year2015.Day06ProbablyAFireHazard.Companion.Action.TOGGLE
 import adventofcode.year2015.Day06ProbablyAFireHazard.Companion.Action.TURN_OFF
 import adventofcode.year2015.Day06ProbablyAFireHazard.Companion.Action.TURN_ON
 import kotlin.math.max
 
-class Day06ProbablyAFireHazard(customInput: String? = null) : Puzzle(customInput) {
+class Day06ProbablyAFireHazard(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "Probably a Fire Hazard"
 
     private val instructions by lazy {

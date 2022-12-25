@@ -1,10 +1,11 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.year2020.Day17ConwayCubes.Companion.Cube.Cube3d
 import adventofcode.year2020.Day17ConwayCubes.Companion.Cube.Cube4d
 
-class Day17ConwayCubes(customInput: String? = null) : Puzzle(customInput) {
+class Day17ConwayCubes(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override fun partOne() = input
         .lines()
         .map { it.toCharArray().map(Char::toString) }

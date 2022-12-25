@@ -1,8 +1,9 @@
 package adventofcode.year2021
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day08SevenSegmentSearch(customInput: String? = null) : Puzzle(customInput) {
+class Day08SevenSegmentSearch(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val signalPatterns by lazy { input.lines().map { it.split("|").first().trim().split(" ") } }
     private val outputValues by lazy { input.lines().map { it.split("|").last().trim().split(" ") } }
 

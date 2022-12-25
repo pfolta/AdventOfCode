@@ -1,6 +1,7 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.year2020.Day12RainRisk.Companion.Action.EAST
 import adventofcode.year2020.Day12RainRisk.Companion.Action.FORWARD
 import adventofcode.year2020.Day12RainRisk.Companion.Action.LEFT
@@ -10,7 +11,7 @@ import adventofcode.year2020.Day12RainRisk.Companion.Action.SOUTH
 import adventofcode.year2020.Day12RainRisk.Companion.Action.WEST
 import kotlin.math.absoluteValue
 
-class Day12RainRisk(customInput: String? = null) : Puzzle(customInput) {
+class Day12RainRisk(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val navigationInstructions by lazy { input.lines().map(::NavigationInstruction) }
 
     override fun partOne() = navigationInstructions

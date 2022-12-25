@@ -1,8 +1,9 @@
 package adventofcode.year2021
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day06Lanternfish(customInput: String? = null) : Puzzle(customInput) {
+class Day06Lanternfish(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val fish by lazy { input.split(",").map(String::toInt) }
 
     private val fishByAge by lazy { fish.groupingBy { it }.eachCount().map { (age, count) -> age to count.toLong() }.toMap() }

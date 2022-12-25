@@ -1,8 +1,9 @@
 package adventofcode.year2017
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day04HighEntropyPassphrases(customInput: String? = null) : Puzzle(customInput) {
+class Day04HighEntropyPassphrases(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "High-Entropy Passphrases"
 
     override fun partOne() = input

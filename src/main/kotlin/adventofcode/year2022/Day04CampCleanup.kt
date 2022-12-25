@@ -1,8 +1,9 @@
 package adventofcode.year2022
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day04CampCleanup(customInput: String? = null) : Puzzle(customInput) {
+class Day04CampCleanup(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val assignmentPairs by lazy {
         input
             .lines()

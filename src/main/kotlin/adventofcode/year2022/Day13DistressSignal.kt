@@ -1,11 +1,12 @@
 package adventofcode.year2022
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.json
 import adventofcode.common.product
 import com.fasterxml.jackson.databind.JsonNode
 
-class Day13DistressSignal(customInput: String? = null) : Puzzle(customInput) {
+class Day13DistressSignal(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val packets by lazy { input.lines().filterNot { line -> line.isBlank() }.map(Packet::of) }
 
     override fun partOne() = packets

@@ -1,10 +1,11 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.product
 import kotlin.math.ceil
 
-class Day13ShuttleSearch(customInput: String? = null) : Puzzle(customInput) {
+class Day13ShuttleSearch(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val buses by lazy { input.lines().last().split(",") }
     private val earliestDeparture by lazy { input.lines().first().toInt() }
 

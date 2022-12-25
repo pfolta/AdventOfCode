@@ -1,9 +1,10 @@
 package adventofcode.year2015
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.permutations
 
-class Day09AllInASingleNight(customInput: String? = null) : Puzzle(customInput) {
+class Day09AllInASingleNight(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "All in a Single Night"
 
     private val distances by lazy {

@@ -1,9 +1,10 @@
 package adventofcode.year2021
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import kotlin.math.abs
 
-class Day07TheTreacheryOfWhales(customInput: String? = null) : Puzzle(customInput) {
+class Day07TheTreacheryOfWhales(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "The Treachery of Whales"
 
     private val crabs by lazy { input.split(",").map(String::toInt) }

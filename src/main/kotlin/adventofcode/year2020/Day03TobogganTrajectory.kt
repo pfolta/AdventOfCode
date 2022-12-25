@@ -1,9 +1,10 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.product
 
-class Day03TobogganTrajectory(customInput: String? = null) : Puzzle(customInput) {
+class Day03TobogganTrajectory(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val treeMap by lazy { input.lines() }
 
     override fun partOne() = treeMap.countTrees(Slope(3, 1))

@@ -1,8 +1,9 @@
 package adventofcode.year2021
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day10SyntaxScoring(customInput: String? = null) : Puzzle(customInput) {
+class Day10SyntaxScoring(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val lines by lazy { input.lines() }
 
     private val bracketMap = mapOf(

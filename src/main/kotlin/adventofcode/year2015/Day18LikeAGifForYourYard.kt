@@ -1,10 +1,11 @@
 package adventofcode.year2015
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.Tuple.plus
 import adventofcode.common.cartesianProduct
 
-class Day18LikeAGifForYourYard(customInput: String? = null) : Puzzle(customInput) {
+class Day18LikeAGifForYourYard(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "Like a GIF For Your Yard"
 
     private val initialConfiguration by lazy {

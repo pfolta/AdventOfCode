@@ -1,9 +1,10 @@
 package adventofcode.year2016
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.md5
 
-class Day05HowAboutANiceGameOfChess(customInput: String? = null) : Puzzle(customInput) {
+class Day05HowAboutANiceGameOfChess(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "How About a Nice Game of Chess?"
 
     override fun partOne() = generateSequence(0 to "") { (index, password) ->

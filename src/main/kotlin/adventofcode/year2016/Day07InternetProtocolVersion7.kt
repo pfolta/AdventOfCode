@@ -1,9 +1,10 @@
 package adventofcode.year2016
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.everyNth
 
-class Day07InternetProtocolVersion7(customInput: String? = null) : Puzzle(customInput) {
+class Day07InternetProtocolVersion7(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val ipv7Addresses by lazy {
         input.lines().map { ipAddress -> ipAddress.split("[", "]") }.map { parts -> parts.everyNth(2) to parts.everyNth(2, 1) }
     }

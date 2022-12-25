@@ -1,9 +1,10 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.product
 
-class Day16TicketTranslation(customInput: String? = null) : Puzzle(customInput) {
+class Day16TicketTranslation(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val ticketRules by lazy {
         input
             .split("\n\n")

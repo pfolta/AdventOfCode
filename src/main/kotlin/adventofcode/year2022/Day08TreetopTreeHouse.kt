@@ -1,13 +1,14 @@
 package adventofcode.year2022
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.product
 import adventofcode.year2022.Day08TreetopTreeHouse.Companion.Direction.DOWN
 import adventofcode.year2022.Day08TreetopTreeHouse.Companion.Direction.LEFT
 import adventofcode.year2022.Day08TreetopTreeHouse.Companion.Direction.RIGHT
 import adventofcode.year2022.Day08TreetopTreeHouse.Companion.Direction.UP
 
-class Day08TreetopTreeHouse(customInput: String? = null) : Puzzle(customInput) {
+class Day08TreetopTreeHouse(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val treeMap by lazy { input.lines().map { line -> line.map(Char::digitToInt) } }
 
     override fun partOne() = treeMap

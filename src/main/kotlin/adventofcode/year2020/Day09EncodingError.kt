@@ -1,9 +1,10 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.cartesianProduct
 
-class Day09EncodingError(customInput: String? = null) : Puzzle(customInput) {
+class Day09EncodingError(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val numbers by lazy { input.lines().map(String::toLong) }
 
     override fun partOne() = (PREAMBLE_LENGTH until numbers.size)

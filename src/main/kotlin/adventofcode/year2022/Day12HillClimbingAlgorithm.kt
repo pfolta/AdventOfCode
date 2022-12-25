@@ -1,9 +1,10 @@
 package adventofcode.year2022
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.neighbors
 
-class Day12HillClimbingAlgorithm(customInput: String? = null) : Puzzle(customInput) {
+class Day12HillClimbingAlgorithm(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val grid by lazy { input.lines().map(String::toList) }
 
     override fun partOne() = grid.bfs('S', 'E') { from, to -> to.level - from.level <= 1 }

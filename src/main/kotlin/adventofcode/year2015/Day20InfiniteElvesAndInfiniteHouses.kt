@@ -1,9 +1,10 @@
 package adventofcode.year2015
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.Math.divisors
 
-class Day20InfiniteElvesAndInfiniteHouses(customInput: String? = null) : Puzzle(customInput) {
+class Day20InfiniteElvesAndInfiniteHouses(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "Infinite Elves and Infinite Houses"
 
     private val presents by lazy { input.toInt() }

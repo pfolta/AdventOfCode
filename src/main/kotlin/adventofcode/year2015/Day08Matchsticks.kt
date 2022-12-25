@@ -1,8 +1,9 @@
 package adventofcode.year2015
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day08Matchsticks(customInput: String? = null) : Puzzle(customInput) {
+class Day08Matchsticks(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override fun partOne() = input
         .lines()
         .sumOf { string ->

@@ -1,8 +1,9 @@
 package adventofcode.year2022
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day07NoSpaceLeftOnDevice(customInput: String? = null) : Puzzle(customInput) {
+class Day07NoSpaceLeftOnDevice(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val files by lazy {
         input.lines().fold(emptyList<String>() to emptySet<File>()) { (currentPath, files), line ->
             val (size, name) = line.split(" ")

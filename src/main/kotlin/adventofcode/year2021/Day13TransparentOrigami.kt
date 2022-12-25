@@ -1,8 +1,9 @@
 package adventofcode.year2021
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day13TransparentOrigami(customInput: String? = null) : Puzzle(customInput) {
+class Day13TransparentOrigami(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val paper by lazy {
         val dots = input.split("\n\n").first().lines().map { it.split(",").first().toInt() to it.split(",").last().toInt() }.toSet()
         val maxX = dots.maxOf { it.first }

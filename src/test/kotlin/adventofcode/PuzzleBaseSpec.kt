@@ -3,8 +3,11 @@ package adventofcode
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.shouldBe
 
-abstract class PuzzleBaseSpec(partOne: List<Pair<String?, Any>>, partTwo: List<Pair<String?, Any>>? = null) : FreeSpec() {
-    constructor(partOne: Any, partTwo: Any? = null) : this(
+abstract class PuzzleBaseSpec(
+    partOne: List<Pair<PuzzleInput?, PuzzleOutput>>,
+    partTwo: List<Pair<PuzzleInput?, PuzzleOutput>>? = null
+) : FreeSpec() {
+    constructor(partOne: PuzzleOutput, partTwo: PuzzleOutput? = null) : this(
         listOf(null to partOne),
         partTwo?.let { listOf(null to partTwo) }
     )

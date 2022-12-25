@@ -1,11 +1,12 @@
 package adventofcode.year2021
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.year2021.Day02Dive.Companion.Direction.DOWN
 import adventofcode.year2021.Day02Dive.Companion.Direction.FORWARD
 import adventofcode.year2021.Day02Dive.Companion.Direction.UP
 
-class Day02Dive(customInput: String? = null) : Puzzle(customInput) {
+class Day02Dive(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "Dive!"
 
     private val commands by lazy { input.lines().map(::Command) }

@@ -1,10 +1,11 @@
 package adventofcode.year2015
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.cartesianProduct
 import kotlin.math.max
 
-class Day15ScienceForHungryPeople(customInput: String? = null) : Puzzle(customInput) {
+class Day15ScienceForHungryPeople(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "Science for Hungry People"
 
     private val ingredients by lazy { input.lines().map(::Ingredient) }

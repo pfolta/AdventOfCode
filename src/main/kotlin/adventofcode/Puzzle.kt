@@ -7,7 +7,10 @@ import java.net.URL
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
 
-abstract class Puzzle(customInput: String?) {
+typealias PuzzleInput = String
+typealias PuzzleOutput = Any
+
+abstract class Puzzle(customInput: PuzzleInput?) {
     val year = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component1().toInt()
     val day = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component2().toInt()
     private val link = URL("https://adventofcode.com/$year/day/$day")
@@ -37,13 +40,13 @@ abstract class Puzzle(customInput: String?) {
     /**
      * Solves part one of the puzzle.
      */
-    abstract fun partOne(): Any
+    abstract fun partOne(): PuzzleOutput
 
     /**
      * Solves part two of the puzzle.
      * Don't override this function if there is no part two to solve.
      */
-    open fun partTwo(): Any? = null
+    open fun partTwo(): PuzzleOutput? = null
 
     /**
      * Prints solutions for part one and part two (if it exists) of the puzzle.

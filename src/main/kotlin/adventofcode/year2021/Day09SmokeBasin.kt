@@ -1,10 +1,11 @@
 package adventofcode.year2021
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.neighbors
 import adventofcode.common.product
 
-class Day09SmokeBasin(customInput: String? = null) : Puzzle(customInput) {
+class Day09SmokeBasin(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val heightMap by lazy { input.lines().map { row -> row.map { col -> col.toString().toInt() } } }
 
     private fun List<List<Int>>.basin(x: Int, y: Int) = generateSequence(setOf(x to y)) { previous ->

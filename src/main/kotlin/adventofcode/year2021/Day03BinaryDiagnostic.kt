@@ -1,8 +1,9 @@
 package adventofcode.year2021
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day03BinaryDiagnostic(customInput: String? = null) : Puzzle(customInput) {
+class Day03BinaryDiagnostic(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val numbers by lazy { input.lines() }
 
     override fun partOne(): Int {

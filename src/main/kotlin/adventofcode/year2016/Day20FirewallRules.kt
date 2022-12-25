@@ -1,9 +1,10 @@
 package adventofcode.year2016
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import kotlin.math.max
 
-class Day20FirewallRules(customInput: String? = null) : Puzzle(customInput) {
+class Day20FirewallRules(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val rules by lazy {
         input
             .lines()

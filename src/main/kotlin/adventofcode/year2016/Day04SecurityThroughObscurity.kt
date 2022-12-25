@@ -1,8 +1,9 @@
 package adventofcode.year2016
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day04SecurityThroughObscurity(customInput: String? = null) : Puzzle(customInput) {
+class Day04SecurityThroughObscurity(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val rooms by lazy {
         input
             .lines()

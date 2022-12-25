@@ -1,9 +1,10 @@
 package adventofcode.year2022
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.transpose
 
-class Day05SupplyStacks(customInput: String? = null) : Puzzle(customInput) {
+class Day05SupplyStacks(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val stacks by lazy {
         val stackRows = input
             .split("\n\n")

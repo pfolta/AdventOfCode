@@ -1,9 +1,10 @@
 package adventofcode.year2018
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.cartesianProduct
 
-class Day03NoMatterHowYouSliceIt(customInput: String? = null) : Puzzle(customInput) {
+class Day03NoMatterHowYouSliceIt(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val claims by lazy {
         input
             .lines()

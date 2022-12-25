@@ -1,10 +1,11 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.year2020.Day24LobbyLayout.Companion.TileColor.BLACK
 import adventofcode.year2020.Day24LobbyLayout.Companion.TileColor.WHITE
 
-class Day24LobbyLayout(customInput: String? = null) : Puzzle(customInput) {
+class Day24LobbyLayout(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val tileMap by lazy {
         input.lines()
             .asSequence()

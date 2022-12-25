@@ -1,8 +1,9 @@
 package adventofcode.year2022
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day10CathodeRayTube(customInput: String? = null) : Puzzle(customInput) {
+class Day10CathodeRayTube(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "Cathode-Ray Tube"
 
     private val instructionCycles by lazy { input.toInstructionCycles() }

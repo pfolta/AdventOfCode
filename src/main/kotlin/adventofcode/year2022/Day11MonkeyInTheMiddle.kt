@@ -1,9 +1,10 @@
 package adventofcode.year2022
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.product
 
-class Day11MonkeyInTheMiddle(customInput: String? = null) : Puzzle(customInput) {
+class Day11MonkeyInTheMiddle(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "Monkey in the Middle"
 
     override fun partOne() = input

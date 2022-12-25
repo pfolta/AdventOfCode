@@ -1,8 +1,9 @@
 package adventofcode.year2021
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day14ExtendedPolymerization(customInput: String? = null) : Puzzle(customInput) {
+class Day14ExtendedPolymerization(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val polymerTemplate by lazy { input.lines().first() }
 
     private val pairInsertionRules by lazy { input.lines().drop(2).map { it.split(" -> ") }.associate { it.first() to it.last() } }

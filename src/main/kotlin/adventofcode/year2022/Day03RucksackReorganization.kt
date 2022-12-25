@@ -1,8 +1,9 @@
 package adventofcode.year2022
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day03RucksackReorganization(customInput: String? = null) : Puzzle(customInput) {
+class Day03RucksackReorganization(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val rucksacks by lazy { input.lines() }
 
     override fun partOne() = rucksacks

@@ -1,10 +1,11 @@
 package adventofcode.year2021
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import kotlin.math.max
 import kotlin.math.min
 
-class Day05HydrothermalVenture(customInput: String? = null) : Puzzle(customInput) {
+class Day05HydrothermalVenture(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val lines by lazy { input.lines().map { it.split(" -> ").map(::Point) }.map(::Line) }
 
     override fun partOne() = lines

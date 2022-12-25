@@ -1,8 +1,9 @@
 package adventofcode.year2019
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day01TheTyrannyOfTheRocketEquation(customInput: String? = null) : Puzzle(customInput) {
+class Day01TheTyrannyOfTheRocketEquation(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "The Tyranny of the Rocket Equation"
 
     private val modules by lazy { input.lines().map(String::toInt) }

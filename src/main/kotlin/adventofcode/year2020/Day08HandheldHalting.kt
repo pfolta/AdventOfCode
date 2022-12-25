@@ -1,11 +1,12 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.year2020.Day08HandheldHalting.Companion.Operation.ACC
 import adventofcode.year2020.Day08HandheldHalting.Companion.Operation.JMP
 import adventofcode.year2020.Day08HandheldHalting.Companion.Operation.NOP
 
-class Day08HandheldHalting(customInput: String? = null) : Puzzle(customInput) {
+class Day08HandheldHalting(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val instructions by lazy { input.lines().map(::Instruction) }
 
     override fun partOne() = instructions.execute().acc

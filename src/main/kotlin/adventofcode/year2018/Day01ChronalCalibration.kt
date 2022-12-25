@@ -1,8 +1,9 @@
 package adventofcode.year2018
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day01ChronalCalibration(customInput: String? = null) : Puzzle(customInput) {
+class Day01ChronalCalibration(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val frequencies by lazy { input.lines().map(String::toInt) }
 
     override fun partOne() = frequencies.sum()

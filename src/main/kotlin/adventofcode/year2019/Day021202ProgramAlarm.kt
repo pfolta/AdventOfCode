@@ -1,8 +1,9 @@
 package adventofcode.year2019
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day021202ProgramAlarm(customInput: String? = null) : Puzzle(customInput) {
+class Day021202ProgramAlarm(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val intcode by lazy { input.split(",").map(String::toInt) }
 
     override fun partOne() = (listOf(intcode.first()) + listOf(12, 2) + intcode.subList(3, intcode.size))

@@ -1,8 +1,9 @@
 package adventofcode.year2020
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day21AllergenAssessment(customInput: String? = null) : Puzzle(customInput) {
+class Day21AllergenAssessment(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val foods by lazy { input.lines().map(Food::of) }
 
     override fun partOne(): Int {

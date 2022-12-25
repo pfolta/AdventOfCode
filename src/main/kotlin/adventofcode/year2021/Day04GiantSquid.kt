@@ -1,8 +1,9 @@
 package adventofcode.year2021
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day04GiantSquid(customInput: String? = null) : Puzzle(customInput) {
+class Day04GiantSquid(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val numbers by lazy { input.lines().first().split(",").map(String::toInt) }
 
     private val boards by lazy {

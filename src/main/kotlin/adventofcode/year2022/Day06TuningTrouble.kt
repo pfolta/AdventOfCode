@@ -1,8 +1,9 @@
 package adventofcode.year2022
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day06TuningTrouble(customInput: String? = null) : Puzzle(customInput) {
+class Day06TuningTrouble(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private fun findCharacterProcessedCountForMarker(markerLength: Int) = input
         .windowed(markerLength)
         .indexOfFirst { chunk -> chunk.toSet().size == markerLength } + markerLength

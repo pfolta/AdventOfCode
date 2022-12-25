@@ -1,8 +1,9 @@
 package adventofcode.year2015
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day16AuntSue(customInput: String? = null) : Puzzle(customInput) {
+class Day16AuntSue(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val aunts by lazy {
         input
             .lines()

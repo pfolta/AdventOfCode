@@ -1,8 +1,9 @@
 package adventofcode.year2022
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day02RockPaperScissors(customInput: String? = null) : Puzzle(customInput) {
+class Day02RockPaperScissors(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val strategies by lazy { input.lines().map { it.split(" ") }.map { it.first() to it.last() } }
 
     override fun partOne() = strategies

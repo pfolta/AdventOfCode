@@ -1,8 +1,9 @@
 package adventofcode.year2017
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day01InverseCaptcha(customInput: String? = null) : Puzzle(customInput) {
+class Day01InverseCaptcha(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val digits by lazy { input.map(Character::getNumericValue) }
 
     override fun partOne() = digits

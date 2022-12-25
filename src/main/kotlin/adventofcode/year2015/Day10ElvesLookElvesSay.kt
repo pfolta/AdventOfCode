@@ -1,8 +1,9 @@
 package adventofcode.year2015
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day10ElvesLookElvesSay(customInput: String? = null) : Puzzle(customInput) {
+class Day10ElvesLookElvesSay(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "Elves Look, Elves Say"
 
     override fun partOne() = generateSequence(input) { it.elfLookElfSay() }.drop(1).take(40).last().length

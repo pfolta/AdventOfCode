@@ -1,6 +1,7 @@
 package adventofcode.year2022
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.Tuple.minus
 import adventofcode.common.Tuple.plus
 import adventofcode.year2022.Day09RopeBridge.Companion.Direction.D
@@ -10,7 +11,7 @@ import adventofcode.year2022.Day09RopeBridge.Companion.Direction.U
 import kotlin.math.abs
 import kotlin.math.sign
 
-class Day09RopeBridge(customInput: String? = null) : Puzzle(customInput) {
+class Day09RopeBridge(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val motionMoves by lazy {
         input.lines().map { line -> line.split(" ") }.map { (direction, steps) -> MotionMove(Direction.valueOf(direction), steps.toInt()) }
     }

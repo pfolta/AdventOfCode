@@ -1,8 +1,9 @@
 package adventofcode.year2015
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 
-class Day01NotQuiteLisp(customInput: String? = null) : Puzzle(customInput) {
+class Day01NotQuiteLisp(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override fun partOne() = input.fold(0) { floor, step -> if (step == '(') floor + 1 else floor - 1 }
 
     override fun partTwo() = input

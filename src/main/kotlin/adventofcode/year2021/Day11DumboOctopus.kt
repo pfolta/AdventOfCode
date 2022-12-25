@@ -1,9 +1,10 @@
 package adventofcode.year2021
 
 import adventofcode.Puzzle
+import adventofcode.PuzzleInput
 import adventofcode.common.neighbors
 
-class Day11DumboOctopus(customInput: String? = null) : Puzzle(customInput) {
+class Day11DumboOctopus(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val grid by lazy { input.lines().map { it.map { it.toString().toInt() } } }
 
     private fun List<List<Int>>.incrementAll() = map { it.map(Int::inc) }
