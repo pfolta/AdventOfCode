@@ -1,8 +1,17 @@
-# 🎄 [Advent of Code](https://adventofcode.com)
+<h1 align="center">
+    <img src="screenshot.png" alt="Sample Run" />
+    <a href="https://adventofcode.com" target="_blank">🎄 Advent of Code 🎄</a>
+</h1>
 
-[![License: MIT](https://img.shields.io/github/license/pfolta/AdventOfCode)](LICENSE.md)
-[![Build Status](https://img.shields.io/github/actions/workflow/status/pfolta/AdventOfCode/build-and-test.yaml?branch=master&logo=github)](https://github.com/pfolta/AdventOfCode/actions/workflows/build-and-test.yaml)
-[![Code Coverage](https://img.shields.io/codecov/c/github/pfolta/AdventOfCode?logo=codecov)](https://codecov.io/gh/pfolta/AdventOfCode)
+<p align="center">
+    <strong>My solutions in Kotlin</strong>
+</p>
+
+<p align="center">
+    <a href="LICENSE.md"><img src="https://img.shields.io/github/license/pfolta/AdventOfCode" alt="License: MIT" /></a>
+    <a href="https://github.com/pfolta/AdventOfCode/actions/workflows/build-and-test.yaml"><img src="https://img.shields.io/github/actions/workflow/status/pfolta/AdventOfCode/build-and-test.yaml?branch=master&logo=github" alt="Build Status" /></a>
+    <a href="https://codecov.io/gh/pfolta/AdventOfCode"><img src="https://img.shields.io/codecov/c/github/pfolta/AdventOfCode?logo=codecov" alt="Code Coverage" /></a>
+</p>
 
 ## 🛷 How to run
 
@@ -19,17 +28,6 @@ Puzzles can be run using the Gradle `run` task or by executing the project's JAR
 
 These arguments can be combined to run multiple puzzles, e.g.
 `./gradlew run --args "2015/1 2019 2020/6 2020/7"` will run the first puzzle from 2015, then all puzzles from 2019 and lastly the 6th and 7th puzzle from 2020.
-
-### Sample Run
-
-<pre>
-$ java -jar build/libs/AdventOfCode.jar 2015/1
-🎄 Advent of Code 2015, Day 1
-   <strong>Not Quite Lisp</strong>
-   https://adventofcode.com/2015/day/1
-⭐️ Part 1: <strong>232</strong> (1.159369ms)
-⭐️ Part 2: <strong>1783</strong> (216.358378ms)
-</pre>
 
 Runtimes that exceed 15s are <span style="font-weight:bold;color:gray;background-color:red;">highlighted in red</span>.
 
