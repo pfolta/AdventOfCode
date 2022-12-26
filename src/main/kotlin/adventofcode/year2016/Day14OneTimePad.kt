@@ -13,7 +13,9 @@ class Day14OneTimePad(customInput: PuzzleInput? = null) : Puzzle(customInput) {
         .last()
 
     companion object {
-        private fun String.hash(index: Int) = "$this$index".md5()
+        private val cache = mutableMapOf<String, String>()
+
+        private fun String.hash() = cache.getOrPut(this) { md5() }
 
         private fun String.findFirstTriplet() = this
             .windowed(3)
@@ -21,10 +23,10 @@ class Day14OneTimePad(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             ?.first()
 
         private fun isKey(salt: String, index: Int): Boolean {
-            val hash = salt.hash(index)
+            val hash = "$salt$index".hash()
             val triplet = hash.findFirstTriplet() ?: return false
 
-            return ((index + 1 until index + 1000).any { salt.hash(it).contains(triplet.toString().repeat(5)) })
+            return ((index + 1 until index + 1000).any { "$salt$it".hash().contains(triplet.toString().repeat(5)) })
         }
     }
 }
