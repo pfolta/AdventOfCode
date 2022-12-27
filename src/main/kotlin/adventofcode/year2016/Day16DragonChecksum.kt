@@ -4,15 +4,15 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
 class Day16DragonChecksum(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    override fun partOne() = input.generateData().checksum()
+    override fun partOne() = input.generateData(272).checksum()
+
+    override fun partTwo() = input.generateData(35651584).checksum()
 
     companion object {
-        private const val DISK_LENGTH = 272
-
-        private fun String.generateData() =
+        private fun String.generateData(length: Int) =
             generateSequence(this) { data -> data + '0' + data.reversed().map { char -> if (char == '0') '1' else '0' }.joinToString("") }
-                .first { data -> data.length >= DISK_LENGTH }
-                .take(DISK_LENGTH)
+                .first { data -> data.length >= length }
+                .take(length)
 
         private fun String.checksum() =
             generateSequence(this) { data ->
