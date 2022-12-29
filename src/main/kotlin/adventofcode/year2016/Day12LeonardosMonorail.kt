@@ -3,9 +3,6 @@ package adventofcode.year2016
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-private typealias InstructionIndex = Int
-private typealias Registers = MutableMap<String, Int>
-
 class Day12LeonardosMonorail(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "Leonardo's Monorail"
 
@@ -14,29 +11,22 @@ class Day12LeonardosMonorail(customInput: PuzzleInput? = null) : Puzzle(customIn
     override fun partTwo() = input.lines().runAssembunny(mutableMapOf("c" to 1))["a"]!!
 
     companion object {
-        private fun List<String>.runAssembunny(registers: Registers = mutableMapOf()): Registers {
+        private fun List<String>.runAssembunny(registers: MutableMap<String, Int> = mutableMapOf()): Map<String, Int> {
             var index = 0
 
             while (index < this.size) {
-                index = this[index].runAssembunnyInstruction(index, registers)
+                index = runAssembunnyInstruction(this, index, registers)
             }
 
-            return registers
+            return registers.toMap()
         }
 
-        private fun String.runAssembunnyInstruction(index: Int, registers: Registers): InstructionIndex {
-            val instruction = this.split(" ")
+        fun runAssembunnyInstruction(code: List<String>, index: Int, registers: MutableMap<String, Int>): Int {
+            val instruction = code[index].split(" ")
 
             return when (instruction.first()) {
                 "cpy" -> {
-                    val source = instruction[1]
-                    val destination = instruction.last()
-
-                    when {
-                        source.toIntOrNull() != null -> registers[destination] = source.toInt()
-                        else -> registers[destination] = registers.getOrDefault(source, 0)
-                    }
-
+                    registers[instruction.last()] = intOrRegisterValue(instruction[1], registers)
                     index + 1
                 }
 
@@ -52,19 +42,19 @@ class Day12LeonardosMonorail(customInput: PuzzleInput? = null) : Puzzle(customIn
                     index + 1
                 }
 
-                "jnz" -> {
-                    val test = instruction[1]
-                    val offset = instruction.last().toInt()
-
-                    when {
-                        test.toIntOrNull() == 0 -> index + 1
-                        test.toIntOrNull() == null && registers.getOrDefault(test, 0) == 0 -> index + 1
-                        else -> index + offset
-                    }
+                "jnz" -> when (intOrRegisterValue(instruction[1], registers)) {
+                    0 -> index + 1
+                    else -> index + instruction.last().toInt()
                 }
 
                 else -> throw IllegalArgumentException("'$this' is not a valid assembunny instruction")
             }
         }
+
+        fun intOrRegisterValue(value: String, registers: Map<String, Int>): Int =
+            when (value.all { char -> char.isDigit() }) {
+                true -> value.toInt()
+                false -> registers.getOrDefault(value, 0)
+            }
     }
 }
