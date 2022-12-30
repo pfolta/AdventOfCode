@@ -2,4 +2,4 @@ package adventofcode.year2017
 
 import adventofcode.PuzzleBaseSpec
 
-class Day15DuelingGeneratorsSpec : PuzzleBaseSpec(588)
+class Day15DuelingGeneratorsSpec : PuzzleBaseSpec(588, 309)
