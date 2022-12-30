@@ -30,9 +30,15 @@ class Day15DuelingGenerators(customInput: PuzzleInput? = null) : Puzzle(customIn
 
         private fun Long.next(factor: Int) = this * factor % DIVISOR
 
-        private fun Long.next(factor: Int, multipleOf: Int): Long = this
-            .next(factor)
-            .let { next -> if (next % multipleOf == 0L) next else next.next(factor, multipleOf) }
+        private tailrec fun Long.next(factor: Int, multipleOf: Int): Long {
+            val next = this.next(factor)
+
+            if (next % multipleOf == 0L) {
+                return next
+            }
+
+            return next.next(factor, multipleOf)
+        }
 
         private fun Long.toBinary() = this.toString(2).padStart(BITS_TO_COMPARE, '0')
     }
