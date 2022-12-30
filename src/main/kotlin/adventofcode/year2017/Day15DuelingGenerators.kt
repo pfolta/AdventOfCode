@@ -33,11 +33,10 @@ class Day15DuelingGenerators(customInput: PuzzleInput? = null) : Puzzle(customIn
         private tailrec fun Long.next(factor: Int, multipleOf: Int): Long {
             val next = this.next(factor)
 
-            if (next % multipleOf == 0L) {
-                return next
+            return when (next % multipleOf) {
+                0L -> next
+                else -> next.next(factor, multipleOf)
             }
-
-            return next.next(factor, multipleOf)
         }
 
         private fun Long.toBinary() = this.toString(2).padStart(BITS_TO_COMPARE, '0')
