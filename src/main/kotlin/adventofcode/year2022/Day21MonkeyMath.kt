@@ -2,46 +2,72 @@ package adventofcode.year2022
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
+import adventofcode.year2022.Day21MonkeyMath.Companion.Operation.DIV
+import adventofcode.year2022.Day21MonkeyMath.Companion.Operation.MINUS
+import adventofcode.year2022.Day21MonkeyMath.Companion.Operation.PLUS
+import adventofcode.year2022.Day21MonkeyMath.Companion.Operation.TIMES
 
 class Day21MonkeyMath(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val monkeys by lazy {
         input
             .lines()
             .map { it.split(": ") }
-            .associate { (name, input) -> name to Monkey.of(input) }
+            .associate { (name, expression) -> name to Monkey.of(expression) }
+            .also { monkeys ->
+                monkeys
+                    .values
+                    .filterIsInstance<MathMonkey>()
+                    .forEach { monkey ->
+                        monkey.leftMonkey = monkeys[monkey.leftMonkeyName]!!
+                        monkey.rightMonkey = monkeys[monkey.rightMonkeyName]!!
+                    }
+            }
     }
 
-    override fun partOne() = monkeys["root"]!!.yell(monkeys)
+    override fun partOne() = monkeys["root"]!!.yell()
 
     companion object {
-        private sealed class Monkey {
-            abstract fun yell(monkeys: Map<String, Monkey>): Long
+        private enum class Operation(val operation: String) {
+            PLUS("+"),
+            MINUS("-"),
+            TIMES("*"),
+            DIV("/");
 
             companion object {
-                fun of(input: String): Monkey =
-                    when (input.all { it.isDigit() }) {
-                        true -> NumberMonkey(input.toLong())
+                fun of(operation: String) = Operation.values().associateBy(Operation::operation)[operation]!!
+            }
+        }
+
+        private sealed class Monkey {
+            abstract fun yell(): Long
+
+            companion object {
+                fun of(expression: String): Monkey =
+                    when (expression.all { it.isDigit() }) {
+                        true -> NumberMonkey(expression.toLong())
 
                         false -> {
-                            val (left, operation, right) = input.split(" ")
-                            MathMonkey(left, operation, right)
+                            val (leftMonkeyName, operation, rightMonkeyName) = expression.split(" ")
+                            MathMonkey(leftMonkeyName, Operation.of(operation), rightMonkeyName)
                         }
                     }
             }
         }
 
         private class NumberMonkey(val number: Long) : Monkey() {
-            override fun yell(monkeys: Map<String, Monkey>) = number
+            override fun yell() = number
         }
 
-        private class MathMonkey(val left: String, val operation: String, val right: String) : Monkey() {
-            override fun yell(monkeys: Map<String, Monkey>) =
+        private class MathMonkey(val leftMonkeyName: String, val operation: Operation, val rightMonkeyName: String) : Monkey() {
+            lateinit var leftMonkey: Monkey
+            lateinit var rightMonkey: Monkey
+
+            override fun yell() =
                 when (operation) {
-                    "+" -> monkeys[left]!!.yell(monkeys) + monkeys[right]!!.yell(monkeys)
-                    "-" -> monkeys[left]!!.yell(monkeys) - monkeys[right]!!.yell(monkeys)
-                    "*" -> monkeys[left]!!.yell(monkeys) * monkeys[right]!!.yell(monkeys)
-                    "/" -> monkeys[left]!!.yell(monkeys) / monkeys[right]!!.yell(monkeys)
-                    else -> throw IllegalArgumentException("'$operation' is not a supported math operation")
+                    PLUS -> leftMonkey.yell() + rightMonkey.yell()
+                    MINUS -> leftMonkey.yell() - rightMonkey.yell()
+                    TIMES -> leftMonkey.yell() * rightMonkey.yell()
+                    DIV -> leftMonkey.yell() / rightMonkey.yell()
                 }
         }
     }
