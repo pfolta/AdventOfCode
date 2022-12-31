@@ -1,6 +1,6 @@
 <h1 align="center">
     <img src="screenshot.png" alt="Sample run" />
-    🎄 <a href="https://adventofcode.com" target="_blank">Advent of Code</a> 🎄
+    🎄 <a href="https://adventofcode.com">Advent of Code</a> 🎄
 </h1>
 
 <p align="center">
@@ -11,6 +11,17 @@
     <a href="LICENSE.md"><img src="https://img.shields.io/github/license/pfolta/AdventOfCode" alt="License: MIT" /></a>
     <a href="https://github.com/pfolta/AdventOfCode/actions/workflows/build-and-test.yaml"><img src="https://img.shields.io/github/actions/workflow/status/pfolta/AdventOfCode/build-and-test.yaml?branch=master&logo=github" alt="Build Status" /></a>
     <a href="https://codecov.io/gh/pfolta/AdventOfCode"><img src="https://img.shields.io/codecov/c/github/pfolta/AdventOfCode?logo=codecov" alt="Code Coverage" /></a>
+</p>
+
+<p align="center">
+    <a href="https://adventofcode.com/2015"><img src="https://img.shields.io/badge/%E2%AD%90%202015-36%2F50-0f0f23" alt="2015 Progress" /></a>
+    <a href="https://adventofcode.com/2016"><img src="https://img.shields.io/badge/%E2%AD%90%202016-18%2F50-0f0f23" alt="2016 Progress" /></a>
+    <a href="https://adventofcode.com/2017"><img src="https://img.shields.io/badge/%E2%AD%90%202017-10%2F50-0f0f23" alt="2017 Progress" /></a>
+    <a href="https://adventofcode.com/2018"><img src="https://img.shields.io/badge/%E2%AD%90%202018-8%2F50-0f0f23" alt="2018 Progress" /></a>
+    <a href="https://adventofcode.com/2019"><img src="https://img.shields.io/badge/%E2%AD%90%202019-4%2F50-0f0f23" alt="2019 Progress" /></a>
+    <a href="https://adventofcode.com/2020"><img src="https://img.shields.io/badge/%E2%AD%90%202020-44%2F50-0f0f23" alt="2020 Progress" /></a>
+    <a href="https://adventofcode.com/2021"><img src="https://img.shields.io/badge/%E2%AD%90%202021-26%2F50-0f0f23" alt="2021 Progress" /></a>
+    <a href="https://adventofcode.com/2022"><img src="https://img.shields.io/badge/%E2%AD%90%202022-27%2F50-0f0f23" alt="2022 Progress" /></a>
 </p>
 
 ## 🛷 How to run
