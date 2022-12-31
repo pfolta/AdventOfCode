@@ -21,7 +21,7 @@
     <a href="https://adventofcode.com/2019"><img src="https://img.shields.io/badge/%E2%AD%90%202019-4%2F50-0f0f23" alt="2019 Progress" /></a>
     <a href="https://adventofcode.com/2020"><img src="https://img.shields.io/badge/%E2%AD%90%202020-44%2F50-0f0f23" alt="2020 Progress" /></a>
     <a href="https://adventofcode.com/2021"><img src="https://img.shields.io/badge/%E2%AD%90%202021-26%2F50-0f0f23" alt="2021 Progress" /></a>
-    <a href="https://adventofcode.com/2022"><img src="https://img.shields.io/badge/%E2%AD%90%202022-27%2F50-0f0f23" alt="2022 Progress" /></a>
+    <a href="https://adventofcode.com/2022"><img src="https://img.shields.io/badge/%E2%AD%90%202022-28%2F50-0f0f23" alt="2022 Progress" /></a>
 </p>
 
 ## 🛷 How to run
@@ -144,4 +144,5 @@ Runtimes that exceed 15s are <span style="font-weight:bold;color:gray;background
 |                                           |  11 | [Monkey in the Middle](https://adventofcode.com/2022/day/11)                                           | [[Code](src/main/kotlin/adventofcode/year2022/Day11MonkeyInTheMiddle.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2022/Day11MonkeyInTheMiddleSpec.kt)]                                 | `50830`                | `14399640002`                                    |
 |                                           |  12 | [Hill Climbing Algorithm](https://adventofcode.com/2022/day/12)                                        | [[Code](src/main/kotlin/adventofcode/year2022/Day12HillClimbingAlgorithm.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2022/Day12HillClimbingAlgorithmSpec.kt)]                         | `472`                  | `465`                                            |
 |                                           |  13 | [Distress Signal](https://adventofcode.com/2022/day/13)                                                | [[Code](src/main/kotlin/adventofcode/year2022/Day13DistressSignal.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2022/Day13DistressSignalSpec.kt)]                                       | `5825`                 | `24477`                                          |
+|                                           |  21 | [Monkey Math](https://adventofcode.com/2022/day/21)                                                    | [[Code](src/main/kotlin/adventofcode/year2022/Day21MonkeyMath.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2022/Day21MonkeyMathSpec.kt)]                                               | `286698846151845`      |                                                  |
 |                                           |  25 | [Full of Hot Air](https://adventofcode.com/2022/day/25)                                                | [[Code](src/main/kotlin/adventofcode/year2022/Day25FullOfHotAir.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2022/Day25FullOfHotAirSpec.kt)]                                           | `2‑2=12=1‑=‑1=000=222` |                                                  |
