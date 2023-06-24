@@ -19,4 +19,10 @@ class StringsSpec : FreeSpec({
             "abcdef".removeAt(1, 2) shouldBe "adef"
         }
     }
+
+    "md5" - {
+        "computes MD5 hash correctly" {
+            "test12345".md5() shouldBe "c06db68e819be6ec3d26c6038d8e8d1f"
+        }
+    }
 })

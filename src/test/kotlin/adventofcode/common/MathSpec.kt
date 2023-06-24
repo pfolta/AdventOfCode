@@ -2,12 +2,13 @@ package adventofcode.common
 
 import adventofcode.common.Math.divisors
 import io.kotest.core.spec.style.FreeSpec
+import io.kotest.matchers.collections.shouldBeEmpty
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 
 class MathSpec : FreeSpec({
     "Int.divisors()" - {
         "returns no divisors for 0" {
-            0.divisors() shouldContainExactlyInAnyOrder emptySet()
+            0.divisors().shouldBeEmpty()
         }
 
         "returns the only divisor for 1" {
