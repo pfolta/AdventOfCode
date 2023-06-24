@@ -26,14 +26,20 @@ inline fun <reified T : Any?> Collection<Collection<T>>.cartesianProduct() =
 inline fun <reified T : Any?> List<List<T>>.neighbors(x: Int, y: Int, includeDiagonals: Boolean): Set<Pair<Int, Int>> =
     when {
         includeDiagonals -> setOf(
-            x - 1 to y - 1, x to y - 1, x + 1 to y - 1,
-            x - 1 to y, x + 1 to y,
-            x - 1 to y + 1, x to y + 1, x + 1 to y + 1
+            x - 1 to y - 1,
+            x to y - 1,
+            x + 1 to y - 1,
+            x - 1 to y,
+            x + 1 to y,
+            x - 1 to y + 1,
+            x to y + 1,
+            x + 1 to y + 1
         )
 
         else -> setOf(
             x to y - 1,
-            x - 1 to y, x + 1 to y,
+            x - 1 to y,
+            x + 1 to y,
             x to y + 1
         )
     }

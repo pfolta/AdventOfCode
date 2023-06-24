@@ -39,8 +39,10 @@ class Day14DockingData(customInput: PuzzleInput? = null) : Puzzle(customInput) {
                         mask,
                         memoryMap + (addressMask.indices)
                             .fold(listOf(addressMask)) { acc, index ->
-                                if (addressMask[index] != 'X') acc
-                                else acc.flatMap { listOf(it.replaceAt(index, '0'), it.replaceAt(index, '1')) }
+                                when {
+                                    addressMask[index] != 'X' -> acc
+                                    else -> acc.flatMap { listOf(it.replaceAt(index, '0'), it.replaceAt(index, '1')) }
+                                }
                             }
                             .map { it.toLong(2) to instruction.value }
                     )

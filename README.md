@@ -146,3 +146,8 @@ Runtimes that exceed 15s are <span style="font-weight:bold;color:gray;background
 |                                           |  13 | [Distress Signal](https://adventofcode.com/2022/day/13)                                                | [[Code](src/main/kotlin/adventofcode/year2022/Day13DistressSignal.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2022/Day13DistressSignalSpec.kt)]                                       | `5825`                 | `24477`                                          |
 |                                           |  21 | [Monkey Math](https://adventofcode.com/2022/day/21)                                                    | [[Code](src/main/kotlin/adventofcode/year2022/Day21MonkeyMath.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2022/Day21MonkeyMathSpec.kt)]                                               | `286698846151845`      |                                                  |
 |                                           |  25 | [Full of Hot Air](https://adventofcode.com/2022/day/25)                                                | [[Code](src/main/kotlin/adventofcode/year2022/Day25FullOfHotAir.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2022/Day25FullOfHotAirSpec.kt)]                                           | `2‑2=12=1‑=‑1=000=222` |                                                  |
+
+## 🕯️ Useful commands
+
+* Check formatting: `./gradlew ktlintCheck`
+* Fix formatting: `./gradlew ktlintFormat`

@@ -20,7 +20,12 @@ class PermutationsSpec : FreeSpec({
 
         "returns all permutations for a list of three elements" {
             listOf(1, 2, 3).permutations() shouldContainExactlyInAnyOrder listOf(
-                listOf(1, 2, 3), listOf(1, 3, 2), listOf(2, 1, 3), listOf(2, 3, 1), listOf(3, 1, 2), listOf(3, 2, 1)
+                listOf(1, 2, 3),
+                listOf(1, 3, 2),
+                listOf(2, 1, 3),
+                listOf(2, 3, 1),
+                listOf(3, 1, 2),
+                listOf(3, 2, 1)
             )
         }
     }
@@ -40,13 +45,27 @@ class PermutationsSpec : FreeSpec({
 
         "returns the powerset of a collection with 3 elements" {
             setOf(1, 2, 3).powersets() shouldContainExactlyInAnyOrder listOf(
-                emptyList(), listOf(1), listOf(2), listOf(3), listOf(1, 2), listOf(1, 3), listOf(2, 3), listOf(1, 2, 3)
+                emptyList(),
+                listOf(1),
+                listOf(2),
+                listOf(3),
+                listOf(1, 2),
+                listOf(1, 3),
+                listOf(2, 3),
+                listOf(1, 2, 3)
             )
         }
 
         "returns the powerset of a collection containing duplicate elements" {
             listOf(1, 1, 2).powersets() shouldContainExactlyInAnyOrder listOf(
-                emptyList(), listOf(1), listOf(1), listOf(2), listOf(1, 1), listOf(1, 2), listOf(1, 2), listOf(1, 1, 2)
+                emptyList(),
+                listOf(1),
+                listOf(1),
+                listOf(2),
+                listOf(1, 1),
+                listOf(1, 2),
+                listOf(1, 2),
+                listOf(1, 1, 2)
             )
         }
     }

@@ -31,7 +31,7 @@ class Day14ReindeerOlympics(customInput: PuzzleInput? = null) : Puzzle(customInp
                 INPUT_REGEX.find(input)!!.destructured.component1(),
                 INPUT_REGEX.find(input)!!.destructured.component2().toInt(),
                 INPUT_REGEX.find(input)!!.destructured.component3().toInt(),
-                INPUT_REGEX.find(input)!!.destructured.component4().toInt(),
+                INPUT_REGEX.find(input)!!.destructured.component4().toInt()
             )
 
             fun distanceFlown(after: Int = CHECKPOINT): Int {
