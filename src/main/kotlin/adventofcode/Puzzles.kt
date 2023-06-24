@@ -13,11 +13,11 @@ object Puzzles {
     fun all() = puzzles
 
     fun forYear(year: Int) = puzzles
-        .filter { it.javaClass.name.startsWith("adventofcode.year$year") }
+        .filter { puzzle -> puzzle.year == year }
         .ifEmpty { throw ClassNotFoundException("Puzzles for year $year not found") }
 
     fun forDay(year: Int, day: Int) = puzzles
-        .filter { it.javaClass.name.startsWith("adventofcode.year$year.Day${day.toString().padStart(2, '0')}") }
+        .filter { puzzle -> puzzle.year == year && puzzle.day == day }
         .ifEmpty { throw ClassNotFoundException("Puzzle $year/$day not found") }
         .first()
 }
