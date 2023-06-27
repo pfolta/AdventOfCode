@@ -38,6 +38,11 @@ ktlint {
     }
 }
 
+testlogger {
+    // 15 seconds, see adventofcode.util.ConsoleFormatterKt.formatBenchmark
+    slowThreshold = 15_000
+}
+
 tasks {
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "1.8"
