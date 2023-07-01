@@ -80,7 +80,7 @@ class Day07SomeAssemblyRequired(customInput: PuzzleInput? = null) : Puzzle(custo
         }
 
         // Kotlin does not have bit-shifting operations on `UShort`s, so temporarily convert to `Int`, shift and then back to `UShort`
-        infix fun UShort.shl(other: UShort): UShort = (this.toInt() shl other.toInt()).toUShort()
-        infix fun UShort.shr(other: UShort): UShort = (this.toInt() shr other.toInt()).toUShort()
+        private infix fun UShort.shl(other: UShort): UShort = (this.toInt() shl other.toInt()).toUShort()
+        private infix fun UShort.shr(other: UShort): UShort = (this.toInt() shr other.toInt()).toUShort()
     }
 }
