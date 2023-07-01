@@ -8,7 +8,7 @@ import kotlin.math.max
 class Day15ScienceForHungryPeople(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "Science for Hungry People"
 
-    private val ingredients by lazy { input.lines().map(::Ingredient) }
+    private val ingredients by lazy { input.lines().map(Ingredient::invoke) }
 
     private val recipes by lazy {
         (1..ingredients.size)
@@ -19,9 +19,9 @@ class Day15ScienceForHungryPeople(customInput: PuzzleInput? = null) : Puzzle(cus
             .map { it.sum() }
     }
 
-    override fun partOne() = recipes.map { it.score }.maxOrNull()!!
+    override fun partOne() = recipes.maxOf(Ingredient::score)
 
-    override fun partTwo() = recipes.filter { it.calories == CALORIE_COUNT }.map { it.score }.maxOrNull()!!
+    override fun partTwo() = recipes.filter { it.calories == CALORIE_COUNT }.maxOf(Ingredient::score)
 
     companion object {
         private val INPUT_REGEX = """capacity (-?\d+), durability (-?\d+), flavor (-?\d+), texture (-?\d+), calories (\d+)""".toRegex()
@@ -29,21 +29,13 @@ class Day15ScienceForHungryPeople(customInput: PuzzleInput? = null) : Puzzle(cus
         private const val TABLESPOON_COUNT = 100
         private const val CALORIE_COUNT = 500
 
-        data class Ingredient(
+        private data class Ingredient(
             val capacity: Int,
             val durability: Int,
             val flavor: Int,
             val texture: Int,
             val calories: Int
         ) {
-            constructor(input: String) : this(
-                INPUT_REGEX.find(input)!!.destructured.component1().toInt(),
-                INPUT_REGEX.find(input)!!.destructured.component2().toInt(),
-                INPUT_REGEX.find(input)!!.destructured.component3().toInt(),
-                INPUT_REGEX.find(input)!!.destructured.component4().toInt(),
-                INPUT_REGEX.find(input)!!.destructured.component5().toInt()
-            )
-
             val score = max(0, capacity) * max(0, durability) * max(0, flavor) * max(0, texture)
 
             operator fun times(amount: Int) =
@@ -56,8 +48,20 @@ class Day15ScienceForHungryPeople(customInput: PuzzleInput? = null) : Puzzle(cus
                 texture + other.texture,
                 calories + other.calories
             )
+
+            companion object {
+                operator fun invoke(input: String): Ingredient {
+                    val (capacity, durability, flavor, texture, calories) = INPUT_REGEX
+                        .find(input)!!
+                        .destructured
+                        .toList()
+                        .map(String::toInt)
+
+                    return Ingredient(capacity, durability, flavor, texture, calories)
+                }
+            }
         }
 
-        fun Collection<Ingredient>.sum(): Ingredient = reduce { sum, summand -> sum + summand }
+        private fun Collection<Ingredient>.sum(): Ingredient = reduce { sum, summand -> sum + summand }
     }
 }

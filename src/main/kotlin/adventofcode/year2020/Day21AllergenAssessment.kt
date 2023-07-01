@@ -4,7 +4,7 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
 class Day21AllergenAssessment(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    private val foods by lazy { input.lines().map(Food::of) }
+    private val foods by lazy { input.lines().map(Food::invoke) }
 
     override fun partOne(): Int {
         val ingredientsToAllergens = foods.ingredientsAllergensMap()
@@ -20,7 +20,7 @@ class Day21AllergenAssessment(customInput: PuzzleInput? = null) : Puzzle(customI
             val allergens: List<String>
         ) {
             companion object {
-                fun of(input: String): Food {
+                operator fun invoke(input: String): Food {
                     val ingredients = input.split("(").first().trim().split(" ")
                     val allergens = when {
                         input.contains("(") -> input.split("(").last().replace("contains ", "").replace(")", "").split(", ")

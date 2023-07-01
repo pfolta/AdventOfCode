@@ -11,7 +11,7 @@ class Day15RambunctiousRecitation(customInput: PuzzleInput? = null) : Puzzle(cus
     override fun partTwo() = startingNumbers.playGame(30_000_000)
 
     companion object {
-        fun List<Int>.playGame(turnCount: Int) = (1..turnCount)
+        private fun List<Int>.playGame(turnCount: Int) = (1..turnCount)
             .fold(Pair(mutableMapOf<Int, List<Int>>(), -1)) { (memoryMap, lastNumberSpoken), turn ->
                 if (turn <= size) {
                     memoryMap[this[turn - 1]] = listOfNotNull(memoryMap.getOrDefault(this[turn - 1], emptyList()).lastOrNull(), turn)

@@ -11,5 +11,5 @@ class Day17NoSuchThingAsTooMuch(customInput: PuzzleInput? = null) : Puzzle(custo
 
     override fun partOne() = combinations.size
 
-    override fun partTwo() = combinations.filter { it.size == combinations.minByOrNull { it.size }!!.size }.size
+    override fun partTwo() = combinations.filter { it.size == combinations.minBy { it.size }.size }.size
 }

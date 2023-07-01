@@ -6,7 +6,7 @@ import kotlin.math.max
 import kotlin.math.min
 
 class Day05HydrothermalVenture(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    private val lines by lazy { input.lines().map { it.split(" -> ").map(::Point) }.map(::Line) }
+    private val lines by lazy { input.lines().map { it.split(" -> ").map(Point::invoke) }.map(::Line) }
 
     override fun partOne() = lines
         .filter { it.isHorizontal() || it.isVertical() }
@@ -22,14 +22,19 @@ class Day05HydrothermalVenture(customInput: PuzzleInput? = null) : Puzzle(custom
         .count { it.value > 1 }
 
     companion object {
-        data class Point(
+        private data class Point(
             val x: Int,
             val y: Int
         ) {
-            constructor(coordinates: String) : this(coordinates.split(",").first().toInt(), coordinates.split(",").last().toInt())
+            companion object {
+                operator fun invoke(coordinates: String): Point {
+                    val (x, y) = coordinates.split(",").map(String::toInt)
+                    return Point(x, y)
+                }
+            }
         }
 
-        data class Line(
+        private data class Line(
             val start: Point,
             val end: Point
         ) {

@@ -5,14 +5,7 @@ import adventofcode.PuzzleInput
 import adventofcode.common.cartesianProduct
 
 class Day03NoMatterHowYouSliceIt(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    private val claims by lazy {
-        input
-            .lines()
-            .map {
-                val (id, left, top, width, height) = INPUT_REGEX.find(it)!!.destructured
-                Claim(id.toInt(), left.toInt(), top.toInt(), width.toInt(), height.toInt())
-            }
-    }
+    private val claims by lazy { input.lines().map(Claim::invoke) }
 
     private val fabric by lazy { claims.flatMap(Claim::area).groupingBy { it }.eachCount() }
 
@@ -23,7 +16,7 @@ class Day03NoMatterHowYouSliceIt(customInput: PuzzleInput? = null) : Puzzle(cust
     companion object {
         private val INPUT_REGEX = """#(\d+) @ (\d+),(\d+): (\d+)x(\d+)""".toRegex()
 
-        data class Claim(
+        private data class Claim(
             val id: Int,
             val left: Int,
             val top: Int,
@@ -33,6 +26,13 @@ class Day03NoMatterHowYouSliceIt(customInput: PuzzleInput? = null) : Puzzle(cust
             val area = listOf((left until left + width).toList(), (top until top + height).toList())
                 .cartesianProduct()
                 .map { it.first() to it.last() }
+
+            companion object {
+                operator fun invoke(input: String): Claim {
+                    val (id, left, top, width, height) = INPUT_REGEX.find(input)!!.destructured.toList().map(String::toInt)
+                    return Claim(id, left, top, width, height)
+                }
+            }
         }
     }
 }

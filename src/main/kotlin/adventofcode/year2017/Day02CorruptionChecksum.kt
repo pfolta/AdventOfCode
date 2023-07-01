@@ -13,5 +13,5 @@ class Day02CorruptionChecksum(customInput: PuzzleInput? = null) : Puzzle(customI
         .lines()
         .map { it.split("\t").map(String::toInt) }
         .map { it.filter { a -> it.minus(a).any { b -> a % b == 0 || b % a == 0 } } }
-        .sumOf { it.maxOrNull()!! / it.minOrNull()!! }
+        .sumOf { it.max() / it.min() }
 }

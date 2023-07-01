@@ -35,7 +35,6 @@ class Day13KnightsOfTheDinnerTable(customInput: PuzzleInput? = null) : Puzzle(cu
             .permutations()
             .map { arrangement -> arrangement.map { guest -> Pair(guest, arrangement.neighbors(guest)) } }
             .map { it.map { guest -> guest.second.sumOf { neighbor -> happiness[guest.first to neighbor] ?: 0 } } }
-            .map { it.sum() }
-            .maxOrNull() ?: 0
+            .maxOfOrNull { it.sum() } ?: 0
     }
 }

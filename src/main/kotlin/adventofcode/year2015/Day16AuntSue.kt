@@ -70,7 +70,7 @@ class Day16AuntSue(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             perfumes = 1
         )
 
-        data class AuntSue(
+        private data class AuntSue(
             val id: Int? = null,
             val children: Int? = null,
             val cats: Int? = null,

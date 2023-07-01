@@ -27,14 +27,14 @@ class Day08HandheldHalting(customInput: PuzzleInput? = null) : Puzzle(customInpu
         .acc
 
     companion object {
-        data class Instruction(
+        private data class Instruction(
             val operation: Operation,
             val argument: Int
         ) {
-            constructor(input: String) : this(Operation.fromString(input.split(" ").first())!!, input.split(" ").last().toInt())
+            constructor(input: String) : this(Operation(input.split(" ").first()), input.split(" ").last().toInt())
         }
 
-        fun List<Instruction>.execute(): ExecutionResult {
+        private fun List<Instruction>.execute(): ExecutionResult {
             var acc = 0
             var index = 0
             val visitedInstructions = mutableListOf<Int>()
@@ -55,18 +55,18 @@ class Day08HandheldHalting(customInput: PuzzleInput? = null) : Puzzle(customInpu
             return ExecutionResult(acc, index == size)
         }
 
-        data class ExecutionResult(
+        private data class ExecutionResult(
             val acc: Int,
             val terminatedNormally: Boolean
         )
 
-        enum class Operation(val type: String) {
+        private enum class Operation(val type: String) {
             ACC("acc"),
             JMP("jmp"),
             NOP("nop");
 
             companion object {
-                fun fromString(type: String) = values().associateBy(Operation::type)[type]
+                operator fun invoke(type: String) = values().associateBy(Operation::type)[type]!!
             }
         }
     }

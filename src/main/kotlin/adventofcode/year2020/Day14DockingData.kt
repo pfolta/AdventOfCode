@@ -3,11 +3,9 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.replaceAt
-import adventofcode.year2020.Day14DockingData.Companion.InitializationInstruction.MaskInstruction
-import adventofcode.year2020.Day14DockingData.Companion.InitializationInstruction.MemoryInstruction
 
 class Day14DockingData(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    private val initializationInstructions by lazy { input.lines().map(InitializationInstruction::parseInstruction) }
+    private val initializationInstructions by lazy { input.lines().map(InitializationInstruction::invoke) }
 
     override fun partOne() = initializationInstructions
         .fold(Pair("X".repeat(36), emptyMap<Long, Long>())) { (mask, memoryMap), instruction ->
@@ -51,12 +49,9 @@ class Day14DockingData(customInput: PuzzleInput? = null) : Puzzle(customInput) {
         }.second.values.sum()
 
     companion object {
-        sealed class InitializationInstruction {
-            data class MaskInstruction(val mask: String) : InitializationInstruction()
-            data class MemoryInstruction(val address: Long, val value: Long) : InitializationInstruction()
-
+        private sealed class InitializationInstruction {
             companion object {
-                fun parseInstruction(input: String): InitializationInstruction {
+                operator fun invoke(input: String): InitializationInstruction {
                     val parts = input.split(" = ")
 
                     return when (parts.first()) {
@@ -66,5 +61,8 @@ class Day14DockingData(customInput: PuzzleInput? = null) : Puzzle(customInput) {
                 }
             }
         }
+
+        private data class MaskInstruction(val mask: String) : InitializationInstruction()
+        private data class MemoryInstruction(val address: Long, val value: Long) : InitializationInstruction()
     }
 }

@@ -5,7 +5,7 @@ import adventofcode.PuzzleInput
 import kotlin.math.min
 
 class Day14ReindeerOlympics(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    private val reindeer by lazy { input.lines().map(::Reindeer) }
+    private val reindeer by lazy { input.lines().map(Reindeer::invoke) }
 
     override fun partOne() = reindeer.maxOfOrNull(Reindeer::distanceFlown) ?: 0
 
@@ -21,24 +21,24 @@ class Day14ReindeerOlympics(customInput: PuzzleInput? = null) : Puzzle(customInp
 
         private const val CHECKPOINT = 2503
 
-        data class Reindeer(
+        private data class Reindeer(
             val name: String,
             val flySpeed: Int,
             val flyTime: Int,
             val restTime: Int
         ) {
-            constructor(input: String) : this(
-                INPUT_REGEX.find(input)!!.destructured.component1(),
-                INPUT_REGEX.find(input)!!.destructured.component2().toInt(),
-                INPUT_REGEX.find(input)!!.destructured.component3().toInt(),
-                INPUT_REGEX.find(input)!!.destructured.component4().toInt()
-            )
-
             fun distanceFlown(after: Int = CHECKPOINT): Int {
                 val fullCycles = after / (flyTime + restTime)
                 val remainingTime = after % (flyTime + restTime)
 
                 return (fullCycles * flyTime * flySpeed) + min(remainingTime, flyTime) * flySpeed
+            }
+
+            companion object {
+                operator fun invoke(input: String): Reindeer {
+                    val (name, flySpeed, flyTime, restTime) = INPUT_REGEX.find(input)!!.destructured
+                    return Reindeer(name, flySpeed.toInt(), flyTime.toInt(), restTime.toInt())
+                }
             }
         }
     }

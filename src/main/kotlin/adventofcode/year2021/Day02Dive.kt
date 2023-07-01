@@ -28,7 +28,7 @@ class Day02Dive(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     }.multiply()
 
     companion object {
-        data class Position(
+        private data class Position(
             val horizontal: Int = 0,
             val depth: Int = 0,
             val aim: Int = 0
@@ -36,20 +36,20 @@ class Day02Dive(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             fun multiply() = horizontal * depth
         }
 
-        data class Command(
+        private data class Command(
             val direction: Direction,
             val value: Int
         ) {
-            constructor(input: String) : this(Direction.fromString(input.split(" ").first())!!, input.split(" ").last().toInt())
+            constructor(input: String) : this(Direction(input.split(" ").first()), input.split(" ").last().toInt())
         }
 
-        enum class Direction(val direction: String) {
+        private enum class Direction(val direction: String) {
             FORWARD("forward"),
             DOWN("down"),
             UP("up");
 
             companion object {
-                fun fromString(direction: String) = values().associateBy(Direction::direction)[direction]
+                operator fun invoke(direction: String) = values().associateBy(Direction::direction)[direction]!!
             }
         }
     }

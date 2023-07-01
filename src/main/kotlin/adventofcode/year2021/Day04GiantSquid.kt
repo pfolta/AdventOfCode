@@ -39,12 +39,12 @@ class Day04GiantSquid(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     }
 
     companion object {
-        data class Number(
+        private data class Number(
             val value: Int,
             val marked: Boolean = false
         )
 
-        data class Board(
+        private data class Board(
             val numbers: List<List<Number>>
         ) {
             fun markNumber(number: Int) =

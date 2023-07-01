@@ -33,11 +33,13 @@ class Day03BinaryDiagnostic(customInput: PuzzleInput? = null) : Puzzle(customInp
         return mutList.first().toInt(2)
     }
 
-    private fun List<String>.countBy(index: Int) = groupingBy { it[index] }.eachCount()
+    companion object {
+        private fun List<String>.countBy(index: Int) = groupingBy { it[index] }.eachCount()
 
-    private fun mostCommonOrOne(eachCount: Map<Char, Int>) = if ((eachCount['1'] ?: 0) >= (eachCount['0'] ?: 0)) 1 else 0
+        private fun mostCommonOrOne(eachCount: Map<Char, Int>) = if ((eachCount['1'] ?: 0) >= (eachCount['0'] ?: 0)) 1 else 0
 
-    private fun leastCommonOrZero(eachCount: Map<Char, Int>) = if ((eachCount['0'] ?: 0) <= (eachCount['1'] ?: 0)) 0 else 1
+        private fun leastCommonOrZero(eachCount: Map<Char, Int>) = if ((eachCount['0'] ?: 0) <= (eachCount['1'] ?: 0)) 0 else 1
 
-    private fun List<Int>.toInt(radix: Int) = joinToString("").toInt(radix)
+        private fun List<Int>.toInt(radix: Int) = joinToString("").toInt(radix)
+    }
 }

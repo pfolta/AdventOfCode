@@ -16,7 +16,7 @@ class Day06ProbablyAFireHazard(customInput: PuzzleInput? = null) : Puzzle(custom
             .lines()
             .map {
                 val (action, left, top, right, bottom) = INPUT_REGEX.find(it)!!.destructured
-                Instruction(Action.fromString(action)!!, left.toInt(), top.toInt(), right.toInt(), bottom.toInt())
+                Instruction(Action(action), left.toInt(), top.toInt(), right.toInt(), bottom.toInt())
             }
     }
 
@@ -43,7 +43,7 @@ class Day06ProbablyAFireHazard(customInput: PuzzleInput? = null) : Puzzle(custom
     companion object {
         private val INPUT_REGEX = """(turn on|turn off|toggle) (\d+),(\d+) through (\d+),(\d+)""".toRegex()
 
-        data class Instruction(
+        private data class Instruction(
             val action: Action,
             val left: Int,
             val top: Int,
@@ -53,13 +53,13 @@ class Day06ProbablyAFireHazard(customInput: PuzzleInput? = null) : Puzzle(custom
             val lights by lazy { listOf((left..right).toList(), (top..bottom).toList()).cartesianProduct().map { it.first() to it.last() } }
         }
 
-        enum class Action(val action: String) {
+        private enum class Action(val action: String) {
             TURN_ON("turn on"),
             TURN_OFF("turn off"),
             TOGGLE("toggle");
 
             companion object {
-                fun fromString(action: String) = values().associateBy(Action::action)[action]
+                operator fun invoke(action: String) = values().associateBy(Action::action)[action]!!
             }
         }
     }

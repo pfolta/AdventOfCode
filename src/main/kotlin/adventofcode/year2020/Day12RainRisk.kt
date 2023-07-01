@@ -27,8 +27,8 @@ class Day12RainRisk(customInput: PuzzleInput? = null) : Puzzle(customInput) {
                     NavigationDirection.NORTH -> direction to position.copy(second = position.second + instruction.value)
                     NavigationDirection.SOUTH -> direction to position.copy(second = position.second - instruction.value)
                 }
-                RIGHT -> NavigationDirection.fromHeading(direction.heading + instruction.value)!! to position
-                LEFT -> NavigationDirection.fromHeading(direction.heading - instruction.value)!! to position
+                RIGHT -> NavigationDirection(direction.heading + instruction.value) to position
+                LEFT -> NavigationDirection(direction.heading - instruction.value) to position
             }
         }
         .second
@@ -70,18 +70,18 @@ class Day12RainRisk(customInput: PuzzleInput? = null) : Puzzle(customInput) {
         .sumOf { it.absoluteValue }
 
     companion object {
-        enum class NavigationDirection(val heading: Int) {
+        private enum class NavigationDirection(val heading: Int) {
             EAST(0),
             SOUTH(90),
             WEST(180),
             NORTH(270);
 
             companion object {
-                fun fromHeading(heading: Int) = values().associateBy(NavigationDirection::heading)[Math.floorMod(heading, 360)]
+                operator fun invoke(heading: Int) = values().associateBy(NavigationDirection::heading)[Math.floorMod(heading, 360)]!!
             }
         }
 
-        enum class Action(val action: String) {
+        private enum class Action(val action: String) {
             NORTH("N"),
             SOUTH("S"),
             EAST("E"),
@@ -91,15 +91,15 @@ class Day12RainRisk(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             FORWARD("F");
 
             companion object {
-                fun fromString(action: String) = values().associateBy(Action::action)[action]
+                operator fun invoke(action: String) = values().associateBy(Action::action)[action]!!
             }
         }
 
-        data class NavigationInstruction(
+        private data class NavigationInstruction(
             val action: Action,
             val value: Int
         ) {
-            constructor(action: String) : this(Action.fromString(action.substring(0, 1))!!, action.substring(1).toInt())
+            constructor(action: String) : this(Action(action.substring(0, 1)), action.substring(1).toInt())
         }
     }
 }

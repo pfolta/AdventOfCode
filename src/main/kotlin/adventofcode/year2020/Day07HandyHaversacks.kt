@@ -29,7 +29,7 @@ class Day07HandyHaversacks(customInput: PuzzleInput? = null) : Puzzle(customInpu
         val BAG_RULE_REGEX = """(\w+ \w+) bags contain (.*)""".toRegex()
         val BAG_CONTENTS_REGEX = """(\d+) (\w+ \w+) bags?(, )?""".toRegex()
 
-        data class Bag(
+        private data class Bag(
             val color: String,
             val contents: Map<String, Int>
         ) {
@@ -52,6 +52,6 @@ class Day07HandyHaversacks(customInput: PuzzleInput? = null) : Puzzle(customInpu
             }
         }
 
-        fun List<Bag>.get(color: String) = this.first { it.color == color }
+        private fun List<Bag>.get(color: String) = this.first { it.color == color }
     }
 }
