@@ -14,3 +14,8 @@ fun String.replaceAt(index: Int, replacement: Char) = substring(0 until index) +
 fun String.removeAt(index: Int, slice: Int = 1) = removeRange(index until index + slice)
 
 fun String.md5() = BigInteger(1, MessageDigest.getInstance("MD5").digest(toByteArray())).toString(16).padStart(32, '0')
+
+/**
+ * Checks if the String only contains digits, i.e. is a number
+ */
+fun String.isUnsignedNumber() = all { char -> char.isDigit() }
