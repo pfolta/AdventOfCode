@@ -2,6 +2,7 @@ package adventofcode.year2016
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
+import adventofcode.common.String.containsOnlyDigits
 
 class Day12LeonardosMonorail(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "Leonardo's Monorail"
@@ -52,7 +53,7 @@ class Day12LeonardosMonorail(customInput: PuzzleInput? = null) : Puzzle(customIn
         }
 
         fun intOrRegisterValue(value: String, registers: Map<String, Int>): Int =
-            when (value.all { char -> char.isDigit() }) {
+            when (value.containsOnlyDigits()) {
                 true -> value.toInt()
                 false -> registers.getOrDefault(value, 0)
             }

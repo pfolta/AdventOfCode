@@ -2,7 +2,7 @@ package adventofcode.year2015
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
-import adventofcode.common.isUnsignedNumber
+import adventofcode.common.String.containsOnlyDigits
 import adventofcode.year2015.Day07SomeAssemblyRequired.Companion.Operation.AND
 import adventofcode.year2015.Day07SomeAssemblyRequired.Companion.Operation.LSHIFT
 import adventofcode.year2015.Day07SomeAssemblyRequired.Companion.Operation.NOT
@@ -40,13 +40,13 @@ class Day07SomeAssemblyRequired(customInput: PuzzleInput? = null) : Puzzle(custo
 
             // Use lazy delegate to compute value once on first access and return memoized result in subsequent calls
             val value: UShort by lazy {
-                val leftValue = when (leftSide?.isUnsignedNumber()) {
+                val leftValue = when (leftSide?.containsOnlyDigits()) {
                     true -> leftSide.toUShort()
                     false -> leftWire.value
                     null -> null
                 }
 
-                val rightValue = when (rightSide.isUnsignedNumber()) {
+                val rightValue = when (rightSide.containsOnlyDigits()) {
                     true -> rightSide.toUShort()
                     false -> rightWire.value
                 }
@@ -75,8 +75,8 @@ class Day07SomeAssemblyRequired(customInput: PuzzleInput? = null) : Puzzle(custo
         }
 
         private fun Map<String, Wire>.resolveWires(): Map<String, Wire> = onEach { (_, wire) ->
-            if (wire.leftSide != null && !wire.leftSide.isUnsignedNumber()) wire.leftWire = this[wire.leftSide]!!
-            if (!wire.rightSide.isUnsignedNumber()) wire.rightWire = this[wire.rightSide]!!
+            if (wire.leftSide != null && !wire.leftSide.containsOnlyDigits()) wire.leftWire = this[wire.leftSide]!!
+            if (!wire.rightSide.containsOnlyDigits()) wire.rightWire = this[wire.rightSide]!!
         }
 
         // Kotlin does not have bit-shifting operations on `UShort`s, so temporarily convert to `Int`, shift and then back to `UShort`

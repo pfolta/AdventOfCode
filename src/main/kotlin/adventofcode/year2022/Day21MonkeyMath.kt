@@ -2,6 +2,7 @@ package adventofcode.year2022
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
+import adventofcode.common.String.containsOnlyDigits
 import adventofcode.year2022.Day21MonkeyMath.Companion.Operation.DIV
 import adventofcode.year2022.Day21MonkeyMath.Companion.Operation.MINUS
 import adventofcode.year2022.Day21MonkeyMath.Companion.Operation.PLUS
@@ -12,7 +13,7 @@ class Day21MonkeyMath(customInput: PuzzleInput? = null) : Puzzle(customInput) {
         input
             .lines()
             .map { it.split(": ") }
-            .associate { (name, expression) -> name to Monkey.of(expression) }
+            .associate { (name, expression) -> name to Monkey(expression) }
             .also { monkeys ->
                 monkeys
                     .values
@@ -34,7 +35,7 @@ class Day21MonkeyMath(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             DIV("/");
 
             companion object {
-                fun of(operation: String) = Operation.values().associateBy(Operation::operation)[operation]!!
+                operator fun invoke(operation: String) = Operation.values().associateBy(Operation::operation)[operation]!!
             }
         }
 
@@ -42,13 +43,13 @@ class Day21MonkeyMath(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             abstract fun yell(): Long
 
             companion object {
-                fun of(expression: String): Monkey =
-                    when (expression.all { it.isDigit() }) {
+                operator fun invoke(expression: String): Monkey =
+                    when (expression.containsOnlyDigits()) {
                         true -> NumberMonkey(expression.toLong())
 
                         false -> {
                             val (leftMonkeyName, operation, rightMonkeyName) = expression.split(" ")
-                            MathMonkey(leftMonkeyName, Operation.of(operation), rightMonkeyName)
+                            MathMonkey(leftMonkeyName, Operation(operation), rightMonkeyName)
                         }
                     }
             }

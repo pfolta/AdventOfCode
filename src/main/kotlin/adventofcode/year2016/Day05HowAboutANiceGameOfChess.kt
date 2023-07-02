@@ -2,7 +2,7 @@ package adventofcode.year2016
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
-import adventofcode.common.md5
+import adventofcode.common.String.md5
 
 class Day05HowAboutANiceGameOfChess(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "How About a Nice Game of Chess?"

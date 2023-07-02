@@ -54,7 +54,7 @@ class Day16TicketTranslation(customInput: PuzzleInput? = null) : Puzzle(customIn
     }
 
     companion object {
-        data class TicketRule(
+        private data class TicketRule(
             val name: String,
             val ranges: List<IntRange>
         )

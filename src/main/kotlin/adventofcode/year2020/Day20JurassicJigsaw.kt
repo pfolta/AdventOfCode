@@ -54,7 +54,7 @@ class Day20JurassicJigsaw(customInput: PuzzleInput? = null) : Puzzle(customInput
     }
 
     companion object {
-        data class Tile(
+        private data class Tile(
             val id: Long,
             val content: List<String>
         ) {

@@ -2,7 +2,7 @@ package adventofcode.year2020
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
-import adventofcode.common.replaceAt
+import adventofcode.common.String.replaceAt
 
 class Day14DockingData(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val initializationInstructions by lazy { input.lines().map(InitializationInstruction::invoke) }

@@ -12,7 +12,7 @@ class Day22CrabCombat(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override fun partTwo() = CrabCombatGame(player1.toMutableList(), player2.toMutableList()).playRecursiveGame(true)
 
     companion object {
-        data class CrabCombatGame(
+        private data class CrabCombatGame(
             val player1: MutableList<Int>,
             val player2: MutableList<Int>
         ) {

@@ -2,8 +2,8 @@ package adventofcode.year2018
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
+import adventofcode.common.String.removeAt
 import adventofcode.common.product
-import adventofcode.common.removeAt
 
 class Day02InventoryManagementSystem(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val boxes by lazy { input.lines() }
