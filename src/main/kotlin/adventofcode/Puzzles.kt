@@ -3,9 +3,7 @@ package adventofcode
 import org.reflections.Reflections
 
 object Puzzles {
-    private val reflections = Reflections("adventofcode")
-
-    private val puzzles = reflections
+    private val puzzles = Reflections(Puzzle::class.java)
         .getSubTypesOf(Puzzle::class.java)
         .sortedBy(Class<out Puzzle>::getName)
         .map { it.getDeclaredConstructor().newInstance()!! }
