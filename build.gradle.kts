@@ -44,6 +44,10 @@ testlogger {
 }
 
 tasks {
+    withType<Wrapper> {
+        gradleVersion = "8.4"
+    }
+
     withType<KotlinCompile> {
         kotlinOptions.jvmTarget = "1.8"
     }
