@@ -4,8 +4,13 @@ import kotlin.time.ExperimentalTime
 
 @ExperimentalTime
 fun main(vararg args: String) = args
-    .map { it.split("/").map(String::toInt) }
-    .flatMap { if (it.size == 2) listOf(Puzzles.forDay(it.first(), it.last())) else Puzzles.forYear(it.first()) }
+    .map { arg -> arg.split("/").map(String::toInt) }
+    .flatMap { arg ->
+        when (arg.size) {
+            2 -> listOf(Puzzles.forDay(arg.first(), arg.last()))
+            else -> Puzzles.forYear(arg.first())
+        }
+    }
     .ifEmpty { Puzzles.all() }
     .forEach { puzzle ->
         puzzle.run()
