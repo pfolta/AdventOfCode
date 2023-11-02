@@ -6,8 +6,8 @@ on:
       - "master"
 
 jobs:
-  build-and-test:
-    name: "Build and Test"
+  build-natively-with-gradle:
+    name: "Build natively with Gradle"
     runs-on: "ubuntu-latest"
 
     steps:
