@@ -66,7 +66,7 @@ class Day08HandheldHalting(customInput: PuzzleInput? = null) : Puzzle(customInpu
             NOP("nop");
 
             companion object {
-                operator fun invoke(type: String) = values().associateBy(Operation::type)[type]!!
+                operator fun invoke(type: String) = entries.associateBy(Operation::type)[type]!!
             }
         }
     }

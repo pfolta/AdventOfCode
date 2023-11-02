@@ -49,7 +49,7 @@ class Day02Dive(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             UP("up");
 
             companion object {
-                operator fun invoke(direction: String) = values().associateBy(Direction::direction)[direction]!!
+                operator fun invoke(direction: String) = entries.associateBy(Direction::direction)[direction]!!
             }
         }
     }

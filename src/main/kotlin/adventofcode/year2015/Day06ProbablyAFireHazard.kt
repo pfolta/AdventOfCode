@@ -59,7 +59,7 @@ class Day06ProbablyAFireHazard(customInput: PuzzleInput? = null) : Puzzle(custom
             TOGGLE("toggle");
 
             companion object {
-                operator fun invoke(action: String) = values().associateBy(Action::action)[action]!!
+                operator fun invoke(action: String) = entries.associateBy(Action::action)[action]!!
             }
         }
     }

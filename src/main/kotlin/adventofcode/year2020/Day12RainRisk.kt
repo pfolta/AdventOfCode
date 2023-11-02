@@ -77,7 +77,7 @@ class Day12RainRisk(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             NORTH(270);
 
             companion object {
-                operator fun invoke(heading: Int) = values().associateBy(NavigationDirection::heading)[Math.floorMod(heading, 360)]!!
+                operator fun invoke(heading: Int) = entries.associateBy(NavigationDirection::heading)[Math.floorMod(heading, 360)]!!
             }
         }
 
@@ -91,7 +91,7 @@ class Day12RainRisk(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             FORWARD("F");
 
             companion object {
-                operator fun invoke(action: String) = values().associateBy(Action::action)[action]!!
+                operator fun invoke(action: String) = entries.associateBy(Action::action)[action]!!
             }
         }
 

@@ -30,7 +30,7 @@ class Day07SomeAssemblyRequired(customInput: PuzzleInput? = null) : Puzzle(custo
             RSHIFT("RSHIFT");
 
             companion object {
-                operator fun invoke(operation: String) = values().associateBy(Operation::operation)[operation]!!
+                operator fun invoke(operation: String) = entries.associateBy(Operation::operation)[operation]!!
             }
         }
 

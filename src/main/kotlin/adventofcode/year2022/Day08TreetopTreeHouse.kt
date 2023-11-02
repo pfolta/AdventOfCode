@@ -15,7 +15,7 @@ class Day08TreetopTreeHouse(customInput: PuzzleInput? = null) : Puzzle(customInp
         .flatMapIndexed { y, row ->
             row.mapIndexed { x, tree ->
                 Direction
-                    .values()
+                    .entries
                     .map { direction -> treeMap.neighbors(x, y, direction).filter { neighbor -> neighbor >= tree } }
                     .any(List<Int>::isEmpty)
             }
@@ -26,7 +26,7 @@ class Day08TreetopTreeHouse(customInput: PuzzleInput? = null) : Puzzle(customInp
         .flatMapIndexed { y, row ->
             row.mapIndexed { x, tree ->
                 Direction
-                    .values()
+                    .entries
                     .map { direction ->
                         val neighbors = treeMap.neighbors(x, y, direction)
 

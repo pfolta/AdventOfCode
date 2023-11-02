@@ -35,7 +35,7 @@ class Day21MonkeyMath(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             DIV("/");
 
             companion object {
-                operator fun invoke(operation: String) = Operation.values().associateBy(Operation::operation)[operation]!!
+                operator fun invoke(operation: String) = entries.associateBy(Operation::operation)[operation]!!
             }
         }
 
