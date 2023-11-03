@@ -29,14 +29,14 @@ jobs:
       - name: "Build with Gradle"
         run: "gradle build"
 
-      - name: "Upload 'AdventOfCode.jar'"
+      - name: "Upload 'AdventOfCode.jar' artifact"
         uses: "actions/upload-artifact@v3.1.3"
         with:
           name: "AdventOfCode.jar"
           path: "build/libs/AdventOfCode.jar"
           if-no-files-found: "error"
 
-      - name: "Upload Ktlint reports"
+      - name: "Upload Ktlint reports artifact"
         if: "${{ always() }}"
         uses: "actions/upload-artifact@v3.1.3"
         with:
@@ -44,7 +44,7 @@ jobs:
           path: "build/reports/ktlint"
           if-no-files-found: "error"
 
-      - name: "Upload test summary"
+      - name: "Upload test summary artifact"
         if: "${{ always() }}"
         uses: "actions/upload-artifact@v3.1.3"
         with:
@@ -52,7 +52,7 @@ jobs:
           path: "build/reports/tests/test"
           if-no-files-found: "error"
 
-      - name: "Upload coverage report"
+      - name: "Upload coverage report artifact"
         if: "${{ always() }}"
         uses: "actions/upload-artifact@v3.1.3"
         with:
@@ -81,11 +81,12 @@ jobs:
           outputs: "type=docker, dest=AdventOfCode.tar"
           push: false
 
-      - name: "Upload Docker Image Artifact"
+      - name: "Upload Docker image artifact"
         uses: "actions/upload-artifact@v3.1.3"
         with:
           name: "Docker Image"
           path: "AdventOfCode.tar"
+          if-no-files-found: "error"
 
   run-docker-image:
     name: "Run Docker Image"
@@ -93,18 +94,18 @@ jobs:
     runs-on: "ubuntu-latest"
 
     steps:
-      - name: "Download Docker Image Artifact"
+      - name: "Download Docker image artifact"
         uses: "actions/download-artifact@v3.0.2"
         with:
           name: "Docker Image"
           path: "."
 
-      - name: "Load Docker Image"
+      - name: "Load Docker image"
         run: |
           docker load --input AdventOfCode.tar
-          docker image ls -a
+          docker image ls pfolta/advent-of-code
 
-      - name: "Run Docker Image"
+      - name: "Run Docker image"
         uses: "addnab/docker-run-action@v3"
         with:
           image: "pfolta/advent-of-code:latest"
