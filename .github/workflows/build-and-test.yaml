@@ -109,4 +109,4 @@ jobs:
         uses: "addnab/docker-run-action@v3"
         with:
           image: "pfolta/advent-of-code:latest"
-          run: "java -jar AdventOfCode.jar"
+          run: "java -jar AdventOfCode.jar 2022"
