@@ -63,6 +63,27 @@ jobs:
       - name: "Publish coverage data to Codecov"
         uses: "codecov/codecov-action@v3.1.4"
 
+  run-jar-natively:
+    name: "Run JAR archive natively"
+    needs: "build-natively-with-gradle"
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: "Download 'AdventOfCode.jar' artifact"
+        uses: "actions/download-artifact@v3.0.2"
+        with:
+          name: "AdventOfCode.jar"
+          path: "."
+
+      - name: "Set up JDK 8"
+        uses: "actions/setup-java@v3.13.0"
+        with:
+          java-version: "8"
+          distribution: "corretto"
+
+      - name: "Run JAR archive"
+        run: "java -jar AdventOfCode.jar 2022"
+
   build-docker-image:
     name: "Build Docker Image"
     runs-on: "ubuntu-latest"
