@@ -22,6 +22,7 @@
     <a href="https://adventofcode.com/2020"><img src="https://img.shields.io/badge/%E2%AD%90%202020-44%2F50-0f0f23" alt="2020 Progress" /></a>
     <a href="https://adventofcode.com/2021"><img src="https://img.shields.io/badge/%E2%AD%90%202021-26%2F50-0f0f23" alt="2021 Progress" /></a>
     <a href="https://adventofcode.com/2022"><img src="https://img.shields.io/badge/%E2%AD%90%202022-28%2F50-0f0f23" alt="2022 Progress" /></a>
+    <a href="https://adventofcode.com/2023"><img src="https://img.shields.io/badge/%E2%AD%90%202023-1%2F50-0f0f23" alt="2023 Progress" /></a>
 </p>
 
 ## 🛷 How to run
@@ -148,6 +149,7 @@ Runtimes that exceed 15s are <span style="font-weight:bold;color:gray;background
 |                                           |  13 | [Distress Signal](https://adventofcode.com/2022/day/13)                                                | [[Code](src/main/kotlin/adventofcode/year2022/Day13DistressSignal.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2022/Day13DistressSignalSpec.kt)]                                       | `5825`                 | `24477`                                          |
 |                                           |  21 | [Monkey Math](https://adventofcode.com/2022/day/21)                                                    | [[Code](src/main/kotlin/adventofcode/year2022/Day21MonkeyMath.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2022/Day21MonkeyMathSpec.kt)]                                               | `286698846151845`      |                                                  |
 |                                           |  25 | [Full of Hot Air](https://adventofcode.com/2022/day/25)                                                | [[Code](src/main/kotlin/adventofcode/year2022/Day25FullOfHotAir.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2022/Day25FullOfHotAirSpec.kt)]                                           | `2‑2=12=1‑=‑1=000=222` |                                                  |
+| [**2023**](https://adventofcode.com/2023) |   1 | [Trebuchet?!](https://adventofcode.com/2023/day/1)                                                     | [[Code](src/main/kotlin/adventofcode/year2023/Day01Trebuchet.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2023/Day01TrebuchetSpec.kt)]                                                 | `55386`                | ``                                               |
 
 ## 🕯️ Useful commands
 
