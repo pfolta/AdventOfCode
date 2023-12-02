@@ -2,6 +2,7 @@ package adventofcode.year2023
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
+import adventofcode.common.product
 
 class Day02CubeConundrum(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override fun partOne() = input
@@ -9,6 +10,11 @@ class Day02CubeConundrum(customInput: PuzzleInput? = null) : Puzzle(customInput)
         .map(Game::invoke)
         .filter { game -> game.isPossible(12, 13, 14) }
         .sumOf(Game::id)
+
+    override fun partTwo() = input
+        .lines()
+        .map(Game::invoke)
+        .sumOf(Game::minimumCubePower)
 
     companion object {
         private data class Turn(
@@ -34,6 +40,8 @@ class Day02CubeConundrum(customInput: PuzzleInput? = null) : Puzzle(customInput)
             fun isPossible(red: Int, green: Int, blue: Int) = turns
                 .filterNot { turn -> turn.red <= red && turn.green <= green && turn.blue <= blue }
                 .isEmpty()
+
+            fun minimumCubePower() = listOf(turns.maxOf(Turn::red), turns.maxOf(Turn::green), turns.maxOf(Turn::blue)).product()
 
             companion object {
                 operator fun invoke(input: String): Game {
