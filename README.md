@@ -23,7 +23,7 @@
 <a href="https://adventofcode.com/2020"><img src="https://img.shields.io/badge/%E2%AD%90%202020-44%2F50-0f0f23" alt="2020 Progress" /></a>  
 <a href="https://adventofcode.com/2021"><img src="https://img.shields.io/badge/%E2%AD%90%202021-26%2F50-0f0f23" alt="2021 Progress" /></a>  
 <a href="https://adventofcode.com/2022"><img src="https://img.shields.io/badge/%E2%AD%90%202022-28%2F50-0f0f23" alt="2022 Progress" /></a>  
-<a href="https://adventofcode.com/2023"><img src="https://img.shields.io/badge/%E2%AD%90%202023-4%2F50-0f0f23" alt="2023 Progress" /></a>  
+<a href="https://adventofcode.com/2023"><img src="https://img.shields.io/badge/%E2%AD%90%202023-5%2F50-0f0f23" alt="2023 Progress" /></a>  
 
 ## 🛷 How to run
 
@@ -151,6 +151,7 @@ Runtimes that exceed 15s are <span style="font-weight:bold;color:gray;background
 |                                           |  25 | [Full of Hot Air](https://adventofcode.com/2022/day/25)                                                | [[Code](src/main/kotlin/adventofcode/year2022/Day25FullOfHotAir.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2022/Day25FullOfHotAirSpec.kt)]                                           | `2‑2=12=1‑=‑1=000=222` |                                                  |
 | [**2023**](https://adventofcode.com/2023) |   1 | [Trebuchet?!](https://adventofcode.com/2023/day/1)                                                     | [[Code](src/main/kotlin/adventofcode/year2023/Day01Trebuchet.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2023/Day01TrebuchetSpec.kt)]                                                 | `55386`                | `54824`                                          |
 |                                           |   2 | [Cube Conundrum](https://adventofcode.com/2023/day/2)                                                  | [[Code](src/main/kotlin/adventofcode/year2023/Day02CubeConundrum.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2023/Day02CubeConundrumSpec.kt)]                                         | `2285`                 | `77021`                                          |
+|                                           |   3 | [Gear Ratios](https://adventofcode.com/2023/day/3)                                                     | [[Code](src/main/kotlin/adventofcode/year2023/Day03GearRatios.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2023/Day03GearRatiosSpec.kt)]                                               | `529618`               |                                                  |
 
 ## 🕯️ Useful commands
 
