@@ -23,7 +23,7 @@
 <a href="https://adventofcode.com/2020"><img src="https://img.shields.io/badge/%E2%AD%90%202020-44%2F50-0f0f23" alt="2020 Progress" /></a>  
 <a href="https://adventofcode.com/2021"><img src="https://img.shields.io/badge/%E2%AD%90%202021-26%2F50-0f0f23" alt="2021 Progress" /></a>  
 <a href="https://adventofcode.com/2022"><img src="https://img.shields.io/badge/%E2%AD%90%202022-28%2F50-0f0f23" alt="2022 Progress" /></a>  
-<a href="https://adventofcode.com/2023"><img src="https://img.shields.io/badge/%E2%AD%90%202023-7%2F50-0f0f23" alt="2023 Progress" /></a>  
+<a href="https://adventofcode.com/2023"><img src="https://img.shields.io/badge/%E2%AD%90%202023-8%2F50-0f0f23" alt="2023 Progress" /></a>  
 
 ## 🛷 How to run
 
