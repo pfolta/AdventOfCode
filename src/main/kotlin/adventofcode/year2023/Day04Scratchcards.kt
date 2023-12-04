@@ -5,27 +5,42 @@ import adventofcode.PuzzleInput
 import kotlin.math.pow
 
 class Day04Scratchcards(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    override fun partOne() = input
-        .lines()
-        .map(Scratchcard::invoke)
-        .sumOf(Scratchcard::value)
+    private val scratchcards by lazy { input.lines().map(Scratchcard::invoke) }
+
+    override fun partOne() = scratchcards.sumOf(Scratchcard::points)
+
+    override fun partTwo(): Int {
+        val map = scratchcards.map(Scratchcard::id).associateWith { 1 }.toMutableMap()
+
+        scratchcards.forEach { scratchcard ->
+            scratchcard.cardsWon().forEach { wonCard ->
+                map[wonCard] = map[wonCard]!! + map[scratchcard.id]!!
+            }
+        }
+
+        return map.values.sum()
+    }
 
     companion object {
         private val CARD_REGEX = """Card\s+(\d+): ([\d\s]+) \| ([\d\s]+)""".toRegex()
 
         private data class Scratchcard(
-            val id: String,
+            val id: Int,
             val winningNumbers: Set<Int>,
             val cardNumbers: Set<Int>
         ) {
-            fun value() = 2.0.pow(cardNumbers.intersect(winningNumbers).size.minus(1)).toInt()
+            val matchingNumbers = cardNumbers.intersect(winningNumbers)
+
+            fun points() = 2.0.pow(matchingNumbers.size.minus(1)).toInt()
+
+            fun cardsWon() = (id + 1..id + matchingNumbers.size).toList()
 
             companion object {
                 operator fun invoke(input: String): Scratchcard {
                     val (id, winningNumbers, cardNumbers) = CARD_REGEX.find(input)!!.destructured
 
                     return Scratchcard(
-                        id,
+                        id.toInt(),
                         winningNumbers.split(" ").mapNotNull(String::toIntOrNull).toSet(),
                         cardNumbers.split(" ").mapNotNull(String::toIntOrNull).toSet()
                     )
