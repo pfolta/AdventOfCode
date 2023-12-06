@@ -23,7 +23,7 @@
 <a href="https://adventofcode.com/2020"><img src="https://img.shields.io/badge/%E2%AD%90%202020-44%2F50-0f0f23" alt="2020 Progress" /></a>  
 <a href="https://adventofcode.com/2021"><img src="https://img.shields.io/badge/%E2%AD%90%202021-26%2F50-0f0f23" alt="2021 Progress" /></a>  
 <a href="https://adventofcode.com/2022"><img src="https://img.shields.io/badge/%E2%AD%90%202022-28%2F50-0f0f23" alt="2022 Progress" /></a>  
-<a href="https://adventofcode.com/2023"><img src="https://img.shields.io/badge/%E2%AD%90%202023-10%2F50-0f0f23" alt="2023 Progress" /></a>  
+<a href="https://adventofcode.com/2023"><img src="https://img.shields.io/badge/%E2%AD%90%202023-11%2F50-0f0f23" alt="2023 Progress" /></a>  
 
 ## 🛷 How to run
 
@@ -154,7 +154,7 @@ Runtimes that exceed 15s are <span style="font-weight:bold;color:gray;background
 |                                           |   3 | [Gear Ratios](https://adventofcode.com/2023/day/3)                                                     | [[Code](src/main/kotlin/adventofcode/year2023/Day03GearRatios.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2023/Day03GearRatiosSpec.kt)]                                               | `529618`               | `77509019`                                       |
 |                                           |   4 | [Scratchcards](https://adventofcode.com/2023/day/4)                                                    | [[Code](src/main/kotlin/adventofcode/year2023/Day04Scratchcards.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2023/Day04ScratchcardsSpec.kt)]                                           | `23847`                | `8570000`                                        |
 |                                           |   5 | [If You Give A Seed A Fertilizer](https://adventofcode.com/2023/day/5)                                 | [[Code](src/main/kotlin/adventofcode/year2023/Day05IfYouGiveASeedAFertilizer.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2023/Day05IfYouGiveASeedAFertilizerSpec.kt)]                 | `462648396`            |                                                  |
-|                                           |   6 | [Wait For It](https://adventofcode.com/2023/day/6)                                                     | [[Code](src/main/kotlin/adventofcode/year2023/Day06WaitForIt.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2023/Day06WaitForItSpec.kt)]                                                 | `2269432`              |                                                  |
+|                                           |   6 | [Wait For It](https://adventofcode.com/2023/day/6)                                                     | [[Code](src/main/kotlin/adventofcode/year2023/Day06WaitForIt.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2023/Day06WaitForItSpec.kt)]                                                 | `2269432`              | `35865985`                                       |
 
 ## 🕯️ Useful commands
 
