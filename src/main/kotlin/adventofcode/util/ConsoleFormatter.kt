@@ -6,7 +6,7 @@ import com.diogonunes.jcolor.Attribute.BOLD
 import com.diogonunes.jcolor.Attribute.RED_BACK
 import com.diogonunes.jcolor.Attribute.UNDERLINE
 import com.diogonunes.jcolor.Attribute.WHITE_TEXT
-import java.net.URL
+import java.net.URI
 import kotlin.time.Duration
 import kotlin.time.Duration.Companion.seconds
 
@@ -23,4 +23,4 @@ fun Duration.formatBenchmark(): String = when {
 
 fun String.bold(): String = AnsiFormat(BOLD()).format(this)
 
-fun URL.formatUrl(): String = AnsiFormat(BLUE_TEXT(), UNDERLINE()).format(this.toString())
+fun URI.formatUri(): String = AnsiFormat(BLUE_TEXT(), UNDERLINE()).format(this.toString())

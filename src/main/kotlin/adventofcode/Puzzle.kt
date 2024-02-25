@@ -2,9 +2,9 @@ package adventofcode
 
 import adventofcode.util.bold
 import adventofcode.util.formatBenchmark
-import adventofcode.util.formatUrl
+import adventofcode.util.formatUri
 import java.io.FileNotFoundException
-import java.net.URL
+import java.net.URI
 import kotlin.time.ExperimentalTime
 import kotlin.time.measureTimedValue
 
@@ -14,7 +14,7 @@ typealias PuzzleOutput = Any
 abstract class Puzzle(customInput: PuzzleInput?) {
     val year = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component1().toInt()
     val day = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component2().toInt()
-    private val link = URL("https://adventofcode.com/$year/day/$day")
+    private val link = URI("https://adventofcode.com/$year/day/$day")
 
     /**
      * Name of the puzzle.
@@ -59,7 +59,7 @@ abstract class Puzzle(customInput: PuzzleInput?) {
         """
         🎄 Advent of Code $year, Day $day
            ${name.bold()}
-           ${link.formatUrl()}
+           ${link.formatUri()}
         """.trimIndent().also(::println)
 
         measureTimedValue { partOne() }.let { (value, duration) ->

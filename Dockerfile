@@ -1,9 +1,9 @@
-FROM gradle:8.4.0-jdk8 AS builder
+FROM gradle:8.6.0-jdk21 AS builder
 WORKDIR /app
 COPY . .
 RUN gradle build
 
-FROM amazoncorretto:8u392-al2023-jre
+FROM amazoncorretto:21
 WORKDIR /app
 COPY --from=builder /app/build/libs/AdventOfCode.jar .
 ENTRYPOINT ["java", "-jar", "AdventOfCode.jar"]

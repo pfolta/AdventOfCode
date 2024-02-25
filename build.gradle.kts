@@ -22,7 +22,6 @@ repositories {
 
 dependencies {
     implementation(kotlin("reflect"))
-    implementation(kotlin("stdlib-jdk8"))
     implementation("com.diogonunes:JColor:5.5.1")
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.3")
     implementation("org.reflections:reflections:0.10.2")
@@ -49,7 +48,7 @@ tasks {
     }
 
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = "1.8"
+        kotlinOptions.jvmTarget = JavaVersion.VERSION_21.toString()
     }
 
     withType<Test> {
