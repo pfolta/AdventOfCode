@@ -9,8 +9,9 @@ class Day15RambunctiousRecitationSpec : PuzzleBaseSpec(
         "1,2,3" to 27,
         "2,3,1" to 78,
         "3,2,1" to 438,
-        "3,1,2" to 1836
-    ) // ,
+        "3,1,2" to 1836,
+    ),
+    // ,
     // TODO: These tests work when run with JUnit but don't seem to terminate when run with Gradle
     // listOf(
     //     "0,3,6" to 175594,

@@ -32,7 +32,8 @@ class Day21MonkeyMath(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             PLUS("+"),
             MINUS("-"),
             TIMES("*"),
-            DIV("/");
+            DIV("/"),
+            ;
 
             companion object {
                 operator fun invoke(operation: String) = entries.associateBy(Operation::operation)[operation]!!

@@ -20,12 +20,13 @@ abstract class Puzzle(customInput: PuzzleInput?) {
      * Name of the puzzle.
      * Inferred from the puzzle's class name by default but can be overridden (e.g. if puzzle name contains special characters).
      */
-    protected open val name = CLASS_NAME_REGEX
-        .find(javaClass.name)!!
-        .destructured
-        .component3()
-        .replace("""([A-Z]|\d+)""".toRegex(), " $1")
-        .trim()
+    protected open val name =
+        CLASS_NAME_REGEX
+            .find(javaClass.name)!!
+            .destructured
+            .component3()
+            .replace("""([A-Z]|\d+)""".toRegex(), " $1")
+            .trim()
 
     /**
      * Puzzle input as String.

@@ -20,13 +20,18 @@ class Day12HillClimbingAlgorithm(customInput: PuzzleInput? = null) : Puzzle(cust
         }
 
         private val Char.level
-            get() = when (this) {
-                'S' -> 0
-                'E' -> 'z' - 'a'
-                else -> this - 'a'
-            }
+            get() =
+                when (this) {
+                    'S' -> 0
+                    'E' -> 'z' - 'a'
+                    else -> this - 'a'
+                }
 
-        private fun List<List<Char>>.bfs(start: Char, end: Char, validNeighborTest: (from: Char, to: Char) -> Boolean): Int {
+        private fun List<List<Char>>.bfs(
+            start: Char,
+            end: Char,
+            validNeighborTest: (from: Char, to: Char) -> Boolean,
+        ): Int {
             val startNode = find(start)
 
             val queue: MutableList<Pair<Int, Int>> = mutableListOf(startNode)

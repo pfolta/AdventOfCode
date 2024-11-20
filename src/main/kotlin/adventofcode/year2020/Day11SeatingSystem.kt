@@ -14,7 +14,10 @@ class Day11SeatingSystem(customInput: PuzzleInput? = null) : Puzzle(customInput)
     override fun partTwo() = seatMap.iterate(5, List<List<String>>::getNearestSeatNeighbors)
 }
 
-private fun List<List<String>>.getNearestSeatNeighbor(self: Pair<Int, Int>, direction: Pair<Int, Int>): String? {
+private fun List<List<String>>.getNearestSeatNeighbor(
+    self: Pair<Int, Int>,
+    direction: Pair<Int, Int>,
+): String? {
     var x = self.first
     var y = self.second
 
@@ -34,25 +37,30 @@ private fun List<List<String>>.getNearestSeatNeighbor(self: Pair<Int, Int>, dire
 private fun List<List<String>>.getImmediateNeighbors(self: Pair<Int, Int>) =
     directions.mapNotNull { dir -> getOrNull(self.second + dir.second)?.getOrNull(self.first + dir.first) }
 
-private fun List<List<String>>.next(tolerance: Int, neighborFunction: List<List<String>>.(Pair<Int, Int>) -> List<String>) =
-    mapIndexed { y, row ->
-        List(row.size) { x ->
-            val occupiedNeighbors = neighborFunction(this, Pair(x, y)).count { it == "#" }
+private fun List<List<String>>.next(
+    tolerance: Int,
+    neighborFunction: List<List<String>>.(Pair<Int, Int>) -> List<String>,
+) = mapIndexed { y, row ->
+    List(row.size) { x ->
+        val occupiedNeighbors = neighborFunction(this, Pair(x, y)).count { it == "#" }
 
-            when {
-                (this[y][x] == "L" && occupiedNeighbors == 0) -> "#"
-                (this[y][x] == "#" && occupiedNeighbors >= tolerance) -> "L"
-                else -> this[y][x]
-            }
+        when {
+            (this[y][x] == "L" && occupiedNeighbors == 0) -> "#"
+            (this[y][x] == "#" && occupiedNeighbors >= tolerance) -> "L"
+            else -> this[y][x]
         }
     }
+}
 
-private fun List<List<String>>.iterate(tolerance: Int, neighborFunction: List<List<String>>.(Pair<Int, Int>) -> List<String>) =
-    generateSequence(this) { it.next(tolerance, neighborFunction) }
-        .zipWithNext()
-        .first { it.first == it.second }
-        .first
-        .sumOf { it.count { it == "#" } }
+private fun List<List<String>>.iterate(
+    tolerance: Int,
+    neighborFunction: List<List<String>>.(Pair<Int, Int>) -> List<String>,
+) = generateSequence(this) { it.next(tolerance, neighborFunction) }
+    .zipWithNext()
+    .first { it.first == it.second }
+    .first
+    .sumOf { it.count { it == "#" } }
 
-private fun List<List<String>>.getNearestSeatNeighbors(self: Pair<Int, Int>) = directions
-    .mapNotNull { dir -> getNearestSeatNeighbor(self, dir) }
+private fun List<List<String>>.getNearestSeatNeighbors(self: Pair<Int, Int>) =
+    directions
+        .mapNotNull { dir -> getNearestSeatNeighbor(self, dir) }

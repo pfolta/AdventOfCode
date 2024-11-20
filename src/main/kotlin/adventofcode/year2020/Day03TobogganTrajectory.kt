@@ -9,9 +9,10 @@ class Day03TobogganTrajectory(customInput: PuzzleInput? = null) : Puzzle(customI
 
     override fun partOne() = treeMap.countTrees(Slope(3, 1))
 
-    override fun partTwo() = listOf(Slope(1, 1), Slope(3, 1), Slope(5, 1), Slope(7, 1), Slope(1, 2))
-        .map { treeMap.countTrees(it) }
-        .product()
+    override fun partTwo() =
+        listOf(Slope(1, 1), Slope(3, 1), Slope(5, 1), Slope(7, 1), Slope(1, 2))
+            .map { treeMap.countTrees(it) }
+            .product()
 
     companion object {
         private data class Slope(val dx: Long, val dy: Long)

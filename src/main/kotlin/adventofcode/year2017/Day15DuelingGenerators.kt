@@ -6,13 +6,15 @@ import adventofcode.PuzzleInput
 class Day15DuelingGenerators(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val generators by lazy { input.lines().map { it.split(" ").last().toLong() }.zipWithNext().first() }
 
-    override fun partOne() = generateSequence(generators) { (a, b) -> a.next(A_FACTOR) to b.next(B_FACTOR) }
-        .take(ROUNDS_PART_1)
-        .count { (a, b) -> a.toBinary().takeLast(BITS_TO_COMPARE) == b.toBinary().takeLast(BITS_TO_COMPARE) }
+    override fun partOne() =
+        generateSequence(generators) { (a, b) -> a.next(A_FACTOR) to b.next(B_FACTOR) }
+            .take(ROUNDS_PART_1)
+            .count { (a, b) -> a.toBinary().takeLast(BITS_TO_COMPARE) == b.toBinary().takeLast(BITS_TO_COMPARE) }
 
-    override fun partTwo() = generateSequence(generators) { (a, b) -> a.next(A_FACTOR, A_MULTIPLE_OF) to b.next(B_FACTOR, B_MULTIPLE_OF) }
-        .take(ROUNDS_PART_2)
-        .count { (a, b) -> a.toBinary().takeLast(BITS_TO_COMPARE) == b.toBinary().takeLast(BITS_TO_COMPARE) }
+    override fun partTwo() =
+        generateSequence(generators) { (a, b) -> a.next(A_FACTOR, A_MULTIPLE_OF) to b.next(B_FACTOR, B_MULTIPLE_OF) }
+            .take(ROUNDS_PART_2)
+            .count { (a, b) -> a.toBinary().takeLast(BITS_TO_COMPARE) == b.toBinary().takeLast(BITS_TO_COMPARE) }
 
     companion object {
         private const val BITS_TO_COMPARE = 16
@@ -30,7 +32,10 @@ class Day15DuelingGenerators(customInput: PuzzleInput? = null) : Puzzle(customIn
 
         private fun Long.next(factor: Int) = this * factor % DIVISOR
 
-        private tailrec fun Long.next(factor: Int, multipleOf: Int): Long {
+        private tailrec fun Long.next(
+            factor: Int,
+            multipleOf: Int,
+        ): Long {
             val next = this.next(factor)
 
             return when (next % multipleOf) {

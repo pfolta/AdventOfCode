@@ -5,18 +5,18 @@ import adventofcode.PuzzleBaseSpec
 class Day19MedicineForRudolphSpec : PuzzleBaseSpec(
     listOf(
         """
-            H => HO
-            H => OH
-            O => HH
-            
-            HOH
+        H => HO
+        H => OH
+        O => HH
+        
+        HOH
         """.trimIndent() to 4,
         """
-            H => HO
-            H => OH
-            O => HH
-            
-            HOHOHO
-        """.trimIndent() to 7
-    )
+        H => HO
+        H => OH
+        O => HH
+        
+        HOHOHO
+        """.trimIndent() to 7,
+    ),
 )

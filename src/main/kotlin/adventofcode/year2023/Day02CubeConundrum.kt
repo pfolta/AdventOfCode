@@ -5,22 +5,24 @@ import adventofcode.PuzzleInput
 import adventofcode.common.product
 
 class Day02CubeConundrum(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    override fun partOne() = input
-        .lines()
-        .map(Game::invoke)
-        .filter { game -> game.isPossible(12, 13, 14) }
-        .sumOf(Game::id)
+    override fun partOne() =
+        input
+            .lines()
+            .map(Game::invoke)
+            .filter { game -> game.isPossible(12, 13, 14) }
+            .sumOf(Game::id)
 
-    override fun partTwo() = input
-        .lines()
-        .map(Game::invoke)
-        .sumOf(Game::minimumCubePower)
+    override fun partTwo() =
+        input
+            .lines()
+            .map(Game::invoke)
+            .sumOf(Game::minimumCubePower)
 
     companion object {
         private data class Turn(
             val red: Int,
             val green: Int,
-            val blue: Int
+            val blue: Int,
         ) {
             companion object {
                 operator fun invoke(turn: String): Turn {
@@ -35,9 +37,13 @@ class Day02CubeConundrum(customInput: PuzzleInput? = null) : Puzzle(customInput)
 
         private data class Game(
             val id: Int,
-            val turns: List<Turn>
+            val turns: List<Turn>,
         ) {
-            fun isPossible(red: Int, green: Int, blue: Int) = turns
+            fun isPossible(
+                red: Int,
+                green: Int,
+                blue: Int,
+            ) = turns
                 .filterNot { turn -> turn.red <= red && turn.green <= green && turn.blue <= blue }
                 .isEmpty()
 

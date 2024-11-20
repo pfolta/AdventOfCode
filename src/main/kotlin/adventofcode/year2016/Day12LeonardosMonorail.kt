@@ -22,7 +22,11 @@ class Day12LeonardosMonorail(customInput: PuzzleInput? = null) : Puzzle(customIn
             return registers.toMap()
         }
 
-        fun runAssembunnyInstruction(code: List<String>, index: Int, registers: MutableMap<String, Int>): Int {
+        fun runAssembunnyInstruction(
+            code: List<String>,
+            index: Int,
+            registers: MutableMap<String, Int>,
+        ): Int {
             val instruction = code[index].split(" ")
 
             return when (instruction.first()) {
@@ -43,16 +47,20 @@ class Day12LeonardosMonorail(customInput: PuzzleInput? = null) : Puzzle(customIn
                     index + 1
                 }
 
-                "jnz" -> when (intOrRegisterValue(instruction[1], registers)) {
-                    0 -> index + 1
-                    else -> index + instruction.last().toInt()
-                }
+                "jnz" ->
+                    when (intOrRegisterValue(instruction[1], registers)) {
+                        0 -> index + 1
+                        else -> index + instruction.last().toInt()
+                    }
 
                 else -> throw IllegalArgumentException("'$this' is not a valid assembunny instruction")
             }
         }
 
-        fun intOrRegisterValue(value: String, registers: Map<String, Int>): Int =
+        fun intOrRegisterValue(
+            value: String,
+            registers: Map<String, Int>,
+        ): Int =
             when (value.containsOnlyDigits()) {
                 true -> value.toInt()
                 false -> registers.getOrDefault(value, 0)

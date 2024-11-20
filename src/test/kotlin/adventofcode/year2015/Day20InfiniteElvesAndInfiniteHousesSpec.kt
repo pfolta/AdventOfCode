@@ -12,6 +12,6 @@ class Day20InfiniteElvesAndInfiniteHousesSpec : PuzzleBaseSpec(
         "120" to 6,
         "80" to 6,
         "150" to 8,
-        "130" to 8
-    )
+        "130" to 8,
+    ),
 )

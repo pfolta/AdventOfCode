@@ -17,19 +17,20 @@ class Day19MonsterMessages(customInput: PuzzleInput? = null) : Puzzle(customInpu
     private val messages by lazy { input.split("\n\n").last().lines() }
 
     override fun partOne(): Int {
-        val rule0 = generateSequence(rules["0"]) { previous ->
-            previous
-                .split(" ")
-                .joinToString(" ") {
-                    when (val ref = NUMBER_REGEX.find(it)) {
-                        null -> it
-                        else -> it.replace(ref.value, "(${rules[ref.value]})")
+        val rule0 =
+            generateSequence(rules["0"]) { previous ->
+                previous
+                    .split(" ")
+                    .joinToString(" ") {
+                        when (val ref = NUMBER_REGEX.find(it)) {
+                            null -> it
+                            else -> it.replace(ref.value, "(${rules[ref.value]})")
+                        }
                     }
-                }
-        }
-            .first { regex -> regex.split(" ").none { it.contains(NUMBER_REGEX) } }
-            .replace(" ", "")
-            .toRegex()
+            }
+                .first { regex -> regex.split(" ").none { it.contains(NUMBER_REGEX) } }
+                .replace(" ", "")
+                .toRegex()
 
         return messages.count { rule0.matches(it) }
     }

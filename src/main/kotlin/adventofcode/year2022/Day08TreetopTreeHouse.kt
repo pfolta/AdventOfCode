@@ -11,38 +11,44 @@ import adventofcode.year2022.Day08TreetopTreeHouse.Companion.Direction.UP
 class Day08TreetopTreeHouse(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val treeMap by lazy { input.lines().map { line -> line.map(Char::digitToInt) } }
 
-    override fun partOne() = treeMap
-        .flatMapIndexed { y, row ->
-            row.mapIndexed { x, tree ->
-                Direction
-                    .entries
-                    .map { direction -> treeMap.neighbors(x, y, direction).filter { neighbor -> neighbor >= tree } }
-                    .any(List<Int>::isEmpty)
+    override fun partOne() =
+        treeMap
+            .flatMapIndexed { y, row ->
+                row.mapIndexed { x, tree ->
+                    Direction
+                        .entries
+                        .map { direction -> treeMap.neighbors(x, y, direction).filter { neighbor -> neighbor >= tree } }
+                        .any(List<Int>::isEmpty)
+                }
             }
-        }
-        .count { tree -> tree }
+            .count { tree -> tree }
 
-    override fun partTwo() = treeMap
-        .flatMapIndexed { y, row ->
-            row.mapIndexed { x, tree ->
-                Direction
-                    .entries
-                    .map { direction ->
-                        val neighbors = treeMap.neighbors(x, y, direction)
+    override fun partTwo() =
+        treeMap
+            .flatMapIndexed { y, row ->
+                row.mapIndexed { x, tree ->
+                    Direction
+                        .entries
+                        .map { direction ->
+                            val neighbors = treeMap.neighbors(x, y, direction)
 
-                        when (val tallestNeighbor = neighbors.indexOfFirst { neighbor -> neighbor >= tree }) {
-                            -1 -> neighbors.size
-                            else -> tallestNeighbor + 1
+                            when (val tallestNeighbor = neighbors.indexOfFirst { neighbor -> neighbor >= tree }) {
+                                -1 -> neighbors.size
+                                else -> tallestNeighbor + 1
+                            }
                         }
-                    }
+                }
             }
-        }
-        .maxOf(List<Int>::product)
+            .maxOf(List<Int>::product)
 
     companion object {
         private enum class Direction { DOWN, LEFT, RIGHT, UP }
 
-        private fun List<List<Int>>.neighbors(x: Int, y: Int, direction: Direction) = when (direction) {
+        private fun List<List<Int>>.neighbors(
+            x: Int,
+            y: Int,
+            direction: Direction,
+        ) = when (direction) {
             DOWN -> map { row -> row[x] }.drop(y + 1)
             LEFT -> this[y].take(x).reversed()
             RIGHT -> this[y].drop(x + 1)

@@ -2,10 +2,14 @@ package adventofcode.common
 
 // Returns every nth element in a list shifted by an optional offset
 // e.g. listOf(1, 2, 3, 4).everyNth(2, 1) -> listOf(2, 4)
-inline fun <reified T : Any?> Collection<T>.everyNth(n: Int, offset: Int = 0) = filterIndexed { index, _ -> index % n == offset }
+inline fun <reified T : Any?> Collection<T>.everyNth(
+    n: Int,
+    offset: Int = 0,
+) = filterIndexed { index, _ -> index % n == offset }
 
 // Returns the product of all elements in a Int/Long collection, similar to sum()
 fun Collection<Int>.product() = reduce(Int::times)
+
 fun Collection<Long>.product() = reduce(Long::times)
 
 /**
@@ -23,25 +27,31 @@ inline fun <reified T : Any?> Collection<Collection<T>>.cartesianProduct() =
  * _ N _                    N N N
  * where N is a neighbor of P.
  */
-inline fun <reified T : Any?> List<List<T>>.neighbors(x: Int, y: Int, includeDiagonals: Boolean): Set<Pair<Int, Int>> =
+inline fun <reified T : Any?> List<List<T>>.neighbors(
+    x: Int,
+    y: Int,
+    includeDiagonals: Boolean,
+): Set<Pair<Int, Int>> =
     when {
-        includeDiagonals -> setOf(
-            x - 1 to y - 1,
-            x to y - 1,
-            x + 1 to y - 1,
-            x - 1 to y,
-            x + 1 to y,
-            x - 1 to y + 1,
-            x to y + 1,
-            x + 1 to y + 1
-        )
+        includeDiagonals ->
+            setOf(
+                x - 1 to y - 1,
+                x to y - 1,
+                x + 1 to y - 1,
+                x - 1 to y,
+                x + 1 to y,
+                x - 1 to y + 1,
+                x to y + 1,
+                x + 1 to y + 1,
+            )
 
-        else -> setOf(
-            x to y - 1,
-            x - 1 to y,
-            x + 1 to y,
-            x to y + 1
-        )
+        else ->
+            setOf(
+                x to y - 1,
+                x - 1 to y,
+                x + 1 to y,
+                x to y + 1,
+            )
     }
         .filter { it.first >= 0 && it.second >= 0 }
         .filter { it.first < this[y].size && it.second < size }

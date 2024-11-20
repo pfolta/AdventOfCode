@@ -12,15 +12,16 @@ class Day05IfYouGiveASeedAFertilizer(customInput: PuzzleInput? = null) : Puzzle(
     }
 
     companion object {
-        private fun Long.mapsTo(maps: List<ConversionMap>) = when (val map = maps.find { it.contains(this) }) {
-            null -> this
-            else -> map.dstStart + (this - map.srcStart)
-        }
+        private fun Long.mapsTo(maps: List<ConversionMap>) =
+            when (val map = maps.find { it.contains(this) }) {
+                null -> this
+                else -> map.dstStart + (this - map.srcStart)
+            }
 
         private data class ConversionMap(
             val srcStart: Long,
             val dstStart: Long,
-            val length: Long
+            val length: Long,
         ) {
             fun contains(item: Long) = (item >= srcStart && item < srcStart + length)
 

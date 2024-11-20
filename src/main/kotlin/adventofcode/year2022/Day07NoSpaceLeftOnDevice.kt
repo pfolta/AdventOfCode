@@ -26,14 +26,16 @@ class Day07NoSpaceLeftOnDevice(customInput: PuzzleInput? = null) : Puzzle(custom
             .map { directory -> directory to files.filter { file -> file.path.startsWith(directory) }.sumOf { file -> file.size } }
     }
 
-    override fun partOne() = directories
-        .filter { (_, size) -> size <= 100000 }
-        .sumOf { (_, size) -> size }
+    override fun partOne() =
+        directories
+            .filter { (_, size) -> size <= 100000 }
+            .sumOf { (_, size) -> size }
 
-    override fun partTwo() = directories
-        .filter { (_, size) -> size >= REQUIRED_SPACE - (TOTAL_DISK_SPACE - directories.maxOf { (_, size) -> size }) }
-        .minBy { (_, size) -> size }
-        .second
+    override fun partTwo() =
+        directories
+            .filter { (_, size) -> size >= REQUIRED_SPACE - (TOTAL_DISK_SPACE - directories.maxOf { (_, size) -> size }) }
+            .minBy { (_, size) -> size }
+            .second
 
     companion object {
         private const val TOTAL_DISK_SPACE = 70000000
@@ -42,7 +44,7 @@ class Day07NoSpaceLeftOnDevice(customInput: PuzzleInput? = null) : Puzzle(custom
         private data class File(
             val name: String,
             val path: String,
-            val size: Int
+            val size: Int,
         )
     }
 }

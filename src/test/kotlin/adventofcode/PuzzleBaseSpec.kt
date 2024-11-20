@@ -5,17 +5,18 @@ import io.kotest.matchers.shouldBe
 
 abstract class PuzzleBaseSpec(
     partOne: List<Pair<PuzzleInput?, PuzzleOutput>>,
-    partTwo: List<Pair<PuzzleInput?, PuzzleOutput>>? = null
+    partTwo: List<Pair<PuzzleInput?, PuzzleOutput>>? = null,
 ) : FreeSpec() {
     constructor(partOne: PuzzleOutput, partTwo: PuzzleOutput? = null) : this(
         listOf(null to partOne),
-        partTwo?.let { listOf(null to partTwo) }
+        partTwo?.let { listOf(null to partTwo) },
     )
 
-    private val puzzleConstructor = Class
-        .forName(javaClass.name.removeSuffix("Spec"))
-        .asSubclass(Puzzle::class.java)
-        .getConstructor(String::class.java)
+    private val puzzleConstructor =
+        Class
+            .forName(javaClass.name.removeSuffix("Spec"))
+            .asSubclass(Puzzle::class.java)
+            .getConstructor(String::class.java)
 
     init {
         "${puzzleConstructor.newInstance("")}" - {

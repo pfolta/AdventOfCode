@@ -5,10 +5,11 @@ import adventofcode.PuzzleInput
 import adventofcode.common.everyNth
 
 class Day25ClockSignal(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    override fun partOne() = generateSequence(1, Int::inc)
-        .map { a -> a to input.lines().runAssembunny(mutableMapOf("a" to a)) }
-        .first { (_, out) -> out.everyNth(2).all { it == 0 } && out.everyNth(2, 1).all { it == 1 } }
-        .first
+    override fun partOne() =
+        generateSequence(1, Int::inc)
+            .map { a -> a to input.lines().runAssembunny(mutableMapOf("a" to a)) }
+            .first { (_, out) -> out.everyNth(2).all { it == 0 } && out.everyNth(2, 1).all { it == 1 } }
+            .first
 
     companion object {
         private fun List<String>.runAssembunny(registers: MutableMap<String, Int> = mutableMapOf()): List<Int> {
@@ -30,7 +31,11 @@ class Day25ClockSignal(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             return transmissions.toList()
         }
 
-        private fun runAssembunnyInstruction(code: List<String>, index: Int, registers: MutableMap<String, Int>): Pair<Int, Int?> {
+        private fun runAssembunnyInstruction(
+            code: List<String>,
+            index: Int,
+            registers: MutableMap<String, Int>,
+        ): Pair<Int, Int?> {
             val instruction = code[index].split(" ")
 
             return when (instruction.first()) {

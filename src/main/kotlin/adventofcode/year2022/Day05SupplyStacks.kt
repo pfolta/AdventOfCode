@@ -6,13 +6,14 @@ import adventofcode.common.transpose
 
 class Day05SupplyStacks(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val stacks by lazy {
-        val stackRows = input
-            .split("\n\n")
-            .first()
-            .lines()
-            .dropLast(1)
-            .map { row -> row.filterIndexed { index, _ -> index % 4 == 1 }.toList() }
-            .map { row -> row.map { if (it == ' ') null else it } }
+        val stackRows =
+            input
+                .split("\n\n")
+                .first()
+                .lines()
+                .dropLast(1)
+                .map { row -> row.filterIndexed { index, _ -> index % 4 == 1 }.toList() }
+                .map { row -> row.map { if (it == ' ') null else it } }
 
         val stackCount = stackRows.last().size
 

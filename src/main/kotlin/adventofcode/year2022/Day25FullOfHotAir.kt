@@ -7,24 +7,26 @@ import kotlin.math.pow
 class Day25FullOfHotAir(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "Full of Hot Air"
 
-    override fun partOne() = input
-        .lines()
-        .sumOf { it.fromSnafuNumber() }
-        .toSnafuNumber()
+    override fun partOne() =
+        input
+            .lines()
+            .sumOf { it.fromSnafuNumber() }
+            .toSnafuNumber()
 
     companion object {
         private const val SNAFU_NUMBER_BASE = 5
 
-        private fun String.fromSnafuNumber() = this
-            .reversed()
-            .mapIndexed { index, digit ->
-                when (digit) {
-                    '=' -> -2
-                    '-' -> -1
-                    else -> digit.digitToInt()
-                } * SNAFU_NUMBER_BASE.toDouble().pow(index).toLong()
-            }
-            .sum()
+        private fun String.fromSnafuNumber() =
+            this
+                .reversed()
+                .mapIndexed { index, digit ->
+                    when (digit) {
+                        '=' -> -2
+                        '-' -> -1
+                        else -> digit.digitToInt()
+                    } * SNAFU_NUMBER_BASE.toDouble().pow(index).toLong()
+                }
+                .sum()
 
         private tailrec fun Long.toSnafuNumber(snafuNumber: String = ""): String =
             when {

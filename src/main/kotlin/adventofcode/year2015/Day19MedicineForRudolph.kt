@@ -19,8 +19,9 @@ class Day19MedicineForRudolph(customInput: PuzzleInput? = null) : Puzzle(customI
 
     private val molecule by lazy { input.split("\n\n").last() }
 
-    override fun partOne() = replacements
-        .flatMap { (source, replacement) -> Regex(source).findAll(molecule).map { molecule.replaceRange(it.range, replacement) } }
-        .toSet()
-        .size
+    override fun partOne() =
+        replacements
+            .flatMap { (source, replacement) -> Regex(source).findAll(molecule).map { molecule.replaceRange(it.range, replacement) } }
+            .toSet()
+            .size
 }

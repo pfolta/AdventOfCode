@@ -11,12 +11,12 @@ class Day12JSAbacusFrameworkIoSpec : PuzzleBaseSpec(
         """{"a":[-1,1]}""" to 0,
         """[-1,{"a":1}]""" to 0,
         """[]""" to 0,
-        """{}""" to 0
+        """{}""" to 0,
     ),
     listOf(
         """[1,2,3]""" to 6,
         """[1,{"c":"red","b":2},3]""" to 4,
         """{"d":"red","e":[1,2,3,4],"f":5}""" to 0,
-        """[1,"red",5]""" to 6
-    )
+        """[1,"red",5]""" to 6,
+    ),
 )

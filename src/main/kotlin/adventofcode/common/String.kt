@@ -8,12 +8,18 @@ object String {
     /**
      * Replaces the character of this `String` at the specified index with the replacement character.
      */
-    fun String.replaceAt(index: Int, replacement: Char) = replaceRange(index..index, replacement.toString())
+    fun String.replaceAt(
+        index: Int,
+        replacement: Char,
+    ) = replaceRange(index..index, replacement.toString())
 
     /**
      * Removes the slice of given length at the specified index.
      */
-    fun String.removeAt(index: Int, slice: Int = 1) = removeRange(index until index + slice)
+    fun String.removeAt(
+        index: Int,
+        slice: Int = 1,
+    ) = removeRange(index until index + slice)
 
     /**
      * Computes the MD5 hash of this `String` and returns the hash's hexadecimal `String` representation

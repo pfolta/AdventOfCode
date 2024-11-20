@@ -2,7 +2,8 @@ package adventofcode.year2020
 
 import adventofcode.PuzzleBaseSpec
 
-private val example1 = """
+private val example1 =
+    """
     16
     10
     15
@@ -14,9 +15,10 @@ private val example1 = """
     6
     12
     4
-""".trimIndent()
+    """.trimIndent()
 
-private val example2 = """
+private val example2 =
+    """
     28
     33
     18
@@ -48,15 +50,15 @@ private val example2 = """
     34
     10
     3
-""".trimIndent()
+    """.trimIndent()
 
 class Day10AdapterArraySpec : PuzzleBaseSpec(
     listOf(
         example1 to 7 * 5,
-        example2 to 22 * 10
+        example2 to 22 * 10,
     ),
     listOf(
         example1 to 8,
-        example2 to 19208
-    )
+        example2 to 19208,
+    ),
 )

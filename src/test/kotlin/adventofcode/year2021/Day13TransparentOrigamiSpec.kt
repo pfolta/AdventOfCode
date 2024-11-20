@@ -14,5 +14,5 @@ class Day13TransparentOrigamiSpec : PuzzleBaseSpec(
          
          
 
-    """.trimIndent()
+    """.trimIndent(),
 )

@@ -41,20 +41,21 @@ class Day04GiantSquid(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     companion object {
         private data class Number(
             val value: Int,
-            val marked: Boolean = false
+            val marked: Boolean = false,
         )
 
         private data class Board(
-            val numbers: List<List<Number>>
+            val numbers: List<List<Number>>,
         ) {
             fun markNumber(number: Int) =
                 copy(numbers = numbers.map { row -> row.map { if (it.value == number) Number(it.value, true) else it } })
 
-            fun hasWon() = when {
-                (numbers.any { row -> row.all { it.marked } }) -> true
-                (numbers.first().indices.any { col -> numbers.all { row -> row[col].marked } }) -> true
-                else -> false
-            }
+            fun hasWon() =
+                when {
+                    (numbers.any { row -> row.all { it.marked } }) -> true
+                    (numbers.first().indices.any { col -> numbers.all { row -> row[col].marked } }) -> true
+                    else -> false
+                }
 
             fun sumOfAllUnmarkedNumbers() = numbers.flatten().filterNot { it.marked }.sumOf { it.value }
         }

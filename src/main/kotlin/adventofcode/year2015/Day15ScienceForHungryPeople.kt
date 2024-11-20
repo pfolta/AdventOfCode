@@ -34,28 +34,30 @@ class Day15ScienceForHungryPeople(customInput: PuzzleInput? = null) : Puzzle(cus
             val durability: Int,
             val flavor: Int,
             val texture: Int,
-            val calories: Int
+            val calories: Int,
         ) {
             val score = max(0, capacity) * max(0, durability) * max(0, flavor) * max(0, texture)
 
             operator fun times(amount: Int) =
                 Ingredient(amount * capacity, amount * durability, amount * flavor, amount * texture, amount * calories)
 
-            operator fun plus(other: Ingredient) = Ingredient(
-                capacity + other.capacity,
-                durability + other.durability,
-                flavor + other.flavor,
-                texture + other.texture,
-                calories + other.calories
-            )
+            operator fun plus(other: Ingredient) =
+                Ingredient(
+                    capacity + other.capacity,
+                    durability + other.durability,
+                    flavor + other.flavor,
+                    texture + other.texture,
+                    calories + other.calories,
+                )
 
             companion object {
                 operator fun invoke(input: String): Ingredient {
-                    val (capacity, durability, flavor, texture, calories) = INPUT_REGEX
-                        .find(input)!!
-                        .destructured
-                        .toList()
-                        .map(String::toInt)
+                    val (capacity, durability, flavor, texture, calories) =
+                        INPUT_REGEX
+                            .find(input)!!
+                            .destructured
+                            .toList()
+                            .map(String::toInt)
 
                     return Ingredient(capacity, durability, flavor, texture, calories)
                 }

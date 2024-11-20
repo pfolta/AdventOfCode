@@ -21,11 +21,12 @@ class Day03NoMatterHowYouSliceIt(customInput: PuzzleInput? = null) : Puzzle(cust
             val left: Int,
             val top: Int,
             val width: Int,
-            val height: Int
+            val height: Int,
         ) {
-            val area = listOf((left until left + width).toList(), (top until top + height).toList())
-                .cartesianProduct()
-                .map { it.first() to it.last() }
+            val area =
+                listOf((left until left + width).toList(), (top until top + height).toList())
+                    .cartesianProduct()
+                    .map { it.first() to it.last() }
 
             companion object {
                 operator fun invoke(input: String): Claim {

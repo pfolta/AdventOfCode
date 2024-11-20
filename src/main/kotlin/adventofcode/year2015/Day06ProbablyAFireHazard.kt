@@ -20,25 +20,27 @@ class Day06ProbablyAFireHazard(customInput: PuzzleInput? = null) : Puzzle(custom
             }
     }
 
-    override fun partOne() = instructions.fold(mutableMapOf<Pair<Int, Int>, Boolean>()) { lights, instruction ->
-        when (instruction.action) {
-            TURN_ON -> instruction.lights.forEach { light -> lights[light] = true }
-            TURN_OFF -> instruction.lights.forEach { light -> lights[light] = false }
-            TOGGLE -> instruction.lights.forEach { light -> lights[light] = !lights.getOrDefault(light, false) }
-        }
+    override fun partOne() =
+        instructions.fold(mutableMapOf<Pair<Int, Int>, Boolean>()) { lights, instruction ->
+            when (instruction.action) {
+                TURN_ON -> instruction.lights.forEach { light -> lights[light] = true }
+                TURN_OFF -> instruction.lights.forEach { light -> lights[light] = false }
+                TOGGLE -> instruction.lights.forEach { light -> lights[light] = !lights.getOrDefault(light, false) }
+            }
 
-        lights
-    }.count { (_, state) -> state }
+            lights
+        }.count { (_, state) -> state }
 
-    override fun partTwo() = instructions.fold(mutableMapOf<Pair<Int, Int>, Int>()) { lights, instruction ->
-        when (instruction.action) {
-            TURN_ON -> instruction.lights.forEach { light -> lights[light] = lights.getOrDefault(light, 0) + 1 }
-            TURN_OFF -> instruction.lights.forEach { light -> lights[light] = max(0, lights.getOrDefault(light, 0) - 1) }
-            TOGGLE -> instruction.lights.forEach { light -> lights[light] = lights.getOrDefault(light, 0) + 2 }
-        }
+    override fun partTwo() =
+        instructions.fold(mutableMapOf<Pair<Int, Int>, Int>()) { lights, instruction ->
+            when (instruction.action) {
+                TURN_ON -> instruction.lights.forEach { light -> lights[light] = lights.getOrDefault(light, 0) + 1 }
+                TURN_OFF -> instruction.lights.forEach { light -> lights[light] = max(0, lights.getOrDefault(light, 0) - 1) }
+                TOGGLE -> instruction.lights.forEach { light -> lights[light] = lights.getOrDefault(light, 0) + 2 }
+            }
 
-        lights
-    }.values.sum()
+            lights
+        }.values.sum()
 
     companion object {
         private val INPUT_REGEX = """(turn on|turn off|toggle) (\d+),(\d+) through (\d+),(\d+)""".toRegex()
@@ -48,7 +50,7 @@ class Day06ProbablyAFireHazard(customInput: PuzzleInput? = null) : Puzzle(custom
             val left: Int,
             val top: Int,
             val right: Int,
-            val bottom: Int
+            val bottom: Int,
         ) {
             val lights by lazy { listOf((left..right).toList(), (top..bottom).toList()).cartesianProduct().map { it.first() to it.last() } }
         }
@@ -56,7 +58,8 @@ class Day06ProbablyAFireHazard(customInput: PuzzleInput? = null) : Puzzle(custom
         private enum class Action(val action: String) {
             TURN_ON("turn on"),
             TURN_OFF("turn off"),
-            TOGGLE("toggle");
+            TOGGLE("toggle"),
+            ;
 
             companion object {
                 operator fun invoke(action: String) = entries.associateBy(Action::action)[action]!!

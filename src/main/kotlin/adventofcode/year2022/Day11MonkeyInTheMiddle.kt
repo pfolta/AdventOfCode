@@ -7,10 +7,11 @@ import adventofcode.common.product
 class Day11MonkeyInTheMiddle(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "Monkey in the Middle"
 
-    override fun partOne() = input
-        .parseMonkeys()
-        .playRounds(20) { worryLevel -> worryLevel / 3 }
-        .business()
+    override fun partOne() =
+        input
+            .parseMonkeys()
+            .playRounds(20) { worryLevel -> worryLevel / 3 }
+            .business()
 
     override fun partTwo(): Long {
         val monkeys = input.parseMonkeys()
@@ -27,7 +28,7 @@ class Day11MonkeyInTheMiddle(customInput: PuzzleInput? = null) : Puzzle(customIn
             val worryLevelChange: (Long) -> Long,
             val targetMonkeyTest: Long,
             val trueTarget: Int,
-            val falseTarget: Int
+            val falseTarget: Int,
         ) {
             var itemsInspected = 0L
 
@@ -44,17 +45,21 @@ class Day11MonkeyInTheMiddle(customInput: PuzzleInput? = null) : Puzzle(customIn
                 },
                 targetMonkeyTest = description[3].split(" ").last().toLong(),
                 trueTarget = description[4].split(" ").last().toInt(),
-                falseTarget = description[5].split(" ").last().toInt()
+                falseTarget = description[5].split(" ").last().toInt(),
             )
 
-            fun takeTurn(monkeys: List<Monkey>, worryLevelRelief: (Long) -> Long) {
+            fun takeTurn(
+                monkeys: List<Monkey>,
+                worryLevelRelief: (Long) -> Long,
+            ) {
                 items.forEach { item ->
                     val worryLevel = worryLevelRelief(worryLevelChange(item))
 
-                    val targetMonkey = when (worryLevel % targetMonkeyTest) {
-                        0L -> trueTarget
-                        else -> falseTarget
-                    }
+                    val targetMonkey =
+                        when (worryLevel % targetMonkeyTest) {
+                            0L -> trueTarget
+                            else -> falseTarget
+                        }
 
                     monkeys[targetMonkey].items += worryLevel
                 }
@@ -66,7 +71,10 @@ class Day11MonkeyInTheMiddle(customInput: PuzzleInput? = null) : Puzzle(customIn
 
         private fun String.parseMonkeys() = lines().chunked(7).map(::Monkey)
 
-        private fun List<Monkey>.playRounds(count: Int, worryLevelRelief: (Long) -> Long): List<Monkey> {
+        private fun List<Monkey>.playRounds(
+            count: Int,
+            worryLevelRelief: (Long) -> Long,
+        ): List<Monkey> {
             repeat(count) {
                 forEach { monkey -> monkey.takeTurn(this, worryLevelRelief) }
             }

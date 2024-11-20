@@ -16,32 +16,35 @@ class Day11DumboOctopus(customInput: PuzzleInput? = null) : Puzzle(customInput) 
 
     private fun List<List<Int>>.reset() = map { row -> row.map { col -> if (col > 9) 0 else col } }
 
-    private fun List<List<Int>>.simulate(steps: Int) = generateSequence(0 to this) { (previousFlashes, previousGrid) ->
-        val incrementedGrid = previousGrid.incrementAll()
+    private fun List<List<Int>>.simulate(steps: Int) =
+        generateSequence(0 to this) { (previousFlashes, previousGrid) ->
+            val incrementedGrid = previousGrid.incrementAll()
 
-        val (newFlashes, newGrid, _) = generateSequence(
-            Triple(0, incrementedGrid, emptySet<Pair<Int, Int>>())
-        ) { (currentFlashes, currentGrid, alreadyFlashed) ->
-            val flashes = currentGrid.flashes().minus(alreadyFlashed)
-            val neighbors = flashes.flatMap { currentGrid.neighbors(it.first, it.second, true) }
+            val (newFlashes, newGrid, _) =
+                generateSequence(
+                    Triple(0, incrementedGrid, emptySet<Pair<Int, Int>>()),
+                ) { (currentFlashes, currentGrid, alreadyFlashed) ->
+                    val flashes = currentGrid.flashes().minus(alreadyFlashed)
+                    val neighbors = flashes.flatMap { currentGrid.neighbors(it.first, it.second, true) }
 
-            when (flashes.size) {
-                0 -> null
-                else -> Triple(currentFlashes + flashes.size, currentGrid.increment(neighbors), alreadyFlashed.plus(flashes))
-            }
+                    when (flashes.size) {
+                        0 -> null
+                        else -> Triple(currentFlashes + flashes.size, currentGrid.increment(neighbors), alreadyFlashed.plus(flashes))
+                    }
+                }
+                    .last()
+
+            previousFlashes + newFlashes to newGrid.reset()
         }
+            .take(steps + 1)
             .last()
-
-        previousFlashes + newFlashes to newGrid.reset()
-    }
-        .take(steps + 1)
-        .last()
 
     override fun partOne() = grid.simulate(100).first
 
-    override fun partTwo() = generateSequence(0 to grid) { (previousStep, previousGrid) ->
-        previousStep + 1 to previousGrid.simulate(1).second
-    }
-        .first { (_, grid) -> grid.flatten().all { it == 0 } }
-        .first
+    override fun partTwo() =
+        generateSequence(0 to grid) { (previousStep, previousGrid) ->
+            previousStep + 1 to previousGrid.simulate(1).second
+        }
+            .first { (_, grid) -> grid.flatten().all { it == 0 } }
+            .first
 }

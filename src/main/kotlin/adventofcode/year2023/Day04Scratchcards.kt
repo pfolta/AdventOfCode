@@ -27,7 +27,7 @@ class Day04Scratchcards(customInput: PuzzleInput? = null) : Puzzle(customInput) 
         private data class Scratchcard(
             val id: Int,
             val winningNumbers: Set<Int>,
-            val cardNumbers: Set<Int>
+            val cardNumbers: Set<Int>,
         ) {
             val matchingNumbers = cardNumbers.intersect(winningNumbers)
 
@@ -42,7 +42,7 @@ class Day04Scratchcards(customInput: PuzzleInput? = null) : Puzzle(customInput) 
                     return Scratchcard(
                         id.toInt(),
                         winningNumbers.split(" ").mapNotNull(String::toIntOrNull).toSet(),
-                        cardNumbers.split(" ").mapNotNull(String::toIntOrNull).toSet()
+                        cardNumbers.split(" ").mapNotNull(String::toIntOrNull).toSet(),
                     )
                 }
             }

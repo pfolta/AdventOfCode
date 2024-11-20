@@ -21,45 +21,48 @@ class Day24LobbyLayout(customInput: PuzzleInput? = null) : Puzzle(customInput) {
 
     override fun partOne() = tileMap.values.count { it == BLACK }
 
-    override fun partTwo() = generateSequence(tileMap) { previous ->
-        previous + previous.map { (tile, _) ->
-            (listOf(tile) + tile.neighbors())
-                .mapNotNull { position ->
-                    val color = previous.getOrDefault(position, WHITE)
-                    val blackNeighbors = position.neighbors().filter { previous.getOrDefault(it, WHITE) == BLACK }
+    override fun partTwo() =
+        generateSequence(tileMap) { previous ->
+            previous +
+                previous.map { (tile, _) ->
+                    (listOf(tile) + tile.neighbors())
+                        .mapNotNull { position ->
+                            val color = previous.getOrDefault(position, WHITE)
+                            val blackNeighbors = position.neighbors().filter { previous.getOrDefault(it, WHITE) == BLACK }
 
-                    if (color == BLACK && (blackNeighbors.isEmpty() || blackNeighbors.size > 2)) {
-                        position to WHITE
-                    } else if (color == WHITE && blackNeighbors.size == 2) {
-                        position to BLACK
-                    } else {
-                        null
-                    }
-                }
-                .toMap()
-        }.reduce { tileMap, partialTileMap -> tileMap + partialTileMap }
-    }
-        .drop(1)
-        .take(100)
-        .last()
-        .values
-        .count { it == BLACK }
+                            if (color == BLACK && (blackNeighbors.isEmpty() || blackNeighbors.size > 2)) {
+                                position to WHITE
+                            } else if (color == WHITE && blackNeighbors.size == 2) {
+                                position to BLACK
+                            } else {
+                                null
+                            }
+                        }
+                        .toMap()
+                }.reduce { tileMap, partialTileMap -> tileMap + partialTileMap }
+        }
+            .drop(1)
+            .take(100)
+            .last()
+            .values
+            .count { it == BLACK }
 
     companion object {
         private val DIRECTION_REGEX = "(e|se|sw|w|nw|ne)".toRegex()
 
-        private val DIRECTIONS = mapOf(
-            "e" to Pair(2, 0),
-            "se" to Pair(1, -1),
-            "sw" to Pair(-1, -1),
-            "w" to Pair(-2, 0),
-            "nw" to Pair(-1, 1),
-            "ne" to Pair(1, 1)
-        )
+        private val DIRECTIONS =
+            mapOf(
+                "e" to Pair(2, 0),
+                "se" to Pair(1, -1),
+                "sw" to Pair(-1, -1),
+                "w" to Pair(-2, 0),
+                "nw" to Pair(-1, 1),
+                "ne" to Pair(1, 1),
+            )
 
         private enum class TileColor {
             BLACK,
-            WHITE
+            WHITE,
         }
 
         private fun Pair<Int, Int>.neighbors() = DIRECTIONS.values.map { first + it.first to second + it.second }

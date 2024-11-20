@@ -9,18 +9,20 @@ import com.fasterxml.jackson.databind.JsonNode
 class Day13DistressSignal(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val packets by lazy { input.lines().filterNot { line -> line.isBlank() }.map(Packet::invoke) }
 
-    override fun partOne() = packets
-        .chunked(2)
-        .mapIndexed { index, (left, right) -> index + 1 to (left < right) }
-        .filter { (_, inOrder) -> inOrder }
-        .sumOf { (index, _) -> index }
+    override fun partOne() =
+        packets
+            .chunked(2)
+            .mapIndexed { index, (left, right) -> index + 1 to (left < right) }
+            .filter { (_, inOrder) -> inOrder }
+            .sumOf { (index, _) -> index }
 
-    override fun partTwo() = (packets + DIVIDER_PACKETS)
-        .sorted()
-        .mapIndexed { index, packet -> index + 1 to packet }
-        .filter { (_, packet) -> packet in DIVIDER_PACKETS }
-        .map { (index, _) -> index }
-        .product()
+    override fun partTwo() =
+        (packets + DIVIDER_PACKETS)
+            .sorted()
+            .mapIndexed { index, packet -> index + 1 to packet }
+            .filter { (_, packet) -> packet in DIVIDER_PACKETS }
+            .map { (index, _) -> index }
+            .product()
 
     companion object {
         private val DIVIDER_PACKETS = setOf("[[2]]", "[[6]]").map(Packet::invoke)
@@ -34,9 +36,10 @@ class Day13DistressSignal(customInput: PuzzleInput? = null) : Puzzle(customInput
 
                     contents.isArray && other.contents.isInt -> compareTo(Packet("[${other.contents}]"))
 
-                    else -> contents.zip(other.contents)
-                        .map { (left, right) -> Packet(left).compareTo(Packet(right)) }
-                        .firstOrNull { result -> result != 0 } ?: contents.count().compareTo(other.contents.count())
+                    else ->
+                        contents.zip(other.contents)
+                            .map { (left, right) -> Packet(left).compareTo(Packet(right)) }
+                            .firstOrNull { result -> result != 0 } ?: contents.count().compareTo(other.contents.count())
                 }
 
             companion object {

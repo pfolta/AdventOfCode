@@ -11,10 +11,11 @@ import adventofcode.year2015.Day07SomeAssemblyRequired.Companion.Operation.PASST
 import adventofcode.year2015.Day07SomeAssemblyRequired.Companion.Operation.RSHIFT
 
 class Day07SomeAssemblyRequired(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    private fun parseInput() = input
-        .lines()
-        .map { it.split(" -> ") }
-        .associate { (expression, id) -> id to Wire(expression) }
+    private fun parseInput() =
+        input
+            .lines()
+            .map { it.split(" -> ") }
+            .associate { (expression, id) -> id to Wire(expression) }
 
     override fun partOne() = parseInput().resolveWires()["a"]!!.value
 
@@ -27,7 +28,8 @@ class Day07SomeAssemblyRequired(customInput: PuzzleInput? = null) : Puzzle(custo
             NOT("NOT"),
             OR("OR"),
             PASSTHRU(""),
-            RSHIFT("RSHIFT");
+            RSHIFT("RSHIFT"),
+            ;
 
             companion object {
                 operator fun invoke(operation: String) = entries.associateBy(Operation::operation)[operation]!!
@@ -40,16 +42,18 @@ class Day07SomeAssemblyRequired(customInput: PuzzleInput? = null) : Puzzle(custo
 
             // Use lazy delegate to compute value once on first access and return memoized result in subsequent calls
             val value: UShort by lazy {
-                val leftValue = when (leftSide?.containsOnlyDigits()) {
-                    true -> leftSide.toUShort()
-                    false -> leftWire.value
-                    null -> null
-                }
+                val leftValue =
+                    when (leftSide?.containsOnlyDigits()) {
+                        true -> leftSide.toUShort()
+                        false -> leftWire.value
+                        null -> null
+                    }
 
-                val rightValue = when (rightSide.containsOnlyDigits()) {
-                    true -> rightSide.toUShort()
-                    false -> rightWire.value
-                }
+                val rightValue =
+                    when (rightSide.containsOnlyDigits()) {
+                        true -> rightSide.toUShort()
+                        false -> rightWire.value
+                    }
 
                 when (operation) {
                     AND -> leftValue!! and rightValue
@@ -74,13 +78,15 @@ class Day07SomeAssemblyRequired(customInput: PuzzleInput? = null) : Puzzle(custo
             }
         }
 
-        private fun Map<String, Wire>.resolveWires(): Map<String, Wire> = onEach { (_, wire) ->
-            if (wire.leftSide != null && !wire.leftSide.containsOnlyDigits()) wire.leftWire = this[wire.leftSide]!!
-            if (!wire.rightSide.containsOnlyDigits()) wire.rightWire = this[wire.rightSide]!!
-        }
+        private fun Map<String, Wire>.resolveWires(): Map<String, Wire> =
+            onEach { (_, wire) ->
+                if (wire.leftSide != null && !wire.leftSide.containsOnlyDigits()) wire.leftWire = this[wire.leftSide]!!
+                if (!wire.rightSide.containsOnlyDigits()) wire.rightWire = this[wire.rightSide]!!
+            }
 
         // Kotlin does not have bit-shifting operations on `UShort`s, so temporarily convert to `Int`, shift and then back to `UShort`
         private infix fun UShort.shl(other: UShort): UShort = (this.toInt() shl other.toInt()).toUShort()
+
         private infix fun UShort.shr(other: UShort): UShort = (this.toInt() shr other.toInt()).toUShort()
     }
 }

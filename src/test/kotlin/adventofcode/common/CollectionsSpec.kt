@@ -34,12 +34,13 @@ class CollectionsSpec : FreeSpec({
             listOf(
                 listOf('A', 'B', 'C'),
                 listOf('D', 'E', 'F'),
-                listOf('G', 'H', 'I')
-            ).transpose() shouldContainExactly listOf(
-                listOf('G', 'D', 'A'),
-                listOf('H', 'E', 'B'),
-                listOf('I', 'F', 'C')
-            )
+                listOf('G', 'H', 'I'),
+            ).transpose() shouldContainExactly
+                listOf(
+                    listOf('G', 'D', 'A'),
+                    listOf('H', 'E', 'B'),
+                    listOf('I', 'F', 'C'),
+                )
         }
     }
 })

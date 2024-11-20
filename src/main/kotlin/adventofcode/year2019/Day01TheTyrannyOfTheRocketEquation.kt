@@ -10,18 +10,19 @@ class Day01TheTyrannyOfTheRocketEquation(customInput: PuzzleInput? = null) : Puz
 
     override fun partOne() = modules.sumOf { getFuelForModule(it) }
 
-    override fun partTwo() = modules
-        .sumOf { module ->
-            var toAdd = 0
-            var fuel = getFuelForModule(module)
+    override fun partTwo() =
+        modules
+            .sumOf { module ->
+                var toAdd = 0
+                var fuel = getFuelForModule(module)
 
-            while (fuel > 0) {
-                toAdd += fuel
-                fuel = getFuelForModule(fuel)
+                while (fuel > 0) {
+                    toAdd += fuel
+                    fuel = getFuelForModule(fuel)
+                }
+
+                toAdd
             }
-
-            toAdd
-        }
 
     companion object {
         private fun getFuelForModule(module: Int) = module / 3 - 2

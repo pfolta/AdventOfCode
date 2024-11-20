@@ -19,8 +19,9 @@ class Day23CrabCups(customInput: PuzzleInput? = null) : Puzzle(customInput) {
                 val pickUp = (1..3).map { this[(indexOf(currentCup) + it) % size] }
                 removeAll(pickUp)
 
-                val destination = generateSequence(destination(currentCup)) { destination(it) }
-                    .first { !pickUp.contains(it) }
+                val destination =
+                    generateSequence(destination(currentCup)) { destination(it) }
+                        .first { !pickUp.contains(it) }
 
                 val destinationIndex = indexOf(destination)
 

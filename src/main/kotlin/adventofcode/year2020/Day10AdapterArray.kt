@@ -7,13 +7,14 @@ import adventofcode.common.product
 class Day10AdapterArray(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val sortedInput by lazy { input.lines().map(String::toInt).sorted() }
 
-    override fun partOne() = (sortedInput + listOf(sortedInput.last() + 3))
-        .foldIndexed(emptyMap<Int, Int>()) { index, acc, elem ->
-            val previous = sortedInput.getOrElse(index - 1) { 0 }
-            acc + mapOf(elem - previous to (acc[elem - previous] ?: 0) + 1)
-        }
-        .values
-        .product()
+    override fun partOne() =
+        (sortedInput + listOf(sortedInput.last() + 3))
+            .foldIndexed(emptyMap<Int, Int>()) { index, acc, elem ->
+                val previous = sortedInput.getOrElse(index - 1) { 0 }
+                acc + mapOf(elem - previous to (acc[elem - previous] ?: 0) + 1)
+            }
+            .values
+            .product()
 
     override fun partTwo(): Long {
         val k = longArrayOf(1, 0, 0, 0)

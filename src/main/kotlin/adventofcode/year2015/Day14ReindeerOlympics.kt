@@ -9,12 +9,13 @@ class Day14ReindeerOlympics(customInput: PuzzleInput? = null) : Puzzle(customInp
 
     override fun partOne() = reindeer.maxOfOrNull(Reindeer::distanceFlown) ?: 0
 
-    override fun partTwo() = (1..CHECKPOINT)
-        .map { time -> reindeer.associateWith { it.distanceFlown(time) }.maxByOrNull { it.value }!!.key }
-        .groupingBy { it }
-        .eachCount()
-        .map { it.value }
-        .maxOrNull() ?: 0
+    override fun partTwo() =
+        (1..CHECKPOINT)
+            .map { time -> reindeer.associateWith { it.distanceFlown(time) }.maxByOrNull { it.value }!!.key }
+            .groupingBy { it }
+            .eachCount()
+            .map { it.value }
+            .maxOrNull() ?: 0
 
     companion object {
         private val INPUT_REGEX = """(\w+) can fly (\d+) km/s for (\d+) seconds, but then must rest for (\d+) seconds.""".toRegex()
@@ -25,7 +26,7 @@ class Day14ReindeerOlympics(customInput: PuzzleInput? = null) : Puzzle(customInp
             val name: String,
             val flySpeed: Int,
             val flyTime: Int,
-            val restTime: Int
+            val restTime: Int,
         ) {
             fun distanceFlown(after: Int = CHECKPOINT): Int {
                 val fullCycles = after / (flyTime + restTime)

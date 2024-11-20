@@ -22,25 +22,28 @@ class Day09RopeBridge(customInput: PuzzleInput? = null) : Puzzle(customInput) {
 
     companion object {
         private enum class Direction { D, L, R, U }
+
         private data class MotionMove(val direction: Direction, val steps: Int)
 
         private fun List<MotionMove>.simulate(knotCount: Int) =
             fold(List(knotCount) { (0 to 0) } to setOf(0 to 0)) { (knots, tailVisited), (direction, steps) ->
                 (1..steps).fold(knots to tailVisited) { (knots, tailVisited), _ ->
-                    val newKnots = knots
-                        .drop(1)
-                        .fold(listOf(knots.first().move(direction))) { knotList, knot -> knotList + knot.track(knotList.last()) }
+                    val newKnots =
+                        knots
+                            .drop(1)
+                            .fold(listOf(knots.first().move(direction))) { knotList, knot -> knotList + knot.track(knotList.last()) }
 
                     newKnots to tailVisited + newKnots.last()
                 }
             }
 
-        private fun Pair<Int, Int>.move(direction: Direction) = when (direction) {
-            D -> this + (0 to -1)
-            L -> this + (-1 to 0)
-            R -> this + (1 to 0)
-            U -> this + (0 to 1)
-        }
+        private fun Pair<Int, Int>.move(direction: Direction) =
+            when (direction) {
+                D -> this + (0 to -1)
+                L -> this + (-1 to 0)
+                R -> this + (1 to 0)
+                U -> this + (0 to 1)
+            }
 
         private fun Pair<Int, Int>.track(other: Pair<Int, Int>): Pair<Int, Int> {
             val (dx, dy) = other - this

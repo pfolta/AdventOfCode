@@ -16,10 +16,11 @@ import kotlin.time.Duration.Companion.seconds
  *
  * Highlight runtimes that exceed 15 seconds in red.
  */
-fun Duration.formatBenchmark(): String = when {
-    this > 15.seconds -> AnsiFormat(RED_BACK(), WHITE_TEXT(), BOLD()).format(this.toString())
-    else -> this.toString()
-}
+fun Duration.formatBenchmark(): String =
+    when {
+        this > 15.seconds -> AnsiFormat(RED_BACK(), WHITE_TEXT(), BOLD()).format(this.toString())
+        else -> this.toString()
+    }
 
 fun String.bold(): String = AnsiFormat(BOLD()).format(this)
 

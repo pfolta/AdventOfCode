@@ -4,9 +4,10 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
 class Day06TuningTrouble(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    private fun findCharacterProcessedCountForMarker(markerLength: Int) = input
-        .windowed(markerLength)
-        .indexOfFirst { chunk -> chunk.toSet().size == markerLength } + markerLength
+    private fun findCharacterProcessedCountForMarker(markerLength: Int) =
+        input
+            .windowed(markerLength)
+            .indexOfFirst { chunk -> chunk.toSet().size == markerLength } + markerLength
 
     override fun partOne() = findCharacterProcessedCountForMarker(START_OF_PACKET_MARKER_LENGTH)
 

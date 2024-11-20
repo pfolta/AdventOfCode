@@ -14,7 +14,7 @@ class Day22CrabCombat(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     companion object {
         private data class CrabCombatGame(
             val player1: MutableList<Int>,
-            val player2: MutableList<Int>
+            val player2: MutableList<Int>,
         ) {
             private fun computeScore() = (player1 + player2).reversed().mapIndexed { position, card -> card * (position + 1) }.sum()
 
@@ -46,15 +46,16 @@ class Day22CrabCombat(customInput: PuzzleInput? = null) : Puzzle(customInput) {
                     val card1 = player1.removeAt(0)
                     val card2 = player2.removeAt(0)
 
-                    val winningPlayer = when {
-                        player1.size >= card1 && player2.size >= card2 ->
-                            CrabCombatGame(
-                                player1.take(card1).toMutableList(),
-                                player2.take(card2).toMutableList()
-                            ).playRecursiveGame(false)
-                        card1 > card2 -> 1
-                        else -> 2
-                    }
+                    val winningPlayer =
+                        when {
+                            player1.size >= card1 && player2.size >= card2 ->
+                                CrabCombatGame(
+                                    player1.take(card1).toMutableList(),
+                                    player2.take(card2).toMutableList(),
+                                ).playRecursiveGame(false)
+                            card1 > card2 -> 1
+                            else -> 2
+                        }
 
                     if (winningPlayer == 1) {
                         player1.addAll(listOf(card1, card2))

@@ -8,22 +8,25 @@ class Day07HandyHaversacks(customInput: PuzzleInput? = null) : Puzzle(customInpu
         input.lines().map { rule ->
             val (color) = BAG_RULE_REGEX.find(rule)!!.destructured
 
-            val contents = BAG_CONTENTS_REGEX
-                .findAll(rule)
-                .map { it.destructured }
-                .associate { (amount, color) -> color to amount.toInt() }
+            val contents =
+                BAG_CONTENTS_REGEX
+                    .findAll(rule)
+                    .map { it.destructured }
+                    .associate { (amount, color) -> color to amount.toInt() }
 
             Bag(color, contents)
         }
     }
 
-    override fun partOne() = bagRules
-        .count { it.contains(bagRules, "shiny gold") }
+    override fun partOne() =
+        bagRules
+            .count { it.contains(bagRules, "shiny gold") }
 
-    override fun partTwo() = bagRules
-        .get("shiny gold")
-        .size(bagRules)
-        .minus(1)
+    override fun partTwo() =
+        bagRules
+            .get("shiny gold")
+            .size(bagRules)
+            .minus(1)
 
     companion object {
         val BAG_RULE_REGEX = """(\w+ \w+) bags contain (.*)""".toRegex()
@@ -31,9 +34,12 @@ class Day07HandyHaversacks(customInput: PuzzleInput? = null) : Puzzle(customInpu
 
         private data class Bag(
             val color: String,
-            val contents: Map<String, Int>
+            val contents: Map<String, Int>,
         ) {
-            fun contains(bagRules: List<Bag>, searchPattern: String): Boolean {
+            fun contains(
+                bagRules: List<Bag>,
+                searchPattern: String,
+            ): Boolean {
                 if (contents.isEmpty()) return false
                 if (contents.containsKey(searchPattern)) return true
 

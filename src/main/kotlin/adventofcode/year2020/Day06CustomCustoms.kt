@@ -4,14 +4,16 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
 class Day06CustomCustoms(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    override fun partOne() = input
-        .split("\n\n")
-        .map { it.replace("\n", "") }
-        .sumOf { it.toCharArray().distinct().count() }
+    override fun partOne() =
+        input
+            .split("\n\n")
+            .map { it.replace("\n", "") }
+            .sumOf { it.toCharArray().distinct().count() }
 
-    override fun partTwo() = input
-        .split("\n\n")
-        .map { it.split("\n").filter(String::isNotBlank) }
-        .map { group -> ('a'..'z').mapNotNull { question -> if (group.all { it.contains(question) }) question else null } }
-        .sumOf { it.size }
+    override fun partTwo() =
+        input
+            .split("\n\n")
+            .map { it.split("\n").filter(String::isNotBlank) }
+            .map { group -> ('a'..'z').mapNotNull { question -> if (group.all { it.contains(question) }) question else null } }
+            .sumOf { it.size }
 }

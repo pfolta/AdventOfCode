@@ -9,9 +9,10 @@ import kotlin.math.sqrt
 
 class Day06WaitForIt(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override fun partOne(): Long {
-        val (times, distances) = input
-            .lines()
-            .map { line -> line.split(" ").mapNotNull(String::toLongOrNull) }
+        val (times, distances) =
+            input
+                .lines()
+                .map { line -> line.split(" ").mapNotNull(String::toLongOrNull) }
 
         return times
             .zip(distances)
@@ -19,12 +20,13 @@ class Day06WaitForIt(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             .product()
     }
 
-    override fun partTwo() = input
-        .lines()
-        .map { line -> line.filter(Char::isDigit).toLong() }
-        .zipWithNext()
-        .first()
-        .countWaysToWin()
+    override fun partTwo() =
+        input
+            .lines()
+            .map { line -> line.filter(Char::isDigit).toLong() }
+            .zipWithNext()
+            .first()
+            .countWaysToWin()
 
     companion object {
         private fun Pair<Long, Long>.countWaysToWin(): Long {

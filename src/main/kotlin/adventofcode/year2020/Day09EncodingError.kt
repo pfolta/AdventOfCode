@@ -7,13 +7,14 @@ import adventofcode.common.cartesianProduct
 class Day09EncodingError(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val numbers by lazy { input.lines().map(String::toLong) }
 
-    override fun partOne() = (PREAMBLE_LENGTH until numbers.size)
-        .filter { index ->
-            val preamble = numbers.subList(index - PREAMBLE_LENGTH, index)
-            listOf(preamble, preamble).cartesianProduct().none { it.sum() == numbers[index] }
-        }
-        .map(numbers::get)
-        .first()
+    override fun partOne() =
+        (PREAMBLE_LENGTH until numbers.size)
+            .filter { index ->
+                val preamble = numbers.subList(index - PREAMBLE_LENGTH, index)
+                listOf(preamble, preamble).cartesianProduct().none { it.sum() == numbers[index] }
+            }
+            .map(numbers::get)
+            .first()
 
     override fun partTwo(): Long {
         val invalidNumber = partOne()
