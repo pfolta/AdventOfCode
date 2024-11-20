@@ -48,7 +48,13 @@ tasks {
     }
 
     withType<KotlinCompile> {
-        kotlinOptions.jvmTarget = JavaVersion.VERSION_21.toString()
+        kotlin {
+            jvmToolchain(JavaVersion.VERSION_21.toString().toInt())
+        }
+
+        kotlinOptions {
+            jvmTarget = JavaVersion.VERSION_21.toString()
+        }
     }
 
     withType<Test> {
