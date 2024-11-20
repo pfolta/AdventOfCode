@@ -6,7 +6,7 @@ plugins {
     application
     jacoco
 
-    kotlin("jvm") version "1.9.20"
+    kotlin("jvm") version "2.0.21"
 
     id("org.jlleitschuh.gradle.ktlint") version "11.6.1"
     id("com.adarshr.test-logger") version "4.0.0"
@@ -23,12 +23,12 @@ repositories {
 dependencies {
     implementation(kotlin("reflect"))
     implementation("com.diogonunes:JColor:5.5.1")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.15.3")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.1")
     implementation("org.reflections:reflections:0.10.2")
-    implementation("org.slf4j:slf4j-nop:2.0.9")
+    implementation("org.slf4j:slf4j-nop:2.0.16")
 
-    testImplementation("io.kotest:kotest-runner-junit5-jvm:5.7.2")
-    testImplementation("io.kotest:kotest-assertions-core-jvm:5.7.2")
+    testImplementation("io.kotest:kotest-runner-junit5-jvm:5.9.1")
+    testImplementation("io.kotest:kotest-assertions-core-jvm:5.9.1")
 }
 
 ktlint {
@@ -50,10 +50,6 @@ tasks {
     withType<KotlinCompile> {
         kotlin {
             jvmToolchain(JavaVersion.VERSION_21.toString().toInt())
-        }
-
-        kotlinOptions {
-            jvmTarget = JavaVersion.VERSION_21.toString()
         }
     }
 
