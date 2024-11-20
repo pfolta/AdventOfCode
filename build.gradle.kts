@@ -44,7 +44,7 @@ testlogger {
 
 tasks {
     withType<Wrapper> {
-        gradleVersion = "8.6"
+        gradleVersion = "8.11"
     }
 
     withType<KotlinCompile> {

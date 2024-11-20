@@ -1,4 +1,4 @@
-FROM gradle:8.6.0-jdk21 AS builder
+FROM gradle:8.11.0-jdk21 AS builder
 WORKDIR /app
 COPY . .
 RUN gradle build
