@@ -12,9 +12,13 @@ class Day01HistorianHysteria(customInput: PuzzleInput? = null) : Puzzle(customIn
     private val leftList by lazy { lists.map { it.first() } }
     private val rightList by lazy { lists.map { it.last() } }
 
-    override fun partOne() = leftList
-        .sorted()
-        .zip(rightList.sorted())
-        .sumOf { (left, right) -> abs(left - right) }
+    override fun partOne() =
+        leftList
+            .sorted()
+            .zip(rightList.sorted())
+            .sumOf { (left, right) -> abs(left - right) }
 
+    override fun partTwo() =
+        leftList
+            .sumOf { left -> left * rightList.count { right -> left == right } }
 }
