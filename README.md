@@ -24,7 +24,7 @@
 <a href="https://adventofcode.com/2021"><img src="https://img.shields.io/badge/%E2%AD%90%202021-26%2F50-0f0f23" alt="2021 Progress" /></a>  
 <a href="https://adventofcode.com/2022"><img src="https://img.shields.io/badge/%E2%AD%90%202022-28%2F50-0f0f23" alt="2022 Progress" /></a>  
 <a href="https://adventofcode.com/2023"><img src="https://img.shields.io/badge/%E2%AD%90%202023-12%2F50-0f0f23" alt="2023 Progress" /></a>  
-<a href="https://adventofcode.com/2024"><img src="https://img.shields.io/badge/%E2%AD%90%202024-3%2F50-0f0f23" alt="2024 Progress" /></a>
+<a href="https://adventofcode.com/2024"><img src="https://img.shields.io/badge/%E2%AD%90%202024-4%2F50-0f0f23" alt="2024 Progress" /></a>
 
 ## 🛷 How to run
 
@@ -161,7 +161,7 @@ e.g. `HandyHaversacks`)*
 |                                           |   6 | [Wait For It](https://adventofcode.com/2023/day/6)                                                     | [[Code](src/main/kotlin/adventofcode/year2023/Day06WaitForIt.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2023/Day06WaitForItSpec.kt)]                                                 | `2269432`              | `35865985`                                       |
 |                                           |   7 | [Camel Cards](https://adventofcode.com/2023/day/7)                                                     | [[Code](src/main/kotlin/adventofcode/year2023/Day07CamelCards.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2023/Day07CamelCardsSpec.kt)]                                               | `250474325`            |                                                  |
 | [**2024**](https://adventofcode.com/2024) |   1 | [Historian Hysteria](https://adventofcode.com/2024/day/1)                                              | [[Code](src/main/kotlin/adventofcode/year2024/Day01HistorianHysteria.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day01HistorianHysteriaSpec.kt)]                                 | `1970720`              | `17191599`                                       |
-|                                           |   2 | [Red-Nosed Reports](https://adventofcode.com/2024/day/2)                                               | [[Code](src/main/kotlin/adventofcode/year2024/Day02RedNosedReports.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day02RedNosedReportsSpec.kt)]                                     | `572`                  |                                                  |
+|                                           |   2 | [Red-Nosed Reports](https://adventofcode.com/2024/day/2)                                               | [[Code](src/main/kotlin/adventofcode/year2024/Day02RedNosedReports.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day02RedNosedReportsSpec.kt)]                                     | `572`                  | `612`                                            |
 
 ## 🕯️ Useful commands
 

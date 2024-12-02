@@ -7,28 +7,31 @@ import kotlin.math.abs
 class Day02RedNosedReports(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "Red-Nosed Reports"
 
-    override fun partOne() =
-        input
-            .lines()
-            .map { report -> report.split(" ").mapNotNull(String::toIntOrNull) }
-            .count { report -> report.isSafeReport() }
+    private val reports by lazy {
+        input.lines().map { report -> report.split(" ").mapNotNull(String::toIntOrNull) }
+    }
+
+    override fun partOne() = reports.count { report -> report.isSafeReport() }
+
+    override fun partTwo() = reports.count { report -> report.isAlmostSafeReport() }
 
     companion object {
-        private fun List<Int>.isSafeReport(): Boolean {
-            val change =
-                this
-                    .zipWithNext()
-                    .map { (a, b) -> b - a }
+        private fun List<Int>.isSafeReport() = (isStrictlyIncreasing() || isStrictlyDecreasing()) && differsByAtLeast1AndAtMost3()
 
-            if (!change.all { it > 0 } && !change.all { it < 0 }) {
-                return false
+        private fun List<Int>.isAlmostSafeReport(): Boolean {
+            for (i in -1 until size) {
+                if (filterIndexed { j, _ -> i != j }.isSafeReport()) {
+                    return true
+                }
             }
 
-            if (change.any { abs(it) > 3 }) {
-                return false
-            }
-
-            return true
+            return false
         }
+
+        private fun List<Int>.isStrictlyIncreasing() = zipWithNext().all { (a, b) -> a < b }
+
+        private fun List<Int>.isStrictlyDecreasing() = zipWithNext().all { (a, b) -> a > b }
+
+        private fun List<Int>.differsByAtLeast1AndAtMost3() = zipWithNext().all { (a, b) -> abs(a - b) in 1..3 }
     }
 }
