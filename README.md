@@ -15,16 +15,18 @@
 
 ## ⭐️ Progress
 
-<a href="https://adventofcode.com/2015"><img src="https://img.shields.io/badge/%E2%AD%90%202015-39%2F50-0f0f23" alt="2015 Progress" /></a>  
-<a href="https://adventofcode.com/2016"><img src="https://img.shields.io/badge/%E2%AD%90%202016-18%2F50-0f0f23" alt="2016 Progress" /></a>  
-<a href="https://adventofcode.com/2017"><img src="https://img.shields.io/badge/%E2%AD%90%202017-10%2F50-0f0f23" alt="2017 Progress" /></a>  
-<a href="https://adventofcode.com/2018"><img src="https://img.shields.io/badge/%E2%AD%90%202018-8%2F50-0f0f23" alt="2018 Progress" /></a>  
-<a href="https://adventofcode.com/2019"><img src="https://img.shields.io/badge/%E2%AD%90%202019-4%2F50-0f0f23" alt="2019 Progress" /></a>  
-<a href="https://adventofcode.com/2020"><img src="https://img.shields.io/badge/%E2%AD%90%202020-44%2F50-0f0f23" alt="2020 Progress" /></a>  
-<a href="https://adventofcode.com/2021"><img src="https://img.shields.io/badge/%E2%AD%90%202021-26%2F50-0f0f23" alt="2021 Progress" /></a>  
-<a href="https://adventofcode.com/2022"><img src="https://img.shields.io/badge/%E2%AD%90%202022-28%2F50-0f0f23" alt="2022 Progress" /></a>  
-<a href="https://adventofcode.com/2023"><img src="https://img.shields.io/badge/%E2%AD%90%202023-12%2F50-0f0f23" alt="2023 Progress" /></a>  
-<a href="https://adventofcode.com/2024"><img src="https://img.shields.io/badge/%E2%AD%90%202024-4%2F50-0f0f23" alt="2024 Progress" /></a>
+| Year | <br>1 | <br>2 | <br>3 | <br>4 | <br>5 | <br>6 | <br>7 | <br>8 | <br>9 | 1<br>0 | 1<br>1 | 1<br>2 | 1<br>3 | 1<br>4 | 1<br>5 | 1<br>6 | 1<br>7 | 1<br>8 | 1<br>9 | 2<br>0 | 2<br>1 | 2<br>2 | 2<br>3 | 2<br>4 | 2<br>5 | <br>★ |
+|:-----|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:-----:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|:------:|------:|
+| 2015 |  ★️   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |   ★    |   ★    |   ★    |   ★    |   ★    |   ☆    |   ★    |        |        |        |        |        |    39 |
+| 2016 |   ☆   |   ☆   |   ★   |   ★   |   ★   |   ★   |   ★   |       |       |        |        |   ★    |        |   ★    |        |   ★    |        |        |        |   ★    |        |        |        |        |   ☆    |    21 |
+| 2017 |   ★   |   ★   |       |   ★   |   ★   |       |       |       |       |        |        |        |        |        |   ★    |        |        |        |        |        |        |        |        |        |        |    10 |
+| 2018 |   ★   |   ★   |   ★   |       |   ★   |       |       |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |     8 |
+| 2019 |   ★   |   ★   |       |   ★   |       |       |       |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |     6 |
+| 2020 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |   ★    |   ★    |   ★    |   ★    |        |   ☆    |   ☆    |   ★    |   ★    |   ☆    |   ★    |   ☆    |    44 |
+| 2021 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |        |   ★    |   ★    |        |        |        |        |        |        |        |        |        |        |        |    26 |
+| 2022 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |        |        |        |        |        |        |        |   ☆    |        |        |        |   ☆    |    28 |
+| 2023 |   ★   |   ★   |   ★   |   ★   |   ☆   |   ★   |   ☆   |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    12 |
+| 2024 |   ★   |   ★   |       |       |       |       |       |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |     4 |
 
 ## 🛷 How to run
 
