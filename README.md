@@ -26,7 +26,7 @@
 |     2021 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |        |   ★    |   ★    |        |        |        |        |        |        |        |        |        |        |        |    26 |
 |     2022 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |        |        |        |        |        |        |        |   ☆    |        |        |        |   ☆    |    28 |
 |     2023 |   ★   |   ★   |   ★   |   ★   |   ☆   |   ★   |   ☆   |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    12 |
-|     2024 |   ★   |   ★   |   ☆   |       |       |       |       |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |     5 |
+|     2024 |   ★   |   ★   |   ★   |       |       |       |       |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |     6 |
 
 ## 🛷 How to run
 
@@ -164,7 +164,7 @@ e.g. `HandyHaversacks`)*
 |                                           |   7 | [Camel Cards](https://adventofcode.com/2023/day/7)                                                     | [[Code](src/main/kotlin/adventofcode/year2023/Day07CamelCards.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2023/Day07CamelCardsSpec.kt)]                                               | `250474325`            |                                                  |
 | [**2024**](https://adventofcode.com/2024) |   1 | [Historian Hysteria](https://adventofcode.com/2024/day/1)                                              | [[Code](src/main/kotlin/adventofcode/year2024/Day01HistorianHysteria.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day01HistorianHysteriaSpec.kt)]                                 | `1970720`              | `17191599`                                       |
 |                                           |   2 | [Red-Nosed Reports](https://adventofcode.com/2024/day/2)                                               | [[Code](src/main/kotlin/adventofcode/year2024/Day02RedNosedReports.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day02RedNosedReportsSpec.kt)]                                     | `572`                  | `612`                                            |
-|                                           |   3 | [Mull It Over](https://adventofcode.com/2024/day/3)                                                    | [[Code](src/main/kotlin/adventofcode/year2024/Day03MullItOver.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day03MullItOverSpec.kt)]                                               | `174960292`            |                                                  |
+|                                           |   3 | [Mull It Over](https://adventofcode.com/2024/day/3)                                                    | [[Code](src/main/kotlin/adventofcode/year2024/Day03MullItOver.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day03MullItOverSpec.kt)]                                               | `174960292`            | `56275602`                                       |
 
 ## 🕯️ Useful commands
 
