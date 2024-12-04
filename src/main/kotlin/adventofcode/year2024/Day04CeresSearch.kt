@@ -6,10 +6,10 @@ import adventofcode.PuzzleInput
 class Day04CeresSearch(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override fun partOne() = WordSearch(input).countXmas()
 
+    override fun partTwo() = WordSearch(input).countMasCrossed()
+
     companion object {
-        private data class WordSearch(
-            val grid: List<List<Char>>,
-        ) {
+        private data class WordSearch(val grid: List<List<Char>>) {
             private val rows = grid.size
             private val cols = grid.first().size
 
@@ -31,6 +31,21 @@ class Day04CeresSearch(customInput: PuzzleInput? = null) : Puzzle(customInput) {
                 }
                     .filter { candidate -> candidate == xmas || candidate == xmas.reversed() }
                     .size
+            }
+
+            fun countMasCrossed(): Int {
+                val mas = "MAS"
+                val length = mas.length
+
+                return (0..rows - length).flatMap { row ->
+                    (0..cols - length).map { col ->
+                        val topDiagonal = (0 until length).map { d -> row + d to col + d }
+                        val bottomDiagonal = (0 until length).map { d -> row + length - 1 - d to col + d }
+
+                        setOf(topDiagonal, bottomDiagonal).map { coordinates -> coordinates.map { (x, y) -> grid[x][y] }.joinToString("") }
+                    }
+                }
+                    .count { diagonals -> diagonals.all { diagonal -> diagonal == mas || diagonal == mas.reversed() } }
             }
 
             companion object {
