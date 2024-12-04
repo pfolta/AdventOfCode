@@ -29,8 +29,7 @@ class Day04CeresSearch(customInput: PuzzleInput? = null) : Puzzle(customInput) {
                             .map { coordinates -> coordinates.map { (x, y) -> grid[x][y] }.joinToString("") }
                     }
                 }
-                    .filter { candidate -> candidate == xmas || candidate == xmas.reversed() }
-                    .size
+                    .count { candidate -> candidate == xmas || candidate == xmas.reversed() }
             }
 
             fun countMasCrossed(): Int {
