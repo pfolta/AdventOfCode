@@ -14,14 +14,16 @@ class Day05PrintQueue(customInput: PuzzleInput? = null) : Puzzle(customInput) {
 
     override fun partOne() =
         updates
-            .mapNotNull { update ->
-                val filteredRules = rules.filter { rule -> update.containsAll(rule) }
+            .filter { update -> update.isOrdered(rules) }
+            .sumOf { update -> update[update.size / 2] }
 
-                if (filteredRules.containsAll(update.windowed(2))) {
-                    update[update.size / 2]
-                } else {
-                    null
-                }
-            }
-            .sum()
+    override fun partTwo() =
+        updates
+            .filterNot { update -> update.isOrdered(rules) }
+            .map { update -> update.sortedWith { a, b -> if (rules.contains(listOf(a, b))) -1 else 1 } }
+            .sumOf { update -> update[update.size / 2] }
+
+    companion object {
+        private fun List<Int>.isOrdered(rules: List<List<Int>>) = rules.containsAll(windowed(2))
+    }
 }

@@ -28,7 +28,7 @@
 |     2021 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |        |   ★    |   ★    |        |        |        |        |        |        |        |        |        |        |        |    26 |
 |     2022 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |        |        |        |        |        |        |        |   ☆    |        |        |        |   ☆    |    28 |
 |     2023 |   ★   |   ★   |   ★   |   ★   |   ☆   |   ★   |   ☆   |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    12 |
-|     2024 |   ★   |   ★   |   ★   |   ★   |   ☆   |       |       |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |     9 |
+|     2024 |   ★   |   ★   |   ★   |   ★   |   ★   |       |       |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    10 |
 
 ## 🛷 How to run
 
@@ -168,7 +168,7 @@ e.g. `HandyHaversacks`)*
 |                                           |   2 | [Red-Nosed Reports](https://adventofcode.com/2024/day/2)                                               | [[Code](src/main/kotlin/adventofcode/year2024/Day02RedNosedReports.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day02RedNosedReportsSpec.kt)]                                     | `572`                  | `612`                                            |
 |                                           |   3 | [Mull It Over](https://adventofcode.com/2024/day/3)                                                    | [[Code](src/main/kotlin/adventofcode/year2024/Day03MullItOver.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day03MullItOverSpec.kt)]                                               | `174960292`            | `56275602`                                       |
 |                                           |   4 | [Ceres Search](https://adventofcode.com/2024/day/4)                                                    | [[Code](src/main/kotlin/adventofcode/year2024/Day04CeresSearch.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day04CeresSearchSpec.kt)]                                             | `2483`                 | `1925`                                           |
-|                                           |   5 | [Print Queue](https://adventofcode.com/2024/day/5)                                                     | [[Code](src/main/kotlin/adventofcode/year2024/Day05PrintQueue.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day05PrintQueueSpec.kt)]                                               | `6498`                 |                                                  |
+|                                           |   5 | [Print Queue](https://adventofcode.com/2024/day/5)                                                     | [[Code](src/main/kotlin/adventofcode/year2024/Day05PrintQueue.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day05PrintQueueSpec.kt)]                                               | `6498`                 | `5017`                                           |
 
 ## 🕯️ Useful commands
 
