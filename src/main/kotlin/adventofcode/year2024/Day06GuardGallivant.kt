@@ -10,21 +10,23 @@ class Day06GuardGallivant(customInput: PuzzleInput? = null) : Puzzle(customInput
     private val obstructions by lazy { grid.filter('#') }
     private val guard by lazy { grid.filter('^').first() to UP }
 
-    override fun partOne() =
-        generateSequence(guard to setOf(guard.first)) { (previousGuard, previousVisited) ->
-            val nextPosition = previousGuard.first + previousGuard.second.direction
+    override fun partOne() = guardPath(grid.size, obstructions, guard).size
 
-            when {
-                nextPosition in obstructions -> previousGuard.first to previousGuard.second.turnRight() to previousVisited
-                else -> nextPosition to previousGuard.second to previousVisited + previousGuard.first
+    override fun partTwo() =
+        guardPath(grid.size, obstructions, guard)
+            .filterNot { position -> position == guard.first }
+            .mapNotNull { position ->
+                try {
+                    guardPath(grid.size, obstructions + position, guard)
+                    null
+                } catch (e: LoopException) {
+                    position
+                }
             }
-        }
-            .first { (guard, _) -> guard.first.toList().any { it !in grid.indices } }
-            .second
             .size
 
     companion object {
-        fun List<List<Char>>.filter(char: Char) =
+        private fun List<List<Char>>.filter(char: Char) =
             mapIndexed { y, row -> row.mapIndexedNotNull { x, c -> if (c == char) x to y else null } }
                 .flatten()
                 .toSet()
@@ -43,6 +45,35 @@ class Day06GuardGallivant(customInput: PuzzleInput? = null) : Puzzle(customInput
                     DOWN -> LEFT
                     LEFT -> UP
                 }
+        }
+
+        private class LoopException(position: Pair<Int, Int>) : Exception("Loop detected at $position")
+
+        private fun guardPath(
+            gridSize: Int,
+            obstructions: Set<Pair<Int, Int>>,
+            guard: Pair<Pair<Int, Int>, Direction>,
+        ): Set<Pair<Int, Int>> {
+            val seen = mutableSetOf<Pair<Pair<Int, Int>, Direction>>()
+            var position = guard
+
+            while (position.first.toList().all { it in 0 until gridSize }) {
+                if (seen.contains(position)) {
+                    throw LoopException(position.first)
+                }
+
+                seen.add(position)
+
+                val nextPosition = position.first + position.second.direction
+
+                position =
+                    when {
+                        nextPosition in obstructions -> position.first to position.second.turnRight()
+                        else -> nextPosition to position.second
+                    }
+            }
+
+            return seen.map { it.first }.toSet()
         }
     }
 }
