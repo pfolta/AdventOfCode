@@ -28,7 +28,7 @@
 |     2021 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |        |   ★    |   ★    |        |        |        |        |        |        |        |        |        |        |        |    26 |
 |     2022 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |        |        |        |        |        |        |        |   ☆    |        |        |        |   ☆    |    28 |
 |     2023 |   ★   |   ★   |   ★   |   ★   |   ☆   |   ★   |   ☆   |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    12 |
-|     2024 |   ★   |   ★   |   ★   |   ★   |   ★   |       |       |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    10 |
+|     2024 |   ★   |   ★   |   ★   |   ★   |   ★   |   ☆   |       |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    11 |
 
 ## 🛷 How to run
 
@@ -169,6 +169,7 @@ e.g. `HandyHaversacks`)*
 |                                           |   3 | [Mull It Over](https://adventofcode.com/2024/day/3)                                                    | [[Code](src/main/kotlin/adventofcode/year2024/Day03MullItOver.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day03MullItOverSpec.kt)]                                               | `174960292`            | `56275602`                                       |
 |                                           |   4 | [Ceres Search](https://adventofcode.com/2024/day/4)                                                    | [[Code](src/main/kotlin/adventofcode/year2024/Day04CeresSearch.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day04CeresSearchSpec.kt)]                                             | `2483`                 | `1925`                                           |
 |                                           |   5 | [Print Queue](https://adventofcode.com/2024/day/5)                                                     | [[Code](src/main/kotlin/adventofcode/year2024/Day05PrintQueue.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day05PrintQueueSpec.kt)]                                               | `6498`                 | `5017`                                           |
+|                                           |   6 | [Guard Gallivant](https://adventofcode.com/2024/day/6)                                                 | [[Code](src/main/kotlin/adventofcode/year2024/Day06GuardGallivant.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day06GuardGallivantSpec.kt)]                                       | `5212`                 |                                                  |
 
 ## 🕯️ Useful commands
 
