@@ -12,11 +12,11 @@ class Day06GuardGallivant(customInput: PuzzleInput? = null) : Puzzle(customInput
 
     override fun partOne() =
         generateSequence(guard to setOf(guard.first)) { (previousGuard, previousVisited) ->
-            val nextPosition = (previousGuard.first + previousGuard.second.direction)
+            val nextPosition = previousGuard.first + previousGuard.second.direction
 
             when {
-                nextPosition in obstructions -> (previousGuard.first to previousGuard.second.turnRight()) to (previousVisited)
-                else -> (nextPosition to previousGuard.second) to (previousVisited + previousGuard.first)
+                nextPosition in obstructions -> previousGuard.first to previousGuard.second.turnRight() to previousVisited
+                else -> nextPosition to previousGuard.second to previousVisited + previousGuard.first
             }
         }
             .first { (guard, _) -> guard.first.toList().any { it !in grid.indices } }
