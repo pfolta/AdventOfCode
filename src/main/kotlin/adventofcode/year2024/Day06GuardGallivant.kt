@@ -33,7 +33,8 @@ class Day06GuardGallivant(customInput: PuzzleInput? = null) : Puzzle(customInput
             UP(0 to -1),
             RIGHT(1 to 0),
             DOWN(0 to 1),
-            LEFT(-1 to 0);
+            LEFT(-1 to 0),
+            ;
 
             fun turnRight() =
                 when (this) {
