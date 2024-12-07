@@ -13,9 +13,9 @@ class Day07BridgeRepair(customInput: PuzzleInput? = null) : Puzzle(customInput) 
             }
     }
 
-    override fun partOne() = equations.calibrationResult(setOf({ a, b -> a + b }, { a, b -> a * b }))
+    override fun partOne() = equations.calibrationResult(setOf(Long::plus, Long::times))
 
-    override fun partTwo() = equations.calibrationResult(setOf({ a, b -> a + b }, { a, b -> a * b }, { a, b -> "$a$b".toLong() }))
+    override fun partTwo() = equations.calibrationResult(setOf(Long::plus, Long::times, { a, b -> "$a$b".toLong() }))
 
     companion object {
         private fun List<Pair<Long, List<Long>>>.calibrationResult(operators: Set<(Long, Long) -> Long>) =
