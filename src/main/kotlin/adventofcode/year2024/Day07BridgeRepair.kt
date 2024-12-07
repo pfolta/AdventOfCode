@@ -4,21 +4,31 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
 class Day07BridgeRepair(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    override fun partOne() =
+    private val equations by lazy {
         input
             .lines()
-            .mapNotNull { equation ->
-                val result = equation.split(": ").first().toLong()
-                val numbers = equation.split(": ").last().split(" ").map(String::toLong)
+            .map { equation ->
+                val (result, numbers) = equation.split(": ")
+                result.toLong() to numbers.split(" ").map(String::toLong)
+            }
+    }
 
+    override fun partOne() = equations.calibrationResult(setOf({ a, b -> a + b }, { a, b -> a * b }))
+
+    override fun partTwo() = equations.calibrationResult(setOf({ a, b -> a + b }, { a, b -> a * b }, { a, b -> "$a$b".toLong() }))
+
+    companion object {
+        private fun List<Pair<Long, List<Long>>>.calibrationResult(operators: Set<(Long, Long) -> Long>) =
+            filter { (result, numbers) ->
                 val results =
                     numbers
                         .drop(1)
                         .fold(setOf(numbers.first())) { candidates, number ->
-                            candidates.flatMap { candidate -> setOf(candidate + number, candidate * number) }.toSet()
+                            candidates.flatMap { candidate -> operators.map { operator -> operator(candidate, number) } }.toSet()
                         }
 
-                if (result in results) result else null
+                result in results
             }
-            .sum()
+                .sumOf { (result, _) -> result }
+    }
 }
