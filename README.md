@@ -28,7 +28,7 @@
 |     2021 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |        |   ★    |   ★    |        |        |        |        |        |        |        |        |        |        |        |    26 |
 |     2022 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |        |        |        |        |        |        |        |   ☆    |        |        |        |   ☆    |    28 |
 |     2023 |   ★   |   ★   |   ★   |   ★   |   ☆   |   ★   |   ☆   |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    12 |
-|     2024 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    14 |
+|     2024 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ☆   |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    15 |
 
 ## 🛷 How to run
 
@@ -171,6 +171,7 @@ e.g. `HandyHaversacks`)*
 |                                           |   5 | [Print Queue](https://adventofcode.com/2024/day/5)                                                     | [[Code](src/main/kotlin/adventofcode/year2024/Day05PrintQueue.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day05PrintQueueSpec.kt)]                                               | `6498`                 | `5017`                                           |
 |                                           |   6 | [Guard Gallivant](https://adventofcode.com/2024/day/6)                                                 | [[Code](src/main/kotlin/adventofcode/year2024/Day06GuardGallivant.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day06GuardGallivantSpec.kt)]                                       | `5212`                 | `1767`                                           |
 |                                           |   7 | [Bridge Repair](https://adventofcode.com/2024/day/7)                                                   | [[Code](src/main/kotlin/adventofcode/year2024/Day07BridgeRepair.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day07BridgeRepairSpec.kt)]                                           | `8401132154762`        | `95297119227552`                                 |
+|                                           |   8 | [Resonant Collinearity](https://adventofcode.com/2024/day/8)                                           | [[Code](src/main/kotlin/adventofcode/year2024/Day08ResonantCollinearity.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day08ResonantCollinearitySpec.kt)]                           | `252`                  |                                                  |
 
 ## 🕯️ Useful commands
 
