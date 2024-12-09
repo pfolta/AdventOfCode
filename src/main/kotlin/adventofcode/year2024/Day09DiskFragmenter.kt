@@ -36,19 +36,12 @@ class Day09DiskFragmenter(customInput: PuzzleInput? = null) : Puzzle(customInput
                         emptyList()
                     }
 
-                val remainder =
-                    if (result.indexOf(file) + 1 <= result.size) {
-                        result.subList(result.indexOf(file) + 1, result.size)
-                    } else {
-                        emptyList()
-                    }
-
                 result = result.subList(0, result.indexOf(freeSpace)) +
                     listOf(file) +
                     freeSpaceRemainder +
                     result.subList(result.indexOf(freeSpace) + 1, result.indexOf(file)) +
                     listOf(FreeSpace(file.size)) +
-                    remainder
+                    result.subList(result.indexOf(file) + 1, result.size)
             }
         }
 
