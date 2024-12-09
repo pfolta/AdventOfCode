@@ -40,7 +40,7 @@ jobs:
         if: "${{ always() }}"
         uses: "actions/upload-artifact@v4.4.3"
         with:
-          name: "Ktlint reports"
+          name: "Ktlint Reports"
           path: "build/reports/ktlint"
           if-no-files-found: "error"
 
@@ -48,7 +48,7 @@ jobs:
         if: "${{ always() }}"
         uses: "actions/upload-artifact@v4.4.3"
         with:
-          name: "Test summary"
+          name: "Test Summary"
           path: "build/reports/tests/test"
           if-no-files-found: "error"
 
@@ -56,14 +56,9 @@ jobs:
         if: "${{ always() }}"
         uses: "actions/upload-artifact@v4.4.3"
         with:
-          name: "Coverage report"
-          path: "build/reports/jacoco/test/html"
+          name: "Coverage Report"
+          path: "build/reports/jacoco/test"
           if-no-files-found: "error"
-
-      - name: "Publish coverage data to Codecov"
-        uses: "codecov/codecov-action@v5.0.4"
-        with:
-          token: "${{ secrets.CODECOV_TOKEN }}"
 
   run-jar-natively:
     name: "Run JAR archive natively"
@@ -133,3 +128,20 @@ jobs:
         with:
           image: "pfolta/advent-of-code:latest"
           run: "java -jar AdventOfCode.jar 2024"
+
+  publish-coverage-data:
+    name: "Publish coverage data to Codecov"
+    needs: ["run-jar-natively", "run-docker-image"]
+    runs-on: "ubuntu-latest"
+
+    steps:
+      - name: "Download coverage report artifact"
+        uses: "actions/download-artifact@v4.1.8"
+        with:
+          name: "Coverage Report"
+          path: "."
+
+      - name: "Publish coverage data to Codecov"
+        uses: "codecov/codecov-action@v5.0.4"
+        with:
+          token: "${{ secrets.CODECOV_TOKEN }}"
