@@ -2,7 +2,6 @@ package adventofcode.year2024
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
-import adventofcode.common.swap
 
 class Day09DiskFragmenter(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val fileMap by lazy {
@@ -15,38 +14,9 @@ class Day09DiskFragmenter(customInput: PuzzleInput? = null) : Puzzle(customInput
             }
     }
 
-    override fun partOne() =
-        generateSequence(fileMap.flatMap(Block::expand)) { map ->
-            map.swap(map.indexOfFirst { it is FreeSpace }, map.indexOfLast { it is File })
-        }
-            .first { map -> map.indexOfFirst { it is FreeSpace } > map.indexOfLast { it is File } }
-            .checksum()
+    override fun partOne() = fileMap.flatMap((Block::expand)).moveFileBlocks().checksum()
 
-    override fun partTwo(): Long {
-        var result = fileMap
-
-        for (file in fileMap.filterIsInstance<File>().reversed()) {
-            val freeSpace = result.firstOrNull { block -> block is FreeSpace && block.size >= file.size }
-
-            if (freeSpace != null && result.indexOf(freeSpace) < result.indexOf(file)) {
-                val freeSpaceRemainder =
-                    if (freeSpace.size > file.size) {
-                        listOf(FreeSpace(freeSpace.size - file.size))
-                    } else {
-                        emptyList()
-                    }
-
-                result = result.subList(0, result.indexOf(freeSpace)) +
-                    listOf(file) +
-                    freeSpaceRemainder +
-                    result.subList(result.indexOf(freeSpace) + 1, result.indexOf(file)) +
-                    listOf(FreeSpace(file.size)) +
-                    result.subList(result.indexOf(file) + 1, result.size)
-            }
-        }
-
-        return result.checksum()
-    }
+    override fun partTwo() = fileMap.moveFileBlocks().checksum()
 
     companion object {
         private sealed class Block {
@@ -61,6 +31,34 @@ class Day09DiskFragmenter(customInput: PuzzleInput? = null) : Puzzle(customInput
 
         private data class FreeSpace(override val size: Int) : Block() {
             override fun expand() = (0 until size).map { FreeSpace(1) }
+        }
+
+        private fun List<Block>.moveFileBlocks(): List<Block> {
+            var result = this
+
+            for (file in filterIsInstance<File>().reversed()) {
+                val freeSpace = result.firstOrNull { block -> block is FreeSpace && block.size >= file.size }
+                val freeSpaceIndex = result.indexOf(freeSpace)
+                val fileIndex = result.indexOfLast { it == file }
+
+                if (freeSpace != null && freeSpaceIndex < fileIndex) {
+                    val freeSpaceRemainder =
+                        if (freeSpace.size > file.size) {
+                            listOf(FreeSpace(freeSpace.size - file.size))
+                        } else {
+                            emptyList()
+                        }
+
+                    result = result.subList(0, freeSpaceIndex) +
+                        listOf(file) +
+                        freeSpaceRemainder +
+                        result.subList(freeSpaceIndex + 1, fileIndex) +
+                        listOf(FreeSpace(file.size)) +
+                        result.subList(fileIndex + 1, result.size)
+                }
+            }
+
+            return result
         }
 
         private fun List<Block>.checksum() =
