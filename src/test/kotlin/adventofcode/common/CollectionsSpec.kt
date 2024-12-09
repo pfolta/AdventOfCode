@@ -43,4 +43,10 @@ class CollectionsSpec : FreeSpec({
                 )
         }
     }
+
+    "swap" - {
+        "swaps the correct two elements in a List" {
+            listOf(1, 2, 3, 4, 5).swap(1, 3) shouldContainExactly listOf(1, 4, 3, 2, 5)
+        }
+    }
 })

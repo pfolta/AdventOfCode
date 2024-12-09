@@ -70,3 +70,12 @@ inline fun <reified T : Any?> Collection<Collection<T>>.transpose(): Collection<
     forEach { list -> result.zip(list).forEach { it.first.add(it.second) } }
     return result.map { it.reversed() }
 }
+
+/**
+ * Swaps two elements in a list, identified by index
+ * e.g. listOf(1, 2, 3, 4, 5).swap(1, 3) -> listOf(1, 4, 3, 2, 5)
+ */
+inline fun <reified T : Any?> List<T>.swap(
+    aIndex: Int,
+    bIndex: Int,
+) = subList(0, aIndex) + this[bIndex] + subList(aIndex + 1, bIndex) + this[aIndex] + subList(bIndex + 1, size)
