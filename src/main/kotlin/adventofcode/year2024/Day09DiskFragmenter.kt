@@ -29,24 +29,26 @@ class Day09DiskFragmenter(customInput: PuzzleInput? = null) : Puzzle(customInput
             val freeSpace = result.firstOrNull { block -> block is FreeSpace && block.size >= file.size }
 
             if (freeSpace != null && result.indexOf(freeSpace) < result.indexOf(file)) {
-                val freeRemainder = if (freeSpace.size > file.size) {
-                    FreeSpace(freeSpace.size - file.size)
-                } else {
-                    null
-                }
+                val freeSpaceRemainder =
+                    if (freeSpace.size > file.size) {
+                        listOf(FreeSpace(freeSpace.size - file.size))
+                    } else {
+                        emptyList()
+                    }
 
-                val remainder = if (result.indexOf(file) + 1 <= result.size) {
-                    result.subList(result.indexOf(file) + 1, result.size)
-                } else {
-                    emptyList()
-                }
+                val remainder =
+                    if (result.indexOf(file) + 1 <= result.size) {
+                        result.subList(result.indexOf(file) + 1, result.size)
+                    } else {
+                        emptyList()
+                    }
 
                 result = result.subList(0, result.indexOf(freeSpace)) +
-                        listOf(file) +
-                        listOfNotNull(freeRemainder) +
-                        result.subList(result.indexOf(freeSpace) + 1, result.indexOf(file)) +
-                        listOf(FreeSpace(file.size)) +
-                        remainder
+                    listOf(file) +
+                    freeSpaceRemainder +
+                    result.subList(result.indexOf(freeSpace) + 1, result.indexOf(file)) +
+                    listOf(FreeSpace(file.size)) +
+                    remainder
             }
         }
 
@@ -56,26 +58,26 @@ class Day09DiskFragmenter(customInput: PuzzleInput? = null) : Puzzle(customInput
     companion object {
         private sealed class Block {
             abstract val size: Int
+
             abstract fun expand(): List<Block>
         }
 
         private data class File(val id: Long, override val size: Int) : Block() {
             override fun expand() = (0 until size).map { File(id, 1) }
-            override fun toString() = id.toString().repeat(size)
         }
 
         private data class FreeSpace(override val size: Int) : Block() {
             override fun expand() = (0 until size).map { FreeSpace(1) }
-            override fun toString() = ".".repeat(size)
         }
 
-        private fun List<Block>.checksum() = flatMap(Block::expand)
-            .mapIndexed { index, block -> index to block }
-            .sumOf { (index, block) ->
-                when (block) {
-                    is File -> index * block.id
-                    is FreeSpace -> 0
+        private fun List<Block>.checksum() =
+            flatMap(Block::expand)
+                .mapIndexed { index, block -> index to block }
+                .sumOf { (index, block) ->
+                    when (block) {
+                        is File -> index * block.id
+                        is FreeSpace -> 0
+                    }
                 }
-            }
     }
 }
