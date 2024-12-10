@@ -28,7 +28,7 @@
 |     2021 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |        |   ★    |   ★    |        |        |        |        |        |        |        |        |        |        |        |    26 |
 |     2022 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |        |        |        |        |        |        |        |   ☆    |        |        |        |   ☆    |    28 |
 |     2023 |   ★   |   ★   |   ★   |   ★   |   ☆   |   ★   |   ☆   |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    12 |
-|     2024 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    18 |
+|     2024 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ☆    |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    19 |
 
 ## 🛷 How to run
 
@@ -173,6 +173,7 @@ e.g. `HandyHaversacks`)*
 |                                           |   7 | [Bridge Repair](https://adventofcode.com/2024/day/7)                                                   | [[Code](src/main/kotlin/adventofcode/year2024/Day07BridgeRepair.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day07BridgeRepairSpec.kt)]                                           | `8401132154762`        | `95297119227552`                                 |
 |                                           |   8 | [Resonant Collinearity](https://adventofcode.com/2024/day/8)                                           | [[Code](src/main/kotlin/adventofcode/year2024/Day08ResonantCollinearity.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day08ResonantCollinearitySpec.kt)]                           | `252`                  | `839`                                            |
 |                                           |   9 | [Disk Fragmenter](https://adventofcode.com/2024/day/9)                                                 | [[Code](src/main/kotlin/adventofcode/year2024/Day09DiskFragmenter.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day09DiskFragmenterSpec.kt)]                                       | `6360094256423`        | `6379677752410`                                  |
+|                                           |  10 | [Hoof It](https://adventofcode.com/2024/day/10)                                                        | [[Code](src/main/kotlin/adventofcode/year2024/Day10HoofIt.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day10HoofItSpec.kt)]                                                       | `746`                  |                                                  |
 
 ## 🕯️ Useful commands
 
