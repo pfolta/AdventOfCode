@@ -13,30 +13,41 @@ class Day10HoofIt(customInput: PuzzleInput? = null) : Puzzle(customInput) {
         map
             .flatten()
             .filter { (_, height) -> height == 0 }
-            .sumOf { (trailhead, _) -> map.countTrails(trailhead) }
+            .sumOf { (trailhead, _) -> map.countTrails(trailhead, 9, true, 1) }
+
+    override fun partTwo() =
+        map
+            .flatten()
+            .filter { (_, height) -> height == 9 }
+            .sumOf { (trailhead, _) -> map.countTrails(trailhead, 0, false, -1) }
 
     companion object {
-        private fun List<List<Pair<Pair<Int, Int>, Int>>>.countTrails(trailhead: Pair<Int, Int>): Int {
-            val visited = mutableSetOf<Pair<Int, Int>>()
-            val queue = ArrayDeque(setOf(trailhead))
+        private fun List<List<Pair<Pair<Int, Int>, Int>>>.countTrails(
+            start: Pair<Int, Int>,
+            end: Int,
+            distinct: Boolean,
+            delta: Int,
+        ): Int {
+            val visited = mutableListOf<Pair<Int, Int>>()
+            val queue = ArrayDeque(setOf(start))
 
             while (queue.isNotEmpty()) {
                 val position = queue.removeFirst()
                 val (x, y) = position
 
-                if (position !in visited) {
+                if (!distinct || position !in visited) {
                     visited.add(position)
 
                     val nextPositions =
                         neighbors(x, y, false)
-                            .filter { (a, b) -> this[b][a].second == this[y][x].second + 1 }
+                            .filter { (a, b) -> this[b][a].second - this[y][x].second == delta }
                             .filterNot { it in visited }
 
                     queue.addAll(nextPositions)
                 }
             }
 
-            return visited.count { (x, y) -> this[y][x].second == 9 }
+            return visited.count { (x, y) -> this[y][x].second == end }
         }
     }
 }
