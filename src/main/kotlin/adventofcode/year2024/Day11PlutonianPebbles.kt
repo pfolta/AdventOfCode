@@ -10,6 +10,8 @@ class Day11PlutonianPebbles(customInput: PuzzleInput? = null) : Puzzle(customInp
 
     override fun partOne() = stones.sumOf { stone -> stone.countStones(cache, 25) }
 
+    override fun partTwo() = stones.sumOf { stone -> stone.countStones(cache, 75) }
+
     companion object {
         private fun Long.countStones(
             cache: MutableMap<Pair<Long, Int>, Long>,
