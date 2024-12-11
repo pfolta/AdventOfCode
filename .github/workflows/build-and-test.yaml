@@ -89,6 +89,9 @@ jobs:
       - name: "Check out source code"
         uses: "actions/checkout@v4.2.2"
 
+      - name: "Lint Dockerfile"
+        uses: "luke142367/Docker-Lint-Action@v1.1.1"
+
       - name: "Set up Docker Buildx"
         uses: "docker/setup-buildx-action@v3.7.1"
 
