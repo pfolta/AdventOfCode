@@ -8,35 +8,33 @@ class Day11PlutonianPebbles(customInput: PuzzleInput? = null) : Puzzle(customInp
 
     private val cache = mutableMapOf<Pair<Long, Int>, Long>()
 
-    override fun partOne() = stones.sumOf { stone -> stone.countStones(cache, 25) }
+    override fun partOne() = stones.sumOf { stone -> blink(stone, cache, 25) }
 
-    override fun partTwo() = stones.sumOf { stone -> stone.countStones(cache, 75) }
+    override fun partTwo() = stones.sumOf { stone -> blink(stone, cache, 75) }
 
     companion object {
-        private fun Long.countStones(
+        private fun blink(
+            stone: Long,
             cache: MutableMap<Pair<Long, Int>, Long>,
-            rounds: Int,
-        ): Long {
-            if (rounds == 0) {
-                return 1
-            }
+            count: Int,
+        ): Long =
+            when {
+                count == 0 -> 1
+                stone to count in cache -> cache.getValue(stone to count)
+                else -> {
+                    val result =
+                        when {
+                            stone == 0L -> blink(1L, cache, count - 1)
+                            stone.hasEvenDigits() -> stone.halves().sumOf { half -> blink(half, cache, count - 1) }
+                            else -> blink(stone * 2024, cache, count - 1)
+                        }
 
-            if (cache.contains(this to rounds)) {
-                return cache[this to rounds]!!
-            }
-
-            val result =
-                when {
-                    this == 0L -> 1L.countStones(cache, rounds - 1)
-                    hasEvenDigitCount() -> halves().sumOf { half -> half.countStones(cache, rounds - 1) }
-                    else -> (this * 2024).countStones(cache, rounds - 1)
+                    cache[stone to count] = result
+                    result
                 }
+            }
 
-            cache[this to rounds] = result
-            return result
-        }
-
-        private fun Long.hasEvenDigitCount() = toString().length % 2 == 0
+        private fun Long.hasEvenDigits() = toString().length % 2 == 0
 
         private fun Long.halves() =
             listOf(toString().substring(0, toString().length / 2), toString().substring(toString().length / 2)).map(String::toLong)
