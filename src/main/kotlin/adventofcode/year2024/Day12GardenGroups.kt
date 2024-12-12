@@ -14,7 +14,7 @@ class Day12GardenGroups(customInput: PuzzleInput? = null) : Puzzle(customInput) 
     override fun partOne() =
         map
             .mapRegions()
-            .sumOf { region -> region.area * region.perimeter() }
+            .sumOf { region -> region.area * region.perimeter }
 
     companion object {
         private data class GardenPlot(
@@ -29,7 +29,7 @@ class Day12GardenGroups(customInput: PuzzleInput? = null) : Puzzle(customInput) 
         ) {
             val area = plots.size
 
-            fun perimeter() =
+            val perimeter =
                 plots
                     .sumOf { plot ->
                         Direction
