@@ -3,18 +3,24 @@ package adventofcode.year2024
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.Direction
+import adventofcode.common.Direction.EAST
+import adventofcode.common.Direction.NORTH
+import adventofcode.common.Direction.SOUTH
+import adventofcode.common.Direction.WEST
 import adventofcode.common.Tuple.plus
+import adventofcode.common.contains
 import adventofcode.common.neighbors
 
 class Day12GardenGroups(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    private val map by lazy {
+    private val garden by lazy {
         input.lines().mapIndexed { y, line -> line.mapIndexed { x, type -> GardenPlot(x, y, type) } }
     }
 
-    override fun partOne() =
-        map
-            .mapRegions()
-            .sumOf { region -> region.area * region.perimeter }
+    private val regions by lazy { garden.mapRegions() }
+
+    override fun partOne() = regions.sumOf { region -> region.area * region.perimeter }
+
+    override fun partTwo() = regions.sumOf { region -> region.area * region.sides(garden) }
 
     companion object {
         private data class GardenPlot(
@@ -30,14 +36,25 @@ class Day12GardenGroups(customInput: PuzzleInput? = null) : Puzzle(customInput) 
             val area = plots.size
 
             val perimeter =
-                plots
-                    .sumOf { plot ->
-                        Direction
-                            .entries
-                            .map { direction -> (plot.x to plot.y) + direction.delta }
-                            .filterNot { side -> side in plots.map { (x, y) -> x to y } }
-                            .size
-                    }
+                plots.sumOf { plot ->
+                    Direction
+                        .entries
+                        .map { direction -> (plot.x to plot.y) + direction.delta }
+                        .filterNot { side -> side in plots.map { (x, y) -> x to y } }
+                        .size
+                }
+
+            fun sides(garden: List<List<GardenPlot>>): Int =
+                plots.sumOf { (x, y) ->
+                    setOf(NORTH to EAST, EAST to SOUTH, SOUTH to WEST, WEST to NORTH)
+                        .map { (first, second) ->
+                            listOf(x to y, (x to y) + first.delta, (x to y) + second.delta, (x to y) + first.delta + second.delta)
+                                .map { (a, b) -> if (garden.contains(a, b)) garden[b][a].type else null }
+                        }
+                        .count { (plot, sideA, sideB, corner) ->
+                            (plot != sideA && plot != sideB) || (plot == sideA && plot == sideB && plot != corner)
+                        }
+                }
         }
 
         private fun List<List<GardenPlot>>.mapRegions(): Set<Region> {
@@ -63,8 +80,8 @@ class Day12GardenGroups(customInput: PuzzleInput? = null) : Puzzle(customInput) 
                 val current = queue.removeFirst()
 
                 val neighbors =
-                    neighbors(current.y, current.x, false)
-                        .map { (y, x) -> this[y][x] }
+                    neighbors(current.x, current.y, false)
+                        .map { (x, y) -> this[y][x] }
                         .filter { (_, _, type) -> type == plot.type }
                         .filterNot { neighbor -> neighbor in region }
 

@@ -57,6 +57,11 @@ inline fun <reified T : Any?> List<List<T>>.neighbors(
         .filter { it.first < this[y].size && it.second < size }
         .toSet()
 
+inline fun <reified T : Any?> List<List<T>>.contains(
+    x: Int,
+    y: Int,
+): Boolean = y in indices && x in this[y].indices
+
 /**
  * Transposes a 2D collection by rotating it 90deg clockwise:
  *
