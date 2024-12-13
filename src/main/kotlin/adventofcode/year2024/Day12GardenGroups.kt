@@ -2,19 +2,15 @@ package adventofcode.year2024
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
-import adventofcode.common.Direction
-import adventofcode.common.Direction.EAST
-import adventofcode.common.Direction.NORTH
-import adventofcode.common.Direction.SOUTH
-import adventofcode.common.Direction.WEST
-import adventofcode.common.Tuple.plus
-import adventofcode.common.contains
-import adventofcode.common.neighbors
+import adventofcode.common.EAST
+import adventofcode.common.Grid2d
+import adventofcode.common.NORTH
+import adventofcode.common.Point2d
+import adventofcode.common.SOUTH
+import adventofcode.common.WEST
 
 class Day12GardenGroups(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    private val garden by lazy {
-        input.lines().mapIndexed { y, line -> line.mapIndexed { x, type -> GardenPlot(x, y, type) } }
-    }
+    private val garden by lazy { Grid2d(input.lines().map { line -> line.toCharArray().toList() }) }
 
     private val regions by lazy { garden.mapRegions() }
 
@@ -23,33 +19,26 @@ class Day12GardenGroups(customInput: PuzzleInput? = null) : Puzzle(customInput) 
     override fun partTwo() = regions.sumOf { region -> region.area * region.sides(garden) }
 
     companion object {
-        private data class GardenPlot(
-            val x: Int,
-            val y: Int,
-            val type: Char,
-        )
-
         private data class Region(
             val type: Char,
-            val plots: Set<GardenPlot>,
+            val plots: Set<Point2d>,
         ) {
             val area = plots.size
 
             val perimeter =
                 plots.sumOf { plot ->
-                    Direction
-                        .entries
-                        .map { direction -> (plot.x to plot.y) + direction.delta }
-                        .filterNot { side -> side in plots.map { (x, y) -> x to y } }
+                    setOf(NORTH, EAST, SOUTH, WEST)
+                        .map { direction -> plot + direction }
+                        .filterNot { side -> side in plots }
                         .size
                 }
 
-            fun sides(garden: List<List<GardenPlot>>): Int =
-                plots.sumOf { (x, y) ->
+            fun sides(garden: Grid2d<Char>): Int =
+                plots.sumOf { plot ->
                     setOf(NORTH to EAST, EAST to SOUTH, SOUTH to WEST, WEST to NORTH)
                         .map { (first, second) ->
-                            listOf(x to y, (x to y) + first.delta, (x to y) + second.delta, (x to y) + first.delta + second.delta)
-                                .map { (a, b) -> if (garden.contains(a, b)) garden[b][a].type else null }
+                            listOf(plot, plot + first, plot + second, plot + first + second)
+                                .map { a -> garden.getOrNull(a) }
                         }
                         .count { (plot, sideA, sideB, corner) ->
                             (plot != sideA && plot != sideB) || (plot == sideA && plot == sideB && plot != corner)
@@ -57,32 +46,31 @@ class Day12GardenGroups(customInput: PuzzleInput? = null) : Puzzle(customInput) 
                 }
         }
 
-        private fun List<List<GardenPlot>>.mapRegions(): Set<Region> {
+        private fun Grid2d<Char>.mapRegions(): Set<Region> {
             val regions = mutableSetOf<Region>()
-            val queue = ArrayDeque(flatten())
+            val queue = ArrayDeque(points)
 
             while (queue.isNotEmpty()) {
                 val current = queue.removeFirst()
                 val plots = getConnectedPlots(current)
 
                 queue.removeAll(plots)
-                regions.add(Region(current.type, plots))
+                regions.add(Region(this[current], plots))
             }
 
             return regions
         }
 
-        private fun List<List<GardenPlot>>.getConnectedPlots(plot: GardenPlot): Set<GardenPlot> {
-            val region = mutableSetOf<GardenPlot>()
+        private fun Grid2d<Char>.getConnectedPlots(plot: Point2d): Set<Point2d> {
+            val region = mutableSetOf<Point2d>()
             val queue = ArrayDeque(setOf(plot))
 
             while (queue.isNotEmpty()) {
                 val current = queue.removeFirst()
 
                 val neighbors =
-                    neighbors(current.x, current.y, false)
-                        .map { (x, y) -> this[y][x] }
-                        .filter { (_, _, type) -> type == plot.type }
+                    neighborsOf(current)
+                        .filter { neighbor -> this[plot] == this[neighbor] }
                         .filterNot { neighbor -> neighbor in region }
 
                 region.addAll(setOf(current) + neighbors)
