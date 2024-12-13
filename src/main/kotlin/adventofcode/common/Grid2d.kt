@@ -3,9 +3,11 @@ package adventofcode.common
 import kotlin.String
 
 data class Point2d(
-    val x: Int,
-    val y: Int,
+    val x: Long,
+    val y: Long,
 ) {
+    constructor(x: Number, y: Number) : this(x.toLong(), y.toLong())
+
     /**
      * Pretty formatted String representation.
      *
@@ -17,6 +19,11 @@ data class Point2d(
      * Add two points together by adding their x and y coordinates
      */
     operator fun plus(other: Point2d): Point2d = Point2d(x + other.x, y + other.y)
+
+    /**
+     * Add a constant offset to the point's x and y coordinates
+     */
+    operator fun plus(offset: Number): Point2d = Point2d(x + offset.toLong(), y + offset.toLong())
 }
 
 val NORTH = Point2d(0, -1)
@@ -56,19 +63,23 @@ data class Grid2d<T>(val values: List<List<T>>) {
      */
     fun find(value: T): List<Point2d> =
         points
-            .filter { (x, y) -> values[y][x] == value }
+            .filter { (x, y) -> values[y.toInt()][x.toInt()] == value }
             .map { (x, y) -> Point2d(x, y) }
 
     /**
      * Returns the value at the given point if the point is within the grid, throws otherwise.
      */
     operator fun get(point: Point2d): T =
-        if (point in this) values[point.y][point.x] else throw IndexOutOfBoundsException("Point $point is not part of this grid")
+        if (point in this) {
+            values[point.y.toInt()][point.x.toInt()]
+        } else {
+            throw IndexOutOfBoundsException("Point $point is outside of the grid")
+        }
 
     /**
      * Returns the value at the given point if the point is within the grid, or `null` otherwise.
      */
-    fun getOrNull(point: Point2d): T? = if (point in this) values[point.y][point.x] else null
+    fun getOrNull(point: Point2d): T? = if (point in this) values[point.y.toInt()][point.x.toInt()] else null
 
     /**
      * Returns a set of valid neighbors for a given point P in the grid.

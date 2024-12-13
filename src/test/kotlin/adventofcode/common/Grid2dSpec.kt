@@ -85,7 +85,7 @@ class Grid2dSpec : FreeSpec({
             shouldThrow<IndexOutOfBoundsException> {
                 grid[Point2d(10, 10)]
             }.apply {
-                message shouldBe "Point (10, 10) is not part of this grid"
+                message shouldBe "Point (10, 10) is outside of the grid"
             }
         }
     }

@@ -21,9 +21,27 @@ class Day13ClawContraption(customInput: PuzzleInput? = null) : Puzzle(customInpu
             }
     }
 
-    override fun partOne() =
+    override fun partOne() = clawMachines.sumOf { clawMachine -> clawMachine.countTokens() }
+
+    override fun partTwo() =
         clawMachines
-            .mapNotNull { (buttonA, buttonB, prize) ->
+            .map { (buttonA, buttonB, prize) -> ClawMachine(buttonA, buttonB, prize + PART_TWO_OFFSET) }
+            .sumOf { clawMachine -> clawMachine.countTokens() }
+
+    companion object {
+        private val INPUT_REGEX = """X[+|=](\d+), Y[+|=](\d+)""".toRegex()
+
+        private const val COST_A = 3
+        private const val COST_B = 1
+
+        private const val PART_TWO_OFFSET = 10000000000000
+
+        private data class ClawMachine(
+            val buttonA: Point2d,
+            val buttonB: Point2d,
+            val prize: Point2d,
+        ) {
+            fun countTokens(): Long {
                 val (ax, ay) = buttonA
                 val (bx, by) = buttonB
                 val (px, py) = prize
@@ -32,24 +50,12 @@ class Day13ClawContraption(customInput: PuzzleInput? = null) : Puzzle(customInpu
                 val a = px * by - bx * py
                 val b = ax * py - px * ay
 
-                if (setOf(a, b).all { it % dividend == 0 }) {
+                return if (setOf(a, b).all { it % dividend == 0L }) {
                     a / dividend * COST_A + b / dividend * COST_B
                 } else {
-                    null
+                    0
                 }
             }
-            .sum()
-
-    companion object {
-        private val INPUT_REGEX = """X[+|=](\d+), Y[+|=](\d+)""".toRegex()
-
-        private const val COST_A = 3
-        private const val COST_B = 1
-
-        private data class ClawMachine(
-            val buttonA: Point2d,
-            val buttonB: Point2d,
-            val prize: Point2d,
-        )
+        }
     }
 }
