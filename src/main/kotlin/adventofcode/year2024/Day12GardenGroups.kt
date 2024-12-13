@@ -2,15 +2,15 @@ package adventofcode.year2024
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
-import adventofcode.common.EAST
-import adventofcode.common.Grid2d
-import adventofcode.common.NORTH
-import adventofcode.common.Point2d
-import adventofcode.common.SOUTH
-import adventofcode.common.WEST
+import adventofcode.common.spatial.EAST
+import adventofcode.common.spatial.Grid2d
+import adventofcode.common.spatial.NORTH
+import adventofcode.common.spatial.Point2d
+import adventofcode.common.spatial.SOUTH
+import adventofcode.common.spatial.WEST
 
 class Day12GardenGroups(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    private val garden by lazy { Grid2d(input.lines().map { line -> line.toCharArray().toList() }) }
+    private val garden by lazy { Grid2d(input) }
 
     private val regions by lazy { garden.mapRegions() }
 

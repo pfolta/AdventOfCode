@@ -2,22 +2,24 @@ package adventofcode.year2024
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
-import adventofcode.common.Tuple.plus
+import adventofcode.common.spatial.Grid2d
+import adventofcode.common.spatial.Point2d
 import adventofcode.year2024.Day06GuardGallivant.Companion.Direction.UP
 
 class Day06GuardGallivant(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    private val grid by lazy { input.lines().map(String::toList) }
-    private val obstructions by lazy { grid.filter('#') }
-    private val guard by lazy { grid.filter('^').first() to UP }
+    private val grid by lazy { Grid2d(input) }
+    private val obstructions by lazy { grid.find('#') }
+    private val guard by lazy { grid.find('^').first() to UP }
 
-    override fun partOne() = guardPath(grid.size, obstructions, guard).size
+    override fun partOne() = grid.guardPath(obstructions, guard).size
 
     override fun partTwo() =
-        guardPath(grid.size, obstructions, guard)
+        grid
+            .guardPath(obstructions, guard)
             .filterNot { position -> position == guard.first }
             .mapNotNull { position ->
                 try {
-                    guardPath(grid.size, obstructions + position, guard)
+                    grid.guardPath(obstructions + position, guard)
                     null
                 } catch (e: LoopException) {
                     position
@@ -26,16 +28,11 @@ class Day06GuardGallivant(customInput: PuzzleInput? = null) : Puzzle(customInput
             .size
 
     companion object {
-        private fun List<List<Char>>.filter(char: Char) =
-            mapIndexed { y, row -> row.mapIndexedNotNull { x, c -> if (c == char) x to y else null } }
-                .flatten()
-                .toSet()
-
-        private enum class Direction(val direction: Pair<Int, Int>) {
-            UP(0 to -1),
-            RIGHT(1 to 0),
-            DOWN(0 to 1),
-            LEFT(-1 to 0),
+        private enum class Direction(val direction: Point2d) {
+            UP(Point2d(0, -1)),
+            RIGHT(Point2d(1, 0)),
+            DOWN(Point2d(0, 1)),
+            LEFT(Point2d(-1, 0)),
             ;
 
             fun turnRight() =
@@ -47,17 +44,16 @@ class Day06GuardGallivant(customInput: PuzzleInput? = null) : Puzzle(customInput
                 }
         }
 
-        private class LoopException(position: Pair<Int, Int>) : Exception("Loop detected at $position")
+        private class LoopException(position: Point2d) : Exception("Loop detected at $position")
 
-        private fun guardPath(
-            gridSize: Int,
-            obstructions: Set<Pair<Int, Int>>,
-            guard: Pair<Pair<Int, Int>, Direction>,
-        ): Set<Pair<Int, Int>> {
-            val seen = mutableSetOf<Pair<Pair<Int, Int>, Direction>>()
+        private fun Grid2d<Char>.guardPath(
+            obstructions: Set<Point2d>,
+            guard: Pair<Point2d, Direction>,
+        ): Set<Point2d> {
+            val seen = mutableSetOf<Pair<Point2d, Direction>>()
             var position = guard
 
-            while (position.first.toList().all { it in 0 until gridSize }) {
+            while (position.first in this) {
                 if (seen.contains(position)) {
                     throw LoopException(position.first)
                 }

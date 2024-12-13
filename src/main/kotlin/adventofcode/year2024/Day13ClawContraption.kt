@@ -2,7 +2,7 @@ package adventofcode.year2024
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
-import adventofcode.common.Point2d
+import adventofcode.common.spatial.Point2d
 
 class Day13ClawContraption(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val clawMachines by lazy {

@@ -1,4 +1,4 @@
-package adventofcode.common
+package adventofcode.common.spatial
 
 import io.kotest.assertions.throwables.shouldThrow
 import io.kotest.core.spec.style.FreeSpec
@@ -31,6 +31,17 @@ class Grid2dSpec : FreeSpec({
                     listOf('I', 'J', 'K', 'L'),
                 ),
             ).isSquare shouldBe false
+        }
+    }
+
+    "toString" - {
+        "returns pretty formatted String representation of the point" {
+            grid.toString() shouldBe
+                """
+                [A, B, C]
+                [D, E, F]
+                [G, H, I]
+                """.trimIndent()
         }
     }
 
@@ -125,12 +136,32 @@ class Grid2dSpec : FreeSpec({
         }
     }
 
-    "toString" {
-        grid.toString() shouldBe
-            """
-            [A, B, C]
-            [D, E, F]
-            [G, H, I]
-            """.trimIndent()
+    "rotate" - {
+        "returns a new grid correctly rotated" {
+            grid.rotate() shouldBe
+                Grid2d(
+                    listOf(
+                        listOf('G', 'D', 'A'),
+                        listOf('H', 'E', 'B'),
+                        listOf('I', 'F', 'C'),
+                    ),
+                )
+        }
+
+        "leaves the original grid untouched" {
+            grid.rotate()
+            grid shouldBe
+                Grid2d(
+                    listOf(
+                        listOf('A', 'B', 'C'),
+                        listOf('D', 'E', 'F'),
+                        listOf('G', 'H', 'I'),
+                    ),
+                )
+        }
+
+        "rotating 4 times results in the original grid" {
+            generateSequence(grid, Grid2d<Char>::rotate).drop(1).take(4).last() shouldBe grid
+        }
     }
 })

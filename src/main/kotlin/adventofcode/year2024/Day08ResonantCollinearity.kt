@@ -2,34 +2,32 @@ package adventofcode.year2024
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
-import adventofcode.common.Tuple.minus
-import adventofcode.common.Tuple.plus
+import adventofcode.common.spatial.Grid2d
+import adventofcode.common.spatial.Point2d
 
 class Day08ResonantCollinearity(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    private val gridSize by lazy { input.lines().size }
+    private val grid by lazy { Grid2d(input) }
 
     override fun partOne() =
-        input
+        grid
             .distinctAntinodesCount { (a, b) ->
                 val distance = b - a
-                setOf(a - distance, b + distance).filter { it.isInBounds((gridSize)) }.toSet()
+                setOf(a - distance, b + distance).filter { point -> point in grid }.toSet()
             }
 
     override fun partTwo() =
-        input
+        grid
             .distinctAntinodesCount { (a, b) ->
                 generateSequence(a) { antinode -> antinode - (b - a) }
-                    .takeWhile { antinode -> antinode.isInBounds(gridSize) }
+                    .takeWhile { antinode -> antinode in grid }
                     .toSet()
             }
 
     companion object {
-        private fun Pair<Int, Int>.isInBounds(gridSize: Int) = toList().all { it in 0 until gridSize }
-
-        private fun String.distinctAntinodesCount(antinodeFunction: (Pair<Pair<Int, Int>, Pair<Int, Int>>) -> Set<Pair<Int, Int>>) =
-            lines()
-                .flatMapIndexed { y, row -> row.mapIndexed { x, char -> (x to y) to char } }
-                .filterNot { (_, char) -> char == '.' }
+        private fun Grid2d<Char>.distinctAntinodesCount(antinodeFunction: (Pair<Point2d, Point2d>) -> Set<Point2d>) =
+            points
+                .filterNot { point -> this[point] == '.' }
+                .map { point -> point to this[point] }
                 .groupBy({ it.second }, { it.first })
                 .map { (_, antennas) -> antennas.flatMap { a -> antennas.mapNotNull { b -> if (a != b) a to b else null } }.toSet() }
                 .map { antennaPairs -> antennaPairs.flatMap { pair -> antinodeFunction(pair) } }
