@@ -28,7 +28,7 @@
 |     2021 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |        |   ★    |   ★    |        |        |        |        |        |        |        |        |        |        |        |    26 |
 |     2022 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |        |        |        |        |        |        |        |   ☆    |        |        |        |   ☆    |    28 |
 |     2023 |   ★   |   ★   |   ★   |   ★   |   ☆   |   ★   |   ☆   |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    12 |
-|     2024 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |        |        |        |        |        |        |        |        |        |        |        |        |    26 |
+|     2024 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |   ☆    |        |        |        |        |        |        |        |        |        |        |        |    27 |
 
 ## 🛷 How to run
 
@@ -177,6 +177,7 @@ e.g. `HandyHaversacks`)*
 |                                           |  11 | [Plutonian Pebbles](https://adventofcode.com/2024/day/11)                                              | [[Code](src/main/kotlin/adventofcode/year2024/Day11PlutonianPebbles.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day11PlutonianPebblesSpec.kt)]                                   | `194482`               | `232454623677743`                                |
 |                                           |  12 | [Garden Groups](https://adventofcode.com/2024/day/12)                                                  | [[Code](src/main/kotlin/adventofcode/year2024/Day12GardenGroups.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day12GardenGroupsSpec.kt)]                                           | `1573474`              | `966476`                                         |
 |                                           |  13 | [Claw Contraption](https://adventofcode.com/2024/day/13)                                               | [[Code](src/main/kotlin/adventofcode/year2024/Day13ClawContraption.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day13ClawContraptionSpec.kt)]                                     | `28138`                | `108394825772874`                                |
+|                                           |  14 | [Restroom Redoubt](https://adventofcode.com/2024/day/14)                                               | [[Code](src/main/kotlin/adventofcode/year2024/Day14RestroomRedoubt.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day14RestroomRedoubtSpec.kt)]                                     | `224357412`            |                                                  |
 
 ## 🕯️ Useful commands
 

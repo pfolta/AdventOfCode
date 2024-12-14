@@ -29,7 +29,7 @@ data class Point2d(
     operator fun minus(other: Point2d): Point2d = Point2d(x - other.x, y - other.y)
 
     /**
-     * Returns a set of neighboring Point2d's. Can include negative coordinates.
+     * Returns a set of neighboring points. Can include negative coordinates.
      *
      * Excluding diagonals:     Including diagonals:
      * _ N _                    N N N
