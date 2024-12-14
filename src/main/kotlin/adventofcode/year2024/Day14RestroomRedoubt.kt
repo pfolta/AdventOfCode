@@ -32,6 +32,11 @@ class Day14RestroomRedoubt(customInput: PuzzleInput? = null) : Puzzle(customInpu
             .product()
     }
 
+    override fun partTwo() =
+        generateSequence(robots to 0) { (previous, seconds) -> previous.map(Robot::move) to seconds + 1 }
+            .first { (robots) -> robots.groupingBy(Robot::position).eachCount().all { (_, count) -> count == 1 } }
+            .second
+
     companion object {
         private val ROBOT_REGEX = """p=(\d+),(\d+) v=(-?\d+),(-?\d+)""".toRegex()
 
@@ -44,22 +49,8 @@ class Day14RestroomRedoubt(customInput: PuzzleInput? = null) : Puzzle(customInpu
             val velocity: Point2d,
         ) {
             fun move(): Robot {
-                val dx = position.x + velocity.x
-                val dy = position.y + velocity.y
-
-                val x =
-                    when {
-                        dx < 0 -> BATHROOM_WIDTH + dx
-                        dx >= BATHROOM_WIDTH -> dx - BATHROOM_WIDTH
-                        else -> dx
-                    }
-
-                val y =
-                    when {
-                        dy < 0 -> BATHROOM_HEIGHT + dy
-                        dy >= BATHROOM_HEIGHT -> dy - BATHROOM_HEIGHT
-                        else -> dy
-                    }
+                val x = (position.x + velocity.x).mod(BATHROOM_WIDTH)
+                val y = (position.y + velocity.y).mod(BATHROOM_HEIGHT)
 
                 return Robot(Point2d(x, y), velocity)
             }
