@@ -33,9 +33,8 @@ class Day14RestroomRedoubt(customInput: PuzzleInput? = null) : Puzzle(customInpu
     }
 
     override fun partTwo() =
-        generateSequence(robots to 0) { (previous, seconds) -> previous.map(Robot::move) to seconds + 1 }
-            .first { (robots) -> robots.groupingBy(Robot::position).eachCount().all { (_, count) -> count == 1 } }
-            .second
+        generateSequence(robots) { previous -> previous.map(Robot::move) }
+            .indexOfFirst { robots -> robots.groupingBy(Robot::position).eachCount().all { (_, count) -> count == 1 } }
 
     companion object {
         private val ROBOT_REGEX = """p=(\d+),(\d+) v=(-?\d+),(-?\d+)""".toRegex()
