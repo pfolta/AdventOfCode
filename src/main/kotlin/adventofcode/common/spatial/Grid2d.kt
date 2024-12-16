@@ -40,7 +40,12 @@ data class Grid2d<T>(val values: List<List<T>>) {
     /**
      * Returns the points of all instances of `value` if the grid contains it.
      */
-    fun find(value: T): Set<Point2d> = points.filter { (x, y) -> values[y.toInt()][x.toInt()] == value }.toSet()
+    fun findAll(value: T): Set<Point2d> = points.filter { (x, y) -> values[y.toInt()][x.toInt()] == value }.toSet()
+
+    /**
+     * Returns the first point with the value `value` if the grid contains it, throws otherwise.
+     */
+    operator fun get(value: T): Point2d = findAll(value).first()
 
     /**
      * Returns the value at the given point if the point is within the grid, throws otherwise.

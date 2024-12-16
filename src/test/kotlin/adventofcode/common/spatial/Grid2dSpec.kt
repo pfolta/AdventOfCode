@@ -45,31 +45,33 @@ class Grid2dSpec : FreeSpec({
         }
     }
 
-    "contains value operator" - {
-        "returns `true` if the grid contains that value" {
-            ('E' in grid) shouldBe true
+    "operator contains" - {
+        "by value" - {
+            "returns `true` if the grid contains that value" {
+                ('E' in grid) shouldBe true
+            }
+
+            "returns `false` if the grid does not contain that value" {
+                ('Z' in grid) shouldBe false
+            }
         }
 
-        "returns `false` if the grid does not contain that value" {
-            ('Z' in grid) shouldBe false
+        "by coordinates" - {
+            "returns `true` if the grid contains that point" {
+                (Point2d(0, 0) in grid) shouldBe true
+                (Point2d(1, 1) in grid) shouldBe true
+            }
+
+            "returns `false` if the grid does not contain that value" {
+                (Point2d(0, -1) in grid) shouldBe false
+                (Point2d(4, 0) in grid) shouldBe false
+            }
         }
     }
 
-    "contains Point2d operator" - {
-        "returns `true` if the grid contains that point" {
-            (Point2d(0, 0) in grid) shouldBe true
-            (Point2d(1, 1) in grid) shouldBe true
-        }
-
-        "returns `false` if the grid does not contain that value" {
-            (Point2d(0, -1) in grid) shouldBe false
-            (Point2d(4, 0) in grid) shouldBe false
-        }
-    }
-
-    "find" - {
+    "findAll" - {
         "returns the point of that value if the grid contains that value exactly once" {
-            grid.find('E') shouldContainExactly listOf(Point2d(1, 1))
+            grid.findAll('E') shouldContainExactly listOf(Point2d(1, 1))
         }
 
         "returns the points of all instances if the grid contains that value" {
@@ -79,24 +81,36 @@ class Grid2dSpec : FreeSpec({
                     listOf('D', 'A', 'F'),
                     listOf('G', 'H', 'A'),
                 ),
-            ).find('A') shouldContainExactly listOf(Point2d(0, 0), Point2d(1, 1), Point2d(2, 2))
+            ).findAll('A') shouldContainExactly listOf(Point2d(0, 0), Point2d(1, 1), Point2d(2, 2))
         }
 
         "returns an empty list if the grid does not contain that value" {
-            grid.find('Z') should beEmpty()
+            grid.findAll('Z') should beEmpty()
         }
     }
 
-    "get" - {
-        "returns the value at the given point if it exists" {
-            grid[Point2d(2, 1)] shouldBe 'F'
+    "operator get" - {
+        "by value" - {
+            "returns the coordinates of the singular point containing the value" {
+                grid['F'] shouldBe Point2d(2, 1)
+            }
+
+            "throws if the grid does not contain the value" {
+                shouldThrow<NoSuchElementException> { grid['Z'] }
+            }
         }
 
-        "throws if the point is not part of the grid" {
-            shouldThrow<IndexOutOfBoundsException> {
-                grid[Point2d(10, 10)]
-            }.apply {
-                message shouldBe "Point (10, 10) is outside of the grid"
+        "by coordinates" - {
+            "returns the value at the given point if it exists" {
+                grid[Point2d(2, 1)] shouldBe 'F'
+            }
+
+            "throws if the point is not part of the grid" {
+                shouldThrow<IndexOutOfBoundsException> {
+                    grid[Point2d(10, 10)]
+                }.apply {
+                    message shouldBe "Point (10, 10) is outside of the grid"
+                }
             }
         }
     }

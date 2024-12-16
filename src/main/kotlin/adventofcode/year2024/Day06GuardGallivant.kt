@@ -8,8 +8,8 @@ import adventofcode.year2024.Day06GuardGallivant.Companion.Direction.UP
 
 class Day06GuardGallivant(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val grid by lazy { Grid2d(input) }
-    private val obstructions by lazy { grid.find('#') }
-    private val guard by lazy { grid.find('^').first() to UP }
+    private val obstructions by lazy { grid.findAll('#') }
+    private val guard by lazy { grid['^'] to UP }
 
     override fun partOne() = grid.guardPath(obstructions, guard).size
 
