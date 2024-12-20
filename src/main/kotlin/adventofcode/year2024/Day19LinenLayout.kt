@@ -10,6 +10,8 @@ class Day19LinenLayout(customInput: PuzzleInput? = null) : Puzzle(customInput) {
 
     override fun partOne() = designs.count { design -> design.patternCombinations(patterns) > 0 }
 
+    override fun partTwo() = designs.sumOf { design -> design.patternCombinations(patterns) }
+
     companion object {
         private fun String.patternCombinations(
             patterns: List<String>,
