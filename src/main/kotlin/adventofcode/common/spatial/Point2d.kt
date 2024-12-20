@@ -1,5 +1,7 @@
 package adventofcode.common.spatial
 
+import kotlin.math.absoluteValue
+
 data class Point2d(
     val x: Long,
     val y: Long,
@@ -44,6 +46,8 @@ data class Point2d(
         }
             .map { direction -> this + direction }
             .toSet()
+
+    infix fun distanceTo(other: Point2d): Long = (x - other.x).absoluteValue + (y - other.y).absoluteValue
 }
 
 val NORTH = Point2d(0, -1)
