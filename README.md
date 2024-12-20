@@ -28,7 +28,7 @@
 |     2021 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |        |   ★    |   ★    |        |        |        |        |        |        |        |        |        |        |        |    26 |
 |     2022 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |        |        |        |        |        |        |        |   ☆    |        |        |        |   ☆    |    28 |
 |     2023 |   ★   |   ★   |   ★   |   ★   |   ☆   |   ★   |   ☆   |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    12 |
-|     2024 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |   ★    |        |   ☆    |   ★    |        |   ★    |   ☆    |        |        |        |        |        |    34 |
+|     2024 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |   ★    |        |   ☆    |   ★    |        |   ★    |   ★    |        |        |        |        |        |    35 |
 
 ## 🛷 How to run
 
@@ -181,7 +181,7 @@ e.g. `HandyHaversacks`)*
 |                                           |  16 | [Reindeer Maze](https://adventofcode.com/2024/day/16)                                                  | [[Code](src/main/kotlin/adventofcode/year2024/Day16ReindeerMaze.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day16ReindeerMazeSpec.kt)]                                           | `98484`                |                                                  |
 |                                           |  17 | [Chronospatial Computer](https://adventofcode.com/2024/day/17)                                         | [[Code](src/main/kotlin/adventofcode/year2024/Day17ChronospatialComputer.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day17ChronospatialComputerSpec.kt)]                         | `5,1,3,4,3,7,2,1,7`    | `216584205979245`                                |
 |                                           |  19 | [Linen Layout](https://adventofcode.com/2024/day/19)                                                   | [[Code](src/main/kotlin/adventofcode/year2024/Day19LinenLayout.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day19LinenLayoutSpec.kt)]                                             | `267`                  | `796449099271652`                                |
-|                                           |  20 | [Race Condition](https://adventofcode.com/2024/day/20)                                                 | [[Code](src/main/kotlin/adventofcode/year2024/Day20RaceCondition.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day20RaceConditionSpec.kt)]                                         | `1426`                 |                                                  |
+|                                           |  20 | [Race Condition](https://adventofcode.com/2024/day/20)                                                 | [[Code](src/main/kotlin/adventofcode/year2024/Day20RaceCondition.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day20RaceConditionSpec.kt)]                                         | `1426`                 | `1000697`                                        |
 
 ## 🕯️ Useful commands
 

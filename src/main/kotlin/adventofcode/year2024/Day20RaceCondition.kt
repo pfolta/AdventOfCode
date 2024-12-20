@@ -10,6 +10,8 @@ class Day20RaceCondition(customInput: PuzzleInput? = null) : Puzzle(customInput)
 
     override fun partOne() = racetrack.findCheats(2)
 
+    override fun partTwo() = racetrack.findCheats(20)
+
     companion object {
         private const val MINIMUM_SAVINGS = 100
 
