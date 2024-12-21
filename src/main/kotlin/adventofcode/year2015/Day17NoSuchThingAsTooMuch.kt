@@ -2,7 +2,7 @@ package adventofcode.year2015
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
-import adventofcode.common.powersets
+import adventofcode.common.Permutations.powersets
 
 class Day17NoSuchThingAsTooMuch(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "No Such Thing as Too Much"

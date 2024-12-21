@@ -2,7 +2,7 @@ package adventofcode.year2015
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
-import adventofcode.common.permutations
+import adventofcode.common.Permutations.permutations
 
 class Day13KnightsOfTheDinnerTable(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "Knights of the Dinner Table"

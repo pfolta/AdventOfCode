@@ -2,7 +2,7 @@ package adventofcode.year2015
 
 import adventofcode.PuzzleBaseSpec
 
-class Day12JSAbacusFrameworkIoSpec : PuzzleBaseSpec(
+class Day12JsAbacusFrameworkIoSpec : PuzzleBaseSpec(
     listOf(
         """[1,2,3]""" to 6,
         """{"a":2,"b":4}""" to 6,

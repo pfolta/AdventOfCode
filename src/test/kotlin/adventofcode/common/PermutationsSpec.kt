@@ -1,5 +1,7 @@
 package adventofcode.common
 
+import adventofcode.common.Permutations.permutations
+import adventofcode.common.Permutations.powersets
 import io.kotest.core.spec.style.FreeSpec
 import io.kotest.matchers.collections.shouldContainExactlyInAnyOrder
 import io.kotest.matchers.shouldBe

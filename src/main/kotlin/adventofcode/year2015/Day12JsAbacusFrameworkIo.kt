@@ -2,15 +2,15 @@ package adventofcode.year2015
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
-import adventofcode.common.json
+import adventofcode.common.Json.objectMapper
 import com.fasterxml.jackson.databind.JsonNode
 
-class Day12JSAbacusFrameworkIo(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day12JsAbacusFrameworkIo(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "JSAbacusFramework.io"
 
-    override fun partOne() = json.readTree(input).sum()
+    override fun partOne() = objectMapper.readTree(input).sum()
 
-    override fun partTwo() = json.readTree(input).stripRed().sum()
+    override fun partTwo() = objectMapper.readTree(input).stripRed().sum()
 
     companion object {
         private fun JsonNode.stripRed(): JsonNode {

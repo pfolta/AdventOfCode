@@ -2,7 +2,7 @@ package adventofcode.year2022
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
-import adventofcode.common.json
+import adventofcode.common.Json.objectMapper
 import adventofcode.common.product
 import com.fasterxml.jackson.databind.JsonNode
 
@@ -43,7 +43,7 @@ class Day13DistressSignal(customInput: PuzzleInput? = null) : Puzzle(customInput
                 }
 
             companion object {
-                operator fun invoke(input: String) = Packet(json.readTree(input))
+                operator fun invoke(input: String) = Packet(objectMapper.readTree(input))
             }
         }
     }
