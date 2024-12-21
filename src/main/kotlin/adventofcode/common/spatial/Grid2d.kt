@@ -3,14 +3,10 @@ package adventofcode.common.spatial
 data class Grid2d<T>(val values: List<List<T>>) {
     val points = values.flatMapIndexed { y, row -> List(row.size) { x -> Point2d(x, y) } }
 
-    /**
-     * `true` for a square grid, `false` otherwise.
-     */
+    /** `true` for a square grid, `false` otherwise. */
     val isSquare: Boolean = values.all { row -> row.size == values.size }
 
-    /**
-     * Number of rows in the grid.
-     */
+    /** Number of rows in the grid. */
     val rows = values.size
 
     /**
@@ -22,34 +18,22 @@ data class Grid2d<T>(val values: List<List<T>>) {
      */
     override fun toString(): String = values.joinToString("\n") { row -> row.toString() }
 
-    /**
-     * Returns the number of columns for a given row in the grid.
-     */
+    /** Returns the number of columns for a given row in the grid. */
     fun colsInRow(row: Int) = values[row].size
 
-    /**
-     * Returns `true` if the grid contains `value`.
-     */
+    /** Returns `true` if the grid contains `value`. */
     operator fun contains(value: T): Boolean = values.flatten().contains(value)
 
-    /**
-     * Returns `true` if the point is within the grid.
-     */
+    /** Returns `true` if the point is within the grid. */
     operator fun contains(point: Point2d): Boolean = point.y in values.indices && point.x in values[point.y.toInt()].indices
 
-    /**
-     * Returns the points of all instances of `value` if the grid contains it.
-     */
+    /** Returns the points of all instances of `value` if the grid contains it. */
     fun findAll(value: T): Set<Point2d> = points.filter { (x, y) -> values[y.toInt()][x.toInt()] == value }.toSet()
 
-    /**
-     * Returns the first point with the value `value` if the grid contains it, throws otherwise.
-     */
+    /** Returns the first point with the value `value` if the grid contains it, throws otherwise. */
     operator fun get(value: T): Point2d = findAll(value).first()
 
-    /**
-     * Returns the value at the given point if the point is within the grid, throws otherwise.
-     */
+    /** Returns the value at the given point if the point is within the grid, throws otherwise. */
     operator fun get(point: Point2d): T =
         if (point in this) {
             values[point.y.toInt()][point.x.toInt()]
@@ -57,9 +41,7 @@ data class Grid2d<T>(val values: List<List<T>>) {
             throw IndexOutOfBoundsException("Point $point is outside of the grid")
         }
 
-    /**
-     * Returns the value at the given point if the point is within the grid, or `null` otherwise.
-     */
+    /** Returns the value at the given point if the point is within the grid, or `null` otherwise. */
     fun getOrNull(point: Point2d): T? = if (point in this) values[point.y.toInt()][point.x.toInt()] else null
 
     /**

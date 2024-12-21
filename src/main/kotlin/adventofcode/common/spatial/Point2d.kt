@@ -15,19 +15,13 @@ data class Point2d(
      */
     override fun toString(): String = "($x, $y)"
 
-    /**
-     * Add two points together by adding their x and y coordinates
-     */
+    /** Add two points together by adding their x and y coordinates. */
     operator fun plus(other: Point2d): Point2d = Point2d(x + other.x, y + other.y)
 
-    /**
-     * Add a constant offset to the point's x and y coordinates
-     */
+    /** Add a constant offset to the point's x and y coordinates. */
     operator fun plus(offset: Number): Point2d = Point2d(x + offset.toLong(), y + offset.toLong())
 
-    /**
-     * Subtract two points from another by subtracting their x and y coordinates
-     */
+    /** Subtract two points from another by subtracting their x and y coordinates. */
     operator fun minus(other: Point2d): Point2d = Point2d(x - other.x, y - other.y)
 
     /**
@@ -47,7 +41,13 @@ data class Point2d(
             .map { direction -> this + direction }
             .toSet()
 
+    /** Returns the manhattan distance between two points. */
     infix fun distanceTo(other: Point2d): Long = (x - other.x).absoluteValue + (y - other.y).absoluteValue
+
+    companion object {
+        /** The midpoint of the cartesian grid. */
+        val Origin: Point2d = Point2d(0, 0)
+    }
 }
 
 val NORTH = Point2d(0, -1)
