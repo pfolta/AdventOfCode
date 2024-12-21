@@ -6,6 +6,8 @@ import adventofcode.common.spatial.Point2d
 import adventofcode.common.spatial.Point2d.Companion.Origin
 
 class Day18RamRun(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+    override val name = "RAM Run"
+
     private val corruptedBytes by lazy {
         input.lines().map { line ->
             val (x, y) = line.split(",").map(String::toLong)
@@ -13,37 +15,48 @@ class Day18RamRun(customInput: PuzzleInput? = null) : Puzzle(customInput) {
         }
     }
 
-    override val name = "RAM Run"
+    override fun partOne() = shortestPath(Origin, corruptedBytes.take(KILOBYTE_IN_BYTES))!!
 
-    override fun partOne() = shortestPath(Origin, Point2d(GRID_SIZE, GRID_SIZE), corruptedBytes.take(1024).toSet())
+    override fun partTwo(): String {
+        val (x, y) =
+            generateSequence(KILOBYTE_IN_BYTES + 1, Int::inc)
+                .first { bytes -> shortestPath(Origin, corruptedBytes.take(bytes)) == null }
+                .let { byte -> corruptedBytes[byte - 1] }
+
+        return "$x,$y"
+    }
 
     companion object {
         private const val GRID_SIZE = 70
+        private const val KILOBYTE_IN_BYTES = 1024
+        private val end = Point2d(GRID_SIZE, GRID_SIZE)
 
         private fun shortestPath(
             start: Point2d,
-            end: Point2d,
-            corruptedBytes: Set<Point2d>,
-        ): Int {
-            val visited = mutableSetOf<Pair<Point2d, Int>>()
+            corruptedBytes: List<Point2d>,
+        ): Int? {
+            val visited = mutableSetOf<Point2d>()
             val queue = ArrayDeque(setOf(start to 0))
 
             while (queue.isNotEmpty()) {
                 val (position, cost) = queue.removeFirst()
 
+                if (position == end) {
+                    return cost
+                }
+
                 val neighbors =
                     position
                         .neighbors()
                         .filter { (x, y) -> x in 0..end.x && y in 0..end.y }
-                        .filterNot { neighbor -> neighbor in visited.map { it.first } }
+                        .filterNot { neighbor -> neighbor in visited }
                         .filterNot { neighbor -> neighbor in corruptedBytes }
-                        .map { neighbor -> neighbor to cost + 1 }
 
                 visited.addAll(neighbors)
-                queue.addAll(neighbors)
+                queue.addAll(neighbors.map { neighbor -> neighbor to cost + 1 })
             }
 
-            return visited.first { (position) -> position == end }.second
+            return null
         }
     }
 }
