@@ -46,15 +46,15 @@ data class Point2d(
 
     companion object {
         /** The midpoint of the cartesian grid. */
-        val Origin: Point2d = Point2d(0, 0)
+        val ORIGIN = Point2d(0, 0)
+
+        val NORTH = Point2d(0, -1)
+        val NORTHEAST = Point2d(1, -1)
+        val EAST = Point2d(1, 0)
+        val SOUTHEAST = Point2d(1, 1)
+        val SOUTH = Point2d(0, 1)
+        val SOUTHWEST = Point2d(-1, 1)
+        val WEST = Point2d(-1, 0)
+        val NORTHWEST = Point2d(-1, -1)
     }
 }
-
-val NORTH = Point2d(0, -1)
-val NORTHEAST = Point2d(1, -1)
-val EAST = Point2d(1, 0)
-val SOUTHEAST = Point2d(1, 1)
-val SOUTH = Point2d(0, 1)
-val SOUTHWEST = Point2d(-1, 1)
-val WEST = Point2d(-1, 0)
-val NORTHWEST = Point2d(-1, -1)

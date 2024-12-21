@@ -3,7 +3,7 @@ package adventofcode.year2024
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.spatial.Point2d
-import adventofcode.common.spatial.Point2d.Companion.Origin
+import adventofcode.common.spatial.Point2d.Companion.ORIGIN
 
 class Day18RamRun(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override val name = "RAM Run"
@@ -15,12 +15,12 @@ class Day18RamRun(customInput: PuzzleInput? = null) : Puzzle(customInput) {
         }
     }
 
-    override fun partOne() = shortestPath(Origin, corruptedBytes.take(KILOBYTE_IN_BYTES))!!
+    override fun partOne() = shortestPath(ORIGIN, corruptedBytes.take(KILOBYTE_IN_BYTES))!!
 
     override fun partTwo(): String {
         val (x, y) =
             generateSequence(KILOBYTE_IN_BYTES + 1, Int::inc)
-                .first { bytes -> shortestPath(Origin, corruptedBytes.take(bytes)) == null }
+                .first { bytes -> shortestPath(ORIGIN, corruptedBytes.take(bytes)) == null }
                 .let { byte -> corruptedBytes[byte - 1] }
 
         return "$x,$y"
