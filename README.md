@@ -28,7 +28,7 @@
 |     2021 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |        |   ★    |   ★    |        |        |        |        |        |        |        |        |        |        |        |    26 |
 |     2022 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |        |        |        |        |        |        |        |   ☆    |        |        |        |   ☆    |    28 |
 |     2023 |   ★   |   ★   |   ★   |   ★   |   ☆   |   ★   |   ☆   |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    12 |
-|     2024 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |   ★    |        |   ☆    |   ★    |   ★    |   ★    |   ★    |        |        |        |        |        |    37 |
+|     2024 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |   ★    |        |   ☆    |   ★    |   ★    |   ★    |   ★    |        |   ☆    |        |        |        |    38 |
 
 ## 🛷 How to run
 
@@ -183,6 +183,7 @@ e.g. `HandyHaversacks`)*
 |                                           |  18 | [RAM Run](https://adventofcode.com/2024/day/18)                                                        | [[Code](src/main/kotlin/adventofcode/year2024/Day18RamRun.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day18RamRunSpec.kt)]                                                       | `302`                  | `24,32`                                          |
 |                                           |  19 | [Linen Layout](https://adventofcode.com/2024/day/19)                                                   | [[Code](src/main/kotlin/adventofcode/year2024/Day19LinenLayout.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day19LinenLayoutSpec.kt)]                                             | `267`                  | `796449099271652`                                |
 |                                           |  20 | [Race Condition](https://adventofcode.com/2024/day/20)                                                 | [[Code](src/main/kotlin/adventofcode/year2024/Day20RaceCondition.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day20RaceConditionSpec.kt)]                                         | `1426`                 | `1000697`                                        |
+|                                           |  22 | [Monkey Market](https://adventofcode.com/2024/day/22)                                                  | [[Code](src/main/kotlin/adventofcode/year2024/Day22MonkeyMarket.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day22MonkeyMarketSpec.kt)]                                           | `20332089158`          |                                                  |
 
 ## 🕯️ Useful commands
 
