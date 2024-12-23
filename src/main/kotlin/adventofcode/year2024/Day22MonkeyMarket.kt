@@ -10,20 +10,17 @@ class Day22MonkeyMarket(customInput: PuzzleInput? = null) : Puzzle(customInput) 
 
     override fun partTwo() =
         buildMap {
-            secretNumbers.forEach { secretNumber ->
-                val secrets = secretNumber.evolve(2000)
-                val changes = secrets.zipWithNext().map { (a, b) -> a % 10 - b % 10 }
-                val seen = mutableSetOf<String>()
-
-                (0..secrets.lastIndex - 4).forEach { i ->
-                    val seq = changes.slice(i..i + 3).joinToString()
-
-                    if (seq !in seen) {
-                        compute(seq) { _, current -> secrets[i + 4] % 10 + (current ?: 0L) }
-                        seen += seq
-                    }
+            secretNumbers
+                .map { secretNumber -> secretNumber.evolve(2000).map { i -> i % 10 }.toList() }
+                .forEach { sequence ->
+                    sequence
+                        .windowed(5, 1)
+                        .map { it.zipWithNext { a, b -> b - a } to it.last() }
+                        .distinctBy { (a, _) -> a }
+                        .forEach { (key, value) ->
+                            this[key] = (this[key] ?: 0L) + value
+                        }
                 }
-            }
         }
             .values
             .max()
