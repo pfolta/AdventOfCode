@@ -11,12 +11,17 @@ class Day22MonkeyMarket(customInput: PuzzleInput? = null) : Puzzle(customInput) 
     override fun partTwo() =
         buildMap {
             secretNumbers
-                .map { secretNumber -> secretNumber.evolve(2000).map { i -> i % 10 }.toList() }
+                .map { secretNumber ->
+                    secretNumber
+                        .evolve(2000)
+                        .map { number -> number % 10 }
+                        .toList()
+                }
                 .forEach { sequence ->
                     sequence
                         .windowed(5, 1)
-                        .map { it.zipWithNext { a, b -> b - a } to it.last() }
-                        .distinctBy { (a, _) -> a }
+                        .map { slice -> slice.zipWithNext { a, b -> b - a } to slice.last() }
+                        .distinctBy { (changes, _) -> changes }
                         .forEach { (key, value) ->
                             this[key] = (this[key] ?: 0L) + value
                         }
