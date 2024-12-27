@@ -18,7 +18,7 @@ class Day04CeresSearch(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             val length = xmas.length
 
             return (0 until rows).flatMap { row ->
-                (0 until colsInRow(row)).flatMap { col ->
+                (0 until columnsInRow(row)).flatMap { col ->
                     val horizontal = (0 until length).map { y -> Point2d(row, col + y) }.filter { point -> point in this }
                     val vertical = (0 until length).map { x -> Point2d(row + x, col) }.filter { point -> point in this }
                     val rightDiagonal = (0 until length).map { d -> Point2d(row + d, col + d) }.filter { point -> point in this }
@@ -37,7 +37,7 @@ class Day04CeresSearch(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             val length = mas.length
 
             return (0..rows - length).flatMap { row ->
-                (0..colsInRow(row) - length).map { col ->
+                (0..columnsInRow(row) - length).map { col ->
                     val topDiagonal = (0 until length).map { d -> Point2d(row + d, col + d) }
                     val bottomDiagonal = (0 until length).map { d -> Point2d(row + length - 1 - d, col + d) }
 

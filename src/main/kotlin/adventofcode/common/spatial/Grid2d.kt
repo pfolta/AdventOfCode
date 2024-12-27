@@ -1,7 +1,8 @@
 package adventofcode.common.spatial
 
 data class Grid2d<T>(val values: List<List<T>>) {
-    val points = values.flatMapIndexed { y, row -> List(row.size) { x -> Point2d(x, y) } }
+    /** Set of points contained in this grid. */
+    val points = values.flatMapIndexed { y, row -> List(row.size) { x -> Point2d(x, y) } }.toSet()
 
     /** `true` for a square grid, `false` otherwise. */
     val isSquare: Boolean = values.all { row -> row.size == values.size }
@@ -19,7 +20,19 @@ data class Grid2d<T>(val values: List<List<T>>) {
     override fun toString(): String = values.joinToString("\n") { row -> row.toString() }
 
     /** Returns the number of columns for a given row in the grid. */
-    fun colsInRow(row: Int) = values[row].size
+    fun columnsInRow(row: Int) = values[row].size
+
+    /** Returns the row of elements at the given row index. */
+    fun rowAt(index: Int): List<T> = values[index]
+
+    /** Returns the column of elements at the given column index. */
+    fun columnAt(index: Int): List<T> = values.map { row -> row[index] }
+
+    /** Syntactic sugar for nested `values` list. */
+    fun rows(): List<List<T>> = values
+
+    /** Returns all the columns of the grid. */
+    fun columns(): List<List<T>> = rotate().values.map(List<T>::reversed)
 
     /** Returns `true` if the grid contains `value`. */
     operator fun contains(value: T): Boolean = values.flatten().contains(value)
@@ -73,6 +86,7 @@ data class Grid2d<T>(val values: List<List<T>>) {
     }
 
     companion object {
+        /** Create a new `Grid2d` from a `String` where each point is a character of that string. */
         operator fun invoke(values: String) = Grid2d(values.lines().map(String::toList))
     }
 }

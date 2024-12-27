@@ -45,6 +45,45 @@ class Grid2dSpec : FreeSpec({
         }
     }
 
+    "rowAt" - {
+        "returns the contents of the row with the given index" {
+            grid.rowAt(1) shouldContainExactly listOf('D', 'E', 'F')
+        }
+
+        "throws if the index is outside the grid" {
+            shouldThrow<IndexOutOfBoundsException> { grid.rowAt(-1) }
+            shouldThrow<IndexOutOfBoundsException> { grid.rowAt(grid.rows + 1) }
+        }
+    }
+
+    "columnAt" - {
+        "returns the contents of the column with the given index" {
+            grid.columnAt(1) shouldContainExactly listOf('B', 'E', 'H')
+        }
+
+        "throws if the index is outside the grid" {
+            shouldThrow<IndexOutOfBoundsException> { grid.columnAt(-1) }
+            shouldThrow<IndexOutOfBoundsException> { grid.columnAt(grid.columnsInRow(0) + 1) }
+        }
+    }
+
+    "rows" - {
+        "returns the values of the grid as a List<List<T>>" {
+            grid.rows() shouldContainExactly grid.values
+        }
+    }
+
+    "columns" - {
+        "returns the columns of the grid as a List<List<T>>" {
+            grid.columns() shouldContainExactly
+                listOf(
+                    listOf('A', 'D', 'G'),
+                    listOf('B', 'E', 'H'),
+                    listOf('C', 'F', 'I'),
+                )
+        }
+    }
+
     "operator contains" - {
         "by value" - {
             "returns `true` if the grid contains that value" {

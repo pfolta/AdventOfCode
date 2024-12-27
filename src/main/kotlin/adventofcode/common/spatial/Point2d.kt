@@ -6,13 +6,10 @@ data class Point2d(
     val x: Long,
     val y: Long,
 ) {
+    /** Alternative constructor to allow other Number types as coordinates, e.g. `Int`s. */
     constructor(x: Number, y: Number) : this(x.toLong(), y.toLong())
 
-    /**
-     * Pretty formatted String representation.
-     *
-     * (0, 1)
-     */
+    /** Pretty formatted String representation: (0, 1) */
     override fun toString(): String = "($x, $y)"
 
     /** Add two points together by adding their x and y coordinates. */
@@ -41,7 +38,7 @@ data class Point2d(
             .map { direction -> this + direction }
             .toSet()
 
-    /** Returns the manhattan distance between two points. */
+    /** Returns the Manhattan distance between two points. */
     infix fun distanceTo(other: Point2d): Long = (x - other.x).absoluteValue + (y - other.y).absoluteValue
 
     companion object {
