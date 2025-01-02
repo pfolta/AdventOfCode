@@ -22,17 +22,17 @@ data class Grid2d<T>(val values: List<List<T>>) {
     /** Returns the number of columns for a given row in the grid. */
     fun columnsInRow(row: Int) = values[row].size
 
-    /** Returns the row of elements at the given row index. */
-    fun rowAt(index: Int): List<T> = values[index]
-
-    /** Returns the column of elements at the given column index. */
-    fun columnAt(index: Int): List<T> = values.map { row -> row[index] }
-
     /** Syntactic sugar for nested `values` list. */
     fun rows(): List<List<T>> = values
 
+    /** Returns the row of elements at the given row index. */
+    fun row(index: Int): List<T> = values[index]
+
     /** Returns all the columns of the grid. */
     fun columns(): List<List<T>> = rotate().values.map(List<T>::reversed)
+
+    /** Returns the column of elements at the given column index. */
+    fun column(index: Int): List<T> = values.map { row -> row[index] }
 
     /** Returns `true` if the grid contains `value`. */
     operator fun contains(value: T): Boolean = values.flatten().contains(value)

@@ -45,25 +45,25 @@ class Grid2dSpec : FreeSpec({
         }
     }
 
-    "rowAt" - {
+    "row" - {
         "returns the contents of the row with the given index" {
-            grid.rowAt(1) shouldContainExactly listOf('D', 'E', 'F')
+            grid.row(1) shouldContainExactly listOf('D', 'E', 'F')
         }
 
         "throws if the index is outside the grid" {
-            shouldThrow<IndexOutOfBoundsException> { grid.rowAt(-1) }
-            shouldThrow<IndexOutOfBoundsException> { grid.rowAt(grid.rows + 1) }
+            shouldThrow<IndexOutOfBoundsException> { grid.row(-1) }
+            shouldThrow<IndexOutOfBoundsException> { grid.row(grid.rows + 1) }
         }
     }
 
-    "columnAt" - {
+    "column" - {
         "returns the contents of the column with the given index" {
-            grid.columnAt(1) shouldContainExactly listOf('B', 'E', 'H')
+            grid.column(1) shouldContainExactly listOf('B', 'E', 'H')
         }
 
         "throws if the index is outside the grid" {
-            shouldThrow<IndexOutOfBoundsException> { grid.columnAt(-1) }
-            shouldThrow<IndexOutOfBoundsException> { grid.columnAt(grid.columnsInRow(0) + 1) }
+            shouldThrow<IndexOutOfBoundsException> { grid.column(-1) }
+            shouldThrow<IndexOutOfBoundsException> { grid.column(grid.columnsInRow(0) + 1) }
         }
     }
 
