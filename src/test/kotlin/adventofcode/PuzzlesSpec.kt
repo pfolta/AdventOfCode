@@ -14,7 +14,7 @@ import io.kotest.matchers.types.beInstanceOf
 class PuzzlesSpec : FreeSpec({
     "all" - {
         "returns puzzles for all years" {
-            Puzzles.all().map(Puzzle::year).toSet() shouldContainExactlyInAnyOrder (2015..2024).toSet()
+            Puzzles.all().map(Puzzle::year).toSet() shouldContainExactlyInAnyOrder (2015..2025).toSet()
         }
     }
 

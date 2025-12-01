@@ -79,7 +79,7 @@ jobs:
           distribution: "corretto"
 
       - name: "Run JAR archive"
-        run: "java -jar AdventOfCode.jar 2024"
+        run: "java -jar AdventOfCode.jar 2025"
 
   build-docker-image:
     name: "Build Docker Image"
@@ -132,7 +132,7 @@ jobs:
         uses: "addnab/docker-run-action@v3"
         with:
           image: "pfolta/advent-of-code:latest"
-          run: "java -jar AdventOfCode.jar 2024"
+          run: "java -jar AdventOfCode.jar 2025"
 
   publish-coverage-data:
     name: "Publish coverage data to Codecov"
