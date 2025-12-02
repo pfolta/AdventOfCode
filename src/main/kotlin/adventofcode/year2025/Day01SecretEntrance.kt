@@ -8,7 +8,7 @@ class Day01SecretEntrance(customInput: PuzzleInput? = null) : Puzzle(customInput
 
     override fun partOne() =
         parseInput()
-            .fold(listOf(DIAL_START)) { positions, rotation -> positions + (positions.last() + rotation).mod(DIAL_NUMBERS) }
+            .runningFold(DIAL_START) { position, rotation -> (position + rotation).mod(DIAL_NUMBERS) }
             .count { position -> position == 0 }
 
     companion object {
