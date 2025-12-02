@@ -23,7 +23,7 @@ repositories {
 dependencies {
     implementation(kotlin("reflect"))
     implementation("com.diogonunes:JColor:5.5.1")
-    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.18.1")
+    implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.20.1")
     implementation("org.reflections:reflections:0.10.2")
     implementation("org.slf4j:slf4j-nop:2.0.16")
 
