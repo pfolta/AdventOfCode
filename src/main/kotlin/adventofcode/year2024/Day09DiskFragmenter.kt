@@ -2,14 +2,15 @@ package adventofcode.year2024
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
+import adventofcode.common.Math.isEven
 
 class Day09DiskFragmenter(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val fileMap by lazy {
         input
             .mapIndexed { index, size ->
-                when (index % 2) {
-                    0 -> File(index / 2L, size.digitToInt())
-                    else -> FreeSpace(size.digitToInt())
+                when (index.isEven()) {
+                    true -> File(index / 2L, size.digitToInt())
+                    false -> FreeSpace(size.digitToInt())
                 }
             }
     }

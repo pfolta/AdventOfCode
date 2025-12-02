@@ -2,6 +2,7 @@ package adventofcode.year2025
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
+import adventofcode.common.Math.isEven
 
 class Day02GiftShop(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private fun parseInput(): List<LongRange> =
@@ -14,10 +15,7 @@ class Day02GiftShop(customInput: PuzzleInput? = null) : Puzzle(customInput) {
 
     override fun partOne() =
         parseInput()
-            .flatMap { range ->
-                range.map(Long::toString).filter { id ->
-                    id.length.mod(2) == 0 && id.take(id.length / 2) == id.substring(id.length / 2)
-                }
-            }
+            .flatMap { range -> range.map(Long::toString) }
+            .filter { id -> id.length.isEven() && id.take(id.length / 2) == id.substring(id.length / 2) }
             .sumOf(String::toLong)
 }

@@ -2,6 +2,7 @@ package adventofcode.year2024
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
+import adventofcode.common.Math.isEven
 
 class Day11PlutonianPebbles(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private val stones by lazy { input.split(" ").map(String::toLong) }
@@ -34,7 +35,7 @@ class Day11PlutonianPebbles(customInput: PuzzleInput? = null) : Puzzle(customInp
                 }
             }
 
-        private fun Long.hasEvenDigits() = toString().length % 2 == 0
+        private fun Long.hasEvenDigits() = toString().length.isEven()
 
         private fun Long.halves() =
             listOf(toString().substring(0, toString().length / 2), toString().substring(toString().length / 2)).map(String::toLong)

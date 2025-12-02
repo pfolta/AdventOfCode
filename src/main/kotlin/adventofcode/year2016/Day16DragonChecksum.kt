@@ -2,6 +2,7 @@ package adventofcode.year2016
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
+import adventofcode.common.Math.isOdd
 
 class Day16DragonChecksum(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override fun partOne() = input.generateData(272).checksum()
@@ -22,6 +23,6 @@ class Day16DragonChecksum(customInput: PuzzleInput? = null) : Puzzle(customInput
                     .joinToString("")
             }
                 .drop(1)
-                .first { checksum -> checksum.length % 2 == 1 }
+                .first { checksum -> checksum.length.isOdd() }
     }
 }
