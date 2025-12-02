@@ -2,20 +2,28 @@ package adventofcode.year2025
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
-import adventofcode.common.Math.isEven
 
 class Day02GiftShop(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    private fun parseInput(): List<LongRange> =
+    private fun parseInput(): List<Long> =
         input
             .split(",")
-            .map { range ->
+            .flatMap { range ->
                 val (start, end) = range.split("-").map(String::toLong)
-                LongRange(start, end)
+                LongRange(start, end).asSequence()
             }
 
     override fun partOne() =
         parseInput()
-            .flatMap { range -> range.map(Long::toString) }
-            .filter { id -> id.length.isEven() && id.take(id.length / 2) == id.substring(id.length / 2) }
-            .sumOf(String::toLong)
+            .filter { id -> id.toString().matches(singleRepeatRegex) }
+            .sum()
+
+    override fun partTwo() =
+        parseInput()
+            .filter { id -> id.toString().matches(multiRepeatRegex) }
+            .sum()
+
+    companion object {
+        private val singleRepeatRegex = """^(\d+)\1$""".toRegex()
+        private val multiRepeatRegex = """^(\d+)\1+$""".toRegex()
+    }
 }
