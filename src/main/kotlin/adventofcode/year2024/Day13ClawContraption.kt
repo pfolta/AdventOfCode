@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.spatial.Point2d
 
-class Day13ClawContraption(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day13ClawContraption(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val clawMachines by lazy {
         input
             .split("\n\n")

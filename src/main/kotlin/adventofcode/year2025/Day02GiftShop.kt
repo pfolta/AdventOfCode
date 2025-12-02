@@ -3,7 +3,9 @@ package adventofcode.year2025
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day02GiftShop(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day02GiftShop(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private fun parseInput(): List<Long> =
         input
             .split(",")

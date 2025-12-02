@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import kotlin.math.min
 
-class Day14ReindeerOlympics(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day14ReindeerOlympics(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val reindeer by lazy { input.lines().map(Reindeer::invoke) }
 
     override fun partOne() = reindeer.maxOfOrNull(Reindeer::distanceFlown) ?: 0

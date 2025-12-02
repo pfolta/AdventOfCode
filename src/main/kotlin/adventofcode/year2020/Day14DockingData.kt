@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.String.replaceAt
 
-class Day14DockingData(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day14DockingData(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val initializationInstructions by lazy { input.lines().map(InitializationInstruction::invoke) }
 
     override fun partOne() =
@@ -25,7 +27,8 @@ class Day14DockingData(customInput: PuzzleInput? = null) : Puzzle(customInput) {
                                 ),
                         )
                 }
-            }.second.values.sum()
+            }.second.values
+            .sum()
 
     override fun partTwo() =
         initializationInstructions
@@ -48,12 +51,12 @@ class Day14DockingData(customInput: PuzzleInput? = null) : Puzzle(customInput) {
                                             addressMask[index] != 'X' -> acc
                                             else -> acc.flatMap { listOf(it.replaceAt(index, '0'), it.replaceAt(index, '1')) }
                                         }
-                                    }
-                                    .map { it.toLong(2) to instruction.value },
+                                    }.map { it.toLong(2) to instruction.value },
                         )
                     }
                 }
-            }.second.values.sum()
+            }.second.values
+            .sum()
 
     companion object {
         private sealed class InitializationInstruction {
@@ -69,8 +72,13 @@ class Day14DockingData(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             }
         }
 
-        private data class MaskInstruction(val mask: String) : InitializationInstruction()
+        private data class MaskInstruction(
+            val mask: String,
+        ) : InitializationInstruction()
 
-        private data class MemoryInstruction(val address: Long, val value: Long) : InitializationInstruction()
+        private data class MemoryInstruction(
+            val address: Long,
+            val value: Long,
+        ) : InitializationInstruction()
     }
 }

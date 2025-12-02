@@ -5,7 +5,9 @@ import adventofcode.PuzzleInput
 import adventofcode.common.String.removeAt
 import adventofcode.common.product
 
-class Day02InventoryManagementSystem(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day02InventoryManagementSystem(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val boxes by lazy { input.lines() }
 
     override fun partOne() =

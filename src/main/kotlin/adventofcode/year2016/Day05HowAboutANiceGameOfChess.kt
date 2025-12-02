@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.String.md5
 
-class Day05HowAboutANiceGameOfChess(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day05HowAboutANiceGameOfChess(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override val name = "How About a Nice Game of Chess?"
 
     override fun partOne() =
@@ -15,8 +17,7 @@ class Day05HowAboutANiceGameOfChess(customInput: PuzzleInput? = null) : Puzzle(c
                 "00000" -> index + 1 to "$password${hash[5]}"
                 else -> index + 1 to password
             }
-        }
-            .first { (_, password) -> password.length == PASSWORD_LENGTH }
+        }.first { (_, password) -> password.length == PASSWORD_LENGTH }
             .second
 
     override fun partTwo() =
@@ -32,8 +33,7 @@ class Day05HowAboutANiceGameOfChess(customInput: PuzzleInput? = null) : Puzzle(c
                 password.containsKey(position) -> index + 1 to password
                 else -> index + 1 to password + mapOf(position!! to character)
             }
-        }
-            .first { (_, password) -> password.size == PASSWORD_LENGTH }
+        }.first { (_, password) -> password.size == PASSWORD_LENGTH }
             .second
             .toSortedMap()
             .values

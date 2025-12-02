@@ -11,8 +11,7 @@ fun main(vararg args: String) =
                 2 -> listOf(Puzzles.forDay(arg.first(), arg.last()))
                 else -> Puzzles.forYear(arg.first())
             }
-        }
-        .ifEmpty { Puzzles.all() }
+        }.ifEmpty { Puzzles.all() }
         .forEach { puzzle ->
             puzzle.run()
             println()

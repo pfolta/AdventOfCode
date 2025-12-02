@@ -9,7 +9,9 @@ import adventofcode.common.spatial.Point2d.Companion.NORTH
 import adventofcode.common.spatial.Point2d.Companion.SOUTH
 import adventofcode.common.spatial.Point2d.Companion.WEST
 
-class Day12GardenGroups(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day12GardenGroups(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val garden by lazy { Grid2d(input) }
 
     private val regions by lazy { garden.mapRegions() }
@@ -39,8 +41,7 @@ class Day12GardenGroups(customInput: PuzzleInput? = null) : Puzzle(customInput) 
                         .map { (first, second) ->
                             listOf(plot, plot + first, plot + second, plot + first + second)
                                 .map { a -> garden.getOrNull(a) }
-                        }
-                        .count { (plot, sideA, sideB, corner) ->
+                        }.count { (plot, sideA, sideB, corner) ->
                             (plot != sideA && plot != sideB) || (plot == sideA && plot == sideB && plot != corner)
                         }
                 }

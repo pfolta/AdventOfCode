@@ -3,7 +3,9 @@ package adventofcode.year2024
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day02RedNosedReports(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day02RedNosedReports(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override val name = "Red-Nosed Reports"
 
     private fun parseInput() = input.lines().map { report -> report.split(" ").mapNotNull(String::toIntOrNull) }

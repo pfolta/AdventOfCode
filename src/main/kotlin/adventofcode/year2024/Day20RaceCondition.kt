@@ -5,7 +5,9 @@ import adventofcode.PuzzleInput
 import adventofcode.common.spatial.Grid2d
 import adventofcode.common.spatial.Point2d
 
-class Day20RaceCondition(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day20RaceCondition(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val racetrack by lazy { input.racketrack() }
 
     override fun partOne() = racetrack.findCheats(2)
@@ -21,7 +23,8 @@ class Day20RaceCondition(customInput: PuzzleInput? = null) : Puzzle(customInput)
 
             while (path.last() != grid['E']) {
                 val next =
-                    grid.neighborsOf(path.last())
+                    grid
+                        .neighborsOf(path.last())
                         .filterNot { neighbor -> neighbor == path.getOrNull(path.lastIndex - 1) }
                         .filterNot { neighbor -> grid[neighbor] == '#' }
                         .first()

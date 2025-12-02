@@ -3,7 +3,9 @@ package adventofcode.year2024
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day07BridgeRepair(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day07BridgeRepair(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val equations by lazy {
         input
             .lines()
@@ -28,7 +30,6 @@ class Day07BridgeRepair(customInput: PuzzleInput? = null) : Puzzle(customInput) 
                         }
 
                 result in results
-            }
-                .sumOf { (result, _) -> result }
+            }.sumOf { (result, _) -> result }
     }
 }

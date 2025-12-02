@@ -8,7 +8,9 @@ import adventofcode.year2022.Day21MonkeyMath.Companion.Operation.MINUS
 import adventofcode.year2022.Day21MonkeyMath.Companion.Operation.PLUS
 import adventofcode.year2022.Day21MonkeyMath.Companion.Operation.TIMES
 
-class Day21MonkeyMath(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day21MonkeyMath(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val monkeys by lazy {
         input
             .lines()
@@ -28,7 +30,9 @@ class Day21MonkeyMath(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override fun partOne() = monkeys["root"]!!.yell()
 
     companion object {
-        private enum class Operation(val operation: String) {
+        private enum class Operation(
+            val operation: String,
+        ) {
             PLUS("+"),
             MINUS("-"),
             TIMES("*"),
@@ -56,11 +60,17 @@ class Day21MonkeyMath(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             }
         }
 
-        private class NumberMonkey(val number: Long) : Monkey() {
+        private class NumberMonkey(
+            val number: Long,
+        ) : Monkey() {
             override fun yell() = number
         }
 
-        private class MathMonkey(val leftMonkeyName: String, val operation: Operation, val rightMonkeyName: String) : Monkey() {
+        private class MathMonkey(
+            val leftMonkeyName: String,
+            val operation: Operation,
+            val rightMonkeyName: String,
+        ) : Monkey() {
             lateinit var leftMonkey: Monkey
             lateinit var rightMonkey: Monkey
 

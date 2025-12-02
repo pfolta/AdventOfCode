@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import kotlin.math.abs
 
-class Day01HistorianHysteria(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day01HistorianHysteria(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private fun parseInput(): Pair<List<Int>, List<Int>> {
         val lists = input.lines().map { line -> line.split(" ").mapNotNull(String::toIntOrNull) }
         val leftList = lists.map { it.first() }

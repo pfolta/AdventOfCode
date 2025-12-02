@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import kotlin.math.pow
 
-class Day25FullOfHotAir(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day25FullOfHotAir(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override val name = "Full of Hot Air"
 
     override fun partOne() =
@@ -25,8 +27,7 @@ class Day25FullOfHotAir(customInput: PuzzleInput? = null) : Puzzle(customInput) 
                         '-' -> -1
                         else -> digit.digitToInt()
                     } * SNAFU_NUMBER_BASE.toDouble().pow(index).toLong()
-                }
-                .sum()
+                }.sum()
 
         private tailrec fun Long.toSnafuNumber(snafuNumber: String = ""): String =
             when {

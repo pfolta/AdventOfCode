@@ -3,9 +3,27 @@ package adventofcode.year2021
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day08SevenSegmentSearch(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    private val signalPatterns by lazy { input.lines().map { it.split("|").first().trim().split(" ") } }
-    private val outputValues by lazy { input.lines().map { it.split("|").last().trim().split(" ") } }
+class Day08SevenSegmentSearch(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
+    private val signalPatterns by lazy {
+        input.lines().map {
+            it
+                .split("|")
+                .first()
+                .trim()
+                .split(" ")
+        }
+    }
+    private val outputValues by lazy {
+        input.lines().map {
+            it
+                .split("|")
+                .last()
+                .trim()
+                .split(" ")
+        }
+    }
 
     private val digitMap =
         mapOf(
@@ -54,11 +72,12 @@ class Day08SevenSegmentSearch(customInput: PuzzleInput? = null) : Puzzle(customI
                     signalPattern
                         .getPatternsForDigit(9)
                         .map {
-                            it.toSet().minus(
-                                signalPattern.getPatternsForDigit(4).first(),
-                            ).minus(signalPattern.getPatternsForDigit(7).first())
-                        }
-                        .first { it.size == 1 }
+                            it
+                                .toSet()
+                                .minus(
+                                    signalPattern.getPatternsForDigit(4).first(),
+                                ).minus(signalPattern.getPatternsForDigit(7).first())
+                        }.first { it.size == 1 }
                         .first()
 
                 val e =
@@ -113,6 +132,5 @@ class Day08SevenSegmentSearch(customInput: PuzzleInput? = null) : Puzzle(customI
                     .map { digit -> digit.map { wireSegmentMap[it] }.toSet() }
                     .map { digit -> digitMap[digit] }
                     .joinToString("")
-            }
-            .sumOf(String::toInt)
+            }.sumOf(String::toInt)
 }

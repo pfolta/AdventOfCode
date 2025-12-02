@@ -11,9 +11,21 @@ import kotlin.time.measureTimedValue
 typealias PuzzleInput = String
 typealias PuzzleOutput = Any
 
-abstract class Puzzle(customInput: PuzzleInput?) {
-    val year = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component1().toInt()
-    val day = CLASS_NAME_REGEX.find(javaClass.name)!!.destructured.component2().toInt()
+abstract class Puzzle(
+    customInput: PuzzleInput?,
+) {
+    val year =
+        CLASS_NAME_REGEX
+            .find(javaClass.name)!!
+            .destructured
+            .component1()
+            .toInt()
+    val day =
+        CLASS_NAME_REGEX
+            .find(javaClass.name)!!
+            .destructured
+            .component2()
+            .toInt()
     private val link = URI("https://adventofcode.com/$year/day/$day")
 
     /**

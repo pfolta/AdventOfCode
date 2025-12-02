@@ -5,7 +5,9 @@ import adventofcode.PuzzleInput
 import adventofcode.common.spatial.Grid2d
 import adventofcode.common.spatial.Point2d
 
-class Day10HoofIt(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day10HoofIt(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val topographicMap by lazy {
         Grid2d(input.lines().map { line -> line.map { height -> height.digitToIntOrNull() ?: -1 } })
     }

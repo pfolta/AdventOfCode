@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.Math.isOdd
 
-class Day16DragonChecksum(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day16DragonChecksum(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override fun partOne() = input.generateData(272).checksum()
 
     override fun partTwo() = input.generateData(35651584).checksum()
@@ -21,8 +23,7 @@ class Day16DragonChecksum(customInput: PuzzleInput? = null) : Puzzle(customInput
                     .chunked(2)
                     .map { char -> if (char.first() == char.last()) '1' else '0' }
                     .joinToString("")
-            }
-                .drop(1)
+            }.drop(1)
                 .first { checksum -> checksum.length.isOdd() }
     }
 }

@@ -3,7 +3,9 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day21AllergenAssessment(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day21AllergenAssessment(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val foods by lazy { input.lines().map(Food::invoke) }
 
     override fun partOne(): Int {
@@ -12,7 +14,12 @@ class Day21AllergenAssessment(customInput: PuzzleInput? = null) : Puzzle(customI
         return foods.flatMap(Food::ingredients).filter { !ingredientsToAllergens.contains(it) }.size
     }
 
-    override fun partTwo() = foods.ingredientsAllergensMap().entries.sortedBy { it.value }.joinToString(",") { it.key }
+    override fun partTwo() =
+        foods
+            .ingredientsAllergensMap()
+            .entries
+            .sortedBy { it.value }
+            .joinToString(",") { it.key }
 
     companion object {
         private data class Food(
@@ -21,10 +28,21 @@ class Day21AllergenAssessment(customInput: PuzzleInput? = null) : Puzzle(customI
         ) {
             companion object {
                 operator fun invoke(input: String): Food {
-                    val ingredients = input.split("(").first().trim().split(" ")
+                    val ingredients =
+                        input
+                            .split("(")
+                            .first()
+                            .trim()
+                            .split(" ")
                     val allergens =
                         when {
-                            input.contains("(") -> input.split("(").last().replace("contains ", "").replace(")", "").split(", ")
+                            input.contains("(") ->
+                                input
+                                    .split("(")
+                                    .last()
+                                    .replace("contains ", "")
+                                    .replace(")", "")
+                                    .split(", ")
                             else -> emptyList()
                         }
 

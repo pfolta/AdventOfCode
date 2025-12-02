@@ -3,7 +3,9 @@ package adventofcode.year2016
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day06SignalsAndNoise(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day06SignalsAndNoise(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override val name = "Signals and Noise"
 
     private val messages by lazy { input.lines() }

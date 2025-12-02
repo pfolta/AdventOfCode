@@ -3,20 +3,23 @@ package adventofcode.year2022
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day07NoSpaceLeftOnDevice(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day07NoSpaceLeftOnDevice(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val files by lazy {
-        input.lines().fold(emptyList<String>() to emptySet<File>()) { (currentPath, files), line ->
-            val (size, name) = line.split(" ")
+        input
+            .lines()
+            .fold(emptyList<String>() to emptySet<File>()) { (currentPath, files), line ->
+                val (size, name) = line.split(" ")
 
-            when {
-                line == "$ cd .." -> currentPath.dropLast(1) to files
-                line.startsWith("$ cd ") -> currentPath + listOf(line.split(" ").last()) to files
-                line.startsWith("dir") -> currentPath to files + File(name, currentPath.joinToString("/"), 0)
-                line.first().isDigit() -> currentPath to files + File(name, currentPath.joinToString("/"), size.toInt())
-                else -> currentPath to files
-            }
-        }
-            .second
+                when {
+                    line == "$ cd .." -> currentPath.dropLast(1) to files
+                    line.startsWith("$ cd ") -> currentPath + listOf(line.split(" ").last()) to files
+                    line.startsWith("dir") -> currentPath to files + File(name, currentPath.joinToString("/"), 0)
+                    line.first().isDigit() -> currentPath to files + File(name, currentPath.joinToString("/"), size.toInt())
+                    else -> currentPath to files
+                }
+            }.second
     }
 
     private val directories by lazy {

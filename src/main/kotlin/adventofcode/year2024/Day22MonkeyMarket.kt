@@ -3,7 +3,9 @@ package adventofcode.year2024
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day22MonkeyMarket(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day22MonkeyMarket(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val secretNumbers by lazy { input.lines().map(String::toLong) }
 
     override fun partOne() = secretNumbers.sumOf { secretNumber -> secretNumber.evolve(2000).last() }
@@ -16,8 +18,7 @@ class Day22MonkeyMarket(customInput: PuzzleInput? = null) : Puzzle(customInput) 
                         .evolve(2000)
                         .map { number -> number % 10 }
                         .toList()
-                }
-                .forEach { sequence ->
+                }.forEach { sequence ->
                     sequence
                         .windowed(5, 1)
                         .map { slice -> slice.zipWithNext { a, b -> b - a } to slice.last() }
@@ -26,8 +27,7 @@ class Day22MonkeyMarket(customInput: PuzzleInput? = null) : Puzzle(customInput) 
                             this[key] = (this[key] ?: 0L) + value
                         }
                 }
-        }
-            .values
+        }.values
             .max()
 
     companion object {
@@ -37,8 +37,7 @@ class Day22MonkeyMarket(customInput: PuzzleInput? = null) : Puzzle(customInput) 
                     .let { secretNumber -> (secretNumber mix (secretNumber * 64)).prune() }
                     .let { secretNumber -> (secretNumber mix (secretNumber / 32)).prune() }
                     .let { secretNumber -> (secretNumber mix (secretNumber * 2048)).prune() }
-            }
-                .drop(1)
+            }.drop(1)
                 .take(count)
                 .toList()
 

@@ -3,7 +3,9 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day15RambunctiousRecitation(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day15RambunctiousRecitation(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val startingNumbers by lazy { input.split(",").map(String::toInt) }
 
     override fun partOne() = startingNumbers.playGame(2020)
@@ -27,7 +29,6 @@ class Day15RambunctiousRecitation(customInput: PuzzleInput? = null) : Puzzle(cus
                             memoryMap to age
                         }
                     }
-                }
-                .second
+                }.second
     }
 }

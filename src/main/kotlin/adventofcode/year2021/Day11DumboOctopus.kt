@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.neighbors
 
-class Day11DumboOctopus(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day11DumboOctopus(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val grid by lazy { input.lines().map { it.map { it.toString().toInt() } } }
 
     private fun List<List<Int>>.incrementAll() = map { it.map(Int::inc) }
@@ -31,12 +33,10 @@ class Day11DumboOctopus(customInput: PuzzleInput? = null) : Puzzle(customInput) 
                         0 -> null
                         else -> Triple(currentFlashes + flashes.size, currentGrid.increment(neighbors), alreadyFlashed.plus(flashes))
                     }
-                }
-                    .last()
+                }.last()
 
             previousFlashes + newFlashes to newGrid.reset()
-        }
-            .take(steps + 1)
+        }.take(steps + 1)
             .last()
 
     override fun partOne() = grid.simulate(100).first
@@ -44,7 +44,6 @@ class Day11DumboOctopus(customInput: PuzzleInput? = null) : Puzzle(customInput) 
     override fun partTwo() =
         generateSequence(0 to grid) { (previousStep, previousGrid) ->
             previousStep + 1 to previousGrid.simulate(1).second
-        }
-            .first { (_, grid) -> grid.flatten().all { it == 0 } }
+        }.first { (_, grid) -> grid.flatten().all { it == 0 } }
             .first
 }

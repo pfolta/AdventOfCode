@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.transpose
 
-class Day05SupplyStacks(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day05SupplyStacks(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val stacks by lazy {
         val stackRows =
             input
@@ -33,18 +35,18 @@ class Day05SupplyStacks(customInput: PuzzleInput? = null) : Puzzle(customInput) 
     }
 
     private fun rearrangeStacks(moveMultipleCrates: Boolean = false) =
-        procedure.fold(stacks) { stacks, (quantity, fromIndex, toIndex) ->
-            val cratesToMove = stacks[fromIndex].takeLast(quantity)
+        procedure
+            .fold(stacks) { stacks, (quantity, fromIndex, toIndex) ->
+                val cratesToMove = stacks[fromIndex].takeLast(quantity)
 
-            stacks.mapIndexed { index, stack ->
-                when (index) {
-                    fromIndex -> stack.dropLast(quantity)
-                    toIndex -> stack + if (moveMultipleCrates) cratesToMove else cratesToMove.reversed()
-                    else -> stack
+                stacks.mapIndexed { index, stack ->
+                    when (index) {
+                        fromIndex -> stack.dropLast(quantity)
+                        toIndex -> stack + if (moveMultipleCrates) cratesToMove else cratesToMove.reversed()
+                        else -> stack
+                    }
                 }
-            }
-        }
-            .map { stack -> stack.last() }
+            }.map { stack -> stack.last() }
             .joinToString("")
 
     override fun partOne() = rearrangeStacks()

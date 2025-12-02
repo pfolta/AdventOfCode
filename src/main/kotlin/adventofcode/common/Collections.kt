@@ -54,8 +54,7 @@ inline fun <reified T : Any?> List<List<T>>.neighbors(
                 x + 1 to y,
                 x to y + 1,
             )
-    }
-        .filter { it.first >= 0 && it.second >= 0 }
+    }.filter { it.first >= 0 && it.second >= 0 }
         .filter { it.first < this[y].size && it.second < size }
         .toSet()
 

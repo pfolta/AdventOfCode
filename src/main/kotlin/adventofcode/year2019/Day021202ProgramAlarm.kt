@@ -3,7 +3,9 @@ package adventofcode.year2019
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day021202ProgramAlarm(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day021202ProgramAlarm(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val intcode by lazy { input.split(",").map(String::toInt) }
 
     override fun partOne() =
@@ -17,8 +19,7 @@ class Day021202ProgramAlarm(customInput: PuzzleInput? = null) : Puzzle(customInp
                 VERB_RANGE.map { verb ->
                     Triple(noun, verb, (listOf(intcode.first()) + listOf(noun, verb) + intcode.subList(3, intcode.size)).toMutableList())
                 }
-            }
-            .filter { it.third.runProgram() == 19690720 }
+            }.filter { it.third.runProgram() == 19690720 }
             .map { 100 * it.first + it.second }
             .first()
 

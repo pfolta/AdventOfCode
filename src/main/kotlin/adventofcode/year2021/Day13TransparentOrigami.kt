@@ -3,9 +3,17 @@ package adventofcode.year2021
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day13TransparentOrigami(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day13TransparentOrigami(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val paper by lazy {
-        val dots = input.split("\n\n").first().lines().map { it.split(",").first().toInt() to it.split(",").last().toInt() }.toSet()
+        val dots =
+            input
+                .split("\n\n")
+                .first()
+                .lines()
+                .map { it.split(",").first().toInt() to it.split(",").last().toInt() }
+                .toSet()
         val maxX = dots.maxOf { it.first }
         val maxY = dots.maxOf { it.second }
 
@@ -13,7 +21,11 @@ class Day13TransparentOrigami(customInput: PuzzleInput? = null) : Puzzle(customI
     }
 
     private val instructions by lazy {
-        input.split("\n\n").last().lines().map { it.split("=").first().last() to it.split("=").last().toInt() }
+        input
+            .split("\n\n")
+            .last()
+            .lines()
+            .map { it.split("=").first().last() to it.split("=").last().toInt() }
     }
 
     override fun partOne() =
@@ -25,8 +37,7 @@ class Day13TransparentOrigami(customInput: PuzzleInput? = null) : Puzzle(customI
     override fun partTwo() =
         generateSequence(0 to paper.fold(instructions.first())) { (previousFold, previousPaper) ->
             if (previousFold + 1 < instructions.size) previousFold + 1 to previousPaper.fold(instructions[previousFold + 1]) else null
-        }
-            .last()
+        }.last()
             .second
             .joinToString(
                 separator = "\n",

@@ -3,12 +3,19 @@ package adventofcode.year2022
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day04CampCleanup(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day04CampCleanup(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val assignmentPairs by lazy {
         input
             .lines()
-            .map { ASSIGNMENT_PAIR_REGEX.find(it)!!.destructured.toList().map(String::toInt) }
-            .map { (a, b, c, d) -> a..b to c..d }
+            .map {
+                ASSIGNMENT_PAIR_REGEX
+                    .find(it)!!
+                    .destructured
+                    .toList()
+                    .map(String::toInt)
+            }.map { (a, b, c, d) -> a..b to c..d }
     }
 
     override fun partOne() = assignmentPairs.count { (a, b) -> a in b || b in a }

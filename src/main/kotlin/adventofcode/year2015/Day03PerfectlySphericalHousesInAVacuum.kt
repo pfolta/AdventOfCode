@@ -5,7 +5,9 @@ import adventofcode.PuzzleInput
 import adventofcode.common.Tuple.plus
 import adventofcode.common.everyNth
 
-class Day03PerfectlySphericalHousesInAVacuum(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day03PerfectlySphericalHousesInAVacuum(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override val name = "Perfectly Spherical Houses in a Vacuum"
 
     private val instructions by lazy { input.map(Char::toString) }

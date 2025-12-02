@@ -3,7 +3,9 @@ package adventofcode.year2023
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day01Trebuchet(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day01Trebuchet(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override val name = "Trebuchet?!"
 
     override fun partOne() =

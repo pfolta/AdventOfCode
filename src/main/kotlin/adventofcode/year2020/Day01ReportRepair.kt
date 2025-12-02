@@ -5,7 +5,9 @@ import adventofcode.PuzzleInput
 import adventofcode.common.cartesianProduct
 import adventofcode.common.product
 
-class Day01ReportRepair(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day01ReportRepair(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val expenses by lazy { input.lines().map(String::toInt) }
 
     override fun partOne() =

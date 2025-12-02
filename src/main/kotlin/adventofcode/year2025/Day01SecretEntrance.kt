@@ -3,7 +3,9 @@ package adventofcode.year2025
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day01SecretEntrance(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day01SecretEntrance(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private fun parseInput(): List<Int> = input.lines().map { rotation -> rotation.replace("L", "-").replace("R", "").toInt() }
 
     override fun partOne() =
@@ -20,8 +22,7 @@ class Day01SecretEntrance(customInput: PuzzleInput? = null) : Puzzle(customInput
                         position == 0 -> -rotation / DIAL_NUMBERS
                         else -> (-rotation - position + DIAL_NUMBERS) / DIAL_NUMBERS
                     }
-            }
-            .second
+            }.second
 
     companion object {
         private const val DIAL_START = 50

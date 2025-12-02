@@ -3,12 +3,24 @@ package adventofcode.year2021
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day03BinaryDiagnostic(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day03BinaryDiagnostic(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val numbers by lazy { input.lines() }
 
     override fun partOne(): Int {
-        val gammaRate = numbers.first().indices.map { index -> mostCommonOrOne(numbers.countBy(index)) }.toInt(2)
-        val epsilonRate = numbers.first().indices.map { index -> leastCommonOrZero(numbers.countBy(index)) }.toInt(2)
+        val gammaRate =
+            numbers
+                .first()
+                .indices
+                .map { index -> mostCommonOrOne(numbers.countBy(index)) }
+                .toInt(2)
+        val epsilonRate =
+            numbers
+                .first()
+                .indices
+                .map { index -> leastCommonOrZero(numbers.countBy(index)) }
+                .toInt(2)
 
         return gammaRate * epsilonRate
     }

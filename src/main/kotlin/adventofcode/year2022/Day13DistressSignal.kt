@@ -6,7 +6,9 @@ import adventofcode.common.Json.objectMapper
 import adventofcode.common.product
 import com.fasterxml.jackson.databind.JsonNode
 
-class Day13DistressSignal(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day13DistressSignal(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val packets by lazy { input.lines().filterNot { line -> line.isBlank() }.map(Packet::invoke) }
 
     override fun partOne() =
@@ -27,7 +29,9 @@ class Day13DistressSignal(customInput: PuzzleInput? = null) : Puzzle(customInput
     companion object {
         private val DIVIDER_PACKETS = setOf("[[2]]", "[[6]]").map(Packet::invoke)
 
-        private class Packet(private val contents: JsonNode) : Comparable<Packet> {
+        private class Packet(
+            private val contents: JsonNode,
+        ) : Comparable<Packet> {
             override fun compareTo(other: Packet): Int =
                 when {
                     contents.isInt && other.contents.isInt -> contents.asInt().compareTo(other.contents.asInt())
@@ -37,7 +41,8 @@ class Day13DistressSignal(customInput: PuzzleInput? = null) : Puzzle(customInput
                     contents.isArray && other.contents.isInt -> compareTo(Packet("[${other.contents}]"))
 
                     else ->
-                        contents.zip(other.contents)
+                        contents
+                            .zip(other.contents)
                             .map { (left, right) -> Packet(left).compareTo(Packet(right)) }
                             .firstOrNull { result -> result != 0 } ?: contents.count().compareTo(other.contents.count())
                 }

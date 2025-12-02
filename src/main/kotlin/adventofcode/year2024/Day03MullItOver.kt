@@ -3,7 +3,9 @@ package adventofcode.year2024
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day03MullItOver(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day03MullItOver(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override fun partOne() = input.sumOfMultiplications()
 
     override fun partTwo() =

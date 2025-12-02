@@ -3,7 +3,9 @@ package adventofcode.year2018
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day05AlchemicalReduction(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day05AlchemicalReduction(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override fun partOne() = input.reducePolymer().length
 
     override fun partTwo() =
@@ -22,7 +24,6 @@ class Day05AlchemicalReduction(customInput: PuzzleInput? = null) : Puzzle(custom
                             else -> stack.removeLast()
                         }
                     }
-                }
-                .joinToString("")
+                }.joinToString("")
     }
 }

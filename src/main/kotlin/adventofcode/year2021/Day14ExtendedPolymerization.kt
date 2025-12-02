@@ -3,10 +3,18 @@ package adventofcode.year2021
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day14ExtendedPolymerization(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day14ExtendedPolymerization(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val polymerTemplate by lazy { input.lines().first() }
 
-    private val pairInsertionRules by lazy { input.lines().drop(2).map { it.split(" -> ") }.associate { it.first() to it.last() } }
+    private val pairInsertionRules by lazy {
+        input
+            .lines()
+            .drop(2)
+            .map { it.split(" -> ") }
+            .associate { it.first() to it.last() }
+    }
 
     override fun partOne(): Int {
         val elementCounts =
@@ -18,10 +26,8 @@ class Day14ExtendedPolymerization(customInput: PuzzleInput? = null) : Puzzle(cus
                             0 -> "${pair.first()}${pairInsertionRules[pair]}${pair.last()}"
                             else -> "${pairInsertionRules[pair]}${pair.last()}"
                         }
-                    }
-                    .joinToString("")
-            }
-                .drop(1)
+                    }.joinToString("")
+            }.drop(1)
                 .take(10)
                 .last()
                 .groupingBy { it }
@@ -41,8 +47,7 @@ class Day14ExtendedPolymerization(customInput: PuzzleInput? = null) : Puzzle(cus
                             "${pair.first()}${pairInsertionRules[pair]}" to count,
                             "${pairInsertionRules[pair]}${pair.last()}" to count,
                         )
-                    }
-                    .fold(mapOf()) { acc, (pair, count) ->
+                    }.fold(mapOf()) { acc, (pair, count) ->
                         if (acc.contains(pair)) {
                             val existingCount = acc[pair]!!
                             acc.minus(pair) + mapOf(pair to existingCount + count)
@@ -50,8 +55,7 @@ class Day14ExtendedPolymerization(customInput: PuzzleInput? = null) : Puzzle(cus
                             acc + mapOf(pair to count)
                         }
                     }
-            }
-                .drop(1)
+            }.drop(1)
                 .take(40)
                 .last()
                 .toList()
@@ -64,8 +68,7 @@ class Day14ExtendedPolymerization(customInput: PuzzleInput? = null) : Puzzle(cus
                     } else {
                         acc + mapOf(last to count)
                     }
-                }
-                .map { (element, count) -> if (element == polymerTemplate.first()) element to count + 1 else element to count }
+                }.map { (element, count) -> if (element == polymerTemplate.first()) element to count + 1 else element to count }
                 .map { (_, count) -> count }
                 .sorted()
 

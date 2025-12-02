@@ -8,7 +8,9 @@ import adventofcode.year2022.Day08TreetopTreeHouse.Companion.Direction.LEFT
 import adventofcode.year2022.Day08TreetopTreeHouse.Companion.Direction.RIGHT
 import adventofcode.year2022.Day08TreetopTreeHouse.Companion.Direction.UP
 
-class Day08TreetopTreeHouse(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day08TreetopTreeHouse(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val treeMap by lazy { input.lines().map { line -> line.map(Char::digitToInt) } }
 
     override fun partOne() =
@@ -20,8 +22,7 @@ class Day08TreetopTreeHouse(customInput: PuzzleInput? = null) : Puzzle(customInp
                         .map { direction -> treeMap.neighbors(x, y, direction).filter { neighbor -> neighbor >= tree } }
                         .any(List<Int>::isEmpty)
                 }
-            }
-            .count { tree -> tree }
+            }.count { tree -> tree }
 
     override fun partTwo() =
         treeMap
@@ -38,8 +39,7 @@ class Day08TreetopTreeHouse(customInput: PuzzleInput? = null) : Puzzle(customInp
                             }
                         }
                 }
-            }
-            .maxOf(List<Int>::product)
+            }.maxOf(List<Int>::product)
 
     companion object {
         private enum class Direction { DOWN, LEFT, RIGHT, UP }

@@ -5,7 +5,9 @@ import adventofcode.PuzzleInput
 import adventofcode.common.neighbors
 import adventofcode.common.product
 
-class Day03GearRatios(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day03GearRatios(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override fun partOne() =
         input
             .parsePartNumbers()

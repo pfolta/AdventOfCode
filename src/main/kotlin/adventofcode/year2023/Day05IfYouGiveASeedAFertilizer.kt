@@ -3,9 +3,16 @@ package adventofcode.year2023
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day05IfYouGiveASeedAFertilizer(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day05IfYouGiveASeedAFertilizer(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override fun partOne(): Long {
-        val seeds = input.lines().first().split(" ").mapNotNull(String::toLongOrNull)
+        val seeds =
+            input
+                .lines()
+                .first()
+                .split(" ")
+                .mapNotNull(String::toLongOrNull)
         val maps = input.split("\n\n").drop(1).map { map -> map.lines().drop(1).map(ConversionMap::invoke) }
 
         return seeds.minOf { seed -> maps.fold(seed) { dst, map -> dst.mapsTo(map) } }

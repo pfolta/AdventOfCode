@@ -5,7 +5,9 @@ import adventofcode.PuzzleInput
 import adventofcode.common.product
 import kotlin.math.ceil
 
-class Day13ShuttleSearch(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day13ShuttleSearch(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val buses by lazy { input.lines().last().split(",") }
     private val earliestDeparture by lazy { input.lines().first().toInt() }
 
@@ -22,12 +24,13 @@ class Day13ShuttleSearch(customInput: PuzzleInput? = null) : Puzzle(customInput)
             buses
                 .mapIndexedNotNull { offset, busId -> if (busId == "x") null else Pair(busId.toInt(), offset) }
 
-        return busesWithOffsets.fold(Pair(0L, 1L)) { (timestamp, step), (busId, busOffset) ->
-            var curTimestamp = timestamp
+        return busesWithOffsets
+            .fold(Pair(0L, 1L)) { (timestamp, step), (busId, busOffset) ->
+                var curTimestamp = timestamp
 
-            while ((curTimestamp + busOffset) % busId != 0L) curTimestamp += step
+                while ((curTimestamp + busOffset) % busId != 0L) curTimestamp += step
 
-            Pair(curTimestamp, step * busId)
-        }.first
+                Pair(curTimestamp, step * busId)
+            }.first
     }
 }

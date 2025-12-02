@@ -11,7 +11,9 @@ import adventofcode.year2020.Day12RainRisk.Companion.Action.SOUTH
 import adventofcode.year2020.Day12RainRisk.Companion.Action.WEST
 import kotlin.math.absoluteValue
 
-class Day12RainRisk(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day12RainRisk(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val navigationInstructions by lazy { input.lines().map(::NavigationInstruction) }
 
     override fun partOne() =
@@ -32,8 +34,7 @@ class Day12RainRisk(customInput: PuzzleInput? = null) : Puzzle(customInput) {
                     RIGHT -> NavigationDirection(direction.heading + instruction.value) to position
                     LEFT -> NavigationDirection(direction.heading - instruction.value) to position
                 }
-            }
-            .second
+            }.second
             .toList()
             .sumOf { it.absoluteValue }
 
@@ -75,13 +76,14 @@ class Day12RainRisk(customInput: PuzzleInput? = null) : Puzzle(customInput) {
                         acc.copy(first = Pair(wx, wy))
                     }
                 }
-            }
-            .second
+            }.second
             .toList()
             .sumOf { it.absoluteValue }
 
     companion object {
-        private enum class NavigationDirection(val heading: Int) {
+        private enum class NavigationDirection(
+            val heading: Int,
+        ) {
             EAST(0),
             SOUTH(90),
             WEST(180),
@@ -93,7 +95,9 @@ class Day12RainRisk(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             }
         }
 
-        private enum class Action(val action: String) {
+        private enum class Action(
+            val action: String,
+        ) {
             NORTH("N"),
             SOUTH("S"),
             EAST("E"),

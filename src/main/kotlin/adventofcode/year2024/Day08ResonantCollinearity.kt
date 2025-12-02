@@ -5,7 +5,9 @@ import adventofcode.PuzzleInput
 import adventofcode.common.spatial.Grid2d
 import adventofcode.common.spatial.Point2d
 
-class Day08ResonantCollinearity(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day08ResonantCollinearity(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val grid by lazy { Grid2d(input) }
 
     override fun partOne() =

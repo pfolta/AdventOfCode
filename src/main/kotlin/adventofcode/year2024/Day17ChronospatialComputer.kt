@@ -3,9 +3,18 @@ package adventofcode.year2024
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day17ChronospatialComputer(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day17ChronospatialComputer(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val registers by lazy { input.lines().take(3).map { it.substringAfter(": ").toLong() } }
-    private val program by lazy { input.lines().last().substringAfter(": ").split(",").map(String::toInt) }
+    private val program by lazy {
+        input
+            .lines()
+            .last()
+            .substringAfter(": ")
+            .split(",")
+            .map(String::toInt)
+    }
 
     override fun partOne() = runProgram(program, registers).joinToString(",")
 
@@ -20,8 +29,7 @@ class Day17ChronospatialComputer(customInput: PuzzleInput? = null) : Puzzle(cust
                         registerA.takeIf { runProgram(program, listOf(registerA) + registers.drop(1)).first() == instruction }
                     }
                 }
-            }
-            .first()
+            }.first()
 
     companion object {
         private fun runProgram(

@@ -3,8 +3,16 @@ package adventofcode.year2021
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day04GiantSquid(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    private val numbers by lazy { input.lines().first().split(",").map(String::toInt) }
+class Day04GiantSquid(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
+    private val numbers by lazy {
+        input
+            .lines()
+            .first()
+            .split(",")
+            .map(String::toInt)
+    }
 
     private val boards by lazy {
         input
@@ -17,8 +25,7 @@ class Day04GiantSquid(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     private fun playBingo() =
         generateSequence(0 to boards.map { board -> board.markNumber(numbers.first()) }) { (previousIndex, previousBoards) ->
             previousIndex + 1 to previousBoards.map { board -> board.markNumber(numbers[previousIndex + 1]) }
-        }
-            .take(numbers.size)
+        }.take(numbers.size)
 
     override fun partOne(): Int {
         val firstWinner = playBingo().first { (_, boards) -> boards.any { board -> board.hasWon() } }

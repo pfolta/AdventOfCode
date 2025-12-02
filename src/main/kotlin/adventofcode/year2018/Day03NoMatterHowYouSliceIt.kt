@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.cartesianProduct
 
-class Day03NoMatterHowYouSliceIt(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day03NoMatterHowYouSliceIt(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val claims by lazy { input.lines().map(Claim::invoke) }
 
     private val fabric by lazy { claims.flatMap(Claim::area).groupingBy { it }.eachCount() }
@@ -30,7 +32,12 @@ class Day03NoMatterHowYouSliceIt(customInput: PuzzleInput? = null) : Puzzle(cust
 
             companion object {
                 operator fun invoke(input: String): Claim {
-                    val (id, left, top, width, height) = INPUT_REGEX.find(input)!!.destructured.toList().map(String::toInt)
+                    val (id, left, top, width, height) =
+                        INPUT_REGEX
+                            .find(input)!!
+                            .destructured
+                            .toList()
+                            .map(String::toInt)
                     return Claim(id, left, top, width, height)
                 }
             }

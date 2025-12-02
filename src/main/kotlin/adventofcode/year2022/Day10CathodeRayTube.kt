@@ -3,7 +3,9 @@ package adventofcode.year2022
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day10CathodeRayTube(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day10CathodeRayTube(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override val name = "Cathode-Ray Tube"
 
     private val instructionCycles by lazy { input.toInstructionCycles() }
@@ -20,8 +22,7 @@ class Day10CathodeRayTube(customInput: PuzzleInput? = null) : Puzzle(customInput
                 val spritePosition = listOf(x - 1, x, x + 1)
 
                 spritePosition.contains(pixel)
-            }
-            .chunked(SCREEN_WIDTH)
+            }.chunked(SCREEN_WIDTH)
             .joinToString(
                 separator = "\n",
                 prefix = "\n",
@@ -46,8 +47,7 @@ class Day10CathodeRayTube(customInput: PuzzleInput? = null) : Puzzle(customInput
 
                             else -> listOf(Triple(instruction, xAfterPreviousCycle, xAfterPreviousCycle))
                         }
-                }
-                .mapIndexed { cycle, (instruction, xBeforeCycle, _) -> Triple(cycle, instruction, xBeforeCycle) }
+                }.mapIndexed { cycle, (instruction, xBeforeCycle, _) -> Triple(cycle, instruction, xBeforeCycle) }
                 .drop(1)
     }
 }

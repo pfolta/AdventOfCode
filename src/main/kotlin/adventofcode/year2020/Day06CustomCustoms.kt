@@ -3,7 +3,9 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day06CustomCustoms(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day06CustomCustoms(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override fun partOne() =
         input
             .split("\n\n")

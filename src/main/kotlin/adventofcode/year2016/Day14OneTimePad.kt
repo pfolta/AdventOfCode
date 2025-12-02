@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.String.md5
 
-class Day14OneTimePad(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day14OneTimePad(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override val name = "One-Time Pad"
 
     override fun partOne() =

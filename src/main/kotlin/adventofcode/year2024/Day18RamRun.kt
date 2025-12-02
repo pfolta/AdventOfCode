@@ -5,7 +5,9 @@ import adventofcode.PuzzleInput
 import adventofcode.common.spatial.Point2d
 import adventofcode.common.spatial.Point2d.Companion.ORIGIN
 
-class Day18RamRun(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day18RamRun(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override val name = "RAM Run"
 
     private val corruptedBytes by lazy {

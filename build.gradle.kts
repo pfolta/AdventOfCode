@@ -8,7 +8,7 @@ plugins {
 
     kotlin("jvm") version "2.2.21"
 
-    id("org.jlleitschuh.gradle.ktlint") version "12.1.1"
+    id("org.jlleitschuh.gradle.ktlint") version "14.0.1"
     id("com.adarshr.test-logger") version "4.0.0"
 }
 

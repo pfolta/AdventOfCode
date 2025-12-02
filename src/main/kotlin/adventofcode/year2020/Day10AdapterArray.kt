@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.product
 
-class Day10AdapterArray(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day10AdapterArray(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val sortedInput by lazy { input.lines().map(String::toInt).sorted() }
 
     override fun partOne() =
@@ -12,8 +14,7 @@ class Day10AdapterArray(customInput: PuzzleInput? = null) : Puzzle(customInput) 
             .foldIndexed(emptyMap<Int, Int>()) { index, acc, elem ->
                 val previous = sortedInput.getOrElse(index - 1) { 0 }
                 acc + mapOf(elem - previous to (acc[elem - previous] ?: 0) + 1)
-            }
-            .values
+            }.values
             .product()
 
     override fun partTwo(): Long {

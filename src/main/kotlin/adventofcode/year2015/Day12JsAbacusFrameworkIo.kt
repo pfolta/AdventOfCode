@@ -5,7 +5,9 @@ import adventofcode.PuzzleInput
 import adventofcode.common.Json.objectMapper
 import com.fasterxml.jackson.databind.JsonNode
 
-class Day12JsAbacusFrameworkIo(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day12JsAbacusFrameworkIo(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override val name = "JSAbacusFramework.io"
 
     override fun partOne() = objectMapper.readTree(input).sum()

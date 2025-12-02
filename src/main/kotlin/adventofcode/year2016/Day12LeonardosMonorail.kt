@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.String.containsOnlyDigits
 
-class Day12LeonardosMonorail(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day12LeonardosMonorail(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override val name = "Leonardo's Monorail"
 
     override fun partOne() = input.lines().runAssembunny()["a"]!!

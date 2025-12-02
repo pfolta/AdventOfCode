@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.product
 
-class Day16TicketTranslation(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day16TicketTranslation(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val ticketRules by lazy {
         input
             .split("\n\n")
@@ -14,7 +16,14 @@ class Day16TicketTranslation(customInput: PuzzleInput? = null) : Puzzle(customIn
             .map { TicketRule(it.first(), it.last().split(" or ").map { it.split("-").first().toInt()..it.split("-").last().toInt() }) }
     }
 
-    private val yourTicket by lazy { input.split("\n\n")[1].lines().last().split(",").map(String::toInt) }
+    private val yourTicket by lazy {
+        input
+            .split("\n\n")[1]
+            .lines()
+            .last()
+            .split(",")
+            .map(String::toInt)
+    }
 
     private val nearbyTickets by lazy {
         input
@@ -40,8 +49,7 @@ class Day16TicketTranslation(customInput: PuzzleInput? = null) : Puzzle(customIn
                 .map { rule ->
                     val possibleIndices =
                         (yourTicket.indices)
-                            .filter {
-                                    index ->
+                            .filter { index ->
                                 validNearbyTickets.map { it[index] }.all { rule.ranges.any { range -> range.contains(it) } }
                             }
 

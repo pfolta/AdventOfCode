@@ -3,7 +3,9 @@ package adventofcode.year2016
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day04SecurityThroughObscurity(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day04SecurityThroughObscurity(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val rooms by lazy {
         input
             .lines()
@@ -24,20 +26,19 @@ class Day04SecurityThroughObscurity(customInput: PuzzleInput? = null) : Puzzle(c
                         .joinToString("") { (letter, _) -> letter.toString() }
 
                 computedChecksum == checksum
-            }
-            .sumOf { (_, sectorId, _) -> sectorId }
+            }.sumOf { (_, sectorId, _) -> sectorId }
 
     override fun partTwo() =
         rooms
             .map { (name, sectorId, _) ->
-                name.map { char ->
-                    when (char) {
-                        '-' -> ' '
-                        else -> ((char.code - 'a'.code + sectorId) % 26 + 'a'.code).toChar()
-                    }
-                }.joinToString("") to sectorId
-            }
-            .first { (name, _) -> name == NORTHPOLE_OBJECT_STORAGE_ROOM }
+                name
+                    .map { char ->
+                        when (char) {
+                            '-' -> ' '
+                            else -> ((char.code - 'a'.code + sectorId) % 26 + 'a'.code).toChar()
+                        }
+                    }.joinToString("") to sectorId
+            }.first { (name, _) -> name == NORTHPOLE_OBJECT_STORAGE_ROOM }
             .second
 
     companion object {

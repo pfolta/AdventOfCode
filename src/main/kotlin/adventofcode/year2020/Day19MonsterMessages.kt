@@ -3,7 +3,9 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day19MonsterMessages(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day19MonsterMessages(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val rules by lazy {
         input
             .split("\n\n")
@@ -27,8 +29,7 @@ class Day19MonsterMessages(customInput: PuzzleInput? = null) : Puzzle(customInpu
                             else -> it.replace(ref.value, "(${rules[ref.value]})")
                         }
                     }
-            }
-                .first { regex -> regex.split(" ").none { it.contains(NUMBER_REGEX) } }
+            }.first { regex -> regex.split(" ").none { it.contains(NUMBER_REGEX) } }
                 .replace(" ", "")
                 .toRegex()
 

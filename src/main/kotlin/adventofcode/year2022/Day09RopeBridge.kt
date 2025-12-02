@@ -11,7 +11,9 @@ import adventofcode.year2022.Day09RopeBridge.Companion.Direction.U
 import kotlin.math.abs
 import kotlin.math.sign
 
-class Day09RopeBridge(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day09RopeBridge(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val motionMoves by lazy {
         input.lines().map { line -> line.split(" ") }.map { (direction, steps) -> MotionMove(Direction.valueOf(direction), steps.toInt()) }
     }
@@ -23,7 +25,10 @@ class Day09RopeBridge(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     companion object {
         private enum class Direction { D, L, R, U }
 
-        private data class MotionMove(val direction: Direction, val steps: Int)
+        private data class MotionMove(
+            val direction: Direction,
+            val steps: Int,
+        )
 
         private fun List<MotionMove>.simulate(knotCount: Int) =
             fold(List(knotCount) { (0 to 0) } to setOf(0 to 0)) { (knots, tailVisited), (direction, steps) ->

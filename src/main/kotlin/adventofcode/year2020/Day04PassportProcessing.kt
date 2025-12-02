@@ -3,7 +3,9 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day04PassportProcessing(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day04PassportProcessing(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val passports by lazy { input.split("\n\n").map { it.replace("\n", " ").split(" ") }.map(::Passport) }
 
     override fun partOne() =
@@ -20,8 +22,7 @@ class Day04PassportProcessing(customInput: PuzzleInput? = null) : Puzzle(customI
             .filter {
                 (it.hgt!!.endsWith("cm") && it.hgt.replace("cm", "").toInt() in 150..193) ||
                     (it.hgt.endsWith("in") && it.hgt.replace("in", "").toInt() in 59..76)
-            }
-            .filter { """#([0-9a-f]{6})""".toRegex().matches(it.hcl!!) }
+            }.filter { """#([0-9a-f]{6})""".toRegex().matches(it.hcl!!) }
             .filter { listOf("amb", "blu", "brn", "gry", "grn", "hzl", "oth").any { color -> it.ecl!! == color } }
             .filter { it.pid!!.toIntOrNull() != null && it.pid.length == 9 }
             .count()

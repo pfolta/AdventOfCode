@@ -3,8 +3,16 @@ package adventofcode.year2017
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day15DuelingGenerators(customInput: PuzzleInput? = null) : Puzzle(customInput) {
-    private val generators by lazy { input.lines().map { it.split(" ").last().toLong() }.zipWithNext().first() }
+class Day15DuelingGenerators(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
+    private val generators by lazy {
+        input
+            .lines()
+            .map { it.split(" ").last().toLong() }
+            .zipWithNext()
+            .first()
+    }
 
     override fun partOne() =
         generateSequence(generators) { (a, b) -> a.next(A_FACTOR) to b.next(B_FACTOR) }

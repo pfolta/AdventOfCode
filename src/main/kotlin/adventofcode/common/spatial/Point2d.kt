@@ -34,8 +34,7 @@ data class Point2d(
         when {
             includeDiagonals -> setOf(NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST)
             else -> setOf(NORTH, EAST, SOUTH, WEST)
-        }
-            .map { direction -> this + direction }
+        }.map { direction -> this + direction }
             .toSet()
 
     /** Returns the Manhattan distance between two points. */

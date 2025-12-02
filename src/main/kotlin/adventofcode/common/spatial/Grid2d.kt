@@ -1,6 +1,8 @@
 package adventofcode.common.spatial
 
-data class Grid2d<T>(val values: List<List<T>>) {
+data class Grid2d<T>(
+    val values: List<List<T>>,
+) {
     /** Set of points contained in this grid. */
     val points = values.flatMapIndexed { y, row -> List(row.size) { x -> Point2d(x, y) } }.toSet()
 

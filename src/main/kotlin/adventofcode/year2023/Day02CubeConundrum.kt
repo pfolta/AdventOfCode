@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.product
 
-class Day02CubeConundrum(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day02CubeConundrum(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override fun partOne() =
         input
             .lines()
@@ -51,8 +53,19 @@ class Day02CubeConundrum(customInput: PuzzleInput? = null) : Puzzle(customInput)
 
             companion object {
                 operator fun invoke(input: String): Game {
-                    val id = input.split(": ").first().split(" ").last().toInt()
-                    val turns = input.split(": ").last().split("; ").map(Turn::invoke)
+                    val id =
+                        input
+                            .split(": ")
+                            .first()
+                            .split(" ")
+                            .last()
+                            .toInt()
+                    val turns =
+                        input
+                            .split(": ")
+                            .last()
+                            .split("; ")
+                            .map(Turn::invoke)
 
                     return Game(id, turns)
                 }

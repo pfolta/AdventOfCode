@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.Math.isEven
 
-class Day11PlutonianPebbles(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day11PlutonianPebbles(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val stones by lazy { input.split(" ").map(String::toLong) }
 
     private val cache = mutableMapOf<Pair<Long, Int>, Long>()

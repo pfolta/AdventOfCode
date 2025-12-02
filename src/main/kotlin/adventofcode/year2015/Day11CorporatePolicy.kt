@@ -3,7 +3,9 @@ package adventofcode.year2015
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day11CorporatePolicy(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day11CorporatePolicy(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override fun partOne() = input.nextPassword()
 
     override fun partTwo() = input.nextPassword().nextPassword()
@@ -19,8 +21,7 @@ class Day11CorporatePolicy(customInput: PuzzleInput? = null) : Puzzle(customInpu
                     val firstPair = pairs.firstOrNull { password.contains(it) }
 
                     firstPair != null && pairs.minus(firstPair).any { password.contains(it) }
-                }
-                .first()
+                }.first()
 
         private fun String.increment(): String {
             val chars = toMutableList()

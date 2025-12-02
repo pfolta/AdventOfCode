@@ -3,7 +3,9 @@ package adventofcode.year2024
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day19LinenLayout(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day19LinenLayout(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val patterns by lazy { input.lines().first().split(", ") }
 
     private val designs by lazy { input.lines().drop(2) }

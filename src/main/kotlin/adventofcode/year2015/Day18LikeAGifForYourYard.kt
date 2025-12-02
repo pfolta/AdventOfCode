@@ -5,7 +5,9 @@ import adventofcode.PuzzleInput
 import adventofcode.common.Tuple.plus
 import adventofcode.common.cartesianProduct
 
-class Day18LikeAGifForYourYard(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day18LikeAGifForYourYard(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override val name = "Like a GIF For Your Yard"
 
     private val initialConfiguration by lazy {
@@ -16,14 +18,16 @@ class Day18LikeAGifForYourYard(customInput: PuzzleInput? = null) : Puzzle(custom
     }
 
     override fun partOne() =
-        initialConfiguration.animate()
+        initialConfiguration
+            .animate()
             .drop(1)
             .take(STEP_COUNT)
             .last()
             .count { (_, turnedOn) -> turnedOn }
 
     override fun partTwo() =
-        initialConfiguration.animate(setOf(Pair(0, 0), Pair(99, 0), Pair(0, 99), Pair(99, 99)))
+        initialConfiguration
+            .animate(setOf(Pair(0, 0), Pair(99, 0), Pair(0, 99), Pair(99, 99)))
             .drop(1)
             .take(STEP_COUNT)
             .last()

@@ -3,12 +3,20 @@ package adventofcode.year2015
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day16AuntSue(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day16AuntSue(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val aunts by lazy {
         input
             .lines()
             .map { aunt ->
-                val id = aunt.split(": ").first().split(" ").last().toInt()
+                val id =
+                    aunt
+                        .split(": ")
+                        .first()
+                        .split(" ")
+                        .last()
+                        .toInt()
                 val fields = aunt.substring(4 + id.toString().length + 2).split(", ").map { it.split(": ") }
 
                 val children = fields.find { it.first() == "children" }?.last()?.toInt()

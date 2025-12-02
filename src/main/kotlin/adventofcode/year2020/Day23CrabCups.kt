@@ -3,9 +3,17 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day23CrabCups(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day23CrabCups(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override fun partOne(): Int {
-        val result = input.toCharArray().map(Char::toString).map(String::toInt).toMutableList().playCrabCups(100)
+        val result =
+            input
+                .toCharArray()
+                .map(Char::toString)
+                .map(String::toInt)
+                .toMutableList()
+                .playCrabCups(100)
         return (result.subList(result.indexOf(1) + 1, result.size) + result.subList(0, result.indexOf(1))).joinToString("").toInt()
     }
 

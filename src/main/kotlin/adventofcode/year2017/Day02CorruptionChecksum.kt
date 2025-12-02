@@ -3,7 +3,9 @@ package adventofcode.year2017
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day02CorruptionChecksum(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day02CorruptionChecksum(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override fun partOne() =
         input
             .lines()

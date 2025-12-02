@@ -9,7 +9,9 @@ import adventofcode.common.spatial.Point2d.Companion.NORTH
 import adventofcode.common.spatial.Point2d.Companion.SOUTH
 import adventofcode.common.spatial.Point2d.Companion.WEST
 
-class Day16ReindeerMaze(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day16ReindeerMaze(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val maze by lazy { Grid2d(input) }
 
     override fun partOne() = maze.shortestPath(maze['S'], maze['E'])
@@ -42,8 +44,7 @@ class Day16ReindeerMaze(customInput: PuzzleInput? = null) : Puzzle(customInput) 
                             Triple(position + direction, direction, score + STEP_SCORE),
                             Triple(position + clockwiseTurn, clockwiseTurn, score + TURN_SCORE + STEP_SCORE),
                             Triple(position + counterClockwiseTurn, counterClockwiseTurn, score + TURN_SCORE + STEP_SCORE),
-                        )
-                            .filterNot { (position) -> this[position] == '#' }
+                        ).filterNot { (position) -> this[position] == '#' }
 
                     queue.addAll(neighbors)
                 }

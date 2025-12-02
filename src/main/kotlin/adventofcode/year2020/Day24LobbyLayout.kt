@@ -5,12 +5,20 @@ import adventofcode.PuzzleInput
 import adventofcode.year2020.Day24LobbyLayout.Companion.TileColor.BLACK
 import adventofcode.year2020.Day24LobbyLayout.Companion.TileColor.WHITE
 
-class Day24LobbyLayout(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day24LobbyLayout(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val tileMap by lazy {
-        input.lines()
+        input
+            .lines()
             .asSequence()
-            .map { tile -> DIRECTION_REGEX.findAll(tile).toList().map { it.value }.mapNotNull(DIRECTIONS::get) }
-            .map { it.reduce { tile, direction -> tile.first + direction.first to tile.second + direction.second } }
+            .map { tile ->
+                DIRECTION_REGEX
+                    .findAll(tile)
+                    .toList()
+                    .map { it.value }
+                    .mapNotNull(DIRECTIONS::get)
+            }.map { it.reduce { tile, direction -> tile.first + direction.first to tile.second + direction.second } }
             .fold(emptyMap<Pair<Int, Int>, TileColor>()) { tiles, tile ->
                 when (tiles[tile]) {
                     BLACK -> tiles + (tile to WHITE)
@@ -24,24 +32,23 @@ class Day24LobbyLayout(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     override fun partTwo() =
         generateSequence(tileMap) { previous ->
             previous +
-                previous.map { (tile, _) ->
-                    (listOf(tile) + tile.neighbors())
-                        .mapNotNull { position ->
-                            val color = previous.getOrDefault(position, WHITE)
-                            val blackNeighbors = position.neighbors().filter { previous.getOrDefault(it, WHITE) == BLACK }
+                previous
+                    .map { (tile, _) ->
+                        (listOf(tile) + tile.neighbors())
+                            .mapNotNull { position ->
+                                val color = previous.getOrDefault(position, WHITE)
+                                val blackNeighbors = position.neighbors().filter { previous.getOrDefault(it, WHITE) == BLACK }
 
-                            if (color == BLACK && (blackNeighbors.isEmpty() || blackNeighbors.size > 2)) {
-                                position to WHITE
-                            } else if (color == WHITE && blackNeighbors.size == 2) {
-                                position to BLACK
-                            } else {
-                                null
-                            }
-                        }
-                        .toMap()
-                }.reduce { tileMap, partialTileMap -> tileMap + partialTileMap }
-        }
-            .drop(1)
+                                if (color == BLACK && (blackNeighbors.isEmpty() || blackNeighbors.size > 2)) {
+                                    position to WHITE
+                                } else if (color == WHITE && blackNeighbors.size == 2) {
+                                    position to BLACK
+                                } else {
+                                    null
+                                }
+                            }.toMap()
+                    }.reduce { tileMap, partialTileMap -> tileMap + partialTileMap }
+        }.drop(1)
             .take(100)
             .last()
             .values

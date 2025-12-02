@@ -3,7 +3,9 @@ package adventofcode.year2015
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day19MedicineForRudolph(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day19MedicineForRudolph(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override val name = "Medicine for Rudolph"
 
     private val replacements by lazy {

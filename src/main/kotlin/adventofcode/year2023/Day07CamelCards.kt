@@ -10,7 +10,9 @@ import adventofcode.year2023.Day07CamelCards.Companion.HandType.ONE_PAIR
 import adventofcode.year2023.Day07CamelCards.Companion.HandType.THREE_OF_A_KIND
 import adventofcode.year2023.Day07CamelCards.Companion.HandType.TWO_PAIR
 
-class Day07CamelCards(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day07CamelCards(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override fun partOne() =
         input
             .lines()
@@ -64,7 +66,9 @@ class Day07CamelCards(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             }
         }
 
-        private enum class HandType(val rank: Int) {
+        private enum class HandType(
+            val rank: Int,
+        ) {
             FIVE_OF_A_KIND(6),
             FOUR_OF_A_KIND(5),
             FULL_HOUSE(4),

@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.Math.isEven
 
-class Day09DiskFragmenter(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day09DiskFragmenter(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val fileMap by lazy {
         input
             .mapIndexed { index, size ->
@@ -26,11 +28,16 @@ class Day09DiskFragmenter(customInput: PuzzleInput? = null) : Puzzle(customInput
             abstract fun expand(): List<Block>
         }
 
-        private data class File(val id: Long, override val size: Int) : Block() {
+        private data class File(
+            val id: Long,
+            override val size: Int,
+        ) : Block() {
             override fun expand() = (0 until size).map { File(id, 1) }
         }
 
-        private data class FreeSpace(override val size: Int) : Block() {
+        private data class FreeSpace(
+            override val size: Int,
+        ) : Block() {
             override fun expand() = (0 until size).map { FreeSpace(1) }
         }
 

@@ -52,13 +52,14 @@ private val example2 =
     3
     """.trimIndent()
 
-class Day10AdapterArraySpec : PuzzleBaseSpec(
-    listOf(
-        example1 to 7 * 5,
-        example2 to 22 * 10,
-    ),
-    listOf(
-        example1 to 8,
-        example2 to 19208,
-    ),
-)
+class Day10AdapterArraySpec :
+    PuzzleBaseSpec(
+        listOf(
+            example1 to 7 * 5,
+            example2 to 22 * 10,
+        ),
+        listOf(
+            example1 to 8,
+            example2 to 19208,
+        ),
+    )

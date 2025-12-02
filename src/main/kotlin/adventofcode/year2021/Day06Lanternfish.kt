@@ -3,16 +3,23 @@ package adventofcode.year2021
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day06Lanternfish(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day06Lanternfish(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val fish by lazy { input.split(",").map(String::toInt) }
 
-    private val fishByAge by lazy { fish.groupingBy { it }.eachCount().map { (age, count) -> age to count.toLong() }.toMap() }
+    private val fishByAge by lazy {
+        fish
+            .groupingBy { it }
+            .eachCount()
+            .map { (age, count) -> age to count.toLong() }
+            .toMap()
+    }
 
     override fun partOne() =
         generateSequence(fish) { previous ->
             previous.flatMap { if (it == 0) listOf(6, 8) else listOf(it - 1) }
-        }
-            .take(80 + 1)
+        }.take(80 + 1)
             .last()
             .size
 
@@ -23,8 +30,7 @@ class Day06Lanternfish(customInput: PuzzleInput? = null) : Puzzle(customInput) {
                 .groupBy { (age, _) -> age }
                 .map { (age, count) -> age to count.sumOf { it.second } }
                 .toMap()
-        }
-            .take(256 + 1)
+        }.take(256 + 1)
             .last()
             .values
             .sum()

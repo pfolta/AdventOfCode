@@ -3,7 +3,9 @@ package adventofcode.year2022
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day02RockPaperScissors(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day02RockPaperScissors(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val strategies by lazy { input.lines().map { it.split(" ") }.map { it.first() to it.last() } }
 
     override fun partOne() =
@@ -21,8 +23,7 @@ class Day02RockPaperScissors(customInput: PuzzleInput? = null) : Puzzle(customIn
                     opponent == "C" && me == "Z" -> 3 + 3
                     else -> throw IllegalArgumentException("'$opponent $me' is not a valid strategy")
                 }
-            }
-            .sum()
+            }.sum()
 
     override fun partTwo() =
         strategies
@@ -39,6 +40,5 @@ class Day02RockPaperScissors(customInput: PuzzleInput? = null) : Puzzle(customIn
                     opponent == "C" && outcome == "Z" -> 1 + 6
                     else -> throw IllegalArgumentException("'$opponent $outcome' is not a valid strategy")
                 }
-            }
-            .sum()
+            }.sum()
 }

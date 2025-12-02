@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import kotlin.math.pow
 
-class Day04Scratchcards(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day04Scratchcards(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val scratchcards by lazy { input.lines().map(Scratchcard::invoke) }
 
     override fun partOne() = scratchcards.sumOf(Scratchcard::points)

@@ -3,7 +3,9 @@ package adventofcode.year2017
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day05AMazeOfTwistyTrampolinesAllAlike(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day05AMazeOfTwistyTrampolinesAllAlike(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override val name = "A Maze of Twisty Trampolines, All Alike"
 
     private val offsets by lazy { input.lines().map(String::toInt) }

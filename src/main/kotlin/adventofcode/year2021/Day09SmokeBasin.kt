@@ -5,7 +5,9 @@ import adventofcode.PuzzleInput
 import adventofcode.common.neighbors
 import adventofcode.common.product
 
-class Day09SmokeBasin(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day09SmokeBasin(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val heightMap by lazy { input.lines().map { row -> row.map { col -> col.toString().toInt() } } }
 
     private fun List<List<Int>>.basin(
@@ -14,8 +16,7 @@ class Day09SmokeBasin(customInput: PuzzleInput? = null) : Puzzle(customInput) {
     ) = generateSequence(setOf(x to y)) { previous ->
         val new = previous.flatMap { (x, y) -> neighbors(x, y, false).filter { (x, y) -> this[y][x] < 9 } + setOf(x to y) }.toSet()
         if (new.size > previous.size) new else null
-    }
-        .last()
+    }.last()
 
     private fun Int.isLowPoint(neighbors: List<Int>) = neighbors.all { neighbor -> this < neighbor }
 
@@ -27,8 +28,7 @@ class Day09SmokeBasin(customInput: PuzzleInput? = null) : Puzzle(customInput) {
                 row.filterIndexed { x, col ->
                     col.isLowPoint(heightMap.neighbors(x, y, false).map { (x, y) -> heightMap[y][x] })
                 }
-            }
-            .sumOf { height -> height.riskLevel() }
+            }.sumOf { height -> height.riskLevel() }
 
     override fun partTwo() =
         heightMap
@@ -36,8 +36,7 @@ class Day09SmokeBasin(customInput: PuzzleInput? = null) : Puzzle(customInput) {
                 row.mapIndexedNotNull { x, col ->
                     if (col.isLowPoint(heightMap.neighbors(x, y, false).map { (x, y) -> heightMap[y][x] })) x to y else null
                 }
-            }
-            .map { (x, y) -> heightMap.basin(x, y).size }
+            }.map { (x, y) -> heightMap.basin(x, y).size }
             .sorted()
             .takeLast(3)
             .product()

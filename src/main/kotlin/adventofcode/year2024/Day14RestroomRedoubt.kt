@@ -5,7 +5,9 @@ import adventofcode.PuzzleInput
 import adventofcode.common.product
 import adventofcode.common.spatial.Point2d
 
-class Day14RestroomRedoubt(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day14RestroomRedoubt(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val robots by lazy { input.lines().map(Robot::invoke) }
 
     override fun partOne(): Int {
@@ -27,8 +29,7 @@ class Day14RestroomRedoubt(customInput: PuzzleInput? = null) : Puzzle(customInpu
             rightHalf to topHalf,
             leftHalf to bottomHalf,
             rightHalf to bottomHalf,
-        )
-            .map { (qx, qy) -> robotCount.filterKeys { point -> point.x in qx && point.y in qy }.values.sum() }
+        ).map { (qx, qy) -> robotCount.filterKeys { point -> point.x in qx && point.y in qy }.values.sum() }
             .product()
     }
 

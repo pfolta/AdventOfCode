@@ -3,7 +3,9 @@ package adventofcode.year2016
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day03SquaresWithThreeSides(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day03SquaresWithThreeSides(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val triangles by lazy {
         input.lines().map { line -> TRIANGLE_REGEX.find(line)!!.destructured }.map { (a, b, c) -> listOf(a.toInt(), b.toInt(), c.toInt()) }
     }

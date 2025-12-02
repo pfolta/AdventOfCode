@@ -4,7 +4,9 @@ import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.everyNth
 
-class Day25ClockSignal(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day25ClockSignal(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override fun partOne() =
         generateSequence(1, Int::inc)
             .map { a -> a to input.lines().runAssembunny(mutableMapOf("a" to a)) }

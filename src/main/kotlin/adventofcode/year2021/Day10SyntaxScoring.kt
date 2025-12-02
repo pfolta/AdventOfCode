@@ -3,7 +3,9 @@ package adventofcode.year2021
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day10SyntaxScoring(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day10SyntaxScoring(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val lines by lazy { input.lines() }
 
     private val bracketMap =
@@ -45,8 +47,7 @@ class Day10SyntaxScoring(customInput: PuzzleInput? = null) : Puzzle(customInput)
                 }
 
                 null
-            }
-            .sumOf { char -> scoreMapPartOne[char]!! }
+            }.sumOf { char -> scoreMapPartOne[char]!! }
 
     override fun partTwo() =
         lines
@@ -61,8 +62,7 @@ class Day10SyntaxScoring(customInput: PuzzleInput? = null) : Puzzle(customInput)
                 }
 
                 stack.reversed().map { openingBracket -> bracketMap[openingBracket]!! }
-            }
-            .map { completion -> completion.fold(0L) { acc, char -> acc * 5 + scoreMapPartTwo[char]!! } }
+            }.map { completion -> completion.fold(0L) { acc, char -> acc * 5 + scoreMapPartTwo[char]!! } }
             .sorted()
             .middle()
 }

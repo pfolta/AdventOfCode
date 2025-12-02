@@ -3,7 +3,9 @@ package adventofcode.year2020
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 
-class Day25ComboBreaker(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day25ComboBreaker(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private val cardPublicKey by lazy { input.lines().first().toLong() }
     private val doorPublicKey by lazy { input.lines().last().toLong() }
 

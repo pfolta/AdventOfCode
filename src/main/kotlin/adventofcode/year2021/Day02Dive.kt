@@ -6,28 +6,32 @@ import adventofcode.year2021.Day02Dive.Companion.Direction.DOWN
 import adventofcode.year2021.Day02Dive.Companion.Direction.FORWARD
 import adventofcode.year2021.Day02Dive.Companion.Direction.UP
 
-class Day02Dive(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day02Dive(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override val name = "Dive!"
 
     private val commands by lazy { input.lines().map(::Command) }
 
     override fun partOne() =
-        commands.fold(Position()) { acc, command ->
-            when (command.direction) {
-                FORWARD -> acc.copy(horizontal = acc.horizontal + command.value)
-                DOWN -> acc.copy(depth = acc.depth + command.value)
-                UP -> acc.copy(depth = acc.depth - command.value)
-            }
-        }.multiply()
+        commands
+            .fold(Position()) { acc, command ->
+                when (command.direction) {
+                    FORWARD -> acc.copy(horizontal = acc.horizontal + command.value)
+                    DOWN -> acc.copy(depth = acc.depth + command.value)
+                    UP -> acc.copy(depth = acc.depth - command.value)
+                }
+            }.multiply()
 
     override fun partTwo() =
-        commands.fold(Position()) { acc, command ->
-            when (command.direction) {
-                FORWARD -> acc.copy(horizontal = acc.horizontal + command.value, depth = acc.depth + acc.aim * command.value)
-                DOWN -> acc.copy(aim = acc.aim + command.value)
-                UP -> acc.copy(aim = acc.aim - command.value)
-            }
-        }.multiply()
+        commands
+            .fold(Position()) { acc, command ->
+                when (command.direction) {
+                    FORWARD -> acc.copy(horizontal = acc.horizontal + command.value, depth = acc.depth + acc.aim * command.value)
+                    DOWN -> acc.copy(aim = acc.aim + command.value)
+                    UP -> acc.copy(aim = acc.aim - command.value)
+                }
+            }.multiply()
 
     companion object {
         private data class Position(
@@ -45,7 +49,9 @@ class Day02Dive(customInput: PuzzleInput? = null) : Puzzle(customInput) {
             constructor(input: String) : this(Direction(input.split(" ").first()), input.split(" ").last().toInt())
         }
 
-        private enum class Direction(val direction: String) {
+        private enum class Direction(
+            val direction: String,
+        ) {
             FORWARD("forward"),
             DOWN("down"),
             UP("up"),

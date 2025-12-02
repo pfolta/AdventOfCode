@@ -10,7 +10,9 @@ import adventofcode.year2015.Day07SomeAssemblyRequired.Companion.Operation.OR
 import adventofcode.year2015.Day07SomeAssemblyRequired.Companion.Operation.PASSTHRU
 import adventofcode.year2015.Day07SomeAssemblyRequired.Companion.Operation.RSHIFT
 
-class Day07SomeAssemblyRequired(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day07SomeAssemblyRequired(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     private fun parseInput() =
         input
             .lines()
@@ -19,10 +21,17 @@ class Day07SomeAssemblyRequired(customInput: PuzzleInput? = null) : Puzzle(custo
 
     override fun partOne() = parseInput().resolveWires()["a"]!!.value
 
-    override fun partTwo() = parseInput().minus("b").plus("b" to Wire(null, PASSTHRU, partOne().toString())).resolveWires()["a"]!!.value
+    override fun partTwo() =
+        parseInput()
+            .minus("b")
+            .plus("b" to Wire(null, PASSTHRU, partOne().toString()))
+            .resolveWires()["a"]!!
+            .value
 
     companion object {
-        private enum class Operation(val operation: String) {
+        private enum class Operation(
+            val operation: String,
+        ) {
             AND("AND"),
             LSHIFT("LSHIFT"),
             NOT("NOT"),
@@ -36,7 +45,11 @@ class Day07SomeAssemblyRequired(customInput: PuzzleInput? = null) : Puzzle(custo
             }
         }
 
-        private class Wire(val leftSide: String?, val operation: Operation, val rightSide: String) {
+        private class Wire(
+            val leftSide: String?,
+            val operation: Operation,
+            val rightSide: String,
+        ) {
             lateinit var leftWire: Wire
             lateinit var rightWire: Wire
 

@@ -5,7 +5,9 @@ import adventofcode.PuzzleInput
 import adventofcode.common.cartesianProduct
 import adventofcode.common.spatial.Grid2d
 
-class Day25CodeChronicle(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day25CodeChronicle(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override fun partOne() =
         input
             .split("\n\n")

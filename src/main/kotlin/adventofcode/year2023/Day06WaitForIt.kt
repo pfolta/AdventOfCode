@@ -7,7 +7,9 @@ import kotlin.math.ceil
 import kotlin.math.pow
 import kotlin.math.sqrt
 
-class Day06WaitForIt(customInput: PuzzleInput? = null) : Puzzle(customInput) {
+class Day06WaitForIt(
+    customInput: PuzzleInput? = null,
+) : Puzzle(customInput) {
     override fun partOne(): Long {
         val (times, distances) =
             input
