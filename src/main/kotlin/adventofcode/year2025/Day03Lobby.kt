@@ -11,11 +11,10 @@ class Day03Lobby(
     private fun List<List<Int>>.totalOutputJoltage(batteryCount: Int) =
         sumOf { bank ->
             (batteryCount downTo 1)
-                .runningFold(Triple<Int, Int, Int?>(0, bank.size - batteryCount, null)) { (left, right, _), i ->
-                    val slice = bank.subList(left, right + 1)
+                .runningFold(Triple<Int, Int, Int?>(0, bank.size - batteryCount, null)) { (lIndex, rIndex), battery ->
+                    val slice = bank.subList(lIndex, rIndex + 1)
                     val max = slice.max()
-                    val left = (slice.indexOf(max) + left + 1)
-                    Triple(left, bank.size - i + 1, max)
+                    Triple((slice.indexOf(max) + lIndex + 1), bank.size - battery + 1, max)
                 }.mapNotNull { it.third }
                 .joinToString("")
                 .toLong()
