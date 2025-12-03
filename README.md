@@ -29,7 +29,7 @@
 |     2022 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |        |        |        |        |        |        |        |   ☆    |        |        |        |   ☆    |    28 |
 |     2023 |   ★   |   ★   |   ★   |   ★   |   ☆   |   ★   |   ☆   |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    12 |
 |     2024 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |   ★    |        |   ☆    |   ★    |   ★    |   ★    |   ★    |        |   ★    |        |        |   ☆    |    40 |
-|     2025 |   ★   |   ★   |   ☆   |       |       |       |       |       |       |        |        |        |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |     5 |
+|     2025 |   ★   |   ★   |   ★   |       |       |       |       |       |       |        |        |        |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |     6 |
 
 ## 🛷 How to run
 
@@ -188,7 +188,7 @@ e.g. `HandyHaversacks`)*
 |                                           |  25 | [Code Chronicle](https://adventofcode.com/2024/day/25)                                                 | [[Code](src/main/kotlin/adventofcode/year2024/Day25CodeChronicle.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2024/Day25CodeChronicleSpec.kt)]                                         | `3608`                 |                                                  |
 | [**2025**](https://adventofcode.com/2025) |   1 | [Secret Entrance](https://adventofcode.com/2025/day/1)                                                 | [[Code](src/main/kotlin/adventofcode/year2025/Day01SecretEntrance.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2025/Day01SecretEntranceSpec.kt)]                                       | `999`                  | `6099`                                           |
 |                                           |   2 | [Gift Shop](https://adventofcode.com/2025/day/2)                                                       | [[Code](src/main/kotlin/adventofcode/year2025/Day02GiftShop.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2025/Day02GiftShopSpec.kt)]                                                   | `54234399924`          | `70187097315`                                    |
-|                                           |   3 | [Lobby](https://adventofcode.com/2025/day/3)                                                           | [[Code](src/main/kotlin/adventofcode/year2025/Day03Lobby.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2025/Day03LobbySpec.kt)]                                                         | `17113`                |                                                  |
+|                                           |   3 | [Lobby](https://adventofcode.com/2025/day/3)                                                           | [[Code](src/main/kotlin/adventofcode/year2025/Day03Lobby.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2025/Day03LobbySpec.kt)]                                                         | `17113`                | `169709990062889`                                |
 
 ## 🕯️ Useful commands
 

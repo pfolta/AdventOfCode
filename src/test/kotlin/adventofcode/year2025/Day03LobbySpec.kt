@@ -2,4 +2,4 @@ package adventofcode.year2025
 
 import adventofcode.PuzzleBaseSpec
 
-class Day03LobbySpec : PuzzleBaseSpec(357)
+class Day03LobbySpec : PuzzleBaseSpec(357, 3121910778619)
