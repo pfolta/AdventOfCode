@@ -1,3 +1,4 @@
+import com.adarshr.gradle.testlogger.theme.ThemeType.MOCHA
 import org.gradle.api.file.DuplicatesStrategy.EXCLUDE
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 import org.jlleitschuh.gradle.ktlint.reporter.ReporterType.HTML
@@ -38,6 +39,8 @@ ktlint {
 }
 
 testlogger {
+    theme = MOCHA
+
     // 15 seconds, see adventofcode.util.ConsoleFormatterKt.formatBenchmark
     slowThreshold = 15_000
 }
