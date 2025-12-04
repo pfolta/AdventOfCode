@@ -31,9 +31,9 @@ data class Point2d(
      * where N is a neighbor of P.
      */
     fun neighbors(includeDiagonals: Boolean = false): Set<Point2d> =
-        when {
-            includeDiagonals -> setOf(NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST)
-            else -> setOf(NORTH, EAST, SOUTH, WEST)
+        when (includeDiagonals) {
+            true -> setOf(NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST)
+            false -> setOf(NORTH, EAST, SOUTH, WEST)
         }.map { direction -> this + direction }
             .toSet()
 

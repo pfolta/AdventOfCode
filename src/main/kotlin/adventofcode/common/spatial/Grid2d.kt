@@ -50,10 +50,9 @@ data class Grid2d<T>(
 
     /** Returns the value at the given point if the point is within the grid, throws otherwise. */
     operator fun get(point: Point2d): T =
-        if (point in this) {
-            values[point.y.toInt()][point.x.toInt()]
-        } else {
-            throw IndexOutOfBoundsException("Point $point is outside of the grid")
+        when (point in this) {
+            true -> values[point.y.toInt()][point.x.toInt()]
+            false -> throw IndexOutOfBoundsException("Point $point is outside of the grid")
         }
 
     /** Returns the value at the given point if the point is within the grid, or `null` otherwise. */
