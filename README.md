@@ -39,16 +39,36 @@ Puzzles can be run using the Gradle `run` task or by executing the project's JAR
   `./gradlew run` or `java -jar build/libs/AdventOfCode.jar`
 
 * All puzzles for a given year:  
-  `./gradlew run --args "2020"` or `java -jar build/libs/AdventOfCode.jar 2020`
+  `./gradlew run --args 2020` or `java -jar build/libs/AdventOfCode.jar 2020`
 
 * A single puzzle for a given year and day:  
-  `./gradlew run --args "2020/25"` or `java -jar build/libs/AdventOfCode.jar 2020/25`
+  `./gradlew run --args 2020/25` or `java -jar build/libs/AdventOfCode.jar 2020/25`
 
-These arguments can be combined to run multiple puzzles, e.g.
-`./gradlew run --args "2015/1 2019 2020/6 2020/7"` will run the first puzzle from 2015, then all puzzles from 2019 and lastly the 6th and
-7th puzzle from 2020.
+These arguments can be combined to run multiple puzzles, e.g. `./gradlew run --args "2015/1 2019 2020/6 2020/7"` or
+`java -jar build/libs/AdventOfCode.jar 2015/1 2019 2020/6 2020/7` will run the first puzzle from 2015, then all puzzles from 2019 and lastly
+the 6th and 7th puzzle from 2020.
 
 Runtimes that exceed 15s are <span style="font-weight:bold;color:gray;background-color:red;">highlighted in red</span>.
+
+## 🐳 Docker
+
+This project contains a `Dockerfile` to build the project and run the puzzles:
+
+* To build the Docker image:  
+  `docker build -t pfolta/advent-of-code:latest .`
+
+* To run all available puzzles (all years and days) in Docker (and remove the container afterwards):  
+  `docker run --rm pfolta/advent-of-code:latest`
+
+* All puzzles for a given year:  
+  `docker run --rm pfolta/advent-of-code:latest 2020`
+
+* A single puzzle for a given year and day:  
+  `docker run --rm pfolta/advent-of-code:latest 2020/25`
+
+And just as when running the JAR archive natively, these arguments can be combined to run multiple puzzles, e.g.
+`docker run --rm pfolta/advent-of-code:latest 2015/1 2019 2020/6 2020/7` will run the first puzzle from 2015, then all puzzles from 2019 and
+lastly the 6th and 7th puzzle from 2020.
 
 ## 🎅🏻 Structure
 
