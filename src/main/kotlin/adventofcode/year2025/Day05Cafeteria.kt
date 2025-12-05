@@ -2,6 +2,7 @@ package adventofcode.year2025
 
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
+import kotlin.math.max
 
 class Day05Cafeteria(
     customInput: PuzzleInput? = null,
@@ -11,8 +12,8 @@ class Day05Cafeteria(
 
         return Pair(
             ranges.map { range ->
-                val (start, end) = range.split("-").map(String::toLong)
-                LongRange(start, end)
+                val (from, to) = range.split("-").map(String::toLong)
+                LongRange(from, to)
             },
             ids.map(String::toLong),
         )
@@ -21,4 +22,19 @@ class Day05Cafeteria(
     override fun partOne() =
         parseInput()
             .let { (ranges, ids) -> ids.count { id -> ranges.any { range -> range.contains(id) } } }
+
+    override fun partTwo() =
+        parseInput()
+            .first
+            .sortedBy { range -> range.first }
+            .fold(emptyList<LongRange>()) { ranges, range ->
+                when {
+                    ranges.isEmpty() -> listOf(range)
+
+                    range.first - 1 <= ranges.last().last ->
+                        ranges.dropLast(1) + listOf(ranges.last().first..max(ranges.last().last, range.last))
+
+                    else -> ranges + listOf(range)
+                }
+            }.sumOf { range -> range.last - range.first + 1 }
 }
