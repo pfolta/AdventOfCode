@@ -56,7 +56,11 @@ data class Grid2d<T>(
         }
 
     /** Returns the value at the given point if the point is within the grid, or `null` otherwise. */
-    fun getOrNull(point: Point2d): T? = if (point in this) values[point.y.toInt()][point.x.toInt()] else null
+    fun getOrNull(point: Point2d): T? =
+        when (point in this) {
+            true -> values[point.y.toInt()][point.x.toInt()]
+            false -> null
+        }
 
     /**
      * Returns a set of valid neighbors for a given point P in the grid.
