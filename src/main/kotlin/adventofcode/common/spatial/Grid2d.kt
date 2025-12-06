@@ -31,7 +31,7 @@ data class Grid2d<T>(
     fun row(index: Int): List<T> = values[index]
 
     /** Returns all the columns of the grid. */
-    fun columns(): List<List<T>> = rotate().values.map(List<T>::reversed)
+    fun columns(): List<List<T>> = rotateClockwise().values.map(List<T>::reversed)
 
     /** Returns the column of elements at the given column index. */
     fun column(index: Int): List<T> = values.map { row -> row[index] }
@@ -84,11 +84,21 @@ data class Grid2d<T>(
      * [D, E, F]          [H, E, B]
      * [G, H, I]          [I, F, C]
      */
-    fun rotate(): Grid2d<T> {
+    fun rotateClockwise(): Grid2d<T> {
         val result = values.first().map { mutableListOf<T>() }
         values.forEach { list -> result.zip(list).forEach { it.first.add(it.second) } }
         return Grid2d(result.map(List<T>::reversed))
     }
+
+    /**
+     * Returns a new grid by rotating this grid 90deg clockwise.
+     *
+     * Original grid:     After rotation:
+     * [A, B, C]          [C, F, I]
+     * [D, E, F]          [B, E, H]
+     * [G, H, I]          [A, D, G]
+     */
+    fun rotateCounterClockwise(): Grid2d<T> = generateSequence(this, Grid2d<T>::rotateClockwise).drop(1).take(3).last()
 
     companion object {
         /** Create a new `Grid2d` from a `String` where each point is a character of that string. */

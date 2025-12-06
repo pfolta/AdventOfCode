@@ -191,9 +191,9 @@ class Grid2dSpec :
             }
         }
 
-        "rotate" - {
+        "rotateClockwise" - {
             "returns a new grid correctly rotated" {
-                grid.rotate() shouldBe
+                grid.rotateClockwise() shouldBe
                     Grid2d(
                         listOf(
                             listOf('G', 'D', 'A'),
@@ -204,7 +204,7 @@ class Grid2dSpec :
             }
 
             "leaves the original grid untouched" {
-                grid.rotate()
+                grid.rotateClockwise()
                 grid shouldBe
                     Grid2d(
                         listOf(
@@ -216,7 +216,36 @@ class Grid2dSpec :
             }
 
             "rotating 4 times results in the original grid" {
-                generateSequence(grid, Grid2d<Char>::rotate).drop(1).take(4).last() shouldBe grid
+                generateSequence(grid, Grid2d<Char>::rotateClockwise).drop(1).take(4).last() shouldBe grid
+            }
+        }
+
+        "rotateCounterClockwise" - {
+            "returns a new grid correctly rotated" {
+                grid.rotateCounterClockwise() shouldBe
+                    Grid2d(
+                        listOf(
+                            listOf('C', 'F', 'I'),
+                            listOf('B', 'E', 'H'),
+                            listOf('A', 'D', 'G'),
+                        ),
+                    )
+            }
+
+            "leaves the original grid untouched" {
+                grid.rotateCounterClockwise()
+                grid shouldBe
+                    Grid2d(
+                        listOf(
+                            listOf('A', 'B', 'C'),
+                            listOf('D', 'E', 'F'),
+                            listOf('G', 'H', 'I'),
+                        ),
+                    )
+            }
+
+            "rotating 4 times results in the original grid" {
+                generateSequence(grid, Grid2d<Char>::rotateCounterClockwise).drop(1).take(4).last() shouldBe grid
             }
         }
     })
