@@ -98,7 +98,7 @@ data class Grid2d<T>(
      * [D, E, F]          [B, E, H]
      * [G, H, I]          [A, D, G]
      */
-    fun rotateCounterClockwise(): Grid2d<T> = generateSequence(this, Grid2d<T>::rotateClockwise).drop(1).take(3).last()
+    fun rotateCounterClockwise(): Grid2d<T> = Grid2d(rotateClockwise().values.map(List<T>::reversed).reversed())
 
     companion object {
         /** Create a new `Grid2d` from a `String` where each point is a character of that string. */

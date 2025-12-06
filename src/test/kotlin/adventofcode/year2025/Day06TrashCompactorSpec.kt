@@ -2,4 +2,4 @@ package adventofcode.year2025
 
 import adventofcode.PuzzleBaseSpec
 
-class Day06TrashCompactorSpec : PuzzleBaseSpec(4277556)
+class Day06TrashCompactorSpec : PuzzleBaseSpec(4277556, 3263827)
