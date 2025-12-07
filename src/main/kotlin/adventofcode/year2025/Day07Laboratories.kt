@@ -12,7 +12,7 @@ class Day07Laboratories(
     override fun partOne(): Int {
         val grid = parseInput()
         val start = grid[START].x.toInt()
-        val splitters =
+        val splittersByRow =
             grid
                 .rows()
                 .map { row ->
@@ -25,10 +25,10 @@ class Day07Laboratories(
                         }.toSet()
                 }
 
-        return splitters
-            .fold(Pair(setOf(start), 0)) { (beam, splitCount), rowSplitters ->
-                val reachedSplitters = beam intersect rowSplitters
-                Pair(beam - reachedSplitters + reachedSplitters.flatMap { x -> listOf(x - 1, x + 1) }, splitCount + reachedSplitters.size)
+        return splittersByRow
+            .fold(Pair(setOf(start), 0)) { (beam, splitCount), splittersInRow ->
+                val reachedSplitters = beam intersect splittersInRow
+                Pair(beam - reachedSplitters + reachedSplitters.flatMap { x -> setOf(x - 1, x + 1) }, splitCount + reachedSplitters.size)
             }.second
     }
 
