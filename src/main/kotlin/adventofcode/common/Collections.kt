@@ -66,10 +66,10 @@ inline fun <reified T : Any?> List<List<T>>.neighbors(
  * D E F                    H E B
  * G H I                    I F C
  */
-inline fun <reified T : Any?> Collection<Collection<T>>.transpose(): Collection<Collection<T>> {
+fun <T> Collection<Collection<T>>.transpose(): List<List<T>> {
     val result = first().map { mutableListOf<T>() }
     forEach { list -> result.zip(list).forEach { it.first.add(it.second) } }
-    return result.map { it.reversed() }
+    return result.map(List<T>::reversed)
 }
 
 /**

@@ -1,5 +1,7 @@
 package adventofcode.common.spatial
 
+import adventofcode.common.transpose
+
 data class Grid2d<T>(
     val values: List<List<T>>,
 ) {
@@ -84,11 +86,7 @@ data class Grid2d<T>(
      * [D, E, F]          [H, E, B]
      * [G, H, I]          [I, F, C]
      */
-    fun rotateClockwise(): Grid2d<T> {
-        val result = values.first().map { mutableListOf<T>() }
-        values.forEach { list -> result.zip(list).forEach { it.first.add(it.second) } }
-        return Grid2d(result.map(List<T>::reversed))
-    }
+    fun rotateClockwise(): Grid2d<T> = Grid2d(values.transpose())
 
     /**
      * Returns a new grid by rotating this grid 90deg clockwise.
