@@ -6,6 +6,14 @@ import io.kotest.matchers.shouldBe
 
 class Point2dSpec :
     FreeSpec({
+        "constructor" - {
+            "with `Double` coordinates" - {
+                "returns the corresponding Point2d using `Long` coordinates" {
+                    Point2d(1.0, 2.0) shouldBe Point2d(1L, 2L)
+                }
+            }
+        }
+
         "toString" - {
             "returns pretty formatted String representation of the point" {
                 Point2d(1024, 2048).toString() shouldBe "(1024, 2048)"
@@ -56,13 +64,13 @@ class Point2dSpec :
             }
         }
 
-        "distanceTo" - {
+        "manhattanDistanceTo" - {
             "returns the Manhattan distance between two points" {
-                Point2d(1, 1) distanceTo Point2d(2, 3) shouldBe 3
+                Point2d(1, 1) manhattanDistanceTo Point2d(2, 3) shouldBe 3
             }
 
             "returns the Manhattan distance between two points with negative coordinates" {
-                Point2d(-2, -3) distanceTo Point2d(4, 5) shouldBe 14
+                Point2d(-2, -3) manhattanDistanceTo Point2d(4, 5) shouldBe 14
             }
         }
     })

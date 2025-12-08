@@ -38,7 +38,7 @@ class Day20RaceCondition(
         private fun List<Point2d>.findCheats(time: Int) =
             indices.sumOf { start ->
                 (start + MINIMUM_SAVINGS..lastIndex).count { end ->
-                    val distance = this[start] distanceTo this[end]
+                    val distance = this[start] manhattanDistanceTo this[end]
                     (distance <= time) && (distance <= end - start - MINIMUM_SAVINGS)
                 }
             }

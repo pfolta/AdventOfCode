@@ -38,7 +38,7 @@ data class Point2d(
             .toSet()
 
     /** Returns the Manhattan distance between two points. */
-    infix fun distanceTo(other: Point2d): Long = (x - other.x).absoluteValue + (y - other.y).absoluteValue
+    infix fun manhattanDistanceTo(other: Point2d): Long = (x - other.x).absoluteValue + (y - other.y).absoluteValue
 
     companion object {
         /** The midpoint of the cartesian grid. */
