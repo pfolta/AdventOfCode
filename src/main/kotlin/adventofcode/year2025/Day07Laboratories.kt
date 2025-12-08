@@ -44,7 +44,7 @@ class Day07Laboratories(
             val reachedSplitters = splittersInRow intersect beam.keys
 
             for (reachedSplitter in reachedSplitters) {
-                val pathCount = beam[reachedSplitter] ?: 0
+                val pathCount = beam.getValue(reachedSplitter)
 
                 if (pathCount > 0) {
                     beam[reachedSplitter - 1] = (beam[reachedSplitter - 1] ?: 0) + pathCount
