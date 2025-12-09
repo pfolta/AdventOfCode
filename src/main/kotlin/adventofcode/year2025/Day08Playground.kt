@@ -11,9 +11,9 @@ class Day08Playground(
 ) : Puzzle(customInput) {
     private fun connectJunctionBoxes(): Sequence<Triple<Set<Set<Point3d>>, Int, Set<Point3d>>> {
         val junctionBoxes =
-            input.lines().map {
-                val (x, y, z) = junctionBoxRegex.find(it)!!.destructured
-                Point3d(x.toLong(), y.toLong(), z.toLong())
+            input.lines().map { line ->
+                val (x, y, z) = line.split(",").map(String::toLong)
+                Point3d(x, y, z)
             }
 
         val sortedJunctionBoxPairs =
@@ -55,8 +55,4 @@ class Day08Playground(
             .third
             .map { (x) -> x }
             .product()
-
-    companion object {
-        private val junctionBoxRegex = """(\d+),(\d+),(\d+)""".toRegex()
-    }
 }
