@@ -29,7 +29,7 @@
 |     2022 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |        |        |        |        |        |        |        |   ☆    |        |        |        |   ☆    |    28 |
 |     2023 |   ★   |   ★   |   ★   |   ★   |   ☆   |   ★   |   ☆   |       |       |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |        |    12 |
 |     2024 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★    |   ★    |   ★    |   ★    |   ★    |        |   ☆    |   ★    |   ★    |   ★    |   ★    |        |   ★    |        |        |   ☆    |    40 |
-|     2025 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |        |        |        |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |    18 |
+|     2025 |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |   ★   |        |   ☆    |        |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |   –    |    19 |
 
 ## 🛷 How to run
 
@@ -215,6 +215,7 @@ e.g. `HandyHaversacks`)*
 |                                           |   7 | [Laboratories](https://adventofcode.com/2025/day/7)                                                    | [[Code](src/main/kotlin/adventofcode/year2025/Day07Laboratories.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2025/Day07LaboratoriesSpec.kt)]                                           | `1711`                 | `36706966158365`                                 |
 |                                           |   8 | [Playground](https://adventofcode.com/2025/day/8)                                                      | [[Code](src/main/kotlin/adventofcode/year2025/Day08Playground.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2025/Day08PlaygroundSpec.kt)]                                               | `135169`               | `302133440`                                      |
 |                                           |   9 | [Movie Theater](https://adventofcode.com/2025/day/9)                                                   | [[Code](src/main/kotlin/adventofcode/year2025/Day09MovieTheater.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2025/Day09MovieTheaterSpec.kt)]                                           | `4777409595`           | `1473551379`                                     |
+|                                           |  11 | [Reactor](https://adventofcode.com/2025/day/11)                                                        | [[Code](src/main/kotlin/adventofcode/year2025/Day11Reactor.kt)]&nbsp;[[Test](src/test/kotlin/adventofcode/year2025/Day11ReactorSpec.kt)]                                                     | `699`                  |                                                  |
 
 ## 🕯️ Useful commands
 
