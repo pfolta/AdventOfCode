@@ -10,7 +10,7 @@ class Day02GiftShop(
         input
             .split(",")
             .flatMap { range ->
-                val (start, end) = range.split("-").map(String::toLong)
+                val (start, end) = range.split("-", limit = 2).map(String::toLong)
                 LongRange(start, end).asSequence()
             }
 

@@ -14,7 +14,7 @@ class Day09MovieTheater(
     private fun parseInput(): Pair<Area, Set<Rectangle2D>> {
         val points =
             input.lines().map { line ->
-                val (x, y) = line.split(",").map(String::toLong)
+                val (x, y) = line.split(",", limit = 2).map(String::toLong)
                 Point2d(x, y)
             }
 
@@ -23,27 +23,29 @@ class Day09MovieTheater(
 
         val rectangles =
             points
-                .flatMapIndexed { index, a -> points.subList(index + 1, points.size).map { b -> a to b } }
-                .map { (a, b) ->
-                    Rectangle2D.Double(
-                        minOf(a.x, b.x).toDouble(),
-                        minOf(a.y, b.y).toDouble(),
-                        (a.x - b.x).absoluteValue.toDouble(),
-                        (a.y - b.y).absoluteValue.toDouble(),
-                    )
-                }.toSet()
+                .flatMapIndexed { index, a ->
+                    points.drop(index + 1).map { b ->
+                        Rectangle2D.Double(
+                            minOf(a.x, b.x).toDouble(),
+                            minOf(a.y, b.y).toDouble(),
+                            (a.x - b.x).absoluteValue.toDouble(),
+                            (a.y - b.y).absoluteValue.toDouble(),
+                        )
+                    }
+                }.sortedByDescending { rectangle -> rectangle.area() }
+                .toSet()
 
         return Pair(polygonArea, rectangles)
     }
 
-    override fun partOne() = parseInput().second.maxOf { rectangle -> rectangle.area() }
+    override fun partOne() = parseInput().second.first().area()
 
     override fun partTwo() =
         parseInput()
             .let { (polygonArea, rectangles) ->
                 rectangles
-                    .filter { rectangle -> polygonArea.contains(rectangle) }
-                    .maxOf { rectangle -> rectangle.area() }
+                    .first { rectangle -> polygonArea.contains(rectangle) }
+                    .area()
             }
 
     companion object {

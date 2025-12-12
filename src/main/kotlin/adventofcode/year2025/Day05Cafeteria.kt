@@ -8,11 +8,11 @@ class Day05Cafeteria(
     customInput: PuzzleInput? = null,
 ) : Puzzle(customInput) {
     private fun parseInput(): Pair<List<LongRange>, List<Long>> {
-        val (ranges, ids) = input.split("\n\n").map(String::lines)
+        val (ranges, ids) = input.split("\n\n", limit = 2).map(String::lines)
 
         return Pair(
             ranges.map { range ->
-                val (from, to) = range.split("-").map(String::toLong)
+                val (from, to) = range.split("-", limit = 2).map(String::toLong)
                 LongRange(from, to)
             },
             ids.map(String::toLong),

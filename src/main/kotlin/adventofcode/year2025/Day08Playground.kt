@@ -12,7 +12,7 @@ class Day08Playground(
     private fun connectJunctionBoxes(): Sequence<Triple<Set<Set<Point3d>>, Int, Set<Point3d>>> {
         val junctionBoxes =
             input.lines().map { line ->
-                val (x, y, z) = line.split(",").map(String::toLong)
+                val (x, y, z) = line.split(",", limit = 3).map(String::toLong)
                 Point3d(x, y, z)
             }
 
