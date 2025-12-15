@@ -3,6 +3,8 @@ package adventofcode.year2025
 import adventofcode.Puzzle
 import adventofcode.PuzzleInput
 import adventofcode.common.Permutations.powersets
+import com.microsoft.z3.Context
+import com.microsoft.z3.Status.SATISFIABLE
 
 class Day10Factory(
     customInput: PuzzleInput? = null,
@@ -26,6 +28,46 @@ class Day10Factory(
                             }
                         } == machine.lights
                     }.size
+            }
+
+    override fun partTwo() =
+        parseInput()
+            .sumOf { machine ->
+                Context().use { ctx ->
+                    val solver = ctx.mkOptimize()
+
+                    // Create variables for button presses and ensure they are positive.
+                    val buttons =
+                        machine.buttons.indices
+                            .map { index -> ctx.mkIntConst("button#$index") }
+                            .onEach { button -> solver.Add(ctx.mkGe(button, ctx.mkInt(0))) }
+
+                    // Create equations: For each joltage counter, ensure the sum of all button presses is equal to the specified joltage
+                    machine.joltages.forEachIndexed { counter, joltage ->
+                        val pressedButtons =
+                            machine.buttons
+                                .withIndex()
+                                .filter { (_, counters) -> counter in counters }
+                                .map { buttons[it.index] }
+
+                        solver.Add(ctx.mkEq(ctx.mkAdd(*pressedButtons.toTypedArray()), ctx.mkInt(joltage)))
+                    }
+
+                    // Solve for the minimum number of button presses
+                    val buttonPresses = ctx.mkIntConst("buttonPresses")
+                    solver.Add(ctx.mkEq(buttonPresses, ctx.mkAdd(*buttons.toTypedArray())))
+                    solver.MkMinimize(buttonPresses)
+
+                    when (solver.Check()) {
+                        SATISFIABLE ->
+                            solver.model
+                                .evaluate(buttonPresses, false)
+                                .toString()
+                                .toInt()
+
+                        else -> 0
+                    }
+                }
             }
 
     companion object {

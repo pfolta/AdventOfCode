@@ -27,6 +27,7 @@ dependencies {
     implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.20.1")
     implementation("org.reflections:reflections:0.10.2")
     implementation("org.slf4j:slf4j-nop:2.0.17")
+    implementation("tools.aqua:z3-turnkey:4.14.1")
 
     testImplementation("io.kotest:kotest-runner-junit5-jvm:6.0.7")
     testImplementation("io.kotest:kotest-assertions-core-jvm:6.0.7")
