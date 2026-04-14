@@ -7,7 +7,7 @@ object Puzzles {
         Reflections(Puzzle::class.java)
             .getSubTypesOf(Puzzle::class.java)
             .sortedBy(Class<out Puzzle>::getName)
-            .map { it.getDeclaredConstructor().newInstance()!! }
+            .map { it.getDeclaredConstructor().newInstance() }
 
     fun all() = puzzles
 
